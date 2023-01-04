@@ -1,0 +1,98 @@
+.header{
+    background-color: #e3e6f2;
+    
+    .header__navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 68px;
+
+        .header__navbar-right{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            gap: 20px;
+
+            .header__navbar-item{
+                
+                .header__navbar-link{
+                    color: #000;
+                }
+            }
+
+            .header__navbar-item-search{
+                background-color: #fff;
+                width: 350px;
+                height: 30px;
+                display: flex;
+                border-radius: 20px;
+                overflow: hidden;
+
+                .header__navbar-item-input{
+                    border: none;
+                    outline: none;
+                    padding-left: 18px;
+                    flex-grow: 1;
+                    
+                    &:focus {
+                        border: 1px solid #000;
+                        border-top-left-radius: 20px;
+                        border-bottom-left-radius: 20px;
+                        overflow: hidden;
+                    }
+                
+                   
+                }
+                .header__navbar-item-btn{
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+
+                    .header__navbar-item-icon{
+                        width: 50px;
+                    }
+                }
+            }
+        }
+
+        .header__logo{
+            width: 80px;
+            border-radius: 50%;
+        }
+
+        .header__navbar-list{
+            display: flex;
+            list-style: none;
+    
+            .header__navbar-item {
+                padding: 0 20px;
+                position: relative;
+              
+                .header__navbar-link {
+                    text-decoration: none;
+                    font-size: 1.6rem;
+                    color: #1a1a1a;
+                    font-weight: 600;
+
+                    &:hover, &:active{
+                        color: #008178;
+                    }
+
+                    &:hover::after, &.active::after{
+                        content: "";
+                        background-color: #008178;
+                        width: calc(100% - 42px);
+                        height: 2px;
+                        position: absolute;
+                        bottom: -4px;
+                        left: 20px;
+                    }
+                }
+                
+            }
+        }
+    }
+
+   
+}
