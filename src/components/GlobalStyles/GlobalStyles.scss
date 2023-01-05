@@ -2,6 +2,8 @@
 
 :root{
     --primary-color: #33cc99;
+    --extra-color:  #088178;
+    --border-color: #cce7d0;
 }
 
 *{
@@ -17,5 +19,9 @@ html{
 body{
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
+}
+
+.section-m1{
+    margin: 40px 0;
 }
 

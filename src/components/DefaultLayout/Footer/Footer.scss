@@ -1,4 +1,34 @@
 .footer{
     height: 250px;
     background-color: #e3e6f2;
+    padding: 40px 20px;
+
+    .footer__main{
+        display: flex;
+        justify-content: space-between;
+
+        h3{
+            padding-bottom: 20px;
+        }
+       
+        li{
+            list-style: none;
+            font-size: 1.5rem;
+            font-weight: 200;
+            line-height: 2.6rem;
+        }
+
+        .footer__info{
+           h3:last-child{
+            color: red;
+           }
+            .footer__icon{
+                display: flex;
+                li{
+                    padding-right: 18px;
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
 }

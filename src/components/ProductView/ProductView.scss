@@ -1,0 +1,15 @@
+
+
+.product-view__avatar{
+    .product-view__img{
+        width: 100%;
+    }
+
+    .product-view__img-group{
+       margin-right: -5px;
+        .product-view__img-group-col{
+            width: 25%;
+            padding-right: 5px;
+        }
+    }
+}

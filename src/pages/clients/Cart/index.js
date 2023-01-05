@@ -1,7 +1,12 @@
 import React from "react";
+import "./Cart.scss";
 
 const Cart = () => {
-  return <div>Cart Page</div>;
+  return (
+    <section className="cart">
+      <div>Hellofsdfsdfdsf</div>
+    </section>
+  );
 };
 
 export default Cart;

@@ -1,16 +1,13 @@
-.home{
-    .container{
-        .featured-products{
-            text-align: center;
+.featured-products{
+    text-align: center;
 
-            h2{
-                font-size: 4rem;
-                padding-bottom: 5px;
-            }
-            
-            p{
-                padding-bottom: 16px;
-            }
-        }
+    h2{
+        font-size: 5rem;
+        padding-bottom: 5px;
+    }
+    
+    p{
+        padding-bottom: 16px;
+        font-size: 1.4rem;
     }
 }

@@ -1,7 +1,13 @@
 import React from "react";
+import Grid from "../../../components/Grid";
+import ProductView from "../../../components/ProductView";
 
 const Product = () => {
-  return <div>Product Page</div>;
+  return (
+    <Grid>
+      <ProductView />
+    </Grid>
+  );
 };
 
 export default Product;
