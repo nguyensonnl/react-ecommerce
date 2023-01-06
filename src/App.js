@@ -12,31 +12,31 @@ import { Fragment } from "react";
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/admin/login" element={<LoginPage />} />
-        <Route path="/admin/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/admin/user/create" element={<CreateUser />} />
+    // <div className="App">
+    <Routes>
+      {/* <Route path="/" element={<Home />} /> */}
+      <Route path="/admin/login" element={<LoginPage />} />
+      <Route path="/admin/register" element={<RegisterPage />} />
+      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/admin/user/create" element={<CreateUser />} />
 
-        {publicRoutes.map((route, index) => {
-          const Page = route.page;
-          const Layout = route.layout === null ? Fragment : DefaultLayout;
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              element={
-                <Layout>
-                  <Page />
-                </Layout>
-              }
-            />
-          );
-        })}
-      </Routes>
-    </div>
+      {publicRoutes.map((route, index) => {
+        const Page = route.page;
+        const Layout = route.layout === null ? Fragment : DefaultLayout;
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            element={
+              <Layout>
+                <Page />
+              </Layout>
+            }
+          />
+        );
+      })}
+    </Routes>
+    // </div>
   );
 }
 

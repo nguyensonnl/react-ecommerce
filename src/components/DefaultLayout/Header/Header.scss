@@ -36,7 +36,7 @@
                     padding-left: 18px;
                     flex-grow: 1;
                     
-                    &:focus {
+                    &:focus  {
                         border: 1px solid #000;
                         border-top-left-radius: 20px;
                         border-bottom-left-radius: 20px;
@@ -49,6 +49,7 @@
                     border: none;
                     outline: none;
                     cursor: pointer;
+                    background-color: transparent;
 
                     .header__navbar-item-icon{
                         width: 50px;
@@ -59,7 +60,6 @@
 
         .header__logo{
             width: 80px;
-            border-radius: 50%;
         }
 
         .header__navbar-list{

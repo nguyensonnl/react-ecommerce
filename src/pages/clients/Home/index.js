@@ -5,10 +5,11 @@ import Feature from "../../../components/Feature";
 import "./Home.scss";
 import Card from "../../../components/Card";
 import Banner from "../../../components/Banner";
+import Helmet from "../../../components/Helmet";
 
 const Home = () => {
   return (
-    <section className="home">
+    <Helmet title="Trang chủ">
       <Hero />
       <Grid>
         <div className="container">
@@ -28,7 +29,7 @@ const Home = () => {
       <Grid>
         <Card />
       </Grid>
-    </section>
+    </Helmet>
   );
 };
 
