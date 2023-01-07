@@ -1,4 +1,4 @@
-.hero{
+.hero-slider{
     background-image: url('../../assets/img/hero4.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,9 +9,8 @@
     justify-content: center;
     padding-left: 50px;
     gap: 10px;
-    margin-bottom: 50px;
 
-    .hero__btn{
+    .hero-slider__btn{
         width: 150px;
         padding: 10px;
         color: var(--primary-color);

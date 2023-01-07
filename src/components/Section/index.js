@@ -1,5 +1,7 @@
+import "./Section.scss";
+
 const Section = (props) => {
-  return <div className="section">{props}.children</div>;
+  return <div className="section">{props.children}</div>;
 };
 
 export const SectionTitle = (props) => {

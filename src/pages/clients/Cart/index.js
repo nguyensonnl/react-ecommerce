@@ -1,7 +1,6 @@
 import React from "react";
 import Helmet from "../../../components/Helmet";
 import Grid from "../../../components/Grid";
-import "./Cart.scss";
 
 const Cart = () => {
   return (

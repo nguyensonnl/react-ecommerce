@@ -1,0 +1,45 @@
+.letter{
+    background-image: url('../../../assets/img/banner/b14.png');
+    background-repeat: no-repeat;
+    background-position: 20% 30%;
+    background-color: #041e42;
+
+    &__main{
+        height: 168px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &-title{
+
+            &-register{
+                font-size: 2.4rem;
+                color: #fff;
+                font-weight: 700;
+                margin-bottom: 12px;
+                text-transform: capitalize;
+            }
+        
+            &-des{
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: #818ea0;
+    
+            span{
+                    color: #ffbd27;
+                }
+            }
+        }
+    
+        &-form{
+    
+            display: flex;
+            align-items: center;
+        }
+    }
+
+   
+
+   
+}

@@ -1,33 +1,47 @@
 import React from "react";
-import Hero from "../../../components/Hero";
+import HeroSlider from "../../../components/HeroSlider";
 import Grid from "../../../components/Grid";
 import Feature from "../../../components/Feature";
-import "./Home.scss";
-import Card from "../../../components/Card";
+import ProductCard from "../../../components/ProductCard";
 import Banner from "../../../components/Banner";
 import Helmet from "../../../components/Helmet";
+import Section, {
+  SectionBody,
+  SectionTitle,
+} from "../../../components/Section";
 
 const Home = () => {
   return (
     <Helmet title="Trang chủ">
-      <Hero />
+      <HeroSlider />
       <Grid>
-        <div className="container">
-          <Feature />
-          <div className="featured-products">
-            <h2>Sản phẩm nổi bật</h2>
-            <p>Bộ sưu tập Mùa Hè Thiết Kế Hiện Đại</p>
-          </div>
-          <Card />
-        </div>
+        <Section>
+          <SectionBody>
+            <Feature />
+          </SectionBody>
+        </Section>
+
+        <Section>
+          <SectionTitle>Sản phẩm nổi bật</SectionTitle>
+          <SectionBody>
+            <ProductCard />
+          </SectionBody>
+        </Section>
       </Grid>
-      <Banner />
-      <div className="featured-products">
-        <h2>Hàng mới về</h2>
-        <p>Bộ sưu tập Mùa Hè Thiết Kế Hiện Đại</p>
-      </div>
+
+      <Section>
+        <SectionBody>
+          <Banner />
+        </SectionBody>
+      </Section>
+
       <Grid>
-        <Card />
+        <Section>
+          <SectionTitle>Sản phẩm mới</SectionTitle>
+          <SectionBody>
+            <ProductCard />
+          </SectionBody>
+        </Section>
       </Grid>
     </Helmet>
   );

@@ -9,7 +9,7 @@ import f6 from "../../assets/img/features/f6.png";
 
 const Feature = () => {
   return (
-    <section className="feature">
+    <div className="feature section-m1">
       <div className="feature__card">
         <img src={f1} alt="" className="feature__img" />
         <div className="feature__title">Miễn phí vận chuyển</div>
@@ -34,7 +34,7 @@ const Feature = () => {
         <img src={f6} alt="" className="feature__img" />
         <div className="feature__title">Hỗ trợ 24/7</div>
       </div>
-    </section>
+    </div>
   );
 };
 
