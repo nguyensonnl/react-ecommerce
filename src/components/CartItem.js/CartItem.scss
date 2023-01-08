@@ -1,0 +1,13 @@
+.cart__item{
+
+    & td:nth-child(2){
+        width: 15%;
+    }
+
+    &-icon{
+    }
+
+    &-img{
+        width: 50%;
+    }
+}
