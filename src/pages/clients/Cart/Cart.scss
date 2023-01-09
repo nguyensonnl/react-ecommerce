@@ -2,68 +2,127 @@
     &__list{
         width: 100%;
         border-collapse: collapse;
+        white-space: nowrap;
+        table-layout: fixed;
 
-        td, tr, th{
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        td{
-            text-align: center;
-        }
-    }
-
-    &__info{
-        width: 100%;
-        box-shadow: 10px 10px 20px rgb(123 122 101 / 40%);
-        padding: 14px;
-
-        &__btn{
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-
-            button{
-                width: 100%;
-                padding: 10px;
-                background-color: var(--extra-color);
-                border: none;
-                outline: none;
-                color: #fff;
+        & thead {
+            border: 1px solid #e2e9e1;
+            border-left: none;
+            border-right: none;
+            
+            & th{
+                font-weight: 700;
                 text-transform: uppercase;
                 font-size: 1.8rem;
-                font-weight: 700;
-                cursor: pointer;
-
-                &:hover{
-                    opacity: 0.9;
-                }
+                padding: 18px 0;
             }
         }
+    }
 
-        &__title{
-            & p{
-                font-size: 1.4rem;
-                padding-bottom: 16px;
+    &__checkout{
+        display: flex;
+        justify-content: space-between;
+
+        .cart__sale{
+            --height: 36px;
+            width: 50%;
+
+            &-title{
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 10px;
             }
 
-            &-price{
+            &-apply{
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                padding-bottom: 16px;
 
-                & span:nth-child(1){
-
+                & input{
+                    height: var(--height);
+                    outline: none;
+                    padding-left: 8px;
+                    margin-right: 8px;
+                    width: 50%;
                 }
-
-                & span:nth-child(2){
-                    font-size: 1.8rem;
+    
+                & button{
+                    height: var(--height);
+                    padding: 0 20px;
+                    font-size: 1.6rem;
                     font-weight: 600;
-                    color: var(--extra-color);
+                    color: #fff;
+                    background-color: var(--extra-color);
+                    border: none;
+                    border-radius: 2px;
+                    cursor: pointer;
+                    
+                    &:hover{
+                        opacity: 0.9;
+                    }
                 }
             }
+
+            
+            
         }
 
+        .cart__info{
+            width: 35%;
+            box-shadow: 10px 10px 20px rgb(123 122 101 / 40%);
+            padding: 14px;
+
+            &__title{
+
+                & p{
+                    font-size: 1.4rem;
+                    padding-bottom: 16px;
+                }
+    
+                &-price{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-bottom: 16px;
+    
+                    & span:nth-child(1){
+    
+                    }
+    
+                    & span:nth-child(2){
+                        font-size: 1.8rem;
+                        font-weight: 600;
+                        color: var(--extra-color);
+                    }
+                }
+            }
+    
+            &__btn{
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+    
+                button{
+                    width: 100%;
+                    padding: 10px;
+                    background-color: var(--extra-color);
+                    border: none;
+                    outline: none;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    cursor: pointer;
+    
+                    &:hover{
+                        opacity: 0.9;
+                    }
+                }
+            }
+    
+           
+    
+        }
     }
+
+   
 }

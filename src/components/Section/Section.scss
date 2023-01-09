@@ -1,11 +1,11 @@
-.section{
+.section {
     margin-bottom: 70px;
 
-    &>*~*{
+    &>*~* {
         //margin-top: 70px;
     }
 
-    &__title{
+    &__title {
         font-size: 3.2rem;
         text-transform: capitalize;
         //text-align: center;
