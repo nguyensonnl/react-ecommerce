@@ -69,7 +69,7 @@ const Header = () => {
             </li>
 
             <li className="header__navbar-item">
-              <Link to="" className="header__navbar-link">
+              <Link to="/login" className="header__navbar-link">
                 <i className="fa-solid fa-user"></i>
               </Link>
             </li>
