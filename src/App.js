@@ -9,6 +9,10 @@ import CreateUser from "./pages/admin/pages/User/CreateUser";
 import { publicRoutes } from "./routes";
 import DefaultLayout from "./components/DefaultLayout";
 import { Fragment } from "react";
+import Product from "./pages/admin/pages/Product";
+import Order from "./pages/admin/pages/Order";
+import Dashboard from "./pages/admin/pages/Dashboard";
+import Add from "./pages/admin/components/Product/Add";
 
 function App() {
   return (
@@ -17,8 +21,12 @@ function App() {
       {/* <Route path="/" element={<Home />} /> */}
       <Route path="/admin/login" element={<LoginPage />} />
       <Route path="/admin/register" element={<RegisterPage />} />
-      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/admin" element={<Dashboard />} />
       <Route path="/admin/user/create" element={<CreateUser />} />
+
+      <Route path="/admin/product" element={<Product />} />
+      <Route path="/admin/product/add" element={<Add />} />
+      <Route path="/admin/order" element={<Order />} />
 
       {publicRoutes.map((route, index) => {
         const Page = route.page;

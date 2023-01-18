@@ -1,0 +1,28 @@
+.header__admin{
+    background-color: #e3e6f2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 -5px 0 -10px;
+
+    &__link{
+        color: var(--extra-color);
+    }
+
+    &__name{
+        font-size: 1.5rem;
+        color: var(--extra-color);
+    }
+
+    &__logout{
+        color: var(--extra-color);
+        padding-right: 18px;
+        cursor: pointer;
+
+        &:hover{
+            opacity: 0.5;
+        }
+    }
+}

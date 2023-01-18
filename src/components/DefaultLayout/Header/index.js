@@ -58,7 +58,7 @@ const Header = () => {
                 className="header__navbar-item-input"
               />
               <button type="submit" className="header__navbar-item-btn">
-                <i class="fa-solid fa-magnifying-glass header__navbar-item-icon"></i>
+                <i className="fa-solid fa-magnifying-glass header__navbar-item-icon"></i>
               </button>
             </form>
 

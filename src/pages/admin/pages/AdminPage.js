@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 const AdminPage = () => {
   return (
     <Layout>
-      <div className="content-wrapper">
+      {/* <div className="content-wrapper">
         <div className="content-header">
           <div className="container-fluid">
             <div className="row mb-2">
@@ -29,7 +29,8 @@ const AdminPage = () => {
             <h1>Hello admin</h1>
           </div>
         </div>
-      </div>
+      </div> */}
+      <div>Content page</div>
     </Layout>
   );
 };

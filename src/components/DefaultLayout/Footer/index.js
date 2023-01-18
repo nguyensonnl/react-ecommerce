@@ -15,19 +15,19 @@ const Footer = () => {
             <h3>Theo dõi chúng tôi</h3>
             <ul className="footer__icon">
               <li>
-                <i class="fa-brands fa-facebook-f"></i>
+                <i className="fa-brands fa-facebook-f"></i>
               </li>
               <li>
-                <i class="fa-brands fa-youtube"></i>
+                <i className="fa-brands fa-youtube"></i>
               </li>
               <li>
-                <i class="fa-brands fa-instagram"></i>
+                <i className="fa-brands fa-instagram"></i>
               </li>
               <li>
-                <i class="fa-solid fa-envelope"></i>
+                <i className="fa-solid fa-envelope"></i>
               </li>
               <li>
-                <i class="fa-brands fa-twitter"></i>
+                <i className="fa-brands fa-twitter"></i>
               </li>
             </ul>
           </ul>
