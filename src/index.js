@@ -8,8 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
-import axios from "./api/axios";
-axios();
+import axios from "./api/axiosClient";
+//axios();
 
 ReactDOM.render(
   <React.StrictMode>
