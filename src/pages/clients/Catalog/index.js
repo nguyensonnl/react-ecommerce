@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Col from "../../../components/Col";
 import Grid from "../../../components/Grid";
 import Helmet from "../../../components/Helmet";
@@ -6,8 +6,16 @@ import Row from "../../../components/Row";
 import ProductCard from "../../../components/ProductCard";
 import "./Catalog.scss";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProduct } from "../../../redux/reducers/productSlice";
 
 const Catalog = () => {
+  const products = useSelector((state) => state.product.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProduct());
+  }, []);
   return (
     <Helmet title="Sản phẩm">
       <Grid>
@@ -74,7 +82,20 @@ const Catalog = () => {
                   <option>Giá từ cao đến thấp</option>
                 </select>
               </div>
-              <ProductCard />
+              <Row>
+                {products.map((item, index) => (
+                  <Col col={`${12}-${5}`}>
+                    <ProductCard
+                      key={index}
+                      name={item.name}
+                      price={item.price.toLocaleString()}
+                      brand={item.brand}
+                      src={item.image}
+                    />
+                  </Col>
+                ))}
+              </Row>
+
               <ul className="catalog__pagination">
                 <li className="catalog__pagination-item">
                   <Link to="" className="catalog__pagination-link">

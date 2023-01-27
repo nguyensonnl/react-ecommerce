@@ -9,7 +9,7 @@ import Register from "../pages/clients/Auth/Register";
 const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
-  { path: "/product", page: Product },
+  { path: "/product/:id", page: Product },
   { path: "/catalog", page: Catalog },
   { path: "*", page: NotFound, layout: null },
   { path: "/login", page: Login },

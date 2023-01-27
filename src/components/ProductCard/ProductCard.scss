@@ -11,13 +11,19 @@
         box-shadow: 20px 20px 30px rgba(0,0,0,0.06);
     }
 
+    margin: 0 6px;
+   
+
     .product-card__link{
         text-decoration: none;
         color: #000;
+       
 
         .product-card__image{
             width: 100%;
             border-radius: 20px;
+            height: 220px;
+            object-fit: cover;
         }
     
         .product-card__info{

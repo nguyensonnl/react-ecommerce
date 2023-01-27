@@ -2,7 +2,9 @@
 
     .product__images-main{
         width: 100%;
+        height: auto;
         border: 1px solid var(--border-color);
+        object-fit: cover;
     }
 
     .product__images-list{
