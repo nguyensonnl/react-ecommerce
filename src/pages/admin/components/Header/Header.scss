@@ -1,28 +1,48 @@
 .header__admin{
-    background-color: #e3e6f2;
+    background-color: #000;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 14px;
-    height: 40px;
-    line-height: 40px;
-    margin: 0 -5px 0 -10px;
+    height: 60px;
+    line-height: 60px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
 
-    &__link{
-        color: var(--extra-color);
+    .left{
+        margin-left: 50px;
+        .title{
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 600;
+        }
     }
 
-    &__name{
-        font-size: 1.5rem;
-        color: var(--extra-color);
-    }
+    .right{
+        margin-right: 26px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
 
-    &__logout{
-        color: var(--extra-color);
-        padding-right: 18px;
-        cursor: pointer;
+        .header__admin__name{
+            font-size: 1.5rem;
+            color: #fff;
+        }
 
-        &:hover{
-            opacity: 0.5;
+        .header__admin__link{
+           color: #fff;
+            
+        }
+
+        .header__admin__logout{
+            color: #fff;
+            padding-right: 18px;
+            cursor: pointer;
+    
+            &:hover{
+                opacity: 0.5;
+            }
         }
     }
 }

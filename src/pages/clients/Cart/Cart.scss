@@ -1,29 +1,46 @@
 .cart{
-    &__list{
-        width: 100%;
-        border-collapse: collapse;
-        white-space: nowrap;
-        table-layout: fixed;
 
-        & thead {
-            border: 1px solid #e2e9e1;
-            border-left: none;
-            border-right: none;
-            
-            & th{
-                font-weight: 700;
-                text-transform: uppercase;
-                font-size: 1.8rem;
-                padding: 18px 0;
+    .cart__empty{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .cart__title{
+            font-size: 2.2rem;
+        }
+
+        .cart__home{
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin: 18px 0;
+        }
+
+        .cart__btn{
+            padding: 10px 24px;
+            background-color: #fff;
+            font-weight: 500;
+            color: var(--btn-color);
+            border: 1px solid var(--btn-color);
+
+            &:hover{
+                background-color: var(--btn-color);
+                color: #fff;
             }
         }
-    }
 
+        .cart__img{
+            width: 300px;
+            background-color: #fff;
+            margin-bottom: 22px;
+            margin-top: 80px;
+        }
+    }
     &__checkout{
         margin-left: 50px;
         .cart__info{
             width: 100%;
-            box-shadow: 0 0 20px rgb(123 122 101 / 40%);
+            background-color: #f7f7f7;
             padding: 14px;
 
             &__title{
@@ -35,7 +52,7 @@
                     span{
                         font-size: 1.6rem;
                         font-weight: 600;
-                        color: var(--extra-color);
+                        color: var(--price-color);
                     }
                 }
     
@@ -46,13 +63,17 @@
                     padding-bottom: 16px;
     
                     & span:nth-child(1){
-    
+                        text-transform: uppercase;
                     }
     
                     & span:nth-child(2){
                         font-size: 1.8rem;
                         font-weight: 600;
-                        color: var(--extra-color);
+                        color: var(--price-color);
+
+                        sup{
+                            text-decoration: underline;
+                        }
                     }
                 }
             }
@@ -65,17 +86,15 @@
                 button{
                     width: 100%;
                     padding: 10px;
-                    background-color: var(--extra-color);
+                    background-color: var(--btn-color);
                     border: none;
                     outline: none;
                     color: #fff;
-                    text-transform: uppercase;
-                    font-size: 1.8rem;
-                    font-weight: 700;
                     cursor: pointer;
+                    font-weight: 500;
     
                     &:hover{
-                        opacity: 0.9;
+                        filter: brightness(1.2);
                     }
                 }
             }

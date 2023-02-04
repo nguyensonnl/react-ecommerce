@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 import "./ProductView.scss";
 import Row from "../Row";
 import Col from "../Col";
@@ -9,14 +11,44 @@ import f2 from "../../assets/img/products/f2.jpg";
 import f3 from "../../assets/img/products/f3.jpg";
 import f4 from "../../assets/img/products/f4.jpg";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductView = ({ product }) => {
   const [previewImg, setPreviewImg] = useState(product.image);
   const [qty, setQty] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
-  const handleGotoCart = () => {
+  const dispatch = useDispatch();
+
+  const updateQuantity = (type) => {
+    if (type === "plus") {
+      setQuantity(quantity + 1);
+    } else {
+      setQuantity(quantity <= 1 ? 1 : quantity - 1);
+    }
+  };
+
+  const handleGotoCart = (product) => {
+    dispatch(
+      addToCart({
+        ...product,
+        cartQuantity: quantity ? quantity : 1,
+      })
+    );
     navigate("/cart");
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(
+      addToCart({
+        ...product,
+        cartQuantity: quantity ? quantity : 1,
+      })
+    );
+    toast.success("Thêm vào giỏ hàng thành công", {
+      position: "top-right",
+    });
   };
 
   let nf = new Intl.NumberFormat();
@@ -54,7 +86,6 @@ const ProductView = ({ product }) => {
         <Col col={7}>
           <div className="product__info">
             <div className="product__info-title">{product.name}</div>
-
             <div className="product__info-rate">
               <ul className="product__info-rate-list">
                 <li className="product__info-rate-item">
@@ -78,6 +109,11 @@ const ProductView = ({ product }) => {
               </Link>
             </div>
 
+            <div className="product__info-brand">
+              <span>Thương hiệu:</span>
+              <span> {product.brand}</span>
+            </div>
+
             <div className="product__info-price">
               <span className="product__info-price-new">
                 {nf.format(product.price)}
@@ -87,13 +123,28 @@ const ProductView = ({ product }) => {
 
             <div className="product__info-qty">
               <span className="product__info-qty-title">Số lượng:</span>
-              <input
+              {/* <input
                 type="number"
                 min="1"
                 value={qty}
                 onChange={(e) => setQty(e.target.value)}
                 className="product__info-qty-item"
-              />
+              /> */}
+              <div className="product__info-qty-mount">
+                <div
+                  className="product__info-qty-btn"
+                  onClick={() => updateQuantity("minus")}
+                >
+                  <i className="fa-solid fa-minus"></i>
+                </div>
+                <div className="product__info-qty-input">{quantity}</div>
+                <div
+                  className="product__info-qty-btn"
+                  onClick={() => updateQuantity("plus")}
+                >
+                  <i className="fa-solid fa-plus"></i>
+                </div>
+              </div>
             </div>
 
             <div className="product__info-des">
@@ -102,11 +153,15 @@ const ProductView = ({ product }) => {
             </div>
 
             <div className="product__info-action">
-              <button type="button" className="product__info-add">
+              <button
+                type="button"
+                className="product__info-add"
+                onClick={() => handleAddToCart(product)}
+              >
                 Thêm vào giỏ hàng
               </button>
               <button
-                onClick={() => handleGotoCart()}
+                onClick={() => handleGotoCart(product)}
                 type="button"
                 className="product__info-buy"
               >

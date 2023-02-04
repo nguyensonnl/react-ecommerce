@@ -37,6 +37,7 @@ const Product = () => {
               />
             </div>
           </form> */}
+      <div className="product__title">Products</div>
       <div className="product">
         <div className="product__control">
           <div className="product__search">

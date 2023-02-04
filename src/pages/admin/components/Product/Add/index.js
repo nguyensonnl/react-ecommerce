@@ -21,10 +21,7 @@ const Add = () => {
   };
 
   const handleChangeInput = (e) => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    let checked = target.checked;
+    let { name, value, checked } = e.target;
 
     if (e.target.checked && e.target.type === "checkbox") {
       setInputs({ ...inputs, [name]: checked });

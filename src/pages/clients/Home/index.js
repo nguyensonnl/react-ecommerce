@@ -98,6 +98,7 @@ const Home = () => {
             <Feature />
           </SectionBody>
         </Section>
+
         <Section>
           <SectionTitle>Sản phẩm nổi bật</SectionTitle>
           <SectionBody>

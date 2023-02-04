@@ -9,7 +9,10 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 import axios from "./api/axiosClient";
+import { getTotals } from "./redux/cartSlice";
 //axios();
+
+store.dispatch(getTotals());
 
 ReactDOM.render(
   <React.StrictMode>
