@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import cart_empty from "../../../assets/img/cart_empty_background.png";
 import { getTotals } from "../../../redux/cartSlice";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -28,8 +29,8 @@ const Cart = () => {
   return (
     <Helmet title="Giỏ hàng">
       <Grid>
+        <Breadcrumb title="Giỏ hàng" />
         <div className="cart section-m1">
-          <h3 className="cart__header">Giỏ hàng</h3>
           {cart.cartItems.length === 0 ? (
             <div className="cart__empty">
               <img src={cart_empty} alt="empty cart" className="cart__img" />
@@ -43,6 +44,7 @@ const Cart = () => {
             </div>
           ) : (
             <>
+              <h3 className="cart__header">Giỏ hàng</h3>
               <Row>
                 <Col col={8}>
                   <div className="cart__list">

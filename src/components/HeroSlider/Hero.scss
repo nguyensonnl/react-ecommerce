@@ -1,49 +1,67 @@
-.hero-slider{
-    background-image: url('../../assets/img/hero4.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 50px;
-    gap: 10px;
-
-    .hero-slider__btn{
-        width: 150px;
-        padding: 10px;
-        color: var(--primary-color);
-        background-color: rgb(123, 122, 101, 0.8);
-        border: none;
-        outline: none;
-        font-size: 1.7rem;
-        font-weight: 600;
-        border-radius: 20px;
-        
-        &:hover{
-            background-color: rgb(123, 122, 101, 1);
-            cursor: pointer;
+.slider{
+    .slider__category{
+        list-style: none;
+        border: 1px solid #f1f1f1;
+        .slider__category-item{
+            padding: 8px 12px;
+            box-shadow: inset 0px 1px 0px #f1f1f1 ;
+            .slider__category-link{
+                text-decoration: none;
+                color: var(--text-color);
+                font-weight: 300;
+                font-size: 1.5rem;
+            }
         }
     }
-
-    h4{
-        font-size: 4.5rem;
-        color: #fff;
-    }
-
-    h2{
-        font-size: 3.5rem;
-        color: #fff;
-    }
-
-    h1{
-        font-size: 5.5rem;
-        color: var(--primary-color);
-    }
-
-    p{
-        font-size: 1.4rem;
-        color: #33cc66;
+    .hero-slider{
+        margin-top: 10px;
+        margin-bottom: 50px;
+        background-image: url('../../assets/img/hero4.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: calc(100% - 10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 50px;
+        gap: 10px;
+    
+        .hero-slider__btn{
+            width: 150px;
+            padding: 10px;
+            color: var(--primary-color);
+            background-color: rgb(123, 122, 101, 0.8);
+            border: none;
+            outline: none;
+            font-size: 1.7rem;
+            font-weight: 600;
+            border-radius: 20px;
+            
+            &:hover{
+                background-color: rgb(123, 122, 101, 1);
+                cursor: pointer;
+            }
+        }
+    
+        h4{
+            font-size: 4.5rem;
+            color: #fff;
+        }
+    
+        h2{
+            font-size: 3.5rem;
+            color: #fff;
+        }
+    
+        h1{
+            font-size: 5.5rem;
+            color: var(--primary-color);
+        }
+    
+        p{
+            font-size: 1.4rem;
+            color: #33cc66;
+        }
     }
 }

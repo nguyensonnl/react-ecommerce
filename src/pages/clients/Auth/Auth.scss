@@ -1,0 +1,282 @@
+//old login
+// .login{
+//     width: 360px;
+//     height: 500px;
+//     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+//     margin: 0 auto; //Căn giữa ngoài element
+//     display: flex;
+//     flex-direction: column;
+//     padding: 16px;
+//     border-radius: 4px;
+
+//     &__avatar{
+//         padding-bottom: 10px;
+//         width: 30%;
+//         margin: 0 auto;
+//     }
+
+//     &__title{
+//         text-align: center;
+//         font-size: 1.8rem;
+//         font-weight: 600;
+//         padding-bottom: 10px;
+//     }
+
+//     &__form{
+
+//         &__group{
+//             outline: none;
+//             width: 100%;
+//             padding: 8px;
+//             margin-bottom: 12px;
+//             border: 1px solid rgba(0,0,0,0.2);
+//             border-radius: 4px;
+//         }
+
+//         &__check{
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin-bottom: 16px;
+
+//             .remember{
+//                 display: flex;
+//                 align-items: center;
+//                 &-input{
+//                     margin-right: 6px;
+//                     font-size: 3rem;
+//                     width: 14px;
+//                     height: 14px;
+//                 }
+//                 &-title{
+//                     font-weight: 300;
+//                     font-size: 1.5rem;
+//                 }
+//             }
+
+//             .forgot{
+//                 text-decoration: none;
+//                 font-size: 1.5rem;
+//             }
+//         }
+
+//         &-submit{
+//             width: 100%;
+//             padding: 8px 0;
+//             font-size: 1.6rem;
+//             font-weight: 600;
+//             background-color: var(--extra-color);
+//             border: none;
+//             color: #fff;
+//             cursor: pointer;
+//             margin-bottom: 14px;
+//             border-radius: 4px;
+
+//             &:hover{
+//                 opacity: 0.8;
+//             }
+//         }
+//     }
+//     &__footer{
+//         display: flex;
+//         align-items: center;
+        
+//         span{
+//             margin-right: 4px;
+//             font-size: 1.4rem;
+//         }
+
+//         &-link{
+//             text-decoration: none;
+//             font-size: 1.4rem;
+//         }
+
+//     }
+// }
+
+//Old Register
+// .login{
+//     width: 360px;
+//     height: 500px;
+//     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+//     margin: 0 auto; //Căn giữa ngoài element
+//     display: flex;
+//     flex-direction: column;
+//     padding: 16px;
+//     border-radius: 4px;
+
+//     &__avatar{
+//         padding-bottom: 10px;
+//         width: 30%;
+//         margin: 0 auto;
+//     }
+
+//     &__title{
+//         text-align: center;
+//         font-size: 1.8rem;
+//         font-weight: 600;
+//         padding-bottom: 10px;
+//     }
+
+//     &__form{
+
+//         &__group{
+//             outline: none;
+//             width: 100%;
+//             padding: 8px;
+//             margin-bottom: 12px;
+//             border: 1px solid rgba(0,0,0,0.2);
+//             border-radius: 4px;
+//         }
+
+//         &__check{
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin-bottom: 16px;
+
+//             .remember{
+//                 display: flex;
+//                 align-items: center;
+//                 &-input{
+//                     margin-right: 6px;
+//                     font-size: 3rem;
+//                     width: 14px;
+//                     height: 14px;
+//                 }
+//                 &-title{
+//                     font-weight: 300;
+//                     font-size: 1.5rem;
+//                 }
+//             }
+
+//             .forgot{
+//                 text-decoration: none;
+//                 font-size: 1.5rem;
+//             }
+//         }
+
+//         &-submit{
+//             width: 100%;
+//             padding: 8px 0;
+//             font-size: 1.6rem;
+//             font-weight: 600;
+//             background-color: var(--extra-color);
+//             border: none;
+//             color: #fff;
+//             cursor: pointer;
+//             margin-bottom: 14px;
+//             border-radius: 4px;
+
+//             &:hover{
+//                 opacity: 0.8;
+//             }
+//         }
+//     }
+//     &__footer{
+//         display: flex;
+//         align-items: center;
+        
+//         span{
+//             margin-right: 4px;
+//             font-size: 1.4rem;
+//         }
+
+//         &-link{
+//             text-decoration: none;
+//             font-size: 1.4rem;
+//         }
+
+//     }
+// }
+
+
+
+.auth-info{
+    margin: 30px 0;
+}
+
+
+.auth-login{
+    margin: 0 auto;
+    width: 500px;
+
+    .other-login{
+        text-align: center;
+        p{
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .social-media{
+
+            .social-media-img{
+                width: 140px;
+                object-fit: cover;
+            }
+        }
+    }
+    
+    .login-title{
+        text-align: center;
+        margin-bottom: 30px;
+        .sub-title{
+            font-weight: 300;
+        }
+        
+        h2{
+            font-weight: 400;
+            font-size: 2.6rem;
+            margin-bottom: 6px;
+        }
+    }
+
+    .login-btn{
+        width: 100%;
+        margin: 10px 0 32px 0;
+        border-radius: 999px;
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+        font-size: 1.8rem;
+        font-weight: 400;
+        padding: 12px 0;
+        &:hover{
+            color: var(--text-color);
+        }
+    }
+}
+
+.forgot-password{
+    font-size: 1.2rem;
+    .forgot-password-link{
+        margin-left: 4px;
+        text-decoration: none;
+    }
+}
+
+
+.form-group1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    label{
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        font-size: 1.5rem;
+        span{
+            color: red;
+        }
+    }
+
+    .form-control1{
+        width: 100%;
+        outline: none;
+        border: 1px solid  #e1e1e1;
+        padding: 12px;
+        font-size: 1.6rem;
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+}

@@ -1,0 +1,16 @@
+.breadcrumb{
+    margin-top: 10px;
+    display: flex;
+    list-style: none;
+
+    .sub{
+        color: #999 !important;
+    }
+    
+    .breadcrumb-link, span{
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 1.5rem;
+        margin-right: 4px;
+    }
+}

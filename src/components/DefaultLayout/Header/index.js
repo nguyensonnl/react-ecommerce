@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "../../Grid";
 import "./Header.scss";
+import logo from "../../../assets/img/logo-dong-ho.png";
 
 const Header = () => {
   const handleSearch = (e) => {
@@ -9,8 +10,7 @@ const Header = () => {
   };
   return (
     <section className="header">
-      <Grid>
-        <div className="header__navbar">
+      {/* <div className="header__navbar">
           <Link to="/">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Shaqi_jrvej.jpg/1200px-Shaqi_jrvej.jpg"
@@ -74,8 +74,54 @@ const Header = () => {
               </Link>
             </li>
           </ul>
+        </div> */}
+      <div className="header__main grid">
+        <Link to="/">
+          <img src={logo} alt="logo" className="header__logo" />
+        </Link>
+
+        <div className="header__search">
+          <input
+            type="text"
+            placeholder="Nhập tên hoặc mã sản phẩm bạn muốn tìm kiếm"
+            className="header__search-input form-control"
+          />
+          <button className="header__search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
-      </Grid>
+
+        <ul className="header__list">
+          <li className="header__list-item">
+            <i className="fa-solid fa-phone"></i>
+            <div>
+              <p>Gọi mua hàng</p>
+              <Link className="header__list-link">
+                <strong>0825 247 999</strong>
+              </Link>
+            </div>
+          </li>
+          <li className="header__list-item">
+            <i className="fa-solid fa-location-dot"></i>
+            <Link className="header__list-link system-shop">
+              Hệ thống cửa hàng
+            </Link>
+          </li>
+          <li className="header__list-item">
+            <i className="fa-regular fa-user"></i>
+            <Link to="/login" className="header__list-link">
+              <p>Tài khoản</p>
+              <small>Đăng nhập</small>
+            </Link>
+          </li>
+          <li className="header__list-item header__list-item--cart">
+            <Link to="/cart" className="header__list-link">
+              <i className="fa-solid fa-cart-shopping"></i>
+              <span>Giỏ hàng</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </section>
   );
 };

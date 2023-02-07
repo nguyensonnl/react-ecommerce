@@ -6,6 +6,33 @@
     --border-color: #cce7d0;
     --price-color: #ed3324;
     --btn-color: #199794;
+
+    --text-color: #333333;
+    --body-background: #F9F9FB;
+    --text-secondary-color: #8F8F8F;
+    --primary-color: #0f8280;
+    --secondary-color: #fbd947;
+    --price-color: #ed3324;
+    --header-background: #065f5c;
+    --header-color: #ffffff;
+    --subheader-background: #ffffff;
+    --subheader-color: #5d6368;
+    --label-background: #199794;
+    --label-color: #ffffff;
+    --footer-bg: #ffffff;
+    --footer-color: #333333;
+    --show-loadmore: none!important;
+    --order-loadmore: -1!important;
+    --sale-pop-color: #065f5d;
+    --buynow-bg: #199794;
+    --buynow-text-color: #ffffff;
+    --cta-color: #199794;
+    --coupon-title-color: #f6000a;
+    --coupon-button-color: #f6000a;
+    --col-menu: 1;
+    --border-color: #f1f1f1;
+    --link-color: #2F80ED;
+    --coupon-code-background: #e60912;
 }
 
 *{
@@ -35,6 +62,11 @@ img{
     margin-top: 20px;
 }
 
+.form-control{
+    border: none;
+    outline: none;
+    padding: 10px;
+}
 
 .form-group{
     outline: none;

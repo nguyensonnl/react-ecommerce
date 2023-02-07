@@ -1,5 +1,5 @@
 const Helmet = (props) => {
-  document.title = "SonNLShop - " + props.title;
+  document.title = props.title;
   return <div>{props.children}</div>;
 };
 
