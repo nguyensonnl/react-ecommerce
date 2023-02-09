@@ -5,6 +5,7 @@ import NotFound from "../pages/clients/NotFound";
 import Product from "../pages/clients/Product";
 import Login from "../pages/clients/Auth/Login";
 import Register from "../pages/clients/Auth/Register";
+import Checkout from "../pages/clients/Checkout";
 
 const publicRoutes = [
   { path: "/", page: Home },
@@ -14,6 +15,7 @@ const publicRoutes = [
   { path: "*", page: NotFound, layout: null },
   { path: "/login", page: Login },
   { path: "/register", page: Register },
+  { path: "/checkout", page: Checkout },
 ];
 
 const privateRoutes = [];

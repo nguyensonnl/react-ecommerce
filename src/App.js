@@ -16,6 +16,7 @@ import Add from "./pages/admin/components/Product/Add";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginPageAdmin from "./pages/admin/pages/Auth/LoginPageAdmin";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <ToastContainer />
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/admin/login" element={<LoginPage />} />
+        <Route path="/auth/login" element={<LoginPageAdmin />} />
         <Route path="/admin/register" element={<RegisterPage />} />
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/user/create" element={<CreateUser />} />

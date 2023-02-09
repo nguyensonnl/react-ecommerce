@@ -1,0 +1,80 @@
+.admin-login{
+   background-image: linear-gradient(#eef7fe, #d3eafd);
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   .admin-input{
+      border-radius: 999px;
+      padding: 20px;
+   }
+
+   .admin__brand{
+      font-size: 3rem;
+      text-align: center;
+      font-weight: 600;
+   }
+
+   .admin__title{
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 18px 0;
+      text-align: center;
+   }
+   
+   .admin__link-store{
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 12px;
+   }
+
+   .admin__btn{
+      padding: 20px;
+      border-radius: 999px;
+      background-color: var(--primary-color);
+      color: #fff;
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+      font-size: 1.8rem;
+   }
+
+   .forgot-password{
+      display: flex;
+      justify-content: flex-end;
+
+      &__link{
+         text-decoration: none;
+      }
+   }
+
+   .other-login{
+      text-align: center;
+      margin-top: 20px;
+      p{
+          font-size: 1.5rem;
+          font-weight: 400;
+          margin-bottom: 16px;
+      }
+
+      .social-media{
+
+          .social-media-img{
+              width: 140px;
+              object-fit: cover;
+          }
+      }
+  }
+
+   .admin__layout{
+      width: 600px;
+
+      .admin__form{
+         input{
+            width: 100%
+         };
+      }
+   }
+}

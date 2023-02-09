@@ -56,3 +56,40 @@
        
     }
 }
+
+.feature__category{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+
+    .feature__category-card{
+        .feature__category-img{
+            width: 116px;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            
+            @keyframes rotateXY {
+                from{
+                    transform: rotate(-5deg);
+                }
+                to{
+                    transform: rotate(0);
+                }
+            }
+            &:hover{
+                animation-name: rotateXY;
+                animation-timing-function: ease;
+                cursor: pointer;
+            }
+        }
+        
+        .feature__category-name{
+            margin-top: 6px;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1.5rem;
+        }
+
+       
+    }
+}
