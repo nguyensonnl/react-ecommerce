@@ -7,10 +7,15 @@ const LoginPageAdmin = () => {
   return (
     <div className="admin-login">
       <div className="admin__layout">
-        <div className="admin__brand">Lam Son</div>
+        <div className="admin__brand">
+          <span className="a">L</span>
+          <span className="b">am</span>
+          <span className="a">S</span>
+          <span className="b">ơn</span>
+        </div>
         <div className="admin__title">Đăng nhập vào cửa hàng của bạn</div>
         <div className="admin__link-store">
-          <span>Truy cập vào cửa hàng của bạn </span>
+          <span>Truy cập vào cửa hàng </span>
           <Link to="/" className="admin__link">
             abc.xyz
           </Link>
@@ -20,14 +25,14 @@ const LoginPageAdmin = () => {
             <div className="form-group1">
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Email/Số điện thoại của bạn"
                 className="form-control1 admin-input"
               />
             </div>
             <div className="form-group1">
               <input
                 type="password"
-                placeholder="Mật khẩu"
+                placeholder="Mật khẩu đăng nhập cửa hàng"
                 className="form-control1 admin-input"
               />
             </div>

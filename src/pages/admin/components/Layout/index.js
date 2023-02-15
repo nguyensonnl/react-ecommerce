@@ -8,15 +8,13 @@ import "./Layout.scss";
 const Layout = (props) => {
   return (
     <div className="admin">
-      <Header />
-      <Row>
-        <Col col={2}>
-          <Sidebar />
-        </Col>
-        <Col col={10}>
-          <div className="content">{props.children}</div>
-        </Col>
-      </Row>
+      <div className="left">
+        <Sidebar />
+      </div>
+      <div className="right">
+        <Header />
+        <div className="content">{props.children}</div>
+      </div>
     </div>
   );
 };

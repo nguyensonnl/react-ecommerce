@@ -36,7 +36,7 @@ const HeroSlider = () => {
     <div className="slider grid">
       <Row>
         <Col col={3}>
-          <ul className="slider__category">
+          <ul className="slider__category scroll">
             {categories.map((item, index) => (
               <li className="slider__category-item" key={index}>
                 <Link to="" className="slider__category-link">

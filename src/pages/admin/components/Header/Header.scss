@@ -5,12 +5,12 @@
     gap: 14px;
     height: 60px;
     line-height: 60px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+    // position: fixed;
+    // top: 0;
+    // right: 0;
+    // left: 0;
 
-    .left{
+    .header__left{
         margin-left: 50px;
         .title{
             color: #fff;
@@ -19,7 +19,7 @@
         }
     }
 
-    .right{
+    .header__right{
         margin-right: 26px;
         display: flex;
         align-items: center;
