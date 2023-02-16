@@ -19,15 +19,19 @@ const Product = () => {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = item.slice(firstPostIndex, lastPostIndex);
 
+  const [activeId, setActiveId] = useState(1);
+
   const previousPage = () => {
     if (curentPage !== 1) {
       setCurrentPage(curentPage - 1);
+      setActiveId(curentPage - 1);
     }
   };
 
   const nextPage = () => {
     if (curentPage !== Math.ceil(item.length / postsPerPage)) {
       setCurrentPage(curentPage + 1);
+      setActiveId(curentPage + 1);
     }
   };
 
@@ -47,6 +51,8 @@ const Product = () => {
   const handleAdd = () => {
     navigate("/admin/product/add");
   };
+
+  //console.log(curentPage);
 
   return (
     <Layout>
@@ -128,6 +134,9 @@ const Product = () => {
           setCurrentPage={setCurrentPage}
           previousPage={previousPage}
           nextPage={nextPage}
+          activeId={activeId}
+          setActiveId={setActiveId}
+          curentPage={curentPage}
         />
       </div>
     </Layout>

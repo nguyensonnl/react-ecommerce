@@ -2,8 +2,16 @@ import { useState } from "react";
 import "./Pagination.scss";
 
 const Pagination = (props) => {
-  const { totalPosts, postsPerPage, setCurrentPage, previousPage, nextPage } =
-    props;
+  const {
+    totalPosts,
+    postsPerPage,
+    setCurrentPage,
+    previousPage,
+    nextPage,
+    activeId,
+    setActiveId,
+    currentPage,
+  } = props;
   let pages = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -14,8 +22,6 @@ const Pagination = (props) => {
     setCurrentPage(page);
     setActiveId(page);
   };
-
-  const [activeId, setActiveId] = useState();
 
   return (
     <ul className="pagination">

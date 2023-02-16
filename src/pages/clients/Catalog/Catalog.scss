@@ -1,20 +1,23 @@
 .catalog{
-
-    &__heading{
-        text-transform:uppercase;
-    }
+    border-right: 1px solid #ccc;
 
     &__list{
-
+        padding-right: 8px;
         &-title{
             font-weight: 300;
             margin: 20px 0;
+            text-transform: uppercase;
         }
 
         .catalog__list-item{
             line-height: 3rem;
             .catalog__list-check{
                 margin-right: 10px;
+            }
+
+            .catalog__list-name{
+                font-size: 1.5rem;
+                font-weight: 300;
             }
         }
 

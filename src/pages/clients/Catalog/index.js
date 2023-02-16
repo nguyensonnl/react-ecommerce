@@ -8,6 +8,7 @@ import "./Catalog.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../../../redux/reducers/productSlice";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const Catalog = () => {
   const products = useSelector((state) => state.product.products);
@@ -19,12 +20,12 @@ const Catalog = () => {
   return (
     <Helmet title="Sản phẩm">
       <Grid>
+        <Breadcrumb title="Danh mục sản phẩm" />
         <Row>
           <Col col={2}>
             <div className="catalog section-m1">
-              <h3 className="catalog__heading">Bộ lọc tìm kiếm</h3>
               <div className="catalog__list">
-                <p className="catalog__list-title">Theo danh mục</p>
+                <p className="catalog__list-title">Danh mục</p>
                 <div className="catalog__list-item">
                   <input type="checkbox" className="catalog__list-check" />
                   <span className="catalog__list-name">Đồng hồ nam</span>
@@ -40,7 +41,7 @@ const Catalog = () => {
               </div>
 
               <div className="catalog__list">
-                <p className="catalog__list-title">Theo thương hiệu</p>
+                <p className="catalog__list-title">Thương hiệu</p>
                 <div className="catalog__list-item">
                   <input type="checkbox" className="catalog__list-check" />
                   <span className="catalog__list-name">Casino</span>
@@ -73,7 +74,7 @@ const Catalog = () => {
           <Col col={10}>
             <div className="section-m1">
               <div className="catalog__filter">
-                <span>Sắp xếp theo</span>
+                <span>Sắp xếp:</span>
                 <button>Phổ biến</button>
                 <button>Mới nhất</button>
                 <button>Bán chạy</button>
