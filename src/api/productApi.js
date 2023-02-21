@@ -15,6 +15,11 @@ const productApi = {
     const url = `/products/${id}`;
     return axiosClient.get(url);
   },
+
+  createProduct(data) {
+    const url = "/products";
+    return axiosClient.post(url, data);
+  },
 };
 
 export default productApi;

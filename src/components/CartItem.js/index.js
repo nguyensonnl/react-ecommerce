@@ -22,6 +22,8 @@ const CartItem = (props) => {
   const handleRemoveCart = () => {
     dispatch(removeCart(item));
   };
+
+  let nf = new Intl.NumberFormat();
   return (
     <div className="cart__item" key={index}>
       <div className="cart__item-close" onClick={() => handleRemoveCart()}>
@@ -30,7 +32,7 @@ const CartItem = (props) => {
       <img className="cart__item-img" src={item.image} />
       <div className="cart__item-name">{item.name}</div>
       <div className="cart__item-price">
-        {item.price.toLocaleString()}
+        {nf.format(item.price)}
         <sup>đ</sup>
       </div>
       <div className="cart__item-qty">
@@ -49,7 +51,7 @@ const CartItem = (props) => {
         </div>
       </div>
       <div className="cart__item-price total-price">
-        {totalPrice.toLocaleString()}
+        {nf.format(totalPrice)}
         <sup>đ</sup>
       </div>
     </div>

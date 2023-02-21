@@ -87,7 +87,7 @@ const Header = () => {
             className="header__search-input form-control"
           />
           <button className="header__search-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 

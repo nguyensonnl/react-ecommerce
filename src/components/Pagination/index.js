@@ -14,7 +14,9 @@ const Pagination = (props) => {
   } = props;
   let pages = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  const lenghtPagination = Math.ceil(totalPosts / postsPerPage);
+
+  for (let i = 1; i <= lenghtPagination; i++) {
     pages.push(i);
   }
 
@@ -25,7 +27,12 @@ const Pagination = (props) => {
 
   return (
     <ul className="pagination">
-      <li className={`pagination-item`} onClick={previousPage}>
+      <li
+        className={
+          activeId === 1 ? `pagination-item disabled` : `pagination-item`
+        }
+        onClick={previousPage}
+      >
         &lt;
       </li>
       {pages.map((page, index) => {
@@ -41,7 +48,14 @@ const Pagination = (props) => {
           </li>
         );
       })}
-      <li className="pagination-item" onClick={nextPage}>
+      <li
+        className={
+          activeId === lenghtPagination
+            ? `pagination-item disabled`
+            : `pagination-item`
+        }
+        onClick={nextPage}
+      >
         &gt;
       </li>
     </ul>

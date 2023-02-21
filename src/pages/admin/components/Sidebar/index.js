@@ -4,7 +4,7 @@ import "./Sidebar.scss";
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="sidebar__logo">React admin</div>
+      <div className="sidebar__logo">Online Shop</div>
       <hr />
       <ul className="sidebar__list">
         <li className="sidebar__list-item">
@@ -20,12 +20,34 @@ const Sidebar = () => {
         </li>
         <li className="sidebar__list-item">
           <NavLink
+            to="/admin/category"
+            className={({ isActive }) =>
+              isActive ? "active" : "sidebar__list-link"
+            }
+            end
+          >
+            Danh mục
+          </NavLink>
+        </li>
+        <li className="sidebar__list-item">
+          <NavLink
+            to="/admin/brand"
+            className={({ isActive }) =>
+              isActive ? "active" : "sidebar__list-link"
+            }
+            end
+          >
+            Thương hiệu
+          </NavLink>
+        </li>
+        <li className="sidebar__list-item">
+          <NavLink
             to="/admin/product"
             className={({ isActive }) =>
               isActive ? "active" : "sidebar__list-link"
             }
           >
-            Products
+            Sản phẩm
           </NavLink>
         </li>
         <li className="sidebar__list-item">
@@ -35,7 +57,7 @@ const Sidebar = () => {
               isActive ? "active" : "sidebar__list-link"
             }
           >
-            Orders
+            Đơn hàng
           </NavLink>
         </li>
         <li className="sidebar__list-item">
@@ -45,7 +67,7 @@ const Sidebar = () => {
               isActive ? "active" : "sidebar__list-link"
             }
           >
-            Users
+            Người dùng
           </NavLink>
         </li>
       </ul>

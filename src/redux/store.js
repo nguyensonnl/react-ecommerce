@@ -17,11 +17,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
 import { productReducer } from "./reducers/productSlice";
+import { categoryReducer } from "./categorySlice";
+import { brandReducer } from "./brandSlice";
 
 const store = configureStore({
   reducer: {
     product: productReducer,
+    category: categoryReducer,
     cart: cartReducer,
+    brand: brandReducer,
   },
 });
 

@@ -1,22 +1,24 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/clients/Home";
-import LoginPage from "./pages/admin/pages/Auth/LoginPage";
-import RegisterPage from "./pages/admin/pages/Auth/RegisterPage";
-import AdminPage from "./pages/admin/pages/AdminPage";
+import LoginPage from "./pages/admin/components/Auth/LoginPage";
+import RegisterPage from "./pages/admin/components/Auth/RegisterPage";
+//import AdminPage from "./pages/admin/pages/AdminPage";
 import Layout from "./pages/admin/components/Layout";
-import CreateUser from "./pages/admin/pages/User/CreateUser";
+import CreateUser from "./pages/admin/components/User/CreateUser";
 
 import { publicRoutes } from "./routes";
 import DefaultLayout from "./components/DefaultLayout";
 import { Fragment } from "react";
-import Product from "./pages/admin/pages/Product";
-import Order from "./pages/admin/pages/Order";
-import Dashboard from "./pages/admin/pages/Dashboard";
-import Add from "./pages/admin/components/Product/Add";
+import Product from "./pages/admin/components/Product";
+import Order from "./pages/admin/components/Order";
+import Dashboard from "./pages/admin/components/Dashboard";
+import Add from "./pages/admin/components/Product/Add/Add";
 
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import LoginPageAdmin from "./pages/admin/pages/Auth/LoginPageAdmin";
+import LoginPageAdmin from "./pages/admin/components/Auth/LoginPageAdmin";
+import Category from "./pages/admin/components/Category";
+import Brand from "./pages/admin/components/Brand";
 
 function App() {
   return (
@@ -33,6 +35,10 @@ function App() {
         <Route path="/admin/product" element={<Product />} />
         <Route path="/admin/product/add" element={<Add />} />
         <Route path="/admin/order" element={<Order />} />
+
+        <Route path="/admin/category" element={<Category />} />
+
+        <Route path="/admin/brand" element={<Brand />} />
 
         {publicRoutes.map((route, index) => {
           const Page = route.page;

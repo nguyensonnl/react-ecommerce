@@ -129,7 +129,7 @@ select{
     overflow: hidden;
 
     .form__title{
-        background-color: #dfeffe;
+        background-color: #eef7fe;
         color: #000;
         padding: 8px 12px;
     }
@@ -139,8 +139,8 @@ select{
     }
 
     .form__footer{
-        display: flex;
-        align-items: center;
+        // display: flex;
+        // align-items: center;
         background-color: #f7f7f7;
         padding: 8px 12px;
     }
@@ -153,6 +153,8 @@ select{
         label{
             margin-right: 8px;
             width: 25%;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .form__group{

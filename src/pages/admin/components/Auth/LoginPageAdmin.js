@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginPageAdmin.scss";
 import f from "../../../../assets/img/facebook.png";
 import g from "../../../../assets/img/google.png";
 
 const LoginPageAdmin = () => {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/admin");
+  };
   return (
     <div className="admin-login">
       <div className="admin__layout">
@@ -41,7 +45,9 @@ const LoginPageAdmin = () => {
                 Quên mật khẩu
               </Link>
             </div>
-            <button className="admin__btn">Đăng nhập</button>
+            <button className="admin__btn" onClick={() => handleLogin()}>
+              Đăng nhập
+            </button>
           </form>
 
           <div className="other-login">

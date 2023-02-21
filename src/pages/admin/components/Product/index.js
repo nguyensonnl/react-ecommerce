@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout";
+import Layout from "../Layout";
 import "./Product.scss";
 import p1 from "../../../../assets/img/products/f1.jpg";
 import { useEffect, useState } from "react";

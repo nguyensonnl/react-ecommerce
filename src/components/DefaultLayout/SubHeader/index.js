@@ -12,7 +12,7 @@ const SubHeader = () => {
       <Row>
         <Col col={3}>
           <div className="subheader__nav">
-            <i class="fa-solid fa-list"></i>
+            <i className="fa-solid fa-list"></i>
             <Link to="/catalog" className="subheader__link">
               <span>Danh mục sản phẩm</span>
             </Link>

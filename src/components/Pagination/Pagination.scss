@@ -81,6 +81,11 @@
         background-color: rgba(0, 0, 0, 0.08);
       }
 
+    .disabled{
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
     .pagination-item{
         padding: 0 12px;
         height: 32px;
