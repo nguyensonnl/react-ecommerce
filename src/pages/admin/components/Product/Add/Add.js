@@ -13,8 +13,8 @@ let initialState = {
   name: "",
   countInStock: 0,
   price: 0,
-  brand: 0,
-  category: 0,
+  brand: "",
+  category: "",
   description: "",
   richDescription: "",
   image: "",
@@ -74,12 +74,38 @@ const Add = () => {
     formData.append("category", inputs.category);
     formData.append("description", inputs.description);
     formData.append("richDescription", inputs.richDescription);
-    formData.append("image", inputs.image);
-    formData.append("images", inputs.images);
     formData.append("isFeatured", inputs.isFeatured);
 
+    // formData.append("image", inputs.image);
+    // formData.append("images", inputs.images);
+
+    if (inputs.image) {
+      formData.append("image", inputs.image);
+    }
+
+    if (inputs.images && inputs.images.length > 0) {
+      for (let i = 0; i < inputs.images.length; i++) {
+        formData.append("images", inputs.images[i]);
+      }
+    }
+
+    // if (inputs.image) {
+    //   const file = await fetch(inputs.image).then((r) => r.blob());
+    //   formData.append("image", file, "avatar.png");
+    // }
+
+    // if (inputs.images && inputs.images.length > 0) {
+    //   for (let i = 0; i < inputs.images.length; i++) {
+    //     const file = await fetch(inputs.images[i]).then((r) => r.blob());
+    //     formData.append("images", file, `image_${i}.png`);
+    //   }
+    // }
+
     try {
-      let res = await productApi.createProduct(formData);
+      let res = await axios.post(
+        "http://localhost:5001/api/v1/products",
+        formData
+      );
 
       if (res.status === 200) {
         console.log("Create product successfully");
@@ -116,7 +142,11 @@ const Add = () => {
 
   return (
     <Layout>
-      <form onSubmit={handleSubmit} className="product-add">
+      <form
+        onSubmit={handleSubmit}
+        className="product-add"
+        encType="multipart/form-data"
+      >
         <div className="wrapper">
           <div className="form__title">Thông tin sản phẩm</div>
           <div className="form__body">

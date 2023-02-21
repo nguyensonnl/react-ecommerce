@@ -12,7 +12,8 @@ import axios from "axios";
 const axiosClient = axios.create({
   baseURL: "http://localhost:5001/api/v1",
   headers: {
-    "Content-Type": "application/json",
+    //"Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
   },
 });
 

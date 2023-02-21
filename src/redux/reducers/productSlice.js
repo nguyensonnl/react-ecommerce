@@ -14,6 +14,13 @@ export const getAllProduct = createAsyncThunk("products/getAll", async () => {
   return res.data;
 });
 
+export const createProduct = createAsyncThunk(
+  "product/createProduct",
+  async (data) => {
+    await productApi.createProduct(data);
+  }
+);
+
 export const getProductById = createAsyncThunk(
   "products/getProductById",
   async (id) => {
