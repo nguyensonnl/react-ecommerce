@@ -6,11 +6,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../../../components/Pagination";
 import { useMemo } from "react";
+import productApi from "../../../../api/productApi";
 
 let PageSize = 10;
 
 const Product = () => {
   const [item, setItem] = useState([]);
+  const [isDeleted, setIsDeleted] = useState(false);
   const navigate = useNavigate();
 
   const [curentPage, setCurrentPage] = useState(1);
@@ -35,7 +37,7 @@ const Product = () => {
     }
   };
 
-  // const [currentPage, setCurrentPage] = useState(1);
+  //const [currentPage, setCurrentPage] = useState(1);
 
   // const currentTableData = useMemo(() => {
   //   const firstPageIndex = (currentPage - 1) * PageSize;
@@ -43,37 +45,42 @@ const Product = () => {
   //   return item.slice(firstPageIndex, lastPageIndex);
   // }, [currentPage]);
 
-  useEffect(async () => {
-    const res = await axios.get("http://localhost:5001/api/v1/products");
-    setItem(res.data);
-  }, []);
+  // useEffect(async () => {
+  //   const res = await productApi.getAllProduct();
+  //   setItem(res.data);
+  // }, []);
 
   const handleAdd = () => {
     navigate("/admin/product/add");
   };
 
-  //console.log(curentPage);
+  const handleEditForm = (id) => {
+    navigate(`/admin/product/${id}`);
+  };
+
+  const handleDeleteItem = async (id) => {
+    try {
+      await productApi.deleteProduct(id);
+      const updatedProducts = item.filter((product) => product.id !== id);
+      setItem(updatedProducts);
+      setIsDeleted(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(async () => {
+    try {
+      const res = await productApi.getAllProduct();
+      setItem(res.data);
+      setIsDeleted(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [isDeleted]);
 
   return (
     <Layout>
-      {/* <form className="product__form">
-            <div className="form__control">
-              <label>Tên sản phẩm:</label>
-              <input
-                type="text"
-                placeholder="Tên sản phẩm..."
-                className="form-group"
-              />
-            </div>
-            <div className="form__control">
-              <label>Mô tả:</label>
-              <input
-                type="text"
-                placeholder="Mô tả sản phẩm..."
-                className="form-group"
-              />
-            </div>
-          </form> */}
       <div className="product__title">Products</div>
       <div className="product">
         <div className="product__control">
@@ -114,8 +121,18 @@ const Product = () => {
                   <td>{product.name}</td>
                   <td>Đồng hồ thông minh</td>
                   <td>
-                    <button className="btn-edit">Edit</button>
-                    <button className="btn-delete">Delete</button>
+                    <button
+                      className="btn-edit"
+                      onClick={() => handleEditForm(product._id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDeleteItem(product._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

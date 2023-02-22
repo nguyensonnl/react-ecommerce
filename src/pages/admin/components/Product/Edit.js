@@ -2,12 +2,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import productApi from "../../../../../api/productApi";
-import { getAllBrand } from "../../../../../redux/brandSlice";
-import { getAllCateogry } from "../../../../../redux/categorySlice";
-import Layout from "../../Layout";
-import "./Add.scss";
+import { useNavigate, useParams } from "react-router-dom";
+import productApi from "../../../../api/productApi";
+import { getAllBrand } from "../../../../redux/brandSlice";
+import { getAllCateogry } from "../../../../redux/categorySlice";
+import { getProductById } from "../../../../redux/reducers/productSlice";
+import Layout from "../Layout";
+import "./Add/Add.scss";
 
 let initialState = {
   name: "",
@@ -21,12 +22,18 @@ let initialState = {
   images: [],
   isFeatured: false,
 };
-const Add = () => {
+const Edit = () => {
   const [inputs, setInputs] = useState(initialState);
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const allCategory = useSelector((state) => state.category.categories);
   const allBrand = useSelector((state) => state.brand.brands);
+  const productById = useSelector((state) => state.product.productById);
+
+  useEffect(() => {
+    dispatch(getProductById(id));
+  }, []);
 
   useEffect(() => {
     dispatch(getAllBrand());
@@ -144,7 +151,7 @@ const Add = () => {
             <div className="form__control">
               <label>Tên sản phẩm:</label>
               <input
-                value={inputs.name}
+                value={productById.name}
                 type="text"
                 name="name"
                 placeholder="Tên sản phẩm..."
@@ -156,7 +163,7 @@ const Add = () => {
             <div className="form__control">
               <label>Giá:</label>
               <input
-                value={inputs.price}
+                value={productById.price}
                 name="price"
                 type="number"
                 className="form__group"
@@ -167,7 +174,7 @@ const Add = () => {
             <div className="form__control">
               <label>Số lượng:</label>
               <input
-                value={inputs.countInStock}
+                value={productById.countInStock}
                 name="countInStock"
                 type="number"
                 className="form__group"
@@ -216,7 +223,7 @@ const Add = () => {
               <input
                 onChange={(e) => handleChangeInput(e)}
                 //checked={inputs.isFeatured}
-                value={inputs.isFeatured}
+                value={productById.isFeatured}
                 type="checkbox"
                 className="form__checkbox"
                 name="isFeatured"
@@ -228,14 +235,14 @@ const Add = () => {
               <textarea
                 onChange={(e) => handleChangeInput(e)}
                 name="description"
-                value={inputs.description}
+                value={productById.description}
               ></textarea>
             </div>
             <div className="form__control">
               <label>Chi tiết sản phẩm:</label>
               <textarea
                 onChange={(e) => handleChangeInput(e)}
-                value={inputs.richDescription}
+                value={productById.richDescription}
                 name="richDescription"
               ></textarea>
             </div>
@@ -246,8 +253,8 @@ const Add = () => {
                 type="file"
                 onChange={(e) => handleChangeInput(e)}
               />
-              {inputs.image && (
-                <img src={inputs.image} className="file-image" />
+              {productById.image && (
+                <img src={productById.image} className="file-image" />
               )}
             </div>
             <div className="form__control">
@@ -259,6 +266,11 @@ const Add = () => {
                 onChange={(e) => handleChangeInput(e)}
               />
             </div>
+            {productById.images &&
+              productById.images.length > 9 &&
+              productById.images.map((item) => (
+                <img src={item.name} className="file-image" />
+              ))}
             {renderImagePreviews()}
 
             {/* <div className="form_control">
@@ -267,9 +279,9 @@ const Add = () => {
             </div> */}
           </div>
           <div className="form__footer">
-            <button className="btn-edit">Submit</button>
+            <button className="btn-edit">Cập nhật</button>
             <div className="btn-cancel" onClick={() => handleCancel()}>
-              Cancel
+              Hủy bỏ
             </div>
             <div className="btn-back" onClick={() => handleClickBack()}>
               &larr; Về trang trước
@@ -281,4 +293,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default Edit;

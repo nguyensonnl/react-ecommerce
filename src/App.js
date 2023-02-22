@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginPageAdmin from "./pages/admin/components/Auth/LoginPageAdmin";
 import Category from "./pages/admin/components/Category";
 import Brand from "./pages/admin/components/Brand";
+import Edit from "./pages/admin/components/Product/Edit";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
 
         <Route path="/admin/product" element={<Product />} />
         <Route path="/admin/product/add" element={<Add />} />
+        <Route path="/admin/product/:id" element={<Edit />} />
         <Route path="/admin/order" element={<Order />} />
 
         <Route path="/admin/category" element={<Category />} />
