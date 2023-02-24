@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -22,8 +23,10 @@ let initialState = {
   isFeatured: false,
 };
 const Add = () => {
-  const [inputs, setInputs] = useState(initialState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState(initialState);
+  const [previewUrls, setPreviewUrls] = useState([]);
 
   const allCategory = useSelector((state) => state.category.categories);
   const allBrand = useSelector((state) => state.brand.brands);
@@ -36,15 +39,12 @@ const Add = () => {
     dispatch(getAllCateogry());
   }, []);
 
-  const navigate = useNavigate();
-
   //const [file, setFile] = useState();
   // const handleChangeFile = (e) => {
   //   setFile(URL.createObjectURL(e.target.files[0]));
   // };
 
   //const [files, setFiles] = useState([]);
-  const [previewUrls, setPreviewUrls] = useState([]);
 
   // const handleChangeFileList = (e) => {
   //   const selectedFiles = Array.from(e.target.files);
@@ -93,7 +93,6 @@ const Add = () => {
       );
 
       navigate("/admin/product");
-      setInputs(initialState);
 
       if (res.status === 200) {
         console.log("Create product successfully");
@@ -111,7 +110,9 @@ const Add = () => {
     if (e.target.checked && e.target.type === "checkbox") {
       setInputs({ ...inputs, [name]: checked });
     } else if (e.target.type === "file" && e.target.name === "image") {
-      setInputs({ ...inputs, [name]: URL.createObjectURL(e.target.files[0]) });
+      const file = e.target.files[0];
+      //const file = URL.createObjectURL(e.target.files[0]);
+      setInputs({ ...inputs, [name]: file });
     } else if (e.target.type === "file" && e.target.name === "images") {
       const selectedFiles = Array.from(e.target.files);
       setInputs({ ...inputs, [name]: selectedFiles });
@@ -128,7 +129,6 @@ const Add = () => {
 
   const handleCancel = () => {
     setInputs(initialState);
-    console.log(inputs.isFeatured);
   };
 
   return (
@@ -247,7 +247,11 @@ const Add = () => {
                 onChange={(e) => handleChangeInput(e)}
               />
               {inputs.image && (
-                <img src={inputs.image} className="file-image" />
+                <img
+                  src={URL.createObjectURL(inputs.image)}
+                  alt="avatar"
+                  className="file-image"
+                />
               )}
             </div>
             <div className="form__control">
