@@ -10,7 +10,6 @@ const ProductCard = (props) => {
       <Link to={`/product/${props.id}`} className="product-card__link">
         <img src={props.src} alt="" className="product-card__image" />
         <div className="product-card__info">
-          <div className="product-card__brand">{props.brand}</div>
           <div className="product-card__name">{props.name}</div>
           <ul className="product-card__rating">
             <li className="product-card__rating-item">
@@ -33,7 +32,9 @@ const ProductCard = (props) => {
             {/* <span className="product-card__price-sale">
                   {props.priceSale ? props.priceSale : ""}
                 </span> */}
-            <span className="product-card__price-sale">{props.price}</span>
+            <span className="product-card__price-sale">
+              {props.price} <sup>đ</sup>
+            </span>
           </div>
         </div>
       </Link>

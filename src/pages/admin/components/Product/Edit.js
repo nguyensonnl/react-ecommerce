@@ -188,7 +188,7 @@ const Edit = () => {
               <select
                 className="form__group"
                 name="category"
-                // value={inputs.category}
+                value={productById.category}
                 onChange={(e) => handleChangeInput(e)}
               >
                 {allCategory &&
@@ -206,7 +206,11 @@ const Edit = () => {
               <select
                 className="form__group"
                 name="brand"
-                //</div>value={inputs.brand}
+                value={
+                  productById.isFeatured
+                    ? productById.isFeatured
+                    : inputs.isFeatured
+                }
                 onChange={(e) => handleChangeInput(e)}
               >
                 {allBrand &&
@@ -222,8 +226,10 @@ const Edit = () => {
               <label>Nổi bật:</label>
               <input
                 onChange={(e) => handleChangeInput(e)}
-                //checked={inputs.isFeatured}
-                value={productById.isFeatured}
+                checked={
+                  productById.isFeatured ? productById.isFeatured : false
+                }
+                //value={inputs.isFeatured}
                 type="checkbox"
                 className="form__checkbox"
                 name="isFeatured"
@@ -267,9 +273,9 @@ const Edit = () => {
               />
             </div>
             {productById.images &&
-              productById.images.length > 9 &&
-              productById.images.map((item) => (
-                <img src={item.name} className="file-image" />
+              productById.images.length > 0 &&
+              productById.images.map((url) => (
+                <img src={url} className="file-image" />
               ))}
             {renderImagePreviews()}
 

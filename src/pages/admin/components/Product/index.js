@@ -119,7 +119,7 @@ const Product = () => {
                     <img src={p1} />
                   </td> */}
                   <td>{product.name}</td>
-                  <td>Đồng hồ thông minh</td>
+                  <td>{product.category}</td>
                   <td>
                     <button
                       className="btn-edit"
