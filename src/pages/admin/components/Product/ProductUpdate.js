@@ -8,7 +8,7 @@ import { getAllBrand } from "../../../../redux/brandSlice";
 import { getAllCateogry } from "../../../../redux/categorySlice";
 import { getProductById } from "../../../../redux/reducers/productSlice";
 import Layout from "../Layout";
-import "./Add/Add.scss";
+import "./Product.scss";
 
 let initialState = {
   name: "",
@@ -22,9 +22,10 @@ let initialState = {
   images: [],
   isFeatured: false,
 };
-const Edit = () => {
+const ProductUpdate = () => {
   const [inputs, setInputs] = useState(initialState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const allCategory = useSelector((state) => state.category.categories);
@@ -32,33 +33,28 @@ const Edit = () => {
   const productById = useSelector((state) => state.product.productById);
 
   useEffect(() => {
+    if (id && productById)
+      setInputs({
+        name: productById.name || "",
+        countInStock: productById.countInStock || "",
+        price: productById.price || "",
+        brand: productById.brand || "",
+        category: productById.category || "",
+        description: productById.description || "",
+        richDescription: productById.richDescription || "",
+        image: productById.image || "",
+        images: productById.images || "",
+        isFeatured: productById.isFeatured || "",
+      });
+  }, [id, productById]);
+
+  useEffect(() => {
     dispatch(getProductById(id));
-  }, []);
-
-  useEffect(() => {
     dispatch(getAllBrand());
-  }, []);
-
-  useEffect(() => {
     dispatch(getAllCateogry());
   }, []);
 
-  const navigate = useNavigate();
-
-  //const [file, setFile] = useState();
-  // const handleChangeFile = (e) => {
-  //   setFile(URL.createObjectURL(e.target.files[0]));
-  // };
-
-  //const [files, setFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
-
-  // const handleChangeFileList = (e) => {
-  //   const selectedFiles = Array.from(e.target.files);
-  //   setFiles(selectedFiles);
-  //   const urls = selectedFiles.map((file) => URL.createObjectURL(file));
-  //   setPreviewUrls(urls);
-  // };
 
   const renderImagePreviews = () => {
     return previewUrls.map((url) => (
@@ -113,13 +109,13 @@ const Edit = () => {
   };
 
   const handleChangeInput = (e) => {
-    let { name, value, checked } = e.target;
+    let { name, value, checked, type } = e.target;
 
-    if (e.target.checked && e.target.type === "checkbox") {
+    if (checked && type === "checkbox") {
       setInputs({ ...inputs, [name]: checked });
-    } else if (e.target.type === "file" && e.target.name === "image") {
+    } else if (type === "file" && name === "image") {
       setInputs({ ...inputs, [name]: URL.createObjectURL(e.target.files[0]) });
-    } else if (e.target.type === "file" && e.target.name === "images") {
+    } else if (type === "file" && name === "images") {
       const selectedFiles = Array.from(e.target.files);
       setInputs({ ...inputs, [name]: selectedFiles });
       const urls = selectedFiles.map((file) => URL.createObjectURL(file));
@@ -151,7 +147,7 @@ const Edit = () => {
             <div className="form__control">
               <label>Tên sản phẩm:</label>
               <input
-                value={productById.name}
+                value={inputs.name}
                 type="text"
                 name="name"
                 placeholder="Tên sản phẩm..."
@@ -163,7 +159,7 @@ const Edit = () => {
             <div className="form__control">
               <label>Giá:</label>
               <input
-                value={productById.price}
+                value={inputs.price}
                 name="price"
                 type="number"
                 className="form__group"
@@ -174,7 +170,7 @@ const Edit = () => {
             <div className="form__control">
               <label>Số lượng:</label>
               <input
-                value={productById.countInStock}
+                value={inputs.countInStock}
                 name="countInStock"
                 type="number"
                 className="form__group"
@@ -188,7 +184,7 @@ const Edit = () => {
               <select
                 className="form__group"
                 name="category"
-                value={productById.category}
+                value={inputs.category}
                 onChange={(e) => handleChangeInput(e)}
               >
                 {allCategory &&
@@ -206,11 +202,7 @@ const Edit = () => {
               <select
                 className="form__group"
                 name="brand"
-                value={
-                  productById.isFeatured
-                    ? productById.isFeatured
-                    : inputs.isFeatured
-                }
+                value={inputs.brand}
                 onChange={(e) => handleChangeInput(e)}
               >
                 {allBrand &&
@@ -226,9 +218,7 @@ const Edit = () => {
               <label>Nổi bật:</label>
               <input
                 onChange={(e) => handleChangeInput(e)}
-                checked={
-                  productById.isFeatured ? productById.isFeatured : false
-                }
+                checked={inputs.isFeatured}
                 //value={inputs.isFeatured}
                 type="checkbox"
                 className="form__checkbox"
@@ -241,14 +231,14 @@ const Edit = () => {
               <textarea
                 onChange={(e) => handleChangeInput(e)}
                 name="description"
-                value={productById.description}
+                value={inputs.description}
               ></textarea>
             </div>
             <div className="form__control">
               <label>Chi tiết sản phẩm:</label>
               <textarea
                 onChange={(e) => handleChangeInput(e)}
-                value={productById.richDescription}
+                value={inputs.richDescription}
                 name="richDescription"
               ></textarea>
             </div>
@@ -259,8 +249,8 @@ const Edit = () => {
                 type="file"
                 onChange={(e) => handleChangeInput(e)}
               />
-              {productById.image && (
-                <img src={productById.image} className="file-image" />
+              {inputs.image && (
+                <img src={inputs.image} className="file-image" />
               )}
             </div>
             <div className="form__control">
@@ -272,12 +262,12 @@ const Edit = () => {
                 onChange={(e) => handleChangeInput(e)}
               />
             </div>
-            {productById.images &&
-              productById.images.length > 0 &&
-              productById.images.map((url) => (
-                <img src={url} className="file-image" />
+            {inputs.images &&
+              inputs.images.length > 0 &&
+              inputs.images.map((url, index) => (
+                <img key={index} src={url} className="file-image" />
               ))}
-            {renderImagePreviews()}
+            {/* {renderImagePreviews()} */}
 
             {/* <div className="form_control">
               <label style={{ marginRight: "120px" }}>Hình ảnh:</label>
@@ -299,4 +289,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default ProductUpdate;

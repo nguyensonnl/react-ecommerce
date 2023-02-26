@@ -13,13 +13,14 @@ import { Fragment } from "react";
 import Product from "./pages/admin/components/Product";
 import Order from "./pages/admin/components/Order";
 import Dashboard from "./pages/admin/components/Dashboard";
-import Add from "./pages/admin/components/Product/Add/Add";
 
 import "react-toastify/dist/ReactToastify.css";
 import LoginPageAdmin from "./pages/admin/components/Auth/LoginPageAdmin";
 import Category from "./pages/admin/components/Category";
 import Brand from "./pages/admin/components/Brand";
-import Edit from "./pages/admin/components/Product/Edit";
+
+import ProductAdd from "./pages/admin/components/Product/ProductAdd";
+import ProductUpdate from "./pages/admin/components/Product/ProductUpdate";
 
 function App() {
   return (
@@ -34,8 +35,8 @@ function App() {
         <Route path="/admin/user/create" element={<CreateUser />} />
 
         <Route path="/admin/product" element={<Product />} />
-        <Route path="/admin/product/add" element={<Add />} />
-        <Route path="/admin/product/:id" element={<Edit />} />
+        <Route path="/admin/product/add" element={<ProductAdd />} />
+        <Route path="/admin/product/:id" element={<ProductUpdate />} />
         <Route path="/admin/order" element={<Order />} />
 
         <Route path="/admin/category" element={<Category />} />

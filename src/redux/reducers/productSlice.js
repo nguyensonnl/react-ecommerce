@@ -5,7 +5,7 @@ export const getProductFeatured = createAsyncThunk(
   "products/productFeatured",
   async (count) => {
     const res = await productApi.getProductFeatured(count);
-    return res.data;
+    return res.data.reverse();
   }
 );
 
@@ -29,10 +29,25 @@ export const getProductById = createAsyncThunk(
   }
 );
 
+export const getAllBrand = createAsyncThunk("brand/getAllBrand", async () => {
+  const res = await productApi.getAllBrand();
+  return res.data;
+});
+
+export const getAllCategory = createAsyncThunk(
+  "brand/getAllCategory",
+  async () => {
+    const res = await productApi.getAllCategory();
+    return res.data;
+  }
+);
+
 const initialState = {
   productsFeatured: [],
   products: [],
   productById: {},
+  brands: [],
+  categories: [],
   loading: "idle",
 };
 
@@ -70,6 +85,14 @@ const productSlice = createSlice({
     },
     [getProductById.rejected]: (state, aciton) => {
       state.loading = "error";
+    },
+    [getAllBrand.fulfilled]: (state, action) => {
+      state.loading = "success";
+      state.brands = action.payload;
+    },
+    [getAllCategory.fulfilled]: (state, action) => {
+      state.loading = "success";
+      state.categories = action.payload;
     },
   },
 });

@@ -25,6 +25,16 @@ const productApi = {
     const url = `/products/${id}`;
     return axiosClient.delete(url);
   },
+
+  getAllBrand() {
+    const url = "/brands";
+    return axiosClient.get(url);
+  },
+
+  getAllCategory() {
+    const url = "/categories";
+    return axiosClient.get(url);
+  },
 };
 
 export default productApi;

@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import productApi from "../../../../../api/productApi";
-import { getAllBrand } from "../../../../../redux/brandSlice";
-import { getAllCateogry } from "../../../../../redux/categorySlice";
-import Layout from "../../Layout";
-import "./Add.scss";
+import productApi from "../../../../api/productApi";
+import { getAllBrand } from "../../../../redux/brandSlice";
+import { getAllCateogry } from "../../../../redux/categorySlice";
+import Layout from "../Layout";
+import "./Product.scss";
 
 let initialState = {
   name: "",
@@ -22,7 +22,7 @@ let initialState = {
   images: [],
   isFeatured: false,
 };
-const Add = () => {
+const ProductAdd = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState(initialState);
@@ -33,9 +33,6 @@ const Add = () => {
 
   useEffect(() => {
     dispatch(getAllBrand());
-  }, []);
-
-  useEffect(() => {
     dispatch(getAllCateogry());
   }, []);
 
@@ -285,4 +282,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default ProductAdd;
