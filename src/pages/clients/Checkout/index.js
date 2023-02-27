@@ -3,16 +3,24 @@ import Col from "../../../components/Col";
 import Row from "../../../components/Row";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { Link } from "react-router-dom";
+import logo from "../../../assets/img/logo/checkout_logo.jpg";
 
 const Checkout = () => {
   return (
-    <div className="checkout grid">
-      <Breadcrumb title="Checkout" />
-      <Row>
-        <Col col={6}>
-          <div className="checkout__info">
-            <div className="checkout__title">Thông tin nhận hàng</div>
-            <div className="checkout__form">
+    <div className="checkout">
+      <div className="checkout__info">
+        <div className="checkout__logo">
+          <Link to="/" className="checkout__logo-link">
+            <img src={logo} className="checkout__logo-img" alt="logo" />
+          </Link>
+        </div>
+
+        <div className="checkout__content">
+          <div className="content__info">
+            <div className="content__header">
+              <h3>Thông tin nhận hàng</h3>
+            </div>
+            <div className="content__body">
               <form>
                 <div className="form-group1">
                   <label>
@@ -61,6 +69,32 @@ const Checkout = () => {
               </form>
             </div>
           </div>
+          <div className="content__payment">
+            <h3>Đặt hàng</h3>
+            <div className="content__payment-body">
+              <div className="content__radio">
+                <input name="a" type="radio" />
+                <label>Trả tiền mặt khi nhận hàng</label>
+              </div>
+              <div className="content__radio">
+                <input name="a" type="radio" />
+                <label>Chuyển khoản ngân hàng</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="checkout__footer"></div>
+      </div>
+      <div className="checkout__order"></div>
+      {/* <Row>
+        <Col col={6}>
+          <div className="checkout__info">
+            <div className="checkout__title">Thông tin nhận hàng</div>
+            <div className="checkout__form">
+              
+            </div>
+          </div>
         </Col>
         <Col col={6}>
           <div className="checkout__order">
@@ -97,10 +131,7 @@ const Checkout = () => {
                 <span>5959595959</span>
               </div>
             </div>
-            <div className="checkout__payment">
-              <input name="a" type="radio" /> Trả tiền mặt khi nhận hàng
-              <input name="a" type="radio" /> Chuyển khoản ngân hàng
-            </div>
+           
             <div className="checkout__btn">
               <span>
                 <Link to="" className="checkout__link">
@@ -111,7 +142,7 @@ const Checkout = () => {
             </div>
           </div>
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 };
