@@ -22,6 +22,8 @@ import Brand from "./pages/admin/components/Brand";
 import ProductAdd from "./pages/admin/components/Product/ProductAdd";
 import ProductUpdate from "./pages/admin/components/Product/ProductUpdate";
 
+import Text from "./components/Text";
+
 function App() {
   return (
     // <div className="App">
@@ -42,6 +44,7 @@ function App() {
         <Route path="/admin/category" element={<Category />} />
 
         <Route path="/admin/brand" element={<Brand />} />
+        <Route path="/text" element={<Text />} />
 
         {publicRoutes.map((route, index) => {
           const Page = route.page;

@@ -90,8 +90,8 @@ const ProductUpdate = () => {
     }
 
     try {
-      let res = await axios.post(
-        "http://localhost:5001/api/v1/products",
+      let res = await axios.put(
+        `http://localhost:5001/api/v1/products/${id}`,
         formData
       );
 
@@ -111,7 +111,7 @@ const ProductUpdate = () => {
   const handleChangeInput = (e) => {
     let { name, value, checked, type } = e.target;
 
-    if (checked && type === "checkbox") {
+    if (type === "checkbox") {
       setInputs({ ...inputs, [name]: checked });
     } else if (type === "file" && name === "image") {
       setInputs({ ...inputs, [name]: URL.createObjectURL(e.target.files[0]) });
@@ -131,7 +131,6 @@ const ProductUpdate = () => {
 
   const handleCancel = () => {
     setInputs(initialState);
-    console.log(inputs.isFeatured);
   };
 
   return (
@@ -219,7 +218,6 @@ const ProductUpdate = () => {
               <input
                 onChange={(e) => handleChangeInput(e)}
                 checked={inputs.isFeatured}
-                //value={inputs.isFeatured}
                 type="checkbox"
                 className="form__checkbox"
                 name="isFeatured"

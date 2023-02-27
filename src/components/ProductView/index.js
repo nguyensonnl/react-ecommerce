@@ -14,12 +14,17 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ProductView = ({ product }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [previewImg, setPreviewImg] = useState(product.image);
   const [qty, setQty] = useState(1);
   const [quantity, setQuantity] = useState(1);
-  const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (product.image) {
+      setPreviewImg(product.image || "");
+    }
+  }, [product.image]);
 
   const updateQuantity = (type) => {
     if (type === "plus") {
@@ -58,14 +63,20 @@ const ProductView = ({ product }) => {
       <Row>
         <Col col={5}>
           <div className="product__images">
-            <img src={product?.image} className="product__images-main" />
+            <img src={previewImg} className="product__images-main" />
             <div className="product__images-list">
-              <img
-                src={f1}
-                onClick={() => setPreviewImg(f1)}
-                className="product__images-list-item"
-              />
-              <img
+              {product.images &&
+                product.images.length > 0 &&
+                product.images.map((url, index) => (
+                  <img
+                    key={index}
+                    src={url}
+                    onClick={() => setPreviewImg(url)}
+                    className="product__images-list-item"
+                  />
+                ))}
+
+              {/* <img
                 src={f2}
                 onClick={() => setPreviewImg(f2)}
                 className="product__images-list-item"
@@ -79,7 +90,7 @@ const ProductView = ({ product }) => {
                 src={f4}
                 onClick={() => setPreviewImg(f4)}
                 className="product__images-list-item"
-              />
+              /> */}
             </div>
           </div>
         </Col>

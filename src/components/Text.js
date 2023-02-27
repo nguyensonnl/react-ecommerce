@@ -1,12 +1,20 @@
 import React from "react";
+import { useState } from "react";
 
-const Text = (props) => {
+const Text = () => {
+  const [check, setCheck] = useState(false);
+
+  const handleChangeCheckbox = (e) => {
+    setCheck(e.target.checked);
+  };
+  console.log(check);
   return (
     <div className="text">
-      <p>Texxt</p>
-      <div>{props.name}</div>
-      <div>{props.brand}</div>
-      <div>{props.price}</div>
+      <input
+        checked={check}
+        type="checkbox"
+        onChange={(e) => handleChangeCheckbox(e)}
+      />
     </div>
   );
 };
