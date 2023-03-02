@@ -26,6 +26,8 @@ const ProductView = ({ product }) => {
     }
   }, [product.image]);
 
+  useEffect(() => {}, []);
+
   const updateQuantity = (type) => {
     if (type === "plus") {
       setQuantity(quantity + 1);
@@ -122,7 +124,7 @@ const ProductView = ({ product }) => {
 
             <div className="product__info-brand">
               <span>Thương hiệu:</span>
-              <span> {product.brand}</span>
+              {product.brand && <span> {product.brand.name}</span>}
             </div>
 
             <div className="product__info-price">

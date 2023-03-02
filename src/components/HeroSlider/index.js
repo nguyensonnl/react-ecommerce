@@ -12,38 +12,64 @@ import "swiper/components/navigation/navigation.scss"; // additional import for 
 import "swiper/components/effect-fade/effect-fade.scss"; // import styling for fade effect
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectFade } from "swiper"; // added navigation and replaced EffectCoverflow with EffectFade
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllCateogry } from "../../redux/categorySlice";
 SwiperCore.use([Navigation, Pagination, EffectFade]); // configure the new modules as needed
 
-const categories = [
-  { name: "Trang chủ" },
-  { name: "Thương hiệu" },
-  { name: "Sản phẩm nổi bật" },
-  { name: "Sản phẩm bán chạy" },
-  { name: "Đồng hồ nam" },
-  { name: "Đồng hồ nữ" },
-  { name: "Đồng hồ đôi" },
-  { name: "Đồng hồ cơ" },
-  { name: "Đồng hồ pin" },
-  { name: "Đồng hồ dây da" },
-  { name: "Đồng hồ dây thép" },
-  { name: "Phụ kiện đồng hồ" },
-  { name: "Giới thiệu" },
-  { name: "Liên hệ" },
-];
-
 const HeroSlider = () => {
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.category.categories);
+
+  useEffect(() => {
+    dispatch(getAllCateogry());
+  }, []);
+
   return (
     <div className="slider grid">
       <Row>
         <Col col={3}>
           <ul className="slider__category scroll">
+            <li className="slider__category-item">
+              <Link to="/" className="slider__category-link">
+                Trang chủ
+              </Link>
+            </li>
+            <li className="slider__category-item">
+              <Link to="/" className="slider__category-link">
+                Thương hiệu
+              </Link>
+            </li>
+            <li className="slider__category-item">
+              <Link to="/" className="slider__category-link">
+                Sản phẩm nổi bật
+              </Link>
+            </li>
+            <li className="slider__category-item">
+              <Link to="/" className="slider__category-link">
+                Sản phẩm bán chạy
+              </Link>
+            </li>
             {categories.map((item, index) => (
               <li className="slider__category-item" key={index}>
-                <Link to="" className="slider__category-link">
+                <Link
+                  to={`/catalog/${item._id}`}
+                  className="slider__category-link"
+                >
                   {item.name}
                 </Link>
               </li>
             ))}
+            <li className="slider__category-item">
+              <Link to="/about" className="slider__category-link">
+                Giới thiệu
+              </Link>
+            </li>
+            <li className="slider__category-item">
+              <Link to="/contact" className="slider__category-link">
+                Liên hệ
+              </Link>
+            </li>
           </ul>
         </Col>
         <Col col={9}>

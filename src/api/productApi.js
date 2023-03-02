@@ -16,6 +16,11 @@ const productApi = {
     return axiosClient.get(url);
   },
 
+  getProductByCate(cate) {
+    const url = `/products?categories=${cate}`;
+    return axiosClient.get(url);
+  },
+
   createProduct(data) {
     const url = "/products";
     return axiosClient.post(url, data);

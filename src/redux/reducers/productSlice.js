@@ -29,6 +29,14 @@ export const getProductById = createAsyncThunk(
   }
 );
 
+export const getProductByCategory = createAsyncThunk(
+  "products/getProductByCategory",
+  async (cate) => {
+    const res = await productApi.getProductByCate(cate);
+    return res.data;
+  }
+);
+
 export const getAllBrand = createAsyncThunk("brand/getAllBrand", async () => {
   const res = await productApi.getAllBrand();
   return res.data;
@@ -48,6 +56,7 @@ const initialState = {
   productById: {},
   brands: [],
   categories: [],
+  productByCate: [],
   loading: "idle",
 };
 
@@ -93,6 +102,11 @@ const productSlice = createSlice({
     [getAllCategory.fulfilled]: (state, action) => {
       state.loading = "success";
       state.categories = action.payload;
+    },
+
+    [getProductByCategory.fulfilled]: (state, action) => {
+      state.loading = "success";
+      state.productByCate = action.payload;
     },
   },
 });

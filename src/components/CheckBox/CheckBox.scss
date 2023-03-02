@@ -1,0 +1,42 @@
+.custom-checkbox{
+    cursor: pointer;
+
+    &:hover{
+        color: var(--primary-color);
+    }
+
+    input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    &__title{
+        font-size: 1.6rem;
+        font-weight: 300;
+    }
+
+    &__checkmark{
+        margin-right: 10px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid var(--primary-color);
+
+        i{
+            transform: scale(0);
+            transition: transform 0.2s ease;
+        }
+    }
+
+    input:checked~&__checkmark {
+        background-color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        color: #fff;
+    }
+
+    input:checked~&__checkmark>i {
+        transform: scale(1);
+    }
+}

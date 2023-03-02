@@ -13,11 +13,11 @@ import { useParams } from "react-router-dom";
 
 const Product = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductById(id));
   }, []);
   const productById = useSelector((state) => state.product.productById);
-  const dispatch = useDispatch();
 
   return (
     <Helmet title="Sản phẩm">

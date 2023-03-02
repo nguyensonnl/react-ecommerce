@@ -23,6 +23,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
+import "./Home.scss";
+
 const Home = () => {
   const [productsFeatured, setProductsFeatured] = useState([]);
   const dispatch = useDispatch();
@@ -69,7 +71,7 @@ const Home = () => {
 
         <Section>
           <SectionTitle>Sản phẩm nổi bật</SectionTitle>
-          <SectionBody>
+          <SectionBody className="product__list">
             <Carousel responsive={responsive}>
               {productsFeatured.map((item, index) => (
                 <ProductCard
@@ -95,7 +97,7 @@ const Home = () => {
       <Grid>
         <Section>
           <SectionTitle>Sản phẩm mới</SectionTitle>
-          <SectionBody>
+          <SectionBody className="product__list">
             <Carousel responsive={responsive}>
               {allProduct.map((item, index) => (
                 <ProductCard

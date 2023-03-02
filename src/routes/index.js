@@ -11,7 +11,7 @@ const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
   { path: "/product/:id", page: Product },
-  { path: "/catalog", page: Catalog },
+  { path: "/catalog/:cate", page: Catalog },
   { path: "*", page: NotFound, layout: null },
   { path: "/login", page: Login },
   { path: "/register", page: Register },

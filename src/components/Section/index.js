@@ -9,7 +9,9 @@ export const SectionTitle = (props) => {
 };
 
 export const SectionBody = (props) => {
-  return <div className="section__body">{props.children}</div>;
+  return (
+    <div className={`section__body ${props.className}`}>{props.children}</div>
+  );
 };
 
 export default Section;

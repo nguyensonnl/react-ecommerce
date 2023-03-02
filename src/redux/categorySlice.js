@@ -9,8 +9,17 @@ export const getAllCateogry = createAsyncThunk(
   }
 );
 
+export const getCategoryById = createAsyncThunk(
+  "categories/getById",
+  async (cateId) => {
+    const res = await categoryApi.getCategoryById(cateId);
+    return res.data;
+  }
+);
+
 const initialState = {
   categories: [],
+  categoriesId: [],
   loading: "idle",
 };
 
@@ -28,6 +37,11 @@ const categorySlice = createSlice({
     },
     [getAllCateogry.rejected]: (state, aciton) => {
       state.loading = "error";
+    },
+
+    [getCategoryById.fulfilled]: (state, action) => {
+      state.loading = "success";
+      state.categoriesId = action.payload;
     },
   },
 });
