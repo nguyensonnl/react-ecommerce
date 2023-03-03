@@ -7,7 +7,10 @@ import ProductCard from "../../../components/ProductCard";
 import "./Catalog.scss";
 import { Link, parsePath, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductByCategory } from "../../../redux/reducers/productSlice";
+import {
+  getAllProduct,
+  getProductByCategory,
+} from "../../../redux/reducers/productSlice";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { getAllBrand } from "../../../redux/brandSlice";
 import { getCategoryById } from "../../../redux/categorySlice";
@@ -27,17 +30,55 @@ const prices = [
 ];
 
 const Catalog = () => {
-  const productByCate = useSelector((state) => state.product.productByCate);
+  const productByCate = useSelector((state) => state.product.products);
+  // const productByCate = useSelector((state) => state.product.productByCate);
   const [products, setProducts] = useState(productByCate);
   const brands = useSelector((state) => state.brand.brands);
   const categoryId = useSelector((state) => state.category.categoriesId);
   const dispatch = useDispatch();
   const { cate } = useParams(); //id category
 
+  //Pagination
+  const [curentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(8);
+  const lastPostIndex = curentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = productByCate.slice(firstPostIndex, lastPostIndex);
+
+  const [activeId, setActiveId] = useState(1);
+
+  let pages = [];
+  const lenghtPagination = Math.ceil(products.length / postsPerPage);
+
+  for (let i = 1; i <= lenghtPagination; i++) {
+    pages.push(i);
+  }
+
+  const previousPage = () => {
+    if (curentPage !== 1) {
+      setCurrentPage(curentPage - 1);
+      setActiveId(curentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (curentPage !== Math.ceil(products.length / postsPerPage)) {
+      setCurrentPage(curentPage + 1);
+      setActiveId(curentPage + 1);
+    }
+  };
+
+  const handleCLickPaginate = (page) => {
+    setCurrentPage(page);
+    setActiveId(page);
+  };
+  //End Pagination
+
   useEffect(() => {
     dispatch(getProductByCategory(cate));
     dispatch(getAllBrand());
     dispatch(getCategoryById(cate));
+    dispatch(getAllProduct());
   }, []);
 
   //other old
@@ -47,7 +88,7 @@ const Catalog = () => {
 
   const handleFilter = (checked, item) => {
     if (checked) {
-      setFilterBrand([...filterBrand, item.name]);
+      setFilterBrand([...filterBrand, item.name]); // para2 is value
     } else {
       setFilterBrand(filterBrand.filter((brand) => brand !== item.name));
     }
@@ -76,28 +117,6 @@ const Catalog = () => {
     }
 
     if (filter.price.length > 0) {
-      // temp = temp.filter((e) => {
-      //   if (filter.price.includes("0-1000")) {
-      //     return e.price < 1000000;
-      //   } else if (filter.price.includes("1000-2000")) {
-      //     return e.price > 1000000 && e.price < 2000000;
-      //   } else if (filter.price.includes("2000-3000")) {
-      //     return e.price > 2000000 && e.price < 3000000;
-      //   } else if (filter.price.includes("3000-5000")) {
-      //     return e.price > 3000000 && e.price < 5000000;
-      //   } else if (filter.price.includes("5000-7000")) {
-      //     return e.price > 5000000 && e.price < 7000000;
-      //   } else if (filter.price.includes("7000-10000")) {
-      //     return e.price > 7000000 && e.price < 10000000;
-      //   } else if (filter.price.includes("10000-20000")) {
-      //     return e.price > 10000000 && e.price < 20000000;
-      //   } else if (filter.price.includes("20000-30000")) {
-      //     return e.price > 20000000 && e.price < 3000000;
-      //   } else if (filter.price.includes("30000+")) {
-      //     return e.price > 30000000;
-      //   }
-      // });
-
       temp = temp.filter((e) => {
         return filter.price.some((item) => {
           if (item === "0-1000") {
@@ -241,7 +260,7 @@ const Catalog = () => {
                 </select>
               </div>
               <Row>
-                {products.map((item, index) => (
+                {currentPosts.map((item, index) => (
                   <Col col={`${12}-${5}`}>
                     <ProductCard
                       key={index}
@@ -255,45 +274,25 @@ const Catalog = () => {
               </Row>
 
               <ul className="catalog__pagination">
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    <i className="fas fa-angle-left catalog__pagination-icon"></i>
-                  </Link>
+                <li className="catalog__pagination-item" onClick={previousPage}>
+                  <i className="fas fa-angle-left catalog__pagination-icon"></i>
                 </li>
-                <li className="catalog__pagination-item catalog__pagination-item--active">
-                  <Link to="" className="catalog__pagination-link">
-                    1
-                  </Link>
-                </li>
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    2
-                  </Link>
-                </li>
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    3
-                  </Link>
-                </li>
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    4
-                  </Link>
-                </li>
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    5
-                  </Link>
-                </li>
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    ...
-                  </Link>
-                </li>
-                <li className="catalog__pagination-item">
-                  <Link to="" className="catalog__pagination-link">
-                    <i className="fas fa-angle-right catalog__pagination-icon"></i>
-                  </Link>
+                {pages.map((page, index) => (
+                  <li
+                    className={
+                      activeId === page
+                        ? `catalog__pagination-item catalog__pagination-item--active`
+                        : `catalog__pagination-item`
+                    }
+                    key={index}
+                    onClick={() => handleCLickPaginate(page)}
+                  >
+                    {page}
+                  </li>
+                ))}
+
+                <li className="catalog__pagination-item" onClick={nextPage}>
+                  <i className="fas fa-angle-right catalog__pagination-icon"></i>
                 </li>
               </ul>
             </div>

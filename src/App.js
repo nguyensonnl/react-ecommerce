@@ -23,6 +23,7 @@ import ProductAdd from "./pages/admin/components/Product/ProductAdd";
 import ProductUpdate from "./pages/admin/components/Product/ProductUpdate";
 
 import Text from "./components/Text";
+import Pratice from "./components/Pratice";
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
         <Route path="/admin/category/" element={<Category />} />
 
         <Route path="/admin/brand" element={<Brand />} />
-        <Route path="/text" element={<Text />} />
+        <Route path="/pratice" element={<Pratice />} />
 
         {publicRoutes.map((route, index) => {
           const Page = route.page;

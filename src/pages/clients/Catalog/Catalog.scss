@@ -122,15 +122,14 @@
     list-style: none;
 
     &-item--active{
-        .catalog__pagination-link{
-            background-color: var(--extra-color);
-            color: #fff !important;
-        }
+        background-color: var(--extra-color);
+        color: #fff !important;
+        
     }
 
     &-item{
         margin: 0 12px;
-        .catalog__pagination-link{
+        cursor: pointer;
            text-decoration: none; 
            font-size: 2rem;
            border-radius: 2px;
@@ -140,6 +139,5 @@
            line-height: 30px;
            min-width: 40px;
            color: #939393;
-        }
     }
 }
