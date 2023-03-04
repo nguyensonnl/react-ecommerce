@@ -7,10 +7,7 @@ import ProductCard from "../../../components/ProductCard";
 import "./Catalog.scss";
 import { Link, parsePath, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllProduct,
-  getProductByCategory,
-} from "../../../redux/reducers/productSlice";
+import { getProductByCategory } from "../../../redux/reducers/productSlice";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { getAllBrand } from "../../../redux/brandSlice";
 import { getCategoryById } from "../../../redux/categorySlice";
@@ -30,8 +27,7 @@ const prices = [
 ];
 
 const Catalog = () => {
-  const productByCate = useSelector((state) => state.product.products);
-  // const productByCate = useSelector((state) => state.product.productByCate);
+  const productByCate = useSelector((state) => state.product.productByCate);
   const [products, setProducts] = useState(productByCate);
   const brands = useSelector((state) => state.brand.brands);
   const categoryId = useSelector((state) => state.category.categoriesId);
@@ -39,8 +35,9 @@ const Catalog = () => {
   const { cate } = useParams(); //id category
 
   //Pagination
+  // const listProductPaginate = [...products];
   const [curentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(8);
+  const [postsPerPage] = useState(8);
   const lastPostIndex = curentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = productByCate.slice(firstPostIndex, lastPostIndex);
@@ -48,8 +45,8 @@ const Catalog = () => {
   const [activeId, setActiveId] = useState(1);
 
   let pages = [];
-  const lenghtPagination = Math.ceil(products.length / postsPerPage);
 
+  const lenghtPagination = Math.ceil(productByCate.length / postsPerPage);
   for (let i = 1; i <= lenghtPagination; i++) {
     pages.push(i);
   }
@@ -62,7 +59,7 @@ const Catalog = () => {
   };
 
   const nextPage = () => {
-    if (curentPage !== Math.ceil(products.length / postsPerPage)) {
+    if (curentPage !== Math.ceil(productByCate.length / postsPerPage)) {
       setCurrentPage(curentPage + 1);
       setActiveId(curentPage + 1);
     }
@@ -78,10 +75,9 @@ const Catalog = () => {
     dispatch(getProductByCategory(cate));
     dispatch(getAllBrand());
     dispatch(getCategoryById(cate));
-    dispatch(getAllProduct());
   }, []);
 
-  //other old
+  //filter only one case
   const [filterBrand, setFilterBrand] = useState([]);
 
   const [filterPrice, setFilterPrice] = useState([]);
@@ -99,7 +95,7 @@ const Catalog = () => {
       ? filterBrand.includes(listProduct.brand.name)
       : productByCate
   );
-  //end other old
+  //end
 
   //Other way filter
   const initFilter = {
@@ -110,14 +106,16 @@ const Catalog = () => {
   const [filter, setFilter] = useState(initFilter);
 
   const updateProducts = useCallback(() => {
-    let temp = productByCate;
+    //let temp = productByCate;
+    let temp = currentPosts;
+    let listBrand = [...productByCate];
 
     if (filter.brand.length > 0) {
-      temp = temp.filter((e) => filter.brand.includes(e.brand.name));
+      temp = listBrand.filter((e) => filter.brand.includes(e.brand.name));
     }
 
     if (filter.price.length > 0) {
-      temp = temp.filter((e) => {
+      temp = listBrand.filter((e) => {
         return filter.price.some((item) => {
           if (item === "0-1000") {
             return e.price < 1000000;
@@ -148,7 +146,7 @@ const Catalog = () => {
     }
 
     setProducts(temp);
-  }, [filter, productByCate]);
+  }, [filter, productByCate, curentPage]);
 
   useEffect(() => {
     updateProducts();
@@ -251,50 +249,82 @@ const Catalog = () => {
 
               <div className="catalog__filter">
                 <span>Sắp xếp:</span>
-                <button>Phổ biến</button>
-                <button>Mới nhất</button>
-                <button>Bán chạy</button>
-                <select className="catalog__filter-select">
-                  <option>Giá từ thấp đến cao</option>
-                  <option>Giá từ cao đến thấp</option>
-                </select>
-              </div>
-              <Row>
-                {currentPosts.map((item, index) => (
-                  <Col col={`${12}-${5}`}>
-                    <ProductCard
-                      key={index}
-                      name={item.name}
-                      price={item.price.toLocaleString()}
-                      brand={item.brand}
-                      src={item.image}
-                    />
-                  </Col>
-                ))}
-              </Row>
-
-              <ul className="catalog__pagination">
-                <li className="catalog__pagination-item" onClick={previousPage}>
-                  <i className="fas fa-angle-left catalog__pagination-icon"></i>
-                </li>
-                {pages.map((page, index) => (
-                  <li
-                    className={
-                      activeId === page
-                        ? `catalog__pagination-item catalog__pagination-item--active`
-                        : `catalog__pagination-item`
-                    }
-                    key={index}
-                    onClick={() => handleCLickPaginate(page)}
-                  >
-                    {page}
+                <ul className="catalog__list">
+                  <li className="catalog__item">
+                    <Link to="" className="catalog__link">
+                      Tên A &#10141; Z
+                    </Link>
                   </li>
-                ))}
+                  <li className="catalog__item">
+                    <Link to="" className="catalog__link">
+                      Tên Z &#10141; A
+                    </Link>
+                  </li>
+                  <li className="catalog__item">
+                    <Link to="" className="catalog__link">
+                      Giá tăng dần
+                    </Link>
+                  </li>
+                  <li className="catalog__item">
+                    <Link to="" className="catalog__link">
+                      Giá giảm dần
+                    </Link>
+                  </li>
+                  <li className="catalog__item">
+                    <Link to="" className="catalog__link">
+                      Hàng mới
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="list__product-catalog">
+                <Row>
+                  {products.map((item, index) => (
+                    <Col col={`${12}-${5}`}>
+                      <ProductCard
+                        id={item._id}
+                        key={index}
+                        name={item.name}
+                        price={item.price.toLocaleString()}
+                        brand={item.brand}
+                        src={item.image}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+              {/*pages.lengh>1*/}
+              {products.length === 0 && (
+                <div>Không có sản phẩm nào bạn cần tìm</div>
+              )}
 
-                <li className="catalog__pagination-item" onClick={nextPage}>
-                  <i className="fas fa-angle-right catalog__pagination-icon"></i>
-                </li>
-              </ul>
+              {pages.length > 1 && (
+                <ul className="catalog__pagination">
+                  <li
+                    className="catalog__pagination-item"
+                    onClick={previousPage}
+                  >
+                    <i className="fas fa-angle-left catalog__pagination-icon"></i>
+                  </li>
+                  {pages.map((page, index) => (
+                    <li
+                      className={
+                        activeId === page
+                          ? `catalog__pagination-item catalog__pagination-item--active`
+                          : `catalog__pagination-item`
+                      }
+                      key={index}
+                      onClick={() => handleCLickPaginate(page)}
+                    >
+                      {page}
+                    </li>
+                  ))}
+
+                  <li className="catalog__pagination-item" onClick={nextPage}>
+                    <i className="fas fa-angle-right catalog__pagination-icon"></i>
+                  </li>
+                </ul>
+              )}
             </div>
           </Col>
         </Row>

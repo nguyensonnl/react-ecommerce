@@ -35,21 +35,6 @@ const HeroSlider = () => {
                 Trang chủ
               </Link>
             </li>
-            <li className="slider__category-item">
-              <Link to="/" className="slider__category-link">
-                Thương hiệu
-              </Link>
-            </li>
-            <li className="slider__category-item">
-              <Link to="/" className="slider__category-link">
-                Sản phẩm nổi bật
-              </Link>
-            </li>
-            <li className="slider__category-item">
-              <Link to="/" className="slider__category-link">
-                Sản phẩm bán chạy
-              </Link>
-            </li>
             {categories.map((item, index) => (
               <li className="slider__category-item" key={index}>
                 <Link

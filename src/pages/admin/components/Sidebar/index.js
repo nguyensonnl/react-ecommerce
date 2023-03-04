@@ -5,7 +5,6 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__logo">Online Shop</div>
-      <hr />
       <ul className="sidebar__list">
         <li className="sidebar__list-item">
           <NavLink

@@ -6,6 +6,7 @@ import Product from "../pages/clients/Product";
 import Login from "../pages/clients/Auth/Login";
 import Register from "../pages/clients/Auth/Register";
 import Checkout from "../pages/clients/Checkout";
+import SearchHeader from "../pages/clients/SearchHeader";
 
 const publicRoutes = [
   { path: "/", page: Home },
@@ -16,6 +17,7 @@ const publicRoutes = [
   { path: "/login", page: Login },
   { path: "/register", page: Register },
   { path: "/checkout", page: Checkout, layout: null },
+  { path: "/search", page: SearchHeader },
 ];
 
 const privateRoutes = [];
