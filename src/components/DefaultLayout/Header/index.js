@@ -1,13 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Grid from "../../Grid";
 import "./Header.scss";
 import logo from "../../../assets/img/logo-dong-ho.png";
 
 const Header = () => {
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearchInput = (e) => {
+    setSearchText(e.target.value);
   };
+  const handleSearchForm = (e) => {
+    e.preventDefault();
+    setSearchText("");
+    navigate(`/search/${searchText}`);
+  };
+
   return (
     <section className="header">
       {/* <div className="header__navbar">
@@ -80,16 +89,18 @@ const Header = () => {
           <img src={logo} alt="logo" className="header__logo" />
         </Link>
 
-        <div className="header__search">
+        <form onSubmit={handleSearchForm} className="header__search">
           <input
             type="text"
             placeholder="Nhập tên hoặc mã sản phẩm bạn muốn tìm kiếm"
             className="header__search-input form-control"
+            value={searchText}
+            onChange={(e) => handleSearchInput(e)}
           />
           <button className="header__search-btn">
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
-        </div>
+        </form>
 
         <ul className="header__list">
           <li className="header__list-item">

@@ -10,7 +10,6 @@ const Pagination = (props) => {
     nextPage,
     activeId,
     setActiveId,
-    currentPage,
   } = props;
   let pages = [];
 
@@ -39,7 +38,7 @@ const Pagination = (props) => {
         return (
           <li
             className={
-              activeId === page ? "pagination-item active" : "pagination-item"
+              activeId === page ? "paginaiton-active" : "pagination-item"
             }
             key={index}
             onClick={() => handleCLick(page)}

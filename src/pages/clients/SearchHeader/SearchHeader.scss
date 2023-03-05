@@ -1,0 +1,23 @@
+.list__product-search{
+    //width: 35%;
+    display: flex;
+    flex-wrap: wrap;
+    .product-search-item{
+        width: 20%;
+    }
+}
+.search__title{
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-top: 18px;
+}
+
+.result__search{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 250px;
+   font-weight: 300 ;
+  
+}

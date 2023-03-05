@@ -17,7 +17,7 @@ const publicRoutes = [
   { path: "/login", page: Login },
   { path: "/register", page: Register },
   { path: "/checkout", page: Checkout, layout: null },
-  { path: "/search", page: SearchHeader },
+  { path: "/search/:searchProduct", page: SearchHeader },
 ];
 
 const privateRoutes = [];

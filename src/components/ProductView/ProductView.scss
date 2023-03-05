@@ -1,21 +1,25 @@
+.product{
+    //background-color: #f9f9fb;
+}
 .product__images{
-
+    width: 100%;
     .product__images-main{
-        width: 100%;
         height: 380px;
         border: 1px solid var(--border-color);
-        object-fit: contain;
+        object-fit: cover;
     }
 
     .product__images-list{
       display: flex;
       justify-content: space-between;
+      gap: 2px;
+      width: calc(100% - 2%);
         .product__images-list-item{
-            width: 24%;
+            width: 20%;
             &:active{
                 border: 1px solid var(--primary-color);
             }
-            
+
         }
     }
 }
@@ -160,7 +164,37 @@
             }
         }
     }
+}
 
-   
-    
+.product__detail-right{
+    padding: 12px;
+    background-color: #f9f9fb;
+    .product__coupon{
+        border: 2px solid #ccc;
+        padding: 12px 12px 0;
+        margin-bottom: 8px;
+        .code{
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: red;
+        }
+        p{
+            font-size: 1.3rem;
+            color: #aaa;
+        }
+        .product__condition{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            button{
+                border-radius: 50px;
+                background-color: red;
+                color: #fff;
+            }
+            .condition__link{
+                font-size: 1.4rem;
+            }
+        }
+    }
 }

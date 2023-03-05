@@ -295,7 +295,9 @@ const Catalog = () => {
               </div>
               {/*pages.lengh>1*/}
               {products.length === 0 && (
-                <div>Không có sản phẩm nào bạn cần tìm</div>
+                <div className="catalog__empty-product">
+                  Không có sản phẩm nào bạn cần tìm
+                </div>
               )}
 
               {pages.length > 1 && (
