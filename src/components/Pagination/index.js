@@ -19,8 +19,6 @@ const Pagination = (props) => {
     pages.push(i);
   }
 
-  console.log(pages);
-
   const handleCLick = (page) => {
     setCurrentPage(page);
     setActiveId(page);
@@ -28,37 +26,43 @@ const Pagination = (props) => {
 
   return (
     <ul className="pagination">
-      <li
-        className={
-          activeId === 1 ? `pagination-item disabled` : `pagination-item`
-        }
-        onClick={previousPage}
-      >
-        &lt;
-      </li>
-      {pages.map((page, index) => {
-        return (
-          <li
-            className={
-              activeId === page ? "paginaiton-active" : "pagination-item"
-            }
-            key={index}
-            onClick={() => handleCLick(page)}
-          >
-            {page}
-          </li>
-        );
-      })}
-      <li
-        className={
-          activeId === lenghtPagination
-            ? `pagination-item disabled`
-            : `pagination-item`
-        }
-        onClick={nextPage}
-      >
-        &gt;
-      </li>
+      {pages.length > 1 && (
+        <li
+          className={
+            activeId === 1 ? `pagination-item disabled` : `pagination-item`
+          }
+          onClick={previousPage}
+        >
+          &lt;
+        </li>
+      )}
+
+      {pages.length > 1 &&
+        pages.map((page, index) => {
+          return (
+            <li
+              className={
+                activeId === page ? "paginaiton-active" : "pagination-item"
+              }
+              key={index}
+              onClick={() => handleCLick(page)}
+            >
+              {page}
+            </li>
+          );
+        })}
+      {pages.length > 1 && (
+        <li
+          className={
+            activeId === lenghtPagination
+              ? `pagination-item disabled`
+              : `pagination-item`
+          }
+          onClick={nextPage}
+        >
+          &gt;
+        </li>
+      )}
     </ul>
   );
 };

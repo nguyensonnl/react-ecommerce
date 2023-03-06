@@ -33,14 +33,14 @@ const Catalog = () => {
   const brands = useSelector((state) => state.brand.brands);
   const categoryId = useSelector((state) => state.category.categoriesId);
   const { cate } = useParams(); //id category
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(productByCate);
 
   //Pagination
   const [curentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const lastPostIndex = curentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = productByCate.slice(firstPostIndex, lastPostIndex);
+  const currentPosts = products.slice(firstPostIndex, lastPostIndex);
 
   const [activeId, setActiveId] = useState(1);
 
@@ -64,11 +64,6 @@ const Catalog = () => {
       setActiveId(curentPage + 1);
     }
   };
-
-  const handleCLickPaginate = (page) => {
-    setCurrentPage(page);
-    setActiveId(page);
-  };
   //End Pagination
 
   useEffect(() => {
@@ -77,43 +72,61 @@ const Catalog = () => {
     dispatch(getCategoryById(cate));
   }, []);
 
-  //filter only one case
-  const [filterBrand, setFilterBrand] = useState([]);
-  const [filterPrice, setFilterPrice] = useState([]);
-
-  const handleFilter = (checked, item) => {
-    if (checked) {
-      setFilterBrand([...filterBrand, item.name]); // para2 is value
-    } else {
-      setFilterBrand(filterBrand.filter((brand) => brand !== item.name));
-    }
-  };
-
-  const filterProduct = products.filter((listProduct) =>
-    filterBrand.length > 0
-      ? filterBrand.includes(listProduct.brand.name)
-      : productByCate
-  );
-  //end
-
   //Other way filter
-  const [filter, setFilter] = useState({
+  const [filters, setFilters] = useState({
     brand: [],
     price: [],
   });
 
+  // const filteredProducts = productByCate.filter((product) => {
+  //   if (filters.brand.length > 0) {
+  //     return filters.brand.includes(product.brand.name);
+  //   }
+  //   if (filters.price.length > 0) {
+  //     return filters.price.some((item) => {
+  //       if (item === "0-1000") {
+  //         return product.price < 1000000;
+  //       } else if (item === "1000-2000") {
+  //         return product.price > 1000000 && product.price < 2000000;
+  //       } else if (item === "2000-3000") {
+  //         return product.price > 2000000 && product.price < 3000000;
+  //       } else if (item === "3000-5000") {
+  //         return product.price > 3000000 && product.price < 5000000;
+  //       } else if (item === "5000-7000") {
+  //         return product.price > 5000000 && product.price < 7000000;
+  //       } else if (item === "7000-10000") {
+  //         return product.price > 7000000 && product.price < 10000000;
+  //       } else if (item === "10000-20000") {
+  //         return product.price > 10000000 && product.price < 20000000;
+  //       } else if (item === "20000-30000") {
+  //         return product.price > 20000000 && product.price < 3000000;
+  //       } else if (item === "30000+") {
+  //         return product.price > 30000000;
+  //       }
+  //     });
+  //   }
+  //   return products;
+  // });
+
+  // useEffect(() => {
+  //   if (filteredProducts) {
+  //     setProducts(filteredProducts.slice(firstPostIndex, lastPostIndex));
+  //   } else {
+  //     setProducts(productByCate.slice(firstPostIndex, lastPostIndex));
+  //   }
+  // }, [curentPage, filters, productByCate]);
+
   const updateProducts = useCallback(() => {
     //let temp = productByCate;
-    let temp = currentPosts;
-    let listBrand = [...productByCate];
+    let temp = productByCate;
 
-    if (filter.brand.length > 0) {
-      temp = listBrand.filter((e) => filter.brand.includes(e.brand.name));
+    if (filters.brand.length > 0) {
+      temp = temp.filter((e) => filters.brand.includes(e.brand.name));
     }
 
-    if (filter.price.length > 0) {
-      temp = listBrand.filter((e) => {
-        return filter.price.some((item) => {
+    if (filters.price.length > 0) {
+      temp = temp.filter((e) => {
+        return filters.price.some((item) => {
           if (item === "0-1000") {
             return e.price < 1000000;
           } else if (item === "1000-2000") {
@@ -135,49 +148,41 @@ const Catalog = () => {
           }
         });
       });
-
-      // temp = temp.filter((e) => {
-      //   // const check = e.price.find((price) => filter.price.includes(price));
-      //   // return check !== undefined;
-      // });
     }
 
     setProducts(temp);
-  }, [filter, productByCate, curentPage]);
+  }, [filters, productByCate, curentPage]);
 
   useEffect(() => {
     updateProducts();
   }, [updateProducts]);
 
+  //handleChangeFilter
   const filterSelect = (type, checked, item) => {
-    //check
     if (checked) {
       switch (type) {
         case "BRAND":
-          setFilter({ ...filter, brand: [...filter.brand, item.name] });
+          setFilters({ ...filters, brand: [...filters.brand, item.name] });
           break;
         case "PRICE":
-          setFilter({ ...filter, price: [...filter.price, item.value] });
+          setFilters({ ...filters, price: [...filters.price, item.value] });
           break;
         default:
       }
-    }
-    //uncheck
-    else {
+    } else {
       switch (type) {
         case "BRAND":
-          const newBrand = filter.brand.filter((e) => e !== item.name);
-          setFilter({ ...filter, brand: newBrand });
+          const newBrand = filters.brand.filter((e) => e !== item.name);
+          setFilters({ ...filters, brand: newBrand });
           break;
         case "PRICE":
-          const newPrice = filter.price.filter((e) => e !== item.value);
-          setFilter({ ...filter, price: newPrice });
+          const newPrice = filters.price.filter((e) => e !== item.value);
+          setFilters({ ...filters, price: newPrice });
           break;
         default:
       }
     }
   };
-  //end other way
 
   return (
     <Helmet title="Sản phẩm">
@@ -204,7 +209,7 @@ const Catalog = () => {
                         onChange={(input) =>
                           filterSelect("BRAND", input.checked, item)
                         }
-                        checked={filter.brand.includes(item.name)}
+                        checked={filters.brand.includes(item.name)}
                       />
                     </div>
                   ))}
@@ -233,7 +238,7 @@ const Catalog = () => {
                         onChange={(input) =>
                           filterSelect("PRICE", input.checked, item)
                         }
-                        checked={filter.price.includes(item.value)}
+                        checked={filters.price.includes(item.value)}
                       />
                     </div>
                   ))}
@@ -276,7 +281,7 @@ const Catalog = () => {
               </div>
               <div className="list__product-catalog">
                 <Row>
-                  {products.map((item, index) => (
+                  {currentPosts.map((item, index) => (
                     <Col col={`${12}-${5}`}>
                       <ProductCard
                         id={item._id}
@@ -291,15 +296,6 @@ const Catalog = () => {
                 </Row>
               </div>
 
-              <Pagination
-                totalPosts={productByCate.length}
-                postsPerPage={postsPerPage}
-                setCurrentPage={setCurrentPage}
-                previousPage={previousPage}
-                nextPage={nextPage}
-                activeId={activeId}
-                setActiveId={setActiveId}
-              />
               {/*pages.lengh>1*/}
               {products.length === 0 && (
                 <div className="catalog__empty-product">
@@ -307,33 +303,15 @@ const Catalog = () => {
                 </div>
               )}
 
-              {/* {pages.length > 1 && (
-                <ul className="catalog__pagination">
-                  <li
-                    className="catalog__pagination-item"
-                    onClick={previousPage}
-                  >
-                    <i className="fas fa-angle-left catalog__pagination-icon"></i>
-                  </li>
-                  {pages.map((page, index) => (
-                    <li
-                      className={
-                        activeId === page
-                          ? `catalog__pagination-item catalog__pagination-item--active`
-                          : `catalog__pagination-item`
-                      }
-                      key={index}
-                      onClick={() => handleCLickPaginate(page)}
-                    >
-                      {page}
-                    </li>
-                  ))}
-
-                  <li className="catalog__pagination-item" onClick={nextPage}>
-                    <i className="fas fa-angle-right catalog__pagination-icon"></i>
-                  </li>
-                </ul>
-              )} */}
+              <Pagination
+                totalPosts={products.length}
+                postsPerPage={postsPerPage}
+                setCurrentPage={setCurrentPage}
+                previousPage={previousPage}
+                nextPage={nextPage}
+                activeId={activeId}
+                setActiveId={setActiveId}
+              />
             </div>
           </Col>
         </Row>
