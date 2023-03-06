@@ -19,6 +19,8 @@ const Pagination = (props) => {
     pages.push(i);
   }
 
+  console.log(pages);
+
   const handleCLick = (page) => {
     setCurrentPage(page);
     setActiveId(page);

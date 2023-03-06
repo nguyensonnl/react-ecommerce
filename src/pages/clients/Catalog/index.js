@@ -13,6 +13,7 @@ import { getAllBrand } from "../../../redux/brandSlice";
 import { getCategoryById } from "../../../redux/categorySlice";
 import CheckBox from "../../../components/CheckBox";
 import { useCallback } from "react";
+import Pagination from "../../../components/Pagination";
 
 const prices = [
   { id: 1, title: "Giá dưới 1.000.000đ", value: "0-1000" },
@@ -27,15 +28,14 @@ const prices = [
 ];
 
 const Catalog = () => {
+  const dispatch = useDispatch();
   const productByCate = useSelector((state) => state.product.productByCate);
-  const [products, setProducts] = useState(productByCate);
   const brands = useSelector((state) => state.brand.brands);
   const categoryId = useSelector((state) => state.category.categoriesId);
-  const dispatch = useDispatch();
   const { cate } = useParams(); //id category
+  const [products, setProducts] = useState([]);
 
   //Pagination
-  // const listProductPaginate = [...products];
   const [curentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const lastPostIndex = curentPage * postsPerPage;
@@ -79,7 +79,6 @@ const Catalog = () => {
 
   //filter only one case
   const [filterBrand, setFilterBrand] = useState([]);
-
   const [filterPrice, setFilterPrice] = useState([]);
 
   const handleFilter = (checked, item) => {
@@ -98,12 +97,10 @@ const Catalog = () => {
   //end
 
   //Other way filter
-  const initFilter = {
+  const [filter, setFilter] = useState({
     brand: [],
     price: [],
-  };
-
-  const [filter, setFilter] = useState(initFilter);
+  });
 
   const updateProducts = useCallback(() => {
     //let temp = productByCate;
@@ -293,6 +290,16 @@ const Catalog = () => {
                   ))}
                 </Row>
               </div>
+
+              <Pagination
+                totalPosts={productByCate.length}
+                postsPerPage={postsPerPage}
+                setCurrentPage={setCurrentPage}
+                previousPage={previousPage}
+                nextPage={nextPage}
+                activeId={activeId}
+                setActiveId={setActiveId}
+              />
               {/*pages.lengh>1*/}
               {products.length === 0 && (
                 <div className="catalog__empty-product">
@@ -300,7 +307,7 @@ const Catalog = () => {
                 </div>
               )}
 
-              {pages.length > 1 && (
+              {/* {pages.length > 1 && (
                 <ul className="catalog__pagination">
                   <li
                     className="catalog__pagination-item"
@@ -326,7 +333,7 @@ const Catalog = () => {
                     <i className="fas fa-angle-right catalog__pagination-icon"></i>
                   </li>
                 </ul>
-              )}
+              )} */}
             </div>
           </Col>
         </Row>

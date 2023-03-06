@@ -10,10 +10,13 @@ const Breadcrumb = ({ title, title2, className }) => {
         </Link>
         <span>/</span>
       </li>
-      <li>
-        <span>{title2}</span>
-        <span>/</span>
-      </li>
+      {title2 && (
+        <li>
+          <span>{title2}</span>
+          <span>/</span>
+        </li>
+      )}
+
       <li>
         <span>{title}</span>
       </li>
