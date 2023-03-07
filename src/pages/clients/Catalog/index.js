@@ -33,14 +33,14 @@ const Catalog = () => {
   const brands = useSelector((state) => state.brand.brands);
   const categoryId = useSelector((state) => state.category.categoriesId);
   const { cate } = useParams(); //id category
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([productByCate]);
 
   //Pagination
   const [curentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const lastPostIndex = curentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = productByCate.slice(firstPostIndex, lastPostIndex);
+  const currentPosts = products.slice(firstPostIndex, lastPostIndex);
 
   const [activeId, setActiveId] = useState(1);
 
@@ -103,16 +103,14 @@ const Catalog = () => {
   });
 
   const updateProducts = useCallback(() => {
-    //let temp = productByCate;
-    let temp = currentPosts;
-    let listBrand = [...productByCate];
+    let temp = productByCate;
 
     if (filter.brand.length > 0) {
-      temp = listBrand.filter((e) => filter.brand.includes(e.brand.name));
+      temp = temp.filter((e) => filter.brand.includes(e.brand.name));
     }
 
     if (filter.price.length > 0) {
-      temp = listBrand.filter((e) => {
+      temp = temp.filter((e) => {
         return filter.price.some((item) => {
           if (item === "0-1000") {
             return e.price < 1000000;
@@ -135,11 +133,6 @@ const Catalog = () => {
           }
         });
       });
-
-      // temp = temp.filter((e) => {
-      //   // const check = e.price.find((price) => filter.price.includes(price));
-      //   // return check !== undefined;
-      // });
     }
 
     setProducts(temp);
@@ -276,23 +269,25 @@ const Catalog = () => {
               </div>
               <div className="list__product-catalog">
                 <Row>
-                  {products.map((item, index) => (
-                    <Col col={`${12}-${5}`}>
-                      <ProductCard
-                        id={item._id}
-                        key={index}
-                        name={item.name}
-                        price={item.price.toLocaleString()}
-                        brand={item.brand}
-                        src={item.image}
-                      />
-                    </Col>
-                  ))}
+                  {currentPosts &&
+                    currentPosts.length > 0 &&
+                    currentPosts.map((item, index) => (
+                      <Col col={`${12}-${5}`}>
+                        <ProductCard
+                          id={item._id}
+                          key={index}
+                          name={item.name}
+                          price={new Intl.NumberFormat().format(item.price)}
+                          brand={item.brand}
+                          src={item.image}
+                        />
+                      </Col>
+                    ))}
                 </Row>
               </div>
 
               <Pagination
-                totalPosts={productByCate.length}
+                totalPosts={products.length}
                 postsPerPage={postsPerPage}
                 setCurrentPage={setCurrentPage}
                 previousPage={previousPage}

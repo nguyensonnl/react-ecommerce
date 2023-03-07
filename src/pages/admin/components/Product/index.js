@@ -7,21 +7,47 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../../../../components/Pagination";
 import { useMemo } from "react";
 import productApi from "../../../../api/productApi";
-
-let PageSize = 10;
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCateogry } from "../../../../redux/categorySlice";
+import { getAllBrand } from "../../../../redux/brandSlice";
+import { useCallback } from "react";
+import { getAllProduct } from "../../../../redux/reducers/productSlice";
 
 const Product = () => {
-  const [item, setItem] = useState([]);
-  const [isDeleted, setIsDeleted] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const listCategory = useSelector((state) => state.category.categories);
+  const listBrand = useSelector((state) => state.brand.brands);
+  const allProduct = useSelector((state) => state.product.products);
+  const [listProduct, setListProduct] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [selectedItem, setSelectedItem] = useState({
+    brand: "",
+    category: "",
+  });
 
+  //Pagination
   const [curentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(8);
-  const lastPostIndex = curentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = item.slice(firstPostIndex, lastPostIndex);
-
+  const [pageSize] = useState(8);
+  const firstPageIndex = (curentPage - 1) * pageSize;
+  const lastPageIndex = firstPageIndex + pageSize;
+  const currentProducts = listProduct.slice(firstPageIndex, lastPageIndex);
   const [activeId, setActiveId] = useState(1);
+
+  useEffect(() => {
+    dispatch(getAllCateogry());
+    dispatch(getAllBrand());
+    dispatch(getAllProduct());
+  }, []);
+
+  // useEffect(() => {
+  //   if (allProduct.length > 0 && !isLoaded) {
+  //     setListProduct([...allProduct]);
+  //     setIsLoaded(true);
+  //   }
+  // }, [allProduct]);
 
   const previousPage = () => {
     if (curentPage !== 1) {
@@ -31,7 +57,7 @@ const Product = () => {
   };
 
   const nextPage = () => {
-    if (curentPage !== Math.ceil(item.length / postsPerPage)) {
+    if (curentPage !== Math.ceil(listProduct.length / pageSize)) {
       setCurrentPage(curentPage + 1);
       setActiveId(curentPage + 1);
     }
@@ -45,11 +71,6 @@ const Product = () => {
   //   return item.slice(firstPageIndex, lastPageIndex);
   // }, [currentPage]);
 
-  // useEffect(async () => {
-  //   const res = await productApi.getAllProduct();
-  //   setItem(res.data);
-  // }, []);
-
   const handleAdd = () => {
     navigate("/admin/product/add");
   };
@@ -61,8 +82,10 @@ const Product = () => {
   const handleDeleteItem = async (id) => {
     try {
       await productApi.deleteProduct(id);
-      const updatedProducts = item.filter((product) => product.id !== id);
-      setItem(updatedProducts);
+      const updatedProducts = listProduct.filter(
+        (product) => product.id !== id
+      );
+      setListProduct(updatedProducts);
       setIsDeleted(true);
     } catch (error) {
       console.log(error);
@@ -71,67 +94,130 @@ const Product = () => {
 
   useEffect(async () => {
     try {
-      const res = await productApi.getAllProduct();
-      setItem(res.data);
+      // const res = await productApi.getAllProduct();
+      // setListProduct(res.data);
       setIsDeleted(false);
     } catch (error) {
       console.log(error);
     }
   }, [isDeleted]);
 
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value);
+    let temp = allProduct;
+    if (searchInput !== "") {
+      temp = temp.filter((product) => {
+        // return product.name.toLowerCase().includes(searchInput.toLowerCase());
+        return Object.values(product)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      setListProduct(temp);
+    }
+  };
+
+  const handleFilterSelect = (e) => {
+    setSelectedItem((prevSelected) => ({
+      ...prevSelected,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const getFilteredList = useCallback(() => {
+    let temp = allProduct;
+    if (selectedItem.category) {
+      temp = temp.filter(
+        (item) => item.category.name === selectedItem.category
+      );
+    }
+
+    if (selectedItem.brand) {
+      temp = temp.filter((item) => item.brand.name === selectedItem.brand);
+    }
+    setListProduct(temp);
+  }, [selectedItem, allProduct]);
+
+  useEffect(() => {
+    getFilteredList();
+  }, [getFilteredList]);
+
   return (
     <Layout>
-      <div className="product__title">Products</div>
+      <div className="product__title">Sản phẩm</div>
       <div className="product">
         <div className="product__control">
           <div className="product__search">
             <input
+              value={searchInput}
               type="text"
-              placeholder="Tìm kiếm..."
+              placeholder="Nhập tên sản phẩm..."
               className="product__search-input"
+              onChange={(e) => handleSearchInput(e)}
             />
-            <select className="product__search-select">
-              <option>Danh mục</option>
-              <option>Đồng hồ thông minh</option>
-              <option>Đồng hồ điện tử</option>
+            <select
+              name="category"
+              className="product__search-select"
+              onChange={(e) => {
+                handleFilterSelect(e);
+              }}
+            >
+              {listCategory &&
+                listCategory.length > 0 &&
+                listCategory.map((item) => (
+                  <option key={item._id}>{item.name}</option>
+                ))}
+            </select>
+            <select
+              name="brand"
+              className="product__search-select"
+              onChange={(e) => handleFilterSelect(e)}
+            >
+              {listBrand &&
+                listBrand.length > 0 &&
+                listBrand.map((item) => (
+                  <option key={item._id}>{item.name}</option>
+                ))}
             </select>
           </div>
           <button className="product__btn" onClick={() => handleAdd()}>
-            Thêm
+            Thêm sản phẩm
           </button>
         </div>
 
         <table className="product__list">
           <thead>
-            <th>STT</th>
-            {/* <th>Ảnh sản phẩm</th> */}
+            <th>
+              <input type="checkbox" />
+            </th>
             <th>Tên sản phẩm</th>
             <th>Danh mục</th>
+            <th>Thương hiệu</th>
             <th>Action</th>
           </thead>
           <tbody>
-            {currentPosts &&
-              currentPosts.length > 0 &&
-              currentPosts.map((product, index) => (
+            {currentProducts &&
+              currentProducts.length > 0 &&
+              currentProducts.map((product, index) => (
                 <tr key={product._id}>
-                  <td>{index}</td>
-                  {/* <td>
-                    <img src={p1} />
-                  </td> */}
+                  <td>
+                    <input type="checkbox" />
+                  </td>
                   <td>{product.name}</td>
                   <td>{product.category.name}</td>
+                  <td>{product.brand.name}</td>
                   <td>
                     <button
                       className="btn-edit"
                       onClick={() => handleEditForm(product._id)}
                     >
-                      Edit
+                      <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                     <button
                       className="btn-delete"
                       onClick={() => handleDeleteItem(product._id)}
                     >
-                      Delete
+                      <i class="fa-solid fa-trash-can"></i>
                     </button>
                   </td>
                 </tr>
@@ -146,8 +232,8 @@ const Product = () => {
           onPageChange={(page) => setCurrentPage(page)}
         /> */}
         <Pagination
-          totalPosts={item.length}
-          postsPerPage={postsPerPage}
+          totalPosts={listProduct.length}
+          postsPerPage={pageSize}
           setCurrentPage={setCurrentPage}
           previousPage={previousPage}
           nextPage={nextPage}
