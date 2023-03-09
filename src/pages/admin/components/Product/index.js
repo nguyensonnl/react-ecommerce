@@ -30,7 +30,7 @@ const Product = () => {
 
   //Pagination
   const [curentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(8);
+  const [pageSize] = useState(5);
   const firstPageIndex = (curentPage - 1) * pageSize;
   const lastPageIndex = firstPageIndex + pageSize;
   const currentProducts = listProduct.slice(firstPageIndex, lastPageIndex);
@@ -126,13 +126,13 @@ const Product = () => {
 
   const getFilteredList = useCallback(() => {
     let temp = allProduct;
-    if (selectedItem.category) {
+    if (selectedItem.category && selectedItem.category !== "All") {
       temp = temp.filter(
         (item) => item.category.name === selectedItem.category
       );
     }
 
-    if (selectedItem.brand) {
+    if (selectedItem.brand && selectedItem.brand !== "All") {
       temp = temp.filter((item) => item.brand.name === selectedItem.brand);
     }
     setListProduct(temp);
@@ -144,103 +144,126 @@ const Product = () => {
 
   return (
     <Layout>
-      <div className="product__title">Sản phẩm</div>
-      <div className="product">
-        <div className="product__control">
-          <div className="product__search">
-            <input
-              value={searchInput}
-              type="text"
-              placeholder="Nhập tên sản phẩm..."
-              className="product__search-input"
-              onChange={(e) => handleSearchInput(e)}
-            />
-            <select
-              name="category"
-              className="product__search-select"
-              onChange={(e) => {
-                handleFilterSelect(e);
-              }}
-            >
-              {listCategory &&
-                listCategory.length > 0 &&
-                listCategory.map((item) => (
-                  <option key={item._id}>{item.name}</option>
-                ))}
-            </select>
-            <select
-              name="brand"
-              className="product__search-select"
-              onChange={(e) => handleFilterSelect(e)}
-            >
-              {listBrand &&
-                listBrand.length > 0 &&
-                listBrand.map((item) => (
-                  <option key={item._id}>{item.name}</option>
-                ))}
-            </select>
-          </div>
-          <button className="product__btn" onClick={() => handleAdd()}>
-            Thêm sản phẩm
+      <div className="admin__product">
+        <div className="product__header">
+          <h2>SẢN PHẨM</h2>
+          <button className="product__btn-add" onClick={() => handleAdd()}>
+            <span>+</span> Thêm mới
           </button>
         </div>
+        <div className="product__content">
+          <div className="product__title">Danh sách sản phẩm</div>
+          <div className="product__body">
+            <div className="product__control">
+              <div className="product__show-record-page">
+                <select>
+                  <option>10</option>
+                  <option>15</option>
+                  <option>20</option>
+                </select>
+                <span> records per page</span>
+              </div>
+              <div className="product__search">
+                <span>Danh mục: </span>
+                <select
+                  name="category"
+                  className="product__search-select"
+                  onChange={(e) => {
+                    handleFilterSelect(e);
+                  }}
+                >
+                  <option value="All">Tất cả</option>
+                  {listCategory &&
+                    listCategory.length > 0 &&
+                    listCategory.map((item) => (
+                      <option key={item._id}>{item.name}</option>
+                    ))}
+                </select>
+                <span>Thương hiệu: </span>
+                <select
+                  name="brand"
+                  className="product__search-select"
+                  onChange={(e) => handleFilterSelect(e)}
+                >
+                  <option value="All">Tất cả</option>
+                  {listBrand &&
+                    listBrand.length > 0 &&
+                    listBrand.map((item) => (
+                      <option key={item._id}>{item.name}</option>
+                    ))}
+                </select>
 
-        <table className="product__list">
-          <thead>
-            <th>
-              <input type="checkbox" />
-            </th>
-            <th>Tên sản phẩm</th>
-            <th>Danh mục</th>
-            <th>Thương hiệu</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            {currentProducts &&
-              currentProducts.length > 0 &&
-              currentProducts.map((product, index) => (
-                <tr key={product._id}>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>{product.name}</td>
-                  <td>{product.category.name}</td>
-                  <td>{product.brand.name}</td>
-                  <td>
-                    <button
-                      className="btn-edit"
-                      onClick={() => handleEditForm(product._id)}
-                    >
-                      <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <button
-                      className="btn-delete"
-                      onClick={() => handleDeleteItem(product._id)}
-                    >
-                      <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-        {/* <Pagination
-          className="pagination-bar"
-          currentPage={currentPage}
-          totalCount={item.length}
-          pageSize={PageSize}
-          onPageChange={(page) => setCurrentPage(page)}
-        /> */}
-        <Pagination
-          totalPosts={listProduct.length}
-          postsPerPage={pageSize}
-          setCurrentPage={setCurrentPage}
-          previousPage={previousPage}
-          nextPage={nextPage}
-          activeId={activeId}
-          setActiveId={setActiveId}
-          curentPage={curentPage}
-        />
+                <span>Search: </span>
+                <input
+                  value={searchInput}
+                  type="text"
+                  placeholder="Nhập tên sản phẩm..."
+                  className="product__search-input"
+                  onChange={(e) => handleSearchInput(e)}
+                />
+              </div>
+            </div>
+
+            <table className="product__list">
+              <thead>
+                <th>
+                  <input type="checkbox" />
+                </th>
+                <th>Tên sản phẩm</th>
+                <th>Danh mục</th>
+                <th>Thương hiệu</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                {currentProducts &&
+                  currentProducts.length > 0 &&
+                  currentProducts.map((product, index) => (
+                    <tr key={product._id}>
+                      <td>
+                        <input type="checkbox" />
+                      </td>
+                      <td>{product.name}</td>
+                      <td>{product.category.name}</td>
+                      <td>{product.brand.name}</td>
+                      <td>
+                        <button
+                          className="btn-edit"
+                          onClick={() => handleEditForm(product._id)}
+                        >
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button
+                          className="btn-delete"
+                          onClick={() => handleDeleteItem(product._id)}
+                        >
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+
+            <div className="product__footer">
+              <div className="product__show-record">
+                Hiển thị từ {firstPageIndex + 1} đến {lastPageIndex} của{" "}
+                {listProduct.length} bản ghi
+              </div>
+              <div className="product__pagination">
+                <Pagination
+                  totalPosts={listProduct.length}
+                  postsPerPage={pageSize}
+                  setCurrentPage={setCurrentPage}
+                  previousPage={previousPage}
+                  nextPage={nextPage}
+                  activeId={activeId}
+                  setActiveId={setActiveId}
+                  curentPage={curentPage}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );

@@ -4,8 +4,19 @@ import Row from "../../../components/Row";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/img/logo/checkout_logo.jpg";
+import { useDispatch } from "react-redux";
+import { getTotals } from "../../../redux/cartSlice";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Checkout = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart]);
+
   return (
     <div className="checkout">
       <div className="checkout__info">
@@ -111,12 +122,25 @@ const Checkout = () => {
         </div>
       </div>
       <div className="checkout__order">
-        <div className="order__title">Đơn hàng (2 sản phẩm)</div>
-        <div className="order__list-product">
-          <img src="" alt="image" className="order__product-img" />
-          <div className="order__product-name">Đồng hồ nam</div>
-          <div className="order__product-price">2.500.000đ</div>
+        <div className="order__title">
+          Đơn hàng ({cart.cartTotalQuantity} sản phẩm)
         </div>
+        {cart.cartItems &&
+          cart.cartItems.length > 0 &&
+          cart.cartItems.map((item) => (
+            <div className="order__list-product">
+              <img
+                src={item.image}
+                alt="image"
+                className="order__product-img"
+              />
+              <div className="order__product-name">{item.name}</div>
+              <div className="order__product-price">
+                {new Intl.NumberFormat().format(item.price)}
+              </div>
+            </div>
+          ))}
+
         <div className="order__sale">
           <input
             type="text"
@@ -128,7 +152,7 @@ const Checkout = () => {
         <div className="order__total">
           <div className="order__fee">
             <span>Tạm tính</span>
-            <span>2.500.000đ</span>
+            <span>{new Intl.NumberFormat().format(cart.cartTotalAmount)}</span>
           </div>
           <div className="order__delivery">
             <span>Phí vận chuyển</span>
@@ -136,7 +160,7 @@ const Checkout = () => {
           </div>
           <div className="order__price-total">
             <span>Tổng cộng</span>
-            <span>2.500.000đ</span>
+            <span>{new Intl.NumberFormat().format(cart.cartTotalAmount)}đ</span>
           </div>
           <div className="order__button">
             <Link to="/cart" className="order__link">

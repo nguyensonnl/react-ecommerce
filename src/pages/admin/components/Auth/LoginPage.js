@@ -4,13 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import jwtdecode from "jwt-decode";
 
-const init = {
-  email: "",
-  password: "",
-};
-
 const LoginPage = () => {
-  const [inputs, setInputs] = useState(init);
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

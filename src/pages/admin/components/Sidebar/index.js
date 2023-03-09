@@ -4,7 +4,7 @@ import "./Sidebar.scss";
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="sidebar__logo">Online Shop</div>
+      <div className="sidebar__logo">Lam Sơn Watch</div>
       <ul className="sidebar__list">
         <li className="sidebar__list-item">
           <NavLink

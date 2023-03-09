@@ -72,7 +72,10 @@ const Cart = () => {
                         </div>
                       </div>
                       <div className="cart__info__btn">
-                        <button type="button">Thanh toán</button>
+                        <Link to="/checkout">
+                          <button type="button">Thanh toán</button>
+                        </Link>
+
                         <Link to="/catalog">
                           <button type="button">Tiếp tục mua hàng</button>
                         </Link>

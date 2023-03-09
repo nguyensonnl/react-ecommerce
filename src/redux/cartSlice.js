@@ -22,14 +22,8 @@ const cartSlice = createSlice({
       );
       if (find >= 0) {
         state.cartItems[find].cartQuantity += newItem.cartQuantity;
-        // toast.success("Thêm vào giỏ hàng thành công", {
-        //   position: "top-right",
-        // });
       } else {
         state.cartItems = [...state.cartItems, { ...newItem }];
-        // toast.success("Thêm vào giỏ hàng thành công", {
-        //   position: "top-right",
-        // });
       }
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
