@@ -19,7 +19,16 @@ import cartReducer from "./cartSlice";
 import { productReducer } from "./reducers/productSlice";
 import { categoryReducer } from "./categorySlice";
 import { brandReducer } from "./brandSlice";
-import { authReducer } from "./authSlice";
+//import { authReducer } from "./authSlice";
+import persistedAuthReducer from "./authSlice";
+import {
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 const store = configureStore({
   reducer: {
@@ -27,8 +36,15 @@ const store = configureStore({
     category: categoryReducer,
     cart: cartReducer,
     brand: brandReducer,
-    auth: authReducer,
+    //auth: authReducer,
+    auth: persistedAuthReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export default store;

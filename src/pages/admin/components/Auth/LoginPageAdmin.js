@@ -11,28 +11,15 @@ import axiosClient from "../../../../api/axiosClient";
 const LoginPageAdmin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-
-  const userInfor = useSelector((state) => state.auth.userInfor);
-
-  const handleChangeInput = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    dispatch(userLogin(inputs));
-    if (
-      userInfor.email === inputs.email &&
-      userInfor.password === inputs.password
-    ) {
-      navigate("/admin");
-    } else {
-      navigate("/auth/login");
-    }
+    dispatch(userLogin({ email, password }));
+    navigate("/admin");
+
     // try {
     //   const res = await axios.post(
     //     "http://localhost:5001/api/v1/auth/login",
@@ -43,8 +30,6 @@ const LoginPageAdmin = () => {
     //   console.log(error);
     // }
   };
-
-  console.log(userInfor);
 
   return (
     <div className="admin-login">
@@ -66,8 +51,8 @@ const LoginPageAdmin = () => {
                 type="email"
                 placeholder="Email/Số điện thoại của bạn"
                 className="form-control1 admin-input"
-                value={inputs.email}
-                onChange={(e) => handleChangeInput(e)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 name="email"
               />
             </div>
@@ -76,8 +61,8 @@ const LoginPageAdmin = () => {
                 type="password"
                 placeholder="Mật khẩu đăng nhập cửa hàng"
                 className="form-control1 admin-input"
-                value={inputs.password}
-                onChange={(e) => handleChangeInput(e)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 name="password"
               />
             </div>
@@ -87,6 +72,8 @@ const LoginPageAdmin = () => {
               </Link>
             </div>
             <button className="admin__btn">Đăng nhập</button>
+
+            {errorMessage && <p>{errorMessage}</p>}
           </form>
 
           <div className="other-login">

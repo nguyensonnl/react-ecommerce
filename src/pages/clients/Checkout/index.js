@@ -134,7 +134,15 @@ const Checkout = () => {
                 alt="image"
                 className="order__product-img"
               />
-              <div className="order__product-name">{item.name}</div>
+              <div className="order__product-name">
+                {item.name}
+                <span
+                  style={{ fontSize: "1.2rem", color: "var(--extra-color)" }}
+                >
+                  {" "}
+                  X {item.cartQuantity}
+                </span>
+              </div>
               <div className="order__product-price">
                 {new Intl.NumberFormat().format(item.price)}
               </div>

@@ -12,15 +12,21 @@ import axios from "./api/axiosClient";
 import { getTotals } from "./redux/cartSlice";
 //axios();
 
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+const persistor = persistStore(store);
+
 store.dispatch(getTotals());
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <GlobalStyles>
-          <App />
-        </GlobalStyles>
+        <PersistGate loading={null} persistor={persistor}>
+          <GlobalStyles>
+            <App />
+          </GlobalStyles>
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
