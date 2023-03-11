@@ -70,26 +70,67 @@ const Checkout = () => {
                   <input
                     type="text"
                     className="form-control1"
-                    placeholder="Địa chỉ"
+                    placeholder="Vui lòng nhập địa chỉ chi tiết"
                   />
                 </div>
                 <div className="form-group1">
                   <label>Ghi chú</label>
-                  <textarea className="form-control1"></textarea>
+                  <textarea
+                    className="form-control1"
+                    placeholder="Ví dụ: Giao hàng trong giờ hành chính"
+                  ></textarea>
                 </div>
               </form>
             </div>
           </div>
-          <div className="content__payment">
-            <h3>Đặt hàng</h3>
-            <div className="content__payment-body">
-              <div className="content__radio">
-                <input name="a" type="radio" />
-                <label>Trả tiền mặt khi nhận hàng</label>
+          <div className="content__right">
+            <div className="content__delivery">
+              <h3>Vận chuyển</h3>
+              <div className="delivery__body">
+                <input type="radio" checked />
+                <label>Giao hàng tận nơi</label>
+                <span>Miễn phí</span>
               </div>
-              <div className="content__radio">
-                <input name="a" type="radio" />
-                <label>Chuyển khoản ngân hàng</label>
+            </div>
+            <div className="content__payment">
+              <h3>Đặt hàng</h3>
+              <div className="content__payment-body">
+                <div className="content__radio">
+                  <input name="a" type="radio" />
+                  <div className="radio__des">
+                    <label>Thanh toán khi nhận hàng</label>
+                    <p>
+                      Quý khách sẽ thanh toán bằng tiền mặt hoặc thẻ khi Lam Sơn
+                      Watch giao hàng cho quý khách
+                    </p>
+                  </div>
+                </div>
+                <div className="content__radio">
+                  <input name="a" type="radio" />
+                  <div className="radio__des">
+                    <label>Thanh toán chuyển khoản</label>
+                    <p>Ngân hàng: Vietcombank - CN Tân Phú</p>
+                    <p>Tên tài khoản: Nguyễn Lam Sơn</p>
+                    <p>Số tài khoản: 1013030711</p>
+                    <p>
+                      Nội dung: Số bill trên web + Số điện thoại khi KH dặt hàng
+                    </p>
+                  </div>
+                </div>
+                <div className="content__radio">
+                  <input name="a" type="radio" />
+                  <div className="radio__des">
+                    <label>Thanh toán online qua cổng thanh toán</label>
+                    <p>Quý khách sẽ được chuyển đến "VNPay" để thanh toán</p>
+                  </div>
+                </div>
+                <div className="content__radio">
+                  <input name="a" type="radio" />
+                  <div className="radio__des">
+                    <label>Thanh toán online bằng thẻ quốc tế</label>
+                    <p>Quý khách sẽ được chuyển đến trang khác để thanh toán</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -137,7 +178,12 @@ const Checkout = () => {
               <div className="order__product-name">
                 {item.name}
                 <span
-                  style={{ fontSize: "1.2rem", color: "var(--extra-color)" }}
+                  style={{
+                    marginLeft: "6px",
+                    fontSize: "1rem",
+                    color: "red",
+                    fontWeight: "500",
+                  }}
                 >
                   {" "}
                   X {item.cartQuantity}

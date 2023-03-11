@@ -13,22 +13,35 @@ const LoginPageAdmin = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmitLogin = async (e) => {
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const validateForm = () => {
+    const errors = {};
+    if (!email) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = "Invalid email address";
+    }
+    if (!password) {
+      errors.password = "Password is required";
+    } else if (password.length < 5) {
+      errors.password = "Password must be at least 8 characters";
+    }
+    return errors;
+  };
+
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
-    dispatch(userLogin({ email, password }));
-    navigate("/admin");
-
-    // try {
-    //   const res = await axios.post(
-    //     "http://localhost:5001/api/v1/auth/login",
-    //     inputs
-    //   );
-    //   return res.data;
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    const errors = validateForm();
+    setFormErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      dispatch(userLogin({ email, password }));
+      //navigate("/admin");
+    }
   };
 
   return (
@@ -54,7 +67,9 @@ const LoginPageAdmin = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
+                required
               />
+              {formErrors.email && <span>{formErrors.email}</span>}
             </div>
             <div className="form-group1">
               <input
@@ -64,7 +79,9 @@ const LoginPageAdmin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
+                required
               />
+              {formErrors.password && <span>{formErrors.password}</span>}
             </div>
             <div className="forgot-password">
               <Link to="" className="forgot-password__link">
@@ -72,8 +89,6 @@ const LoginPageAdmin = () => {
               </Link>
             </div>
             <button className="admin__btn">Đăng nhập</button>
-
-            {errorMessage && <p>{errorMessage}</p>}
           </form>
 
           <div className="other-login">

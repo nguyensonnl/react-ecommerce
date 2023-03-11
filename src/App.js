@@ -25,16 +25,36 @@ import ProductUpdate from "./pages/admin/components/Product/ProductUpdate";
 import Text from "./components/Text";
 import Pratice from "./components/Pratice";
 
+import Protected from "./pages/admin/Protected";
+import { ProtectedLogin } from "./pages/admin/Protected";
+import { useSelector } from "react-redux";
+
 function App() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     // <div className="App">
     <>
       <ToastContainer />
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/auth/login" element={<LoginPageAdmin />} />
+        <Route
+          path="/auth/login"
+          element={
+            <ProtectedLogin isLoggedIn={isLoggedIn}>
+              <LoginPageAdmin />
+            </ProtectedLogin>
+          }
+        />
         <Route path="/admin/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<Dashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <Protected isLoggedIn={isLoggedIn}>
+              <Dashboard />
+            </Protected>
+          }
+        />
         <Route path="/admin/user/create" element={<CreateUser />} />
 
         <Route path="/admin/product" element={<Product />} />

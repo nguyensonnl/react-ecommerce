@@ -37,7 +37,7 @@ const initialState = {
   accessToken: localStorage.getItem("accessToken") || null,
   status: "idle",
   error: null,
-  isLogin: false,
+  isLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -48,6 +48,7 @@ const authSlice = createSlice({
       localStorage.removeItem("accessToken");
       state.accessToken = null;
       state.user = null;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {
@@ -60,14 +61,14 @@ const authSlice = createSlice({
         state.accessToken = action.payload.accessToken;
         state.user = action.payload.user;
         state.error = null;
-        state.isLogin = true;
+        state.isLoggedIn = true;
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.status = "failed";
         state.accessToken = null;
         state.user = null;
         state.error = action.payload;
-        state.isLogin = false;
+        state.isLoggedIn = false;
       });
   },
 });
