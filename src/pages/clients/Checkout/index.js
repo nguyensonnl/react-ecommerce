@@ -7,15 +7,36 @@ import logo from "../../../assets/img/logo/checkout_logo.jpg";
 import { useDispatch } from "react-redux";
 import { getTotals } from "../../../redux/cartSlice";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
+  const [inputs, setInputs] = useState({
+    email: "",
+    name: "",
+    phone: "",
+    address: "",
+    note: "",
+    methodPayment: "",
+    cart: cart.cartItems,
+  });
+
   useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
+
+  const handleChangeInput = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    ///console.log(inputs);
+  };
 
   return (
     <div className="checkout">
@@ -38,9 +59,13 @@ const Checkout = () => {
                     Email<span>*</span>
                   </label>
                   <input
+                    name="email"
                     type="email"
                     className="form-control1"
                     placeholder="Email"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
                   />
                 </div>
                 <div className="form-group1">
@@ -48,9 +73,13 @@ const Checkout = () => {
                     Họ và tên<span>*</span>
                   </label>
                   <input
+                    name="name"
                     type="text"
                     className="form-control1"
                     placeholder="Họ và tên"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
                   />
                 </div>
                 <div className="form-group1">
@@ -58,9 +87,13 @@ const Checkout = () => {
                     Số điện thoại<span>*</span>
                   </label>
                   <input
+                    name="phone"
                     type="text"
                     className="form-control1"
                     placeholder="Số điện thoại"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
                   />
                 </div>
                 <div className="form-group1">
@@ -68,16 +101,24 @@ const Checkout = () => {
                     Địa chỉ<span>*</span>
                   </label>
                   <input
+                    name="address"
                     type="text"
                     className="form-control1"
                     placeholder="Vui lòng nhập địa chỉ chi tiết"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
                   />
                 </div>
                 <div className="form-group1">
                   <label>Ghi chú</label>
                   <textarea
+                    name="note"
                     className="form-control1"
                     placeholder="Ví dụ: Giao hàng trong giờ hành chính"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
                   ></textarea>
                 </div>
               </form>
@@ -87,7 +128,33 @@ const Checkout = () => {
             <div className="content__delivery">
               <h3>Vận chuyển</h3>
               <div className="delivery__body">
-                <input type="radio" checked />
+                <span
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    border: "1px solid var(--extra-color)",
+                    borderRadius: "99px",
+                    lineHeight: "20px",
+                    textAlign: "center",
+                    position: "relative",
+                  }}
+                >
+                  <span
+                    style={{
+                      border: "1px solid var(--extra-color)",
+                      borderRadius: "99px",
+                      lineHeight: "20px",
+                      textAlign: "center",
+                      background: "var(--extra-color)",
+                      height: "10px",
+                      padding: "4px",
+                      position: "absolute",
+                      top: "4px",
+                      left: "4px",
+                    }}
+                  ></span>
+                </span>
+
                 <label>Giao hàng tận nơi</label>
                 <span>Miễn phí</span>
               </div>
@@ -96,7 +163,17 @@ const Checkout = () => {
               <h3>Đặt hàng</h3>
               <div className="content__payment-body">
                 <div className="content__radio">
-                  <input name="a" type="radio" />
+                  <input
+                    type="radio"
+                    name="methodPayment"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
+                    value="Thanh toán khi nhận hàng"
+                    checked={
+                      inputs.methodPayment === "Thanh toán khi nhận hàng"
+                    }
+                  />
                   <div className="radio__des">
                     <label>Thanh toán khi nhận hàng</label>
                     <p>
@@ -106,7 +183,15 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="content__radio">
-                  <input name="a" type="radio" />
+                  <input
+                    type="radio"
+                    name="methodPayment"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
+                    value="Thanh toán chuyển khoản"
+                    checked={inputs.methodPayment === "Thanh toán chuyển khoản"}
+                  />
                   <div className="radio__des">
                     <label>Thanh toán chuyển khoản</label>
                     <p>Ngân hàng: Vietcombank - CN Tân Phú</p>
@@ -118,14 +203,36 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="content__radio">
-                  <input name="a" type="radio" />
+                  <input
+                    type="radio"
+                    name="methodPayment"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
+                    value="Thanh toán online qua cổng thanh toán"
+                    checked={
+                      inputs.methodPayment ===
+                      "Thanh toán online qua cổng thanh toán"
+                    }
+                  />
                   <div className="radio__des">
                     <label>Thanh toán online qua cổng thanh toán</label>
                     <p>Quý khách sẽ được chuyển đến "VNPay" để thanh toán</p>
                   </div>
                 </div>
                 <div className="content__radio">
-                  <input name="a" type="radio" />
+                  <input
+                    type="radio"
+                    name="methodPayment"
+                    onChange={(e) => {
+                      handleChangeInput(e);
+                    }}
+                    value="Thanh toán online bằng thẻ quốc tế"
+                    checked={
+                      inputs.methodPayment ===
+                      "Thanh toán online bằng thẻ quốc tế"
+                    }
+                  />
                   <div className="radio__des">
                     <label>Thanh toán online bằng thẻ quốc tế</label>
                     <p>Quý khách sẽ được chuyển đến trang khác để thanh toán</p>
@@ -168,8 +275,8 @@ const Checkout = () => {
         </div>
         {cart.cartItems &&
           cart.cartItems.length > 0 &&
-          cart.cartItems.map((item) => (
-            <div className="order__list-product">
+          cart.cartItems.map((item, index) => (
+            <div className="order__list-product" key={index}>
               <img
                 src={item.image}
                 alt="image"
@@ -201,7 +308,7 @@ const Checkout = () => {
             className="order__input"
             placeholder="Nhập mã giảm giá"
           />
-          <buton className="order__button">Áp dụng</buton>
+          <button className="order__button">Áp dụng</button>
         </div>
         <div className="order__total">
           <div className="order__fee">
@@ -220,7 +327,13 @@ const Checkout = () => {
             <Link to="/cart" className="order__link">
               <i>&lt;</i> Quay về giỏ hàng
             </Link>
-            <button className="order__submit">Đặt hàng</button>
+            <button
+              type="sumbit"
+              className="order__submit"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Đặt hàng
+            </button>
           </div>
         </div>
       </div>
