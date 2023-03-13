@@ -2,16 +2,24 @@ import "./Checkout.scss";
 import Col from "../../../components/Col";
 import Row from "../../../components/Row";
 import Breadcrumb from "../../../components/Breadcrumb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/logo/checkout_logo.jpg";
 import { useDispatch } from "react-redux";
-import { getTotals } from "../../../redux/cartSlice";
+import { clearCart, getTotals } from "../../../redux/cartSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const customer = useSelector((state) => state.customer.customer);
+  const email = customer?.email;
+  const firstName = customer?.firstName;
+  const phone = customer?.phone;
+
+  const isLoggedIn = useSelector((state) => state.customer.isLoggedIn);
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -24,6 +32,14 @@ const Checkout = () => {
   });
 
   useEffect(() => {
+    setInputs({
+      email: email || "",
+      name: firstName || "",
+      phone: phone || "",
+    });
+  }, [customer]);
+
+  useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
 
@@ -34,8 +50,33 @@ const Checkout = () => {
     });
   };
 
-  const handleSubmit = () => {
-    ///console.log(inputs);
+  const handleSubmit = async () => {
+    try {
+      if (isLoggedIn) {
+        const newData = {
+          orderItem_id: cart.cartItems,
+          customer_id: customer._id,
+          phone: inputs.phone,
+          address: inputs.address,
+          note: inputs.note,
+        };
+        const res = await axios.post(
+          "http://localhost:5001/api/v1/orders",
+          newData
+        );
+        dispatch(clearCart());
+        navigate("/");
+        if (res.status === 200) {
+          console.log("Success");
+        } else {
+          console.log("Some error occured");
+        }
+      } else {
+        navigate("/account/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -62,6 +103,7 @@ const Checkout = () => {
                     name="email"
                     type="email"
                     className="form-control1"
+                    value={inputs.email}
                     placeholder="Email"
                     onChange={(e) => {
                       handleChangeInput(e);
@@ -73,6 +115,7 @@ const Checkout = () => {
                     Họ và tên<span>*</span>
                   </label>
                   <input
+                    value={inputs.name}
                     name="name"
                     type="text"
                     className="form-control1"
@@ -87,6 +130,7 @@ const Checkout = () => {
                     Số điện thoại<span>*</span>
                   </label>
                   <input
+                    value={inputs.phone}
                     name="phone"
                     type="text"
                     className="form-control1"
@@ -101,6 +145,7 @@ const Checkout = () => {
                     Địa chỉ<span>*</span>
                   </label>
                   <input
+                    value={inputs.address}
                     name="address"
                     type="text"
                     className="form-control1"
@@ -113,6 +158,7 @@ const Checkout = () => {
                 <div className="form-group1">
                   <label>Ghi chú</label>
                   <textarea
+                    value={inputs.note}
                     name="note"
                     className="form-control1"
                     placeholder="Ví dụ: Giao hàng trong giờ hành chính"

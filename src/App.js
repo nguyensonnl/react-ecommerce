@@ -1,4 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Redirect,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/clients/Home";
 import LoginPage from "./pages/admin/components/Auth/LoginPage";
@@ -28,9 +34,14 @@ import Pratice from "./components/Pratice";
 import Protected from "./pages/admin/Protected";
 import { ProtectedLogin } from "./pages/admin/Protected";
 import { useSelector } from "react-redux";
+import { ProtectedAccount } from "./components/ProtectedAcount";
+import PrivateRoute from "./components/PrivateRoute";
+import { ProtectedAccountLogin } from "./components/ProtectedAcount";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const customer = useSelector((state) => state.customer);
+  const isLoggedInClient = customer?.isLoggedIn;
 
   return (
     // <div className="App">
@@ -56,28 +67,44 @@ function App() {
           }
         />
         <Route path="/admin/user/create" element={<CreateUser />} />
-
         <Route path="/admin/product" element={<Product />} />
         <Route path="/admin/product/add" element={<ProductAdd />} />
         <Route path="/admin/product/:id" element={<ProductUpdate />} />
         <Route path="/admin/order" element={<Order />} />
-
         <Route path="/admin/category/" element={<Category />} />
-
         <Route path="/admin/brand" element={<Brand />} />
         <Route path="/pratice" element={<Pratice />} />
 
         {publicRoutes.map((route, index) => {
           const Page = route.page;
           const Layout = route.layout === null ? Fragment : DefaultLayout;
+
           return (
             <Route
               key={index}
               path={route.path}
+              // element={
+              //   <Layout>
+              //     <Page />
+              //   </Layout>
+              // }
+
               element={
-                <Layout>
-                  <Page />
-                </Layout>
+                route.private && !isLoggedInClient ? (
+                  <Navigate to="/account/login" replace />
+                ) : !route.private &&
+                  isLoggedInClient &&
+                  route.path === "/account/login" ? (
+                  <Navigate to="/account" replace />
+                ) : !route.private &&
+                  isLoggedInClient &&
+                  route.path === "/account/register" ? (
+                  <Navigate to="/account" replace />
+                ) : (
+                  <Layout>
+                    <Page />
+                  </Layout>
+                )
               }
             />
           );

@@ -21,6 +21,9 @@ import { categoryReducer } from "./categorySlice";
 import { brandReducer } from "./brandSlice";
 //import { authReducer } from "./authSlice";
 import persistedAuthReducer from "./authSlice";
+//import { customerReducer } from "./customerSlice";
+import persistedCustomerReducer from "./customerSlice";
+
 import {
   FLUSH,
   REHYDRATE,
@@ -38,6 +41,8 @@ const store = configureStore({
     brand: brandReducer,
     //auth: authReducer,
     auth: persistedAuthReducer,
+    //customer: customerReducer,
+    customer: persistedCustomerReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
