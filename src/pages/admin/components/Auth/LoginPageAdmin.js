@@ -26,6 +26,7 @@ const LoginPageAdmin = () => {
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = "Invalid email address";
     }
+
     if (!password) {
       errors.password = "Password is required";
     } else if (password.length < 5) {
@@ -34,13 +35,17 @@ const LoginPageAdmin = () => {
     return errors;
   };
 
-  const handleSubmitLogin = (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     setFormErrors(errors);
     if (Object.keys(errors).length === 0) {
-      dispatch(userLogin({ email, password }));
-      //navigate("/admin");
+      const res = await dispatch(userLogin({ email, password }));
+      if (res.success) {
+        navigate("/admin");
+      } else {
+        setFormErrors({ email: "Email hoặc mật khẩu không đúng" });
+      }
     }
   };
 
@@ -69,7 +74,9 @@ const LoginPageAdmin = () => {
                 name="email"
                 required
               />
-              {formErrors.email && <span>{formErrors.email}</span>}
+              {formErrors.email && (
+                <span className="handle-error">{formErrors.email}</span>
+              )}
             </div>
             <div className="form-group1">
               <input
@@ -81,7 +88,9 @@ const LoginPageAdmin = () => {
                 name="password"
                 required
               />
-              {formErrors.password && <span>{formErrors.password}</span>}
+              {formErrors.password && (
+                <span className="handle-error">{formErrors.password}</span>
+              )}
             </div>
             <div className="forgot-password">
               <Link to="" className="forgot-password__link">

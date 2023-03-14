@@ -19,6 +19,28 @@ const Login = () => {
     password: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.email) {
+      errors.email = "Email không được để trống";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Email không hợp lệ";
+    }
+
+    if (!formData.password) {
+      errors.password = "Mật khẩu không được để trống";
+    } else if (formData.password.length < 5) {
+      errors.password = "Mật khẩu phải ít nhất 5 ký tự";
+    }
+
+    return errors;
+  };
+
   const handleChangeInput = (e) => {
     setFormData({
       ...formData,
@@ -26,11 +48,32 @@ const Login = () => {
     });
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    dispatch(login(formData));
-    //  navigate("/account");
-    navigate("/");
+    const errors = validateForm();
+    setFormErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      // if (dispatch(login(formData))) {
+      //   navigate("/");
+      // } else {
+      //   setFormErrors({
+      //     email: "Email không đúng",
+      //     password: "Mật khẩu không đúng",
+      //   });
+      // }
+      try {
+        const res = await dispatch(login(formData));
+        if (res.success) {
+          navigate("/");
+        } else {
+          setFormErrors({
+            email: "Email hoặc mật khẩu không đúng",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
   return (
     <Helmet title="Đăng nhập tài khoản">
@@ -60,7 +103,11 @@ const Login = () => {
                     value={formData.email}
                     name="email"
                     onChange={(e) => handleChangeInput(e)}
+                    required
                   />
+                  {formErrors.email && (
+                    <span className="handle-error">{formErrors.email}</span>
+                  )}
                 </div>
                 <div className="form-group1">
                   <label>
@@ -73,7 +120,11 @@ const Login = () => {
                     value={formData.password}
                     name="password"
                     onChange={(e) => handleChangeInput(e)}
+                    required
                   />
+                  {formErrors.password && (
+                    <span className="handle-error">{formErrors.password}</span>
+                  )}
                 </div>
                 <div className="forgot-password">
                   Quên mật khẩu? Nhấn vào
