@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Grid from "../../Grid";
 import "./Header.scss";
 import logo from "../../../assets/img/logo-dong-ho.png";
@@ -8,18 +8,29 @@ import { logout } from "../../../redux/customerSlice";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
-  const [searchText, setSearchText] = useState("");
 
+  const [searchText, setSearchText] = useState("");
   const isLoggedIn = useSelector((state) => state.customer.isLoggedIn);
+
+  const query = new URLSearchParams({
+    search: searchText,
+  }).toString();
 
   const handleSearchInput = (e) => {
     setSearchText(e.target.value);
   };
+
+  //const newSearch = `/product-search/${searchText}`;
+  const newSearch = `/product-search?${query}`;
   const handleSearchForm = (e) => {
     e.preventDefault();
     setSearchText("");
-    navigate(`/search/${searchText}`);
+    if (!searchText) {
+      return;
+    }
+    navigate(newSearch);
   };
 
   const handleLogout = () => {

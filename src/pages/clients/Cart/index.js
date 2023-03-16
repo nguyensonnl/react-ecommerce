@@ -76,7 +76,7 @@ const Cart = () => {
                           <button type="button">Thanh toán</button>
                         </Link>
 
-                        <Link to="/catalog">
+                        <Link to="/">
                           <button type="button">Tiếp tục mua hàng</button>
                         </Link>
                       </div>

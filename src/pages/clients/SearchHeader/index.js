@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "../../../components/Helmet";
 import Grid from "../../../components/Grid";
 import Breadcrumb from "../../../components/Breadcrumb";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import ProductCard from "../../../components/ProductCard";
 import "./SearchHeader.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,15 +10,18 @@ import { useEffect } from "react";
 import { getAllProduct } from "../../../redux/reducers/productSlice";
 
 const SearchHeader = () => {
-  const { searchProduct } = useParams();
   const dispatch = useDispatch();
   const listProduct = useSelector((state) => state.product.products);
 
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
+
   const filterData = listProduct.filter((product) => {
-    if (searchProduct === "") {
+    if (search === "") {
       return product;
     } else {
-      return product.name.toLowerCase().includes(searchProduct.toLowerCase());
+      return product.name.toLowerCase().includes(search.toLowerCase());
+      //return product.name.toLowerCase().includes(searchProduct);
     }
   });
 
