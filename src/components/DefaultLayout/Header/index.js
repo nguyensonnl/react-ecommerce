@@ -41,14 +41,16 @@ const Header = () => {
   return (
     <section className="header">
       <div className="header__main grid">
-        <Link to="/">
-          <img src={logo} alt="logo" className="header__logo" />
+        <Link to="/" className="header__logo__link">
+          {/* <img src={logo} alt="logo" className="header__logo" /> */}
+          <div className="header__logo">LSW</div>
+          <div className="header__sub-logo">LAM SON WATCH</div>
         </Link>
 
         <form onSubmit={handleSearchForm} className="header__search">
           <input
             type="text"
-            placeholder="Nhập tên hoặc mã sản phẩm bạn muốn tìm kiếm"
+            placeholder="Nhập sản phẩm bạn muốn tìm kiếm"
             className="header__search-input form-control"
             value={searchText}
             onChange={(e) => handleSearchInput(e)}
@@ -59,22 +61,22 @@ const Header = () => {
         </form>
 
         <ul className="header__list">
-          <li className="header__list-item">
+          <li className="header__list-item header__list-item--hiden">
             <i className="fa-solid fa-phone"></i>
             <div>
               <p>Gọi mua hàng</p>
               <Link className="header__list-link">
-                <strong>0825 247 999</strong>
+                <strong>0376 940 314</strong>
               </Link>
             </div>
           </li>
-          <li className="header__list-item">
+          <li className="header__list-item header__list-item--hiden">
             <i className="fa-solid fa-location-dot"></i>
             <Link className="header__list-link system-shop">
               Hệ thống cửa hàng
             </Link>
           </li>
-          <li className="header__list-item">
+          <li className="header__list-item header__list-item--hiden">
             <i className="fa-regular fa-user"></i>
             {isLoggedIn ? (
               <div className="header__account">
@@ -94,14 +96,20 @@ const Header = () => {
                 <Link to="/account/login" className="header__list-link">
                   Tài khoản
                 </Link>
-                <Link to="/account/login" className="header__list-link">
+                <Link
+                  to="/account/login"
+                  className="header__list-link header__list-link--auth"
+                >
                   Đăng nhập
                 </Link>
               </div>
             )}
           </li>
           <li className="header__list-item header__list-item--cart">
-            <Link to="/cart" className="header__list-link">
+            <Link
+              to="/cart"
+              className="header__list-link header__list-link--hover"
+            >
               <i className="fa-solid fa-cart-shopping"></i>
               <span>Giỏ hàng</span>
             </Link>
