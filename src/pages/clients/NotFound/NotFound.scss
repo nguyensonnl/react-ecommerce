@@ -1,0 +1,43 @@
+.page-404{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .page-404__title{
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .page-404__home{
+        font-size: 1.4rem;
+        font-weight: 300;
+        margin: 10px 0;
+        text-align: center;
+        line-height: 1.6;
+        word-spacing: 0.195rem;
+        color: #727272;;
+    }
+
+    .page-404__btn{
+        padding: 10px 24px;
+        background-color: #fff;
+        font-weight: 500;
+        color: var(--btn-color);
+        border: 1px solid var(--btn-color);
+        margin-bottom: 60px;
+
+        &:hover{
+            background-color: var(--btn-color);
+            color: #fff;
+        }
+    }
+
+    .page-404__img{
+        width: 45%;
+        background-color: #fff;
+        margin-bottom: 22px;
+        margin-top: 80px;
+    }
+}

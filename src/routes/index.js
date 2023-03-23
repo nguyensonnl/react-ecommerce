@@ -14,7 +14,7 @@ const publicRoutes = [
   { path: "/cart", page: Cart },
   { path: "/product/:id", page: Product },
   { path: "/catalog/:cate", page: Catalog },
-  { path: "*", page: NotFound, layout: null },
+  { path: "*", page: NotFound },
   { path: "/account/login", page: Login },
   { path: "/account/register", page: Register },
   { path: "/checkout", page: Checkout, layout: null },
