@@ -60,7 +60,7 @@ const Home = () => {
   };
 
   return (
-    <Helmet title="Đồng Hồ Bảo Thanh">
+    <Helmet title="Đồng Hồ Lam Sơn">
       <HeroSlider />
       <Grid>
         <Section>

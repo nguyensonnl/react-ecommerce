@@ -14,14 +14,13 @@ const SearchHeader = () => {
   const listProduct = useSelector((state) => state.product.products);
 
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search");
+  const search = searchParams.get("q");
 
   const filterData = listProduct.filter((product) => {
     if (search === "") {
       return product;
     } else {
       return product.name.toLowerCase().includes(search.toLowerCase());
-      //return product.name.toLowerCase().includes(searchProduct);
     }
   });
 

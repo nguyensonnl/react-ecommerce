@@ -14,7 +14,7 @@ const Header = () => {
   const isLoggedIn = useSelector((state) => state.customer.isLoggedIn);
 
   const query = new URLSearchParams({
-    search: searchText,
+    q: searchText,
   }).toString();
 
   const handleSearchInput = (e) => {
@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   //const newSearch = `/product-search/${searchText}`;
-  const newSearch = `/product-search?${query}`;
+  const newSearch = `/search-results?${query}`;
   const handleSearchForm = (e) => {
     e.preventDefault();
     setSearchText("");
