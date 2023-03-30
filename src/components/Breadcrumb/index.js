@@ -16,7 +16,6 @@ const Breadcrumb = ({ title, title2, className }) => {
           <span>/</span>
         </li>
       )}
-
       <li>
         <span>{title}</span>
       </li>

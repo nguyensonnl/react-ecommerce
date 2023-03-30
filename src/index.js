@@ -5,17 +5,20 @@ import GlobalStyles from "./components/GlobalStyles";
 
 import { BrowserRouter } from "react-router-dom";
 
+//redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
-
-import axios from "./api/axiosClient";
 import { getTotals } from "./redux/cartSlice";
+//end redux
+
+//import axios from "./api/axiosClient";
 //axios();
 
+//redux-persist
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 const persistor = persistStore(store);
-
+//end redux-persist
 store.dispatch(getTotals());
 
 ReactDOM.render(

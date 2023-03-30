@@ -1,38 +1,44 @@
 import React, { useEffect, useState } from "react";
+import "./Home.scss";
 import HeroSlider from "../../../components/HeroSlider";
-import Grid from "../../../components/Grid";
 import Feature from "../../../components/Feature";
 import ProductCard from "../../../components/ProductCard";
 import Banner from "../../../components/Banner";
 import Helmet from "../../../components/Helmet";
-import Section, {
-  SectionBody,
-  SectionTitle,
-} from "../../../components/Section";
 import productApi from "../../../api/productApi";
-
-import Text from "../../../components/Text";
-import Row from "../../../components/Row";
-import Col from "../../../components/Col";
 import { getAllProduct } from "../../../redux/reducers/productSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-import "./Home.scss";
+import men from "../../../assets/img/banner/dong-ho-nam.jpg";
+import women from "../../../assets/img/banner/dong-ho-nu.jpg";
+import double from "../../../assets/img/banner/dong-ho-doi.jpg";
 
 const Home = () => {
   const [productsFeatured, setProductsFeatured] = useState([]);
   const dispatch = useDispatch();
   const allProduct = useSelector((state) => state.product.products);
+  const [menWatch, setMenWatch] = useState([]);
+  const [womenWatch, setWomenWatch] = useState([]);
+  const [doubleWatch, setDoubleWatch] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await productApi.getProductFeatured(5);
+      setProductsFeatured(res.data);
+    }
+    fetchData();
+  }, []);
 
   useEffect(async () => {
-    const res = await productApi.getProductFeatured(5);
-    setProductsFeatured(res.data);
+    const men = await productApi.getProductByCate("63fc7648857357d5e8bca46c");
+    setMenWatch(men.data);
+    const women = await productApi.getProductByCate("63fc764d857357d5e8bca46e");
+    setWomenWatch(women.data);
+    const doubleWatch = await productApi.getProductByCate(
+      "63fc7642857357d5e8bca46a"
+    );
+    setDoubleWatch(doubleWatch.data);
   }, []);
 
   useEffect(() => {
@@ -62,16 +68,13 @@ const Home = () => {
   return (
     <Helmet title="Đồng Hồ Lam Sơn">
       <HeroSlider />
-      <Grid>
-        <Section>
-          <SectionBody>
-            <Feature />
-          </SectionBody>
-        </Section>
 
-        <Section>
-          <SectionTitle>Sản phẩm nổi bật</SectionTitle>
-          <SectionBody className="product__list">
+      <div className="grid">
+        <Feature />
+
+        <div className="product__category mtb-20">
+          <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
+          <div className="product__category__list">
             <Carousel responsive={responsive}>
               {productsFeatured.map((item, index) => (
                 <ProductCard
@@ -84,22 +87,42 @@ const Home = () => {
                 />
               ))}
             </Carousel>
-          </SectionBody>
-        </Section>
-      </Grid>
+          </div>
+        </div>
+      </div>
 
-      <Section>
-        <SectionBody>
-          <Banner />
-        </SectionBody>
-      </Section>
+      {/* {listCategory &&
+        listCategory.length > 0 &&
+        listCategory.map((item) => (
+          <>
+            <Banner />
+            <div className="product__category grid mt-20">
+              <h2 className="product__category__title">{item.name}</h2>
+              <div className="product__category__list">
+                <Carousel responsive={responsive}>
+                  {allProduct.map((item, index) => (
+                    <ProductCard
+                      id={item._id}
+                      key={index}
+                      src={item.image}
+                      brand={item.brand}
+                      name={item.name}
+                      price={item.price.toLocaleString()}
+                    />
+                  ))}
+                </Carousel>
+              </div>
+            </div>
+          </>
+        ))} */}
 
-      <Grid>
-        <Section>
-          <SectionTitle>Sản phẩm mới</SectionTitle>
-          <SectionBody className="product__list">
+      <div className="mtb-20">
+        <Banner src={men} />
+        <div className="product__category grid mt-20">
+          <h2 className="product__category__title mtb-20">ĐỒNG HỒ NAM</h2>
+          <div className="product__category__list">
             <Carousel responsive={responsive}>
-              {allProduct.map((item, index) => (
+              {menWatch.map((item, index) => (
                 <ProductCard
                   id={item._id}
                   key={index}
@@ -110,9 +133,51 @@ const Home = () => {
                 />
               ))}
             </Carousel>
-          </SectionBody>
-        </Section>
-      </Grid>
+          </div>
+        </div>
+      </div>
+
+      <div className="mtb-20">
+        <Banner src={women} />
+        <div className="product__category grid mt-20">
+          <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỮ</h2>
+          <div className="product__category__list">
+            <Carousel responsive={responsive}>
+              {womenWatch.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </Carousel>
+          </div>
+        </div>
+      </div>
+
+      <div className="mtb-20">
+        <Banner src={double} />
+        <div className="product__category grid mt-20">
+          <h2 className="product__category__title">ĐỒNG HỒ ĐÔI</h2>
+          <div className="product__category__list">
+            <Carousel responsive={responsive}>
+              {doubleWatch.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </Carousel>
+          </div>
+        </div>
+      </div>
     </Helmet>
   );
 };

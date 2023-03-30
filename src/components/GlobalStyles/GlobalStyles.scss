@@ -39,8 +39,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-
-   
 }
 
 html{
@@ -50,12 +48,14 @@ html{
 body{
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
-
-   
 }
 
 img{
-    width: 100%;
+    max-width: 100%;
+}
+
+a{
+    text-decoration: none;
 }
 
 .product__list{
@@ -69,6 +69,14 @@ img{
 
 .mt-20{
     margin-top: 20px;
+}
+
+.mb-20{
+    margin-bottom: 20px;
+}
+
+.mtb-20{
+    margin: 20px 0;
 }
 
 .form-control{

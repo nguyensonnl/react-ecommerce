@@ -1,16 +1,12 @@
 import React from "react";
 import "./Banner.scss";
+import PropTypes from "prop-types";
+import maleWatch from "../../assets/img/banner/dong-ho-nam.jpg";
 
-const Banner = () => {
+const Banner = (src) => {
   return (
-    <section className="banner">
-      <div className="banner__title">Dịch vụ Sửa Chữa</div>
-      <div className="banner__des">
-        Lên đến<span> Giảm 70%</span> - Tất cả đồng hồ và phụ kiện
-      </div>
-      <button type="button" className="banner__btn">
-        Tìm hiểu thêm
-      </button>
+    <section className="banner grid">
+      <img src={src.src} alt="Banner" className="banner__img" />
     </section>
   );
 };

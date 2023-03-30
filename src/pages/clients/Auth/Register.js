@@ -31,7 +31,7 @@ const Register = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     dispatch(register(formData));
-    navigate("/account/login");
+    //navigate("/account/login");
   };
   return (
     <Helmet title="Đăng ký tài khoản">
