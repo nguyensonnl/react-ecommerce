@@ -10,7 +10,7 @@ import axios from "axios";
 // export default axiosCommom;
 
 const axiosClient = axios.create({
-  //baseURL: "http://localhost:5001/api/v1",
+  //baseURL: "http://localhost:5050/api/v1",
   baseURL: "https://ecommerce-api-smoky.vercel.app/api/v1",
   headers: {
     //"Content-Type": "multipart/form-data",

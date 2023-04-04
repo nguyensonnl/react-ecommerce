@@ -3,12 +3,17 @@ import "./ProductCard.scss";
 import f1 from "../../assets/img/products/f1.jpg";
 
 import { Link } from "react-router-dom";
+const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const ProductCard = (props) => {
   return (
     <div className="product-card" key={props.key}>
       <Link to={`/product/${props.id}`} className="product-card__link">
-        <img src={props.src} alt="" className="product-card__image" />
+        <img
+          src={`${apiUrl}${props.src}`}
+          alt=""
+          className="product-card__image"
+        />
         <div className="product-card__info">
           <div className="product-card__name">{props.name}</div>
           <ul className="product-card__rating">

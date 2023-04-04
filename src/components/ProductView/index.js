@@ -17,15 +17,16 @@ import Breadcrumb from "../../components/Breadcrumb";
 const ProductView = ({ product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [previewImg, setPreviewImg] = useState(product.image);
+  const urlImage = `${process.env.REACT_APP_BASE_URL}${product.image}`;
+  const [previewImg, setPreviewImg] = useState(urlImage);
   const [qty, setQty] = useState(1);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (product.image) {
-      setPreviewImg(product.image || "");
+      setPreviewImg(urlImage || "");
     }
-  }, [product.image]);
+  }, [urlImage]);
 
   const updateQuantity = (type) => {
     if (type === "plus") {
@@ -80,8 +81,12 @@ const ProductView = ({ product }) => {
                     product.images.map((url, index) => (
                       <img
                         key={index}
-                        src={url}
-                        onClick={() => setPreviewImg(url)}
+                        src={`${process.env.REACT_APP_BASE_URL}${url}`}
+                        onClick={() =>
+                          setPreviewImg(
+                            `${process.env.REACT_APP_BASE_URL}${url}`
+                          )
+                        }
                         className="product__images-list-item"
                       />
                     ))}

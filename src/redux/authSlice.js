@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-//import axiosClient from "../api/axiosClient";
 
 //set up redux-persist
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import userService from "../api/userService";
 const persistConfig = {
   key: "auth",
   storage,
@@ -15,10 +15,11 @@ export const userLogin = createAsyncThunk(
   "auth/login",
   async ({ email, password }, thunkAPI) => {
     try {
-      const res = await axios.post("http://localhost:5001/api/v1/auth/login", {
-        email,
-        password,
-      });
+      // const res = await axios.post("http://localhost:5001/api/v1/auth/login", {
+      //   email,
+      //   password,
+      // });
+      const res = await userService.login({ email, password });
       //const { user, accessToken } = res.data;
       if (res.status === 200) {
         localStorage.setItem("accessToken", res.data.accessToken);

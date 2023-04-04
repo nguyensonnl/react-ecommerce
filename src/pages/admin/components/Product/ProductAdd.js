@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import productApi from "../../../../api/productApi";
 import { getAllBrand } from "../../../../redux/brandSlice";
 import { getAllCateogry } from "../../../../redux/categorySlice";
@@ -84,8 +84,23 @@ const ProductAdd = () => {
     }
 
     try {
+      // let res = await axios.post(
+      //   `${process.env.REACT_APP_BASE_URL}/api/v1/products`,
+      //   formData
+      // );
+
+      // let res = await axios.post(
+      //   `http://localhost:5050/api/v1/products`,
+      //   formData
+      // );
+
+      // let res = await axios.post(
+      //   `https://ecommerce-api-smoky.vercel.app/api/v1/products`,
+      //   formData
+      // );
+
       let res = await axios.post(
-        "http://localhost:5001/api/v1/products",
+        `https://ecommerce-api-smoky.vercel.app/api/v1/products`,
         formData
       );
 
