@@ -1,6 +1,6 @@
 const Helmet = (props) => {
   document.title = props.title;
-  return <div>{props.children}</div>;
+  return <>{props.children}</>;
 };
 
 export default Helmet;

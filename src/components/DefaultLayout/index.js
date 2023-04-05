@@ -7,13 +7,13 @@ import SubHeader from "./SubHeader";
 
 const DefaultLayout = ({ children }) => {
   return (
-    <div>
+    <>
       <Header />
       <SubHeader />
-      <div className="">{children}</div>
+      <div className="container grid">{children}</div>
       <Letter />
       <Footer />
-    </div>
+    </>
   );
 };
 

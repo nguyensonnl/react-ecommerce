@@ -1,4 +1,4 @@
-.slider{
+.section_slide{
     height: 400px;
 
     .scroll{
@@ -12,23 +12,65 @@
         }
     }
 
-    .slider__category{
-        height: calc(100% - 20%);
-        overflow-y: scroll;
-        list-style: none;
-        border: 1px solid #f1f1f1;
+        .navigation__list{
+            height: calc(100% - 20%);
+            border: 1px solid #f1f1f1;
+            list-style: none;
 
-        .slider__category-item{
-            padding: 8px 12px;
-            box-shadow: inset 0px 1px 0px #f1f1f1 ;
-            .slider__category-link{
-                text-decoration: none;
-                color: var(--text-color);
-                font-weight: 300;
-                font-size: 1.5rem;
+            .menu-item{
+                position: relative;
+                
+                &:hover .submenu{
+                    display: block;
+                }
+
+                .submenu{
+                    padding: 14px;
+                    position: absolute;
+                    top: -37px;
+                    bottom: 0px;
+                    left: calc(100%);
+                    z-index: 999;
+                    width: 100%;
+                    height: 352px;
+                    background-color: #fff;
+                    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+                    display: none;
+                    animation: fadeIn ease-in 0.2s;
+
+                    @keyframes fadeIn {
+                        0%{opacity: 0;}
+                        50%{opacity: 0.5;}
+                        100%{opacity: 1;}
+                    }
+                   
+    
+                    .submenu__list{
+                        list-style: none;
+
+                        .submenu__list-item{
+                            margin-bottom: 14px;
+                            .submenu__list-link{
+                                color: #000;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .navigation__list-item{
+                padding: 8px 12px;
+                box-shadow: inset 0px 1px 0px #f1f1f1 ;
+    
+                .navigation__list-link{
+                    text-decoration: none;
+                    color: var(--text-color);
+                    font-weight: 300;
+                    font-size: 1.5rem;
+                }     
             }
         }
-    }
 
     .hero-slider{
         height: calc(100% - 20%);
@@ -44,5 +86,7 @@
         }
     }
 }
+
+
 
 
