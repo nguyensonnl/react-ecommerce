@@ -1,60 +1,107 @@
-import React from "react";
-import Grid from "../../Grid";
 import "./Footer.scss";
+import { Link } from "react-router-dom";
+import methodPayment from "../../../assets/img/Footer/footer_trustbadge.jpg";
 
 const Footer = () => {
   return (
     <section className="footer">
-      <Grid>
-        <div className="footer__main">
-          <ul className="footer__info">
-            <h3>Thông tin liên hệ</h3>
-            <li>Địa chỉ: Việt Nam, HCM city, Quận 2</li>
-            <li>Số điện thoại: +393300293039 / (+81) 30 0393 3933</li>
-            <li>Giờ: 09:00 - 18:00. Mon - Sat</li>
-            <h3>Theo dõi chúng tôi</h3>
-            <ul className="footer__icon">
-              <li>
-                <i className="fa-brands fa-facebook-f"></i>
-              </li>
-              <li>
-                <i className="fa-brands fa-youtube"></i>
-              </li>
-              <li>
-                <i className="fa-brands fa-instagram"></i>
-              </li>
-              <li>
-                <i className="fa-solid fa-envelope"></i>
-              </li>
-              <li>
-                <i className="fa-brands fa-twitter"></i>
-              </li>
-            </ul>
-          </ul>
-          <ul className="footer__contact">
-            <h3>Về chúng tôi</h3>
-            <li>Thông tin giao hàng</li>
-            <li>Chính sách bảo mật</li>
-            <li>Điều khoản & điều kiện</li>
-            <li>Liên hệ chúng tôi</li>
-          </ul>
-          <ul className="footer__account">
-            <h3>Đăng nhập</h3>
-            <li>Xem giỏ hàng</li>
-            <li>Sản phẩm yêu thích</li>
-            <li>Theo dõi đơn hàng của tôi</li>
-            <li>Cứu giúp</li>
-          </ul>
-          <ul className="footer__download">
-            <h3>Từ App Store hay Goole Play</h3>
-            <li className="footer__apps">
-              <img src="" alt="" className="footer__app-store" />
-              <img src="" alt="" className="footer__ch-play" />
+      <div className="footer__main grid">
+        <div className="footer__content">
+          <h4 className="title">Nơi an tâm mua hàng chính hãng</h4>
+          <img src="" alt="Logo" />
+          <div className="desc">
+            Đồng hồ Lam Sơn tự hào là đại lý chính hãng của các thương hiệu đồng
+            hồ nổi tiếng như I&W Carnival, Carnival, Lobinni, Borman, Teintop,
+            Aouke... tại Việt Nam.
+          </div>
+          <p>
+            <span>Địa chỉ:</span> Hồ Chí Minh, Việt Nam
+          </p>
+          <p>
+            <span>Số điện thoại:</span> 0376.940.314
+          </p>
+          <p>
+            <span>Email:</span> lamsonwatch@gmail.com
+          </p>
+        </div>
+        <div className="footer__content">
+          <h4 className="title">Chính sách</h4>
+          <ul className="list__group">
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Giới thiệu
+              </Link>
             </li>
-            <li>Cổng thanh toán an toàn</li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Điều khoản dịch vụ
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Chính sách giao hàng
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Chính sách đổi trả hàng
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Chính sách bảo hành
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Chính sách bảo mật
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Giấy chứng nhận đại lý
+              </Link>
+            </li>
           </ul>
         </div>
-      </Grid>
+        <div className="footer__content">
+          <h4 className="title">Hưỡng dẫn</h4>
+          <ul className="list__group">
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Hưỡng dẫn thanh toán
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Hưỡng dẫn mua online
+              </Link>
+            </li>
+            <li className="group__item">
+              <Link to="#" className="item__link">
+                Hưỡng dẫn mua trả góp
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="footer__content">
+          <h4 className="title">Tổng đài hỗ trợ</h4>
+          <ul className="">
+            <li className="contact__item">
+              Hotline/Zalo mua hàng: 0376.940.314
+            </li>
+            <li className="contact__item">
+              Hotline/Zalo bảo hành: 0376.940.314
+            </li>
+            <h3>Phương thức thanh toán</h3>
+            <img
+              src={methodPayment}
+              alt="Method payments"
+              className="image__method-payments"
+            />
+          </ul>
+        </div>
+      </div>
     </section>
   );
 };

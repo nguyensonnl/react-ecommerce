@@ -1,20 +1,28 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 const Text = () => {
-  const [check, setCheck] = useState(false);
+  const [color, setColor] = useState("");
+  const [ishow, setIshow] = useState(false);
 
-  const handleChangeCheckbox = (e) => {
-    setCheck(e.target.checked);
+  useEffect(() => {
+    document.body.style.backgroundColor = color;
+  });
+
+  const handleOnClick = () => {
+    setIshow(!ishow);
+    setColor("red");
+    if (ishow) {
+      setColor("");
+    }
   };
-  console.log(check);
+
   return (
     <div className="text">
-      <input
-        checked={check}
-        type="checkbox"
-        onChange={(e) => handleChangeCheckbox(e)}
-      />
+      <button className="btn btn-primary" onClick={() => handleOnClick()}>
+        Click
+      </button>
     </div>
   );
 };

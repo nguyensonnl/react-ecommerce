@@ -53,6 +53,16 @@ const HeroSlider = () => {
               </ul>
             </div>
           </li>
+          <li className="navigation__list-item">
+            <Link to="/" className="navigation__list-link">
+              Sản phẩm nổi bật
+            </Link>
+          </li>
+          <li className="navigation__list-item">
+            <Link to="/" className="navigation__list-link">
+              Sản phẩm bán chạy
+            </Link>
+          </li>
           {categories.map((item, index) => (
             <li className="navigation__list-item" key={index}>
               <Link
@@ -64,8 +74,18 @@ const HeroSlider = () => {
             </li>
           ))}
           <li className="navigation__list-item">
+            <Link to="/" className="navigation__list-link">
+              Đồng hồ cơ
+            </Link>
+          </li>
+          <li className="navigation__list-item">
+            <Link to="/" className="navigation__list-link">
+              Đồng hồ pin
+            </Link>
+          </li>
+          <li className="navigation__list-item">
             <Link to="/about" className="navigation__list-link">
-              Giới thiệu
+              Đồng hồ dây da
             </Link>
           </li>
           <li className="navigation__list-item">

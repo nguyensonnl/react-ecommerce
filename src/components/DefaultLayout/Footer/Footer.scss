@@ -1,34 +1,53 @@
 .footer{
-    height: 250px;
     background-color: #e3e6f2;
-    padding: 40px 20px;
 
     .footer__main{
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 40px 0;
 
-        h3{
-            padding-bottom: 20px;
-        }
-       
-        li{
-            list-style: none;
-            font-size: 1.5rem;
-            font-weight: 200;
-            line-height: 2.6rem;
-        }
+        .footer__content{
 
-        .footer__info{
-           h3:last-child{
-            color: red;
-           }
-            .footer__icon{
-                display: flex;
-                li{
-                    padding-right: 18px;
-                    font-size: 1.8rem;
+            .image__method-payments{
+                max-width: 250px;
+            }
+            &:nth-child(1){
+              flex-basis: 30%;
+            }
+            p{
+                font-size: 1.5rem;
+                font-weight: 300;
+                margin: 10px 0;
+                
+                span{
+                    font-weight: 600;
                 }
             }
+    
+            .desc{
+                font-size: 1.5rem;
+                font-weight: 300;
+            }
+            .title{
+                margin-bottom: 10px;
+            }
+
+            .list__group{
+                .group__item{
+                    list-style: none;
+                }
+                .item__link{
+                    color: #000;
+                    &:hover{
+                        color: var(--primary-color);
+                    }
+                }
+            }
+            .contact__item{
+               margin-bottom: 8px;
+            }
+
         }
     }
 }

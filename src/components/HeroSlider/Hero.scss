@@ -16,12 +16,13 @@
             height: calc(100% - 20%);
             border: 1px solid #f1f1f1;
             list-style: none;
+            overflow: scroll;
 
             .menu-item{
                 position: relative;
                 
                 &:hover .submenu{
-                    display: block;
+                   //display: block;
                 }
 
                 .submenu{
