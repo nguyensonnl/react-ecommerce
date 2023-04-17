@@ -22,7 +22,7 @@ const HeroSlider = () => {
 
   return (
     <div className="row section_slide">
-      <div className="col-3">
+      <div className="col-3 hide-on-mobile">
         <ul className="navigation__list scroll">
           <li className="navigation__list-item">
             <Link to="/" className="navigation__list-link">
@@ -95,7 +95,7 @@ const HeroSlider = () => {
           </li>
         </ul>
       </div>
-      <div className="col-9">
+      <div className="col-9 width-mobile">
         <div className="hero-slider">
           <Swiper
             effect="fade"

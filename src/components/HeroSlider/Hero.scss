@@ -18,6 +18,9 @@
             list-style: none;
             overflow: scroll;
 
+          
+
+
             .menu-item{
                 position: relative;
                 
@@ -91,3 +94,29 @@
 
 
 
+
+@media (max-width: 739px){
+  
+}
+
+  //tapblet and mobile
+  @media (max-width: 1023px){
+    .hide-on-mobile{
+        display: none;
+    }
+    
+    .hero-slider__img{
+        width: unset;
+        object-fit: contain;
+    }
+    
+    .width-mobile{
+        width: 100% !important;
+    }
+  }
+
+
+  //tablet
+  @media (min-width: 740px) and (max-width: 1023px) {
+        
+  }
