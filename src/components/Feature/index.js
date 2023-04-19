@@ -1,12 +1,4 @@
-import React from "react";
 import "./Feature.scss";
-import f1 from "../../assets/img/features/f1.png";
-import f2 from "../../assets/img/features/f2.png";
-import f3 from "../../assets/img/features/f3.png";
-import f4 from "../../assets/img/features/f4.png";
-import f5 from "../../assets/img/features/f5.png";
-import f6 from "../../assets/img/features/f6.png";
-
 import c1 from "../../assets/category1.png";
 import c2 from "../../assets/category2.png";
 import c3 from "../../assets/category3.png";

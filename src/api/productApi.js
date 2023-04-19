@@ -5,39 +5,42 @@ const productApi = {
     const url = `/products/get/featured/${params}`;
     return axiosClient.get(url);
   },
-
   getAllProduct() {
     const url = `/products`;
     return axiosClient.get(url);
   },
-
   getProductById(id) {
     const url = `/products/${id}`;
     return axiosClient.get(url);
   },
-
   getProductByCate(cate) {
     const url = `/products?categories=${cate}`;
     return axiosClient.get(url);
   },
-
   createProduct(data) {
     const url = "/products";
     return axiosClient.post(url, data);
   },
-
   deleteProduct(id) {
     const url = `/products/${id}`;
     return axiosClient.delete(url);
   },
 
-  getAllBrand() {
+  getBrand() {
     const url = "/brands";
     return axiosClient.get(url);
   },
+  getBrandById(id) {
+    const url = `/brands/${id}`;
+    return axiosClient.get(url);
+  },
 
-  getAllCategory() {
+  getCategory() {
     const url = "/categories";
+    return axiosClient.get(url);
+  },
+  getCategoryById(id) {
+    const url = `/categories/${id}`;
     return axiosClient.get(url);
   },
 };

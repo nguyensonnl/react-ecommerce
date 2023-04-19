@@ -21,6 +21,7 @@ const Home = () => {
   const [menWatch, setMenWatch] = useState([]);
   const [womenWatch, setWomenWatch] = useState([]);
   const [doubleWatch, setDoubleWatch] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -30,15 +31,21 @@ const Home = () => {
     fetchData();
   }, []);
 
-  useEffect(async () => {
-    const men = await productApi.getProductByCate("63fc7648857357d5e8bca46c");
-    setMenWatch(men.data);
-    const women = await productApi.getProductByCate("63fc764d857357d5e8bca46e");
-    setWomenWatch(women.data);
-    const doubleWatch = await productApi.getProductByCate(
-      "63fc7642857357d5e8bca46a"
-    );
-    setDoubleWatch(doubleWatch.data);
+  useEffect(() => {
+    const fetchData = async () => {
+      const men = await productApi.getProductByCate("63fc7648857357d5e8bca46c");
+      setMenWatch(men.data);
+      const women = await productApi.getProductByCate(
+        "63fc764d857357d5e8bca46e"
+      );
+      setWomenWatch(women.data);
+      const doubleWatch = await productApi.getProductByCate(
+        "63fc7642857357d5e8bca46a"
+      );
+      setDoubleWatch(doubleWatch.data);
+      setIsLoading(true);
+    };
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -79,7 +86,6 @@ const Home = () => {
               {productsFeatured.map((item, index) => (
                 <ProductCard
                   id={item._id}
-                  key={index}
                   src={item.image}
                   brand={item.brand}
                   name={item.name}
@@ -116,11 +122,11 @@ const Home = () => {
           </>
         ))} */}
 
-      <div className="mtb-20">
+      <section className="mtb-20">
         <Banner src={men} />
         <div className="product__category grid mt-20">
           <h2 className="product__category__title mtb-20">ĐỒNG HỒ NAM</h2>
-          <div className="product__category__list">
+          {/* <div className="product__category__list">
             <Carousel responsive={responsive}>
               {menWatch.map((item, index) => (
                 <ProductCard
@@ -133,15 +139,45 @@ const Home = () => {
                 />
               ))}
             </Carousel>
-          </div>
+          </div> */}
+
+          {isLoading && (
+            <div className="product__cate-list">
+              {menWatch.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
+          )}
+
+          {!isLoading && (
+            <div className="product__cate-list">
+              {menWatch.map((item, index) => (
+                <ProductCard.LoadingProduct
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+      </section>
 
       <div className="mtb-20">
         <Banner src={women} />
         <div className="product__category grid mt-20">
           <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỮ</h2>
-          <div className="product__category__list">
+          {/* <div className="product__category__list">
             <Carousel responsive={responsive}>
               {womenWatch.map((item, index) => (
                 <ProductCard
@@ -154,15 +190,44 @@ const Home = () => {
                 />
               ))}
             </Carousel>
-          </div>
+          </div> */}
+          {isLoading && (
+            <div className="product__cate-list">
+              {womenWatch.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
+          )}
+
+          {!isLoading && (
+            <div className="product__cate-list">
+              {womenWatch.map((item, index) => (
+                <ProductCard.LoadingProduct
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       <div className="mtb-20">
         <Banner src={double} />
         <div className="product__category grid mt-20">
-          <h2 className="product__category__title">ĐỒNG HỒ ĐÔI</h2>
-          <div className="product__category__list">
+          <h2 className="product__category__title mtb-20">ĐỒNG HỒ ĐÔI</h2>
+          {/* <div className="product__category__list">
             <Carousel responsive={responsive}>
               {doubleWatch.map((item, index) => (
                 <ProductCard
@@ -175,7 +240,36 @@ const Home = () => {
                 />
               ))}
             </Carousel>
-          </div>
+          </div> */}
+          {isLoading && (
+            <div className="product__cate-list">
+              {doubleWatch.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
+          )}
+
+          {!isLoading && (
+            <div className="product__cate-list">
+              {doubleWatch.map((item, index) => (
+                <ProductCard.LoadingProduct
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Helmet>
