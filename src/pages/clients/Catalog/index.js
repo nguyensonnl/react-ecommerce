@@ -268,22 +268,19 @@ const Catalog = () => {
                 </ul>
               </div>
               <div className="list__product-catalog">
-                <Row>
-                  {currentPosts &&
-                    currentPosts.length > 0 &&
-                    currentPosts.map((item, index) => (
-                      <Col col={`${12}-${5}`}>
-                        <ProductCard
-                          id={item._id}
-                          key={index}
-                          name={item.name}
-                          price={new Intl.NumberFormat().format(item.price)}
-                          brand={item.brand}
-                          src={item.image}
-                        />
-                      </Col>
-                    ))}
-                </Row>
+                {currentPosts &&
+                  currentPosts.length > 0 &&
+                  currentPosts.map((item, index) => (
+                    <ProductCard
+                      id={item._id}
+                      key={index}
+                      name={item.name}
+                      price={new Intl.NumberFormat().format(item.price)}
+                      brand={item.brand}
+                      src={item.image}
+                      className="card-overide "
+                    />
+                  ))}
               </div>
 
               <Pagination

@@ -65,8 +65,15 @@
 }
 
 .list__product-catalog{
-    border-top: 1px solid #f1f1f1;
-    border-left: 1px solid #f1f1f1;
+   display: flex;
+   flex-wrap: wrap;
+}
+.card-overide{
+    width: 25%;
+}
+
+.product__card-item{
+    width: 100%;
 }
 .catalog__filter{
     display: flex;

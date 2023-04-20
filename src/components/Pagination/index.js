@@ -25,7 +25,7 @@ const Pagination = (props) => {
   };
 
   return (
-    <ul className="pagination">
+    <ul className="pagination mt-20">
       {pages.length > 1 && (
         <li
           className={
