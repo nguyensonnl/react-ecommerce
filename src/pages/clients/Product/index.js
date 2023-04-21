@@ -1,36 +1,33 @@
-import React, { useEffect } from "react";
-import Grid from "../../../components/Grid";
+import React, { useEffect, useState } from "react";
 import Helmet from "../../../components/Helmet";
 import ProductView from "../../../components/ProductView";
-import ProductCard from "../../../components/ProductCard";
-import Section, {
-  SectionBody,
-  SectionTitle,
-} from "../../../components/Section";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductById } from "../../../redux/reducers/productSlice";
 import { useParams } from "react-router-dom";
+import Breadcrumb from "../../../components/Breadcrumb";
+import productApi from "../../../api/productApi";
 
 const Product = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [product, setProduct] = useState([]);
+
   useEffect(() => {
-    dispatch(getProductById(id));
-  }, []);
-  const productById = useSelector((state) => state.product.productById);
+    const fetchProducts = async () => {
+      const res = await productApi.getProductById(id);
+      setProduct(res.data);
+      setIsLoading(true);
+    };
+    fetchProducts();
+  }, [id]);
 
   return (
-    <Helmet title="Sản phẩm">
-      <Grid>
-        <ProductView product={productById} />
-
-        {/* <Section>
-          <SectionTitle>Sản phẩm liên quan</SectionTitle>
-          <SectionBody>
-            <ProductCard />
-          </SectionBody>
-        </Section> */}
-      </Grid>
+    <Helmet title={product.name}>
+      <div className="grid">
+        <Breadcrumb
+          title2={product.category && product.category.name}
+          title={product.name}
+        />
+        <ProductView product={product} isLoading={isLoading} />
+      </div>
     </Helmet>
   );
 };

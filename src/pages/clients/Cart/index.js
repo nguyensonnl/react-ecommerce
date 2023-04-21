@@ -1,35 +1,30 @@
 import React, { useEffect } from "react";
-import Helmet from "../../../components/Helmet";
-import Grid from "../../../components/Grid";
 import "./Cart.scss";
-import CartItem from "../../../components/CartItem.js";
-import Col from "../../../components/Col";
-import Row from "../../../components/Row";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-
+import Helmet from "../../../components/Helmet";
+import CartItem from "../../../components/CartItem.js";
+import Breadcrumb from "../../../components/Breadcrumb";
 import cart_empty from "../../../assets/img/cart_empty_background.png";
 import { getTotals } from "../../../redux/cartSlice";
-import Breadcrumb from "../../../components/Breadcrumb";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
-
-  const navigate = useNavigate();
 
   const handleBackHome = () => {
     navigate("/");
   };
   return (
     <Helmet title="Giỏ hàng">
-      <Grid>
+      <div className="grid">
         <Breadcrumb title="Giỏ hàng" />
+
         <div className="cart section-m1">
           {cart.cartItems.length === 0 ? (
             <div className="cart__empty">
@@ -45,8 +40,8 @@ const Cart = () => {
           ) : (
             <>
               <h3 className="cart__header">Giỏ hàng</h3>
-              <Row>
-                <Col col={8}>
+              <div className="row">
+                <div className="col-8">
                   <div className="cart__list">
                     {cart.cartItems &&
                       cart.cartItems.length > 0 &&
@@ -54,8 +49,8 @@ const Cart = () => {
                         <CartItem item={item} index={index} />
                       ))}
                   </div>
-                </Col>
-                <Col col={4}>
+                </div>
+                <div className="col-4">
                   <div className="cart__checkout">
                     <div className="cart__info">
                       <div className="cart__info__title">
@@ -82,12 +77,12 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
-                </Col>
-              </Row>
+                </div>
+              </div>
             </>
           )}
         </div>
-      </Grid>
+      </div>
     </Helmet>
   );
 };

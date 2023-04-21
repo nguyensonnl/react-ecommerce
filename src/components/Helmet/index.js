@@ -1,5 +1,5 @@
 const Helmet = (props) => {
-  document.title = props.title;
+  document.title = props.title ? props.title : "...Loading";
   return <>{props.children}</>;
 };
 

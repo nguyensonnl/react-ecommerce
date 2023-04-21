@@ -42,6 +42,7 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const customer = useSelector((state) => state.customer);
   const isLoggedInClient = customer?.isLoggedIn;
+  const cart = useSelector((state) => state.cart.cartItems);
 
   return (
     // <div className="App">

@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
+import "./ProductView.scss";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
-import "./ProductView.scss";
-import Row from "../Row";
-import Col from "../Col";
 import { useNavigate } from "react-router-dom";
-
-import f1 from "../../assets/img/products/f1.jpg";
-import f2 from "../../assets/img/products/f2.jpg";
-import f3 from "../../assets/img/products/f3.jpg";
-import f4 from "../../assets/img/products/f4.jpg";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import Breadcrumb from "../../components/Breadcrumb";
+import LoadingSkeleton from "../../components/Skeleton";
 
-const ProductView = ({ product }) => {
+const ProductView = ({ product, isLoading }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlImage = `${process.env.REACT_APP_BASE_URL}${product.image}`;
@@ -61,203 +53,168 @@ const ProductView = ({ product }) => {
   let nf = new Intl.NumberFormat();
 
   return (
-    <div className="product section-m1">
-      <div style={{ marginBottom: "12px" }}>
-        <Breadcrumb
-          title2={product.category && product.category.name}
-          title={product.name}
-        />
-      </div>
-
-      <Row>
-        <Col col={9}>
-          <Row>
-            <Col col={5}>
-              <div className="product__images">
-                <img src={previewImg} className="product__images-main" />
-                <div className="product__images-list">
-                  {product.images &&
-                    product.images.length > 0 &&
-                    product.images.map((url, index) => (
-                      <img
-                        key={index}
-                        src={`${process.env.REACT_APP_BASE_URL}${url}`}
-                        onClick={() =>
-                          setPreviewImg(
-                            `${process.env.REACT_APP_BASE_URL}${url}`
-                          )
-                        }
-                        className="product__images-list-item"
-                      />
-                    ))}
-                </div>
-              </div>
-            </Col>
-            <Col col={7}>
-              <div className="product__info">
-                <div className="product__info-title">{product.name}</div>
-                <div className="product__info-rate">
-                  <ul className="product__info-rate-list">
-                    <li className="product__info-rate-item">
-                      <i className="fa-solid fa-star product__info-rate-icon"></i>
-                    </li>
-                    <li className="product__info-rate-item">
-                      <i className="fa-solid fa-star product__info-rate-icon"></i>
-                    </li>
-                    <li className="product__info-rate-item">
-                      <i className="fa-solid fa-star product__info-rate-icon"></i>
-                    </li>
-                    <li className="product__info-rate-item">
-                      <i className="fa-solid fa-star product__info-rate-icon"></i>
-                    </li>
-                    <li className="product__info-rate-item">
-                      <i className="fa-solid fa-star product__info-rate-icon"></i>
-                    </li>
-                  </ul>
-                  <Link to="" className="product__info-rate-view">
-                    ( 250 đánh giá )
-                  </Link>
-                </div>
-
-                <div className="product__info-brand">
-                  <span>Thương hiệu:</span>
-                  {product.brand && <span> {product.brand.name}</span>}
-                </div>
-
-                <div className="product__info-price">
-                  <span className="product__info-price-new">
-                    {nf.format(product.price)}
-                  </span>
-                  {/* <span className="product__info-price-old">1.900.000đ</span> */}
-                </div>
-
-                <div className="product__info-qty">
-                  <span className="product__info-qty-title">Số lượng:</span>
-                  {/* <input
-                type="number"
-                min="1"
-                value={qty}
-                onChange={(e) => setQty(e.target.value)}
-                className="product__info-qty-item"
-              /> */}
-                  <div className="product__info-qty-mount">
-                    <div
-                      className="product__info-qty-btn"
-                      onClick={() => updateQuantity("minus")}
-                    >
-                      <i className="fa-solid fa-minus"></i>
-                    </div>
-                    <div className="product__info-qty-input">{quantity}</div>
-                    <div
-                      className="product__info-qty-btn"
-                      onClick={() => updateQuantity("plus")}
-                    >
-                      <i className="fa-solid fa-plus"></i>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="product__info-des">
-                  <div className="product__info-des-title">
-                    Thông tin sản phẩm:
-                  </div>
-                  <p className="product__info-des-item">
-                    {product.description}
-                  </p>
-                </div>
-
-                <div className="product__info-action">
-                  <button
-                    type="button"
-                    className="product__info-add"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Thêm vào giỏ hàng
-                  </button>
-                  <button
-                    onClick={() => handleGotoCart(product)}
-                    type="button"
-                    className="product__info-buy"
-                  >
-                    Mua ngay
-                  </button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Col>
-        <Col col={3}>
-          <div className="product__detail-right">
-            <div className="product__coupon">
-              <div className="code">
-                <span>NHẬP MÃ :</span>
-                <span> CNV100</span>
-              </div>
-              <p>
-                Giảm 100K khi mua Đồng hồ Carnival (giá trị sản phẩm tối thiểu
-                4tr)
-              </p>
-              <div className="product__condition">
-                <button>Sao chép</button>
-                <Link to="" className="condition__link">
-                  Điều kiện
-                </Link>
-              </div>
-            </div>
-            <div className="product__coupon">
-              <div className="code">
-                <span>NHẬP MÃ :</span>
-                <span> CNV100</span>
-              </div>
-              <p>
-                Giảm 100K khi mua Đồng hồ Carnival (giá trị sản phẩm tối thiểu
-                4tr)
-              </p>
-              <div className="product__condition">
-                <button>Sao chép</button>
-                <Link to="" className="condition__link">
-                  Điều kiện
-                </Link>
-              </div>
-            </div>
-            <div className="product__coupon">
-              <div className="code">
-                <span>NHẬP MÃ :</span>
-                <span> CNV100</span>
-              </div>
-              <p>
-                Giảm 100K khi mua Đồng hồ Carnival (giá trị sản phẩm tối thiểu
-                4tr)
-              </p>
-              <div className="product__condition">
-                <button>Sao chép</button>
-                <Link to="" className="condition__link">
-                  Điều kiện
-                </Link>
-              </div>
-            </div>
-            <div className="product__coupon">
-              <div className="code">
-                <span>NHẬP MÃ :</span>
-                <span> CNV100</span>
-              </div>
-              <p>
-                Giảm 100K khi mua Đồng hồ Carnival (giá trị sản phẩm tối thiểu
-                4tr)
-              </p>
-              <div className="product__condition">
-                <button>Sao chép</button>
-                <Link to="" className="condition__link">
-                  Điều kiện
-                </Link>
+    <>
+      {isLoading && (
+        <div className="row product__detail">
+          <div className="col-5">
+            <div className="product__img-list">
+              <img src={previewImg} className="product__img-main" />
+              <div className="product__img-slide">
+                {product.images &&
+                  product.images.length > 0 &&
+                  product.images.map((url, index) => (
+                    <img
+                      key={index}
+                      src={`${process.env.REACT_APP_BASE_URL}${url}`}
+                      onClick={() =>
+                        setPreviewImg(`${process.env.REACT_APP_BASE_URL}${url}`)
+                      }
+                      className="product__img-item"
+                    />
+                  ))}
               </div>
             </div>
           </div>
-        </Col>
-      </Row>
-      <div className="product__content">Đặc điểm nổi bật</div>
+          <div className="col-7">
+            <div className="product__info">
+              <div className="product__title">{product.name}</div>
+              <div className="product__rate">
+                <ul className="product__rate-list">
+                  <li className="product__rate-item">
+                    <i className="fa-solid fa-star product__rate-icon"></i>
+                  </li>
+                  <li className="product__rate-item">
+                    <i className="fa-solid fa-star product__rate-icon"></i>
+                  </li>
+                  <li className="product__rate-item">
+                    <i className="fa-solid fa-star product__rate-icon"></i>
+                  </li>
+                  <li className="product__rate-item">
+                    <i className="fa-solid fa-star product__rate-icon"></i>
+                  </li>
+                  <li className="product__rate-item">
+                    <i className="fa-solid fa-star product__rate-icon"></i>
+                  </li>
+                </ul>
+                {/* <Link to="" className="product__rate-number">
+       ( 250 đánh giá )
+     </Link> */}
+              </div>
+              <div className="product__brand">
+                <span>Thương hiệu:</span>
+                {product.brand && <span> {product.brand.name}</span>}
+              </div>
+              <div className="product__price">
+                {nf.format(product.price)}
+                <sup>đ</sup>
+              </div>
+              <div className="product__quantity">
+                <span className="product__quantity-title">Số lượng:</span>
+                <div className="product__quantity-adjust">
+                  <div
+                    className="product__quantity-btn"
+                    onClick={() => updateQuantity("minus")}
+                  >
+                    <i className="fa-solid fa-minus"></i>
+                  </div>
+                  <div className="product__quantity-number">{quantity}</div>
+                  <div
+                    className="product__quantity-btn"
+                    onClick={() => updateQuantity("plus")}
+                  >
+                    <i className="fa-solid fa-plus"></i>
+                  </div>
+                </div>
+              </div>
+              <div className="product__description">
+                <div className="product__description-title">
+                  Thông tin sản phẩm:
+                </div>
+                <p className="product__description-content">
+                  {product.description}
+                </p>
+              </div>
+              <div className="product__submit">
+                <button
+                  type="button"
+                  className="product__submit-cart"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Thêm vào giỏ hàng
+                </button>
+                <button
+                  onClick={() => handleGotoCart(product)}
+                  type="button"
+                  className="product__submit-buy"
+                >
+                  Mua ngay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {!isLoading && <LoadingProductView />}
+    </>
+  );
+};
+
+const LoadingProductView = () => {
+  return (
+    <div className="row product__detail">
+      <div className="col-5">
+        <div className="product__img-list">
+          <LoadingSkeleton className="loading-img" />
+          <div className="product__img-slide">
+            <LoadingSkeleton className="loading-slide" />
+          </div>
+        </div>
+      </div>
+      <div className="col-7">
+        <div className="product__info">
+          <LoadingSkeleton className="loading-name" />
+          <div className="product__rate">
+            <LoadingSkeleton className="loading-rate" />
+          </div>
+          <div className="product__brand">
+            <LoadingSkeleton className="loading-brand" />
+          </div>
+          <div className="product__price">
+            <LoadingSkeleton className="loading-price" />
+          </div>
+          <div className="product__quantity">
+            <span className="product__quantity-title">Số lượng:</span>
+            <div className="product__quantity-adjust">
+              <div className="product__quantity-btn">
+                <i className="fa-solid fa-minus"></i>
+              </div>
+              <div className="product__quantity-number">1</div>
+              <div className="product__quantity-btn">
+                <i className="fa-solid fa-plus"></i>
+              </div>
+            </div>
+          </div>
+          <div className="product__description">
+            <div className="product__description-title">
+              Thông tin sản phẩm:
+            </div>
+            <LoadingSkeleton className="loading-des" />
+          </div>
+          <div className="product__submit">
+            <button type="button" className="product__submit-cart">
+              Thêm vào giỏ hàng
+            </button>
+            <button type="button" className="product__submit-buy">
+              Mua ngay
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
+
+//ProductView.LoadingProductView = LoadingProductView;
 
 export default ProductView;

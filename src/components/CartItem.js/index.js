@@ -5,10 +5,9 @@ import { removeCart, decreaseCart, increaseCart } from "../../redux/cartSlice";
 import "./CartItem.scss";
 
 const CartItem = (props) => {
+  const dispatch = useDispatch();
   const { item, index } = props;
   //const [quantity, setQuantity] = useState(item.cartQuantity);
-
-  const dispatch = useDispatch();
 
   const totalPrice = item.price * item.cartQuantity;
   const updateQuantity = (type) => {
@@ -24,12 +23,13 @@ const CartItem = (props) => {
   };
 
   let nf = new Intl.NumberFormat();
+  const apiUrl = process.env.REACT_APP_BASE_URL;
   return (
     <div className="cart__item" key={index}>
       <div className="cart__item-close" onClick={() => handleRemoveCart()}>
         X
       </div>
-      <img className="cart__item-img" src={item.image} />
+      <img className="cart__item-img" src={`${apiUrl}${item.image}`} />
       <div className="cart__item-name">{item.name}</div>
       <div className="cart__item-price">
         {nf.format(item.price)}

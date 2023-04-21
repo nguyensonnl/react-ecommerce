@@ -11,13 +11,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Checkout = () => {
-  const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
   const customer = useSelector((state) => state.customer.customer);
   const email = customer?.email;
   const firstName = customer?.firstName;
   const phone = customer?.phone;
+
+  const apiUrl = process.env.REACT_APP_BASE_URL;
 
   const isLoggedIn = useSelector((state) => state.customer.isLoggedIn);
 
@@ -324,7 +326,7 @@ const Checkout = () => {
           cart.cartItems.map((item, index) => (
             <div className="order__list-product" key={index}>
               <img
-                src={item.image}
+                src={`${apiUrl}${item.image}`}
                 alt="image"
                 className="order__product-img"
               />

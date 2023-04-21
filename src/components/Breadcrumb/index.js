@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Breadcrumb = ({ title, title2, className }) => {
   return (
-    <ul className={`breadcrumb ${className}`}>
+    <ul className={`breadcrumb ${className ? className : ""}`}>
       <li className="">
         <Link to="/" className="breadcrumb-link sub">
           Trang chủ
@@ -12,7 +12,7 @@ const Breadcrumb = ({ title, title2, className }) => {
       </li>
       {title2 && (
         <li>
-          <span>{title2}</span>
+          <span className="sub">{title2}</span>
           <span>/</span>
         </li>
       )}

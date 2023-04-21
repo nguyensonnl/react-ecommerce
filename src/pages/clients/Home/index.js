@@ -109,7 +109,6 @@ const Home = () => {
 
       {categories &&
         categories.length > 0 &&
-        isLoading &&
         categories.map((item) => (
           <section className="mtb-20" key={item._id}>
             <Banner src={men} />
@@ -137,32 +136,20 @@ const Home = () => {
           </section>
         ))}
 
-      {!isLoading &&
-        categories &&
-        categories.length > 0 &&
-        categories.map((item) => (
-          <section className="mtb-20" key={item._id}>
-            <LoadingSkeleton className="loading-brand" />
-            <div className="product__category grid mt-20">
-              <h2 className="product__category__title mtb-20">
-                <LoadingSkeleton className="loading-name" />
-              </h2>
+      {!isLoading && (
+        <section className="mtb-20">
+          <LoadingSkeleton className="loading-brand" />
+          <div className="product__category grid mt-20">
+            <h2 className="product__category__title mtb-20">
+              <LoadingSkeleton className="loading-name" />
+            </h2>
 
-              <div className="product__cate-list">
-                {item.productData.map((item, index) => (
-                  <ProductCard.LoadingProduct
-                    id={item._id}
-                    key={index}
-                    src={item.image}
-                    brand={item.brand}
-                    name={item.name}
-                    price={item.price.toLocaleString()}
-                  />
-                ))}
-              </div>
+            <div className="product__cate-list">
+              <ProductCard.LoadingProduct />
             </div>
-          </section>
-        ))}
+          </div>
+        </section>
+      )}
 
       {/* <section className="mtb-20">
         <Banner src={men} />
