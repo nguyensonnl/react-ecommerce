@@ -10,6 +10,7 @@ import men from "../../../assets/img/banner/dong-ho-nam.jpg";
 import women from "../../../assets/img/banner/dong-ho-nu.jpg";
 import double from "../../../assets/img/banner/dong-ho-doi.jpg";
 import LoadingSkeleton from "../../../components/Skeleton";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const Home = () => {
   const [featuredList, setFeaturedList] = useState([]);
@@ -73,13 +74,11 @@ const Home = () => {
     <Helmet title="Đồng Hồ Lam Sơn">
       <HeroSlider />
 
-      <div className="grid">
-        <Feature />
+      <Feature />
 
-        <div className="product__category mtb-20">
-          <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
-          <div className="product__category__list"></div>
-        </div>
+      <div className="product__category mtb-20">
+        <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
+        <div className="product__category__list"></div>
       </div>
 
       {/* {listCategory &&
@@ -136,20 +135,7 @@ const Home = () => {
           </section>
         ))}
 
-      {!isLoading && (
-        <section className="mtb-20">
-          <LoadingSkeleton className="loading-brand" />
-          <div className="product__category grid mt-20">
-            <h2 className="product__category__title mtb-20">
-              <LoadingSkeleton className="loading-name" />
-            </h2>
-
-            <div className="product__cate-list">
-              <ProductCard.LoadingProduct />
-            </div>
-          </div>
-        </section>
-      )}
+      {!isLoading && <LoadingSpinner />}
 
       {/* <section className="mtb-20">
         <Banner src={men} />

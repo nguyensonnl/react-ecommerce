@@ -4,30 +4,25 @@
     font-weight: 400;
 }
 
-.catalog{
-    border-right: 1px solid #ccc;
+.catalog__product__filter{
+    //border-right: 1px solid #ccc;
 
- 
-
-    &__list{
+    .filter__group{
         padding-right: 8px;
-        &-title{
+
+        .filter__product-title{
             font-weight: 300;
-            margin: 20px 0;
             text-transform: uppercase;
         }
 
-        .catalog__list-item{
-            line-height: 3rem;
-            .catalog__list-check{
-                margin-right: 10px;
-            }
-
-            .catalog__list-name{
-                font-size: 1.5rem;
-                font-weight: 300;
+        .filter__list{
+            margin: 10px 0;
+            .filter__item{
+                line-height: 3rem;
             }
         }
+
+       
 
         &-body{
             &-search{
@@ -80,6 +75,7 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 8px;
+    
     .catalog__list{
         list-style: none;
         display: flex;

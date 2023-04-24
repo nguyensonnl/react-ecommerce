@@ -14,6 +14,7 @@ import { getCategoryById } from "../../../redux/categorySlice";
 import CheckBox from "../../../components/CheckBox";
 import { useCallback } from "react";
 import Pagination from "../../../components/Pagination";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const prices = [
   { id: 1, title: "Giá dưới 1.000.000đ", value: "0-1000" },
@@ -34,6 +35,7 @@ const Catalog = () => {
   const categoryId = useSelector((state) => state.category.categoriesId);
   const { cate } = useParams(); //id category
   const [products, setProducts] = useState([productByCate]);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Pagination
   const [curentPage, setCurrentPage] = useState(1);
@@ -41,7 +43,6 @@ const Catalog = () => {
   const lastPostIndex = curentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = products.slice(firstPostIndex, lastPostIndex);
-
   const [activeId, setActiveId] = useState(1);
 
   let pages = [];
@@ -75,6 +76,7 @@ const Catalog = () => {
     dispatch(getProductByCategory(cate));
     dispatch(getAllBrand());
     dispatch(getCategoryById(cate));
+    setIsLoading(true);
   }, []);
 
   //filter only one case
@@ -173,38 +175,41 @@ const Catalog = () => {
   //end other way
 
   return (
-    <Helmet title="Sản phẩm">
-      <Grid>
+    <Helmet title={categoryId.name}>
+      <div className="grid">
         <Breadcrumb title={categoryId.name} />
-        <Row>
-          <Col col={3}>
-            <div className="catalog section-m1" style={{ marginRight: "20px" }}>
-              <div className="catalog__list">
-                <p className="catalog__list-title">Thương hiệu</p>
-                {brands &&
-                  brands.length > 0 &&
-                  brands.map((item, index) => (
-                    <div className="catalog__list-item" key={index}>
-                      {/* <input type="checkbox" className="catalog__list-check" />
+
+        <div className="row mt-20">
+          <div className="col-3">
+            <div className="catalog__product__filter">
+              <div className="filter__group">
+                <p className="filter__product-title">Thương hiệu</p>
+                <div className="filter__list">
+                  {brands &&
+                    brands.length > 0 &&
+                    brands.map((item, index) => (
+                      <div className="filter__item" key={index}>
+                        {/* <input type="checkbox" className="catalog__list-check" />
                       <span className="catalog__list-name">{item.name}</span> */}
-                      {/* <CheckBox
+                        {/* <CheckBox
                         label={item.name}
                         onChange={(input) => handleFilter(input.checked, item)}
                         checked={filterBrand.includes(item.name)}
                       /> */}
-                      <CheckBox
-                        label={item.name}
-                        onChange={(input) =>
-                          filterSelect("BRAND", input.checked, item)
-                        }
-                        checked={filter.brand.includes(item.name)}
-                      />
-                    </div>
-                  ))}
+                        <CheckBox
+                          label={item.name}
+                          onChange={(input) =>
+                            filterSelect("BRAND", input.checked, item)
+                          }
+                          checked={filter.brand.includes(item.name)}
+                        />
+                      </div>
+                    ))}
+                </div>
               </div>
 
-              <div className="catalog__list">
-                <p className="catalog__list-title">Khoảng giá</p>
+              <div className="filter__group">
+                <p className="filter__product-title">Khoảng giá</p>
                 {/* <div className="catalog__list-body">
                   <div className="catalog__list-body-search">
                     <input type="text" value="0" />
@@ -215,26 +220,29 @@ const Catalog = () => {
                     Áp dụng
                   </button>
                 </div> */}
-                {prices &&
-                  prices.length > 0 &&
-                  prices.map((item, index) => (
-                    <div className="catalog__list-item" key={index}>
-                      {/* <input type="checkbox" className="catalog__list-check" />
+                <div className="filter__list">
+                  {prices &&
+                    prices.length > 0 &&
+                    prices.map((item, index) => (
+                      <div className="filter__item" key={index}>
+                        {/* <input type="checkbox" className="catalog__list-check" />
                       <span className="catalog__list-name">{item.name}</span> */}
-                      <CheckBox
-                        label={item.title}
-                        onChange={(input) =>
-                          filterSelect("PRICE", input.checked, item)
-                        }
-                        checked={filter.price.includes(item.value)}
-                      />
-                    </div>
-                  ))}
+                        <CheckBox
+                          label={item.title}
+                          onChange={(input) =>
+                            filterSelect("PRICE", input.checked, item)
+                          }
+                          checked={filter.price.includes(item.value)}
+                        />
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
-          </Col>
-          <Col col={9}>
-            <div className="section-m1">
+          </div>
+
+          <div className="col-9">
+            <div className="catalog__product__list mb-20">
               <div className="catalog__title">{categoryId.name}</div>
 
               <div className="catalog__filter">
@@ -293,11 +301,11 @@ const Catalog = () => {
                 setActiveId={setActiveId}
               />
               {/*pages.lengh>1*/}
-              {products.length === 0 && (
-                <div className="catalog__empty-product">
-                  Không có sản phẩm nào bạn cần tìm
-                </div>
-              )}
+              {/* {products.length === 0 && (
+                  <div className="catalog__empty-product">
+                    Không có sản phẩm nào bạn cần tìm
+                  </div>
+                )} */}
 
               {/* {pages.length > 1 && (
                 <ul className="catalog__pagination">
@@ -327,9 +335,9 @@ const Catalog = () => {
                 </ul>
               )} */}
             </div>
-          </Col>
-        </Row>
-      </Grid>
+          </div>
+        </div>
+      </div>
     </Helmet>
   );
 };

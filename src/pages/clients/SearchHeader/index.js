@@ -52,6 +52,7 @@ const SearchHeader = () => {
                 name={item.name}
                 src={item.image}
                 price={item.price}
+                className="overide-width"
               />
             </div>
           ))}
