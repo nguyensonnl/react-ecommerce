@@ -11,12 +11,12 @@ const Product = () => {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProduct = async () => {
       const res = await productApi.getProductById(id);
       setProduct(res.data);
       setIsLoading(true);
     };
-    fetchProducts();
+    fetchProduct();
   }, [id]);
 
   return (

@@ -5,6 +5,7 @@ import { addToCart } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoadingSkeleton from "../../components/Skeleton";
+import LoadingSpinner from "../LoadingSpinner";
 
 const ProductView = ({ product, isLoading }) => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const ProductView = ({ product, isLoading }) => {
     <>
       {isLoading && (
         <div className="row product__detail">
-          <div className="col-5">
+          <div className="col-5 col-c-12">
             <div className="product__img-list">
               <img src={previewImg} className="product__img-main" />
               <div className="product__img-slide">
@@ -75,7 +76,7 @@ const ProductView = ({ product, isLoading }) => {
               </div>
             </div>
           </div>
-          <div className="col-7">
+          <div className="col-7 col-c-12">
             <div className="product__info">
               <div className="product__title">{product.name}</div>
               <div className="product__rate">
@@ -155,7 +156,8 @@ const ProductView = ({ product, isLoading }) => {
         </div>
       )}
 
-      {!isLoading && <LoadingProductView />}
+      {/* {!isLoading && <LoadingProductView />} */}
+      {!isLoading && <LoadingSpinner />}
     </>
   );
 };
