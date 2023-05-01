@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import LoadingSkeleton from "../../components/Skeleton";
-import LoadingSpinner from "../LoadingSpinner";
+import { Link } from "react-router-dom";
+import { numberFormat } from "../../utils/numberFormat";
 
-const ProductView = ({ product, isLoading }) => {
+const ProductView = ({ product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const urlImage = `${process.env.REACT_APP_BASE_URL}${product.image}`;
@@ -55,168 +55,106 @@ const ProductView = ({ product, isLoading }) => {
 
   return (
     <>
-      {isLoading && (
-        <div className="row product__detail">
-          <div className="col-5 col-c-12">
-            <div className="product__img-list">
-              <img src={previewImg} className="product__img-main" />
-              <div className="product__img-slide">
-                {product.images &&
-                  product.images.length > 0 &&
-                  product.images.map((url, index) => (
-                    <img
-                      key={index}
-                      src={`${process.env.REACT_APP_BASE_URL}${url}`}
-                      onClick={() =>
-                        setPreviewImg(`${process.env.REACT_APP_BASE_URL}${url}`)
-                      }
-                      className="product__img-item"
-                    />
-                  ))}
-              </div>
-            </div>
-          </div>
-          <div className="col-7 col-c-12">
-            <div className="product__info">
-              <div className="product__title">{product.name}</div>
-              <div className="product__rate">
-                <ul className="product__rate-list">
-                  <li className="product__rate-item">
-                    <i className="fa-solid fa-star product__rate-icon"></i>
-                  </li>
-                  <li className="product__rate-item">
-                    <i className="fa-solid fa-star product__rate-icon"></i>
-                  </li>
-                  <li className="product__rate-item">
-                    <i className="fa-solid fa-star product__rate-icon"></i>
-                  </li>
-                  <li className="product__rate-item">
-                    <i className="fa-solid fa-star product__rate-icon"></i>
-                  </li>
-                  <li className="product__rate-item">
-                    <i className="fa-solid fa-star product__rate-icon"></i>
-                  </li>
-                </ul>
-                {/* <Link to="" className="product__rate-number">
-       ( 250 đánh giá )
-     </Link> */}
-              </div>
-              <div className="product__brand">
-                <span>Thương hiệu:</span>
-                {product.brand && <span> {product.brand.name}</span>}
-              </div>
-              <div className="product__price">
-                {nf.format(product.price)}
-                <sup>đ</sup>
-              </div>
-              <div className="product__quantity">
-                <span className="product__quantity-title">Số lượng:</span>
-                <div className="product__quantity-adjust">
-                  <div
-                    className="product__quantity-btn"
-                    onClick={() => updateQuantity("minus")}
-                  >
-                    <i className="fa-solid fa-minus"></i>
-                  </div>
-                  <div className="product__quantity-number">{quantity}</div>
-                  <div
-                    className="product__quantity-btn"
-                    onClick={() => updateQuantity("plus")}
-                  >
-                    <i className="fa-solid fa-plus"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="product__description">
-                <div className="product__description-title">
-                  Thông tin sản phẩm:
-                </div>
-                <p className="product__description-content">
-                  {product.description}
-                </p>
-              </div>
-              <div className="product__submit">
-                <button
-                  type="button"
-                  className="product__submit-cart"
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Thêm vào giỏ hàng
-                </button>
-                <button
-                  onClick={() => handleGotoCart(product)}
-                  type="button"
-                  className="product__submit-buy"
-                >
-                  Mua ngay
-                </button>
-              </div>
+      <div className="row product__detail">
+        <div className="col-5 col-c-12">
+          <div className="product__img-list">
+            <img src={previewImg} className="product__img-main" />
+            <div className="product__img-slide">
+              {product.images &&
+                product.images.length > 0 &&
+                product.images.map((url, index) => (
+                  <img
+                    key={index}
+                    src={`${process.env.REACT_APP_BASE_URL}${url}`}
+                    onClick={() =>
+                      setPreviewImg(`${process.env.REACT_APP_BASE_URL}${url}`)
+                    }
+                    className="product__img-item"
+                  />
+                ))}
             </div>
           </div>
         </div>
-      )}
-
-      {/* {!isLoading && <LoadingProductView />} */}
-      {!isLoading && <LoadingSpinner />}
+        <div className="col-7 col-c-12">
+          <div className="product__info">
+            <div className="product__title">{product.name}</div>
+            <div className="product__rate">
+              <ul className="product__rate-list">
+                <li className="product__rate-item">
+                  <i className="fa-solid fa-star product__rate-icon"></i>
+                </li>
+                <li className="product__rate-item">
+                  <i className="fa-solid fa-star product__rate-icon"></i>
+                </li>
+                <li className="product__rate-item">
+                  <i className="fa-solid fa-star product__rate-icon"></i>
+                </li>
+                <li className="product__rate-item">
+                  <i className="fa-solid fa-star product__rate-icon"></i>
+                </li>
+                <li className="product__rate-item">
+                  <i className="fa-solid fa-star product__rate-icon"></i>
+                </li>
+              </ul>
+              <Link to="" className="product__rate-number">
+                ( 250 đánh giá )
+              </Link>
+            </div>
+            <div className="product__brand">
+              <span>Thương hiệu:</span>
+              {product.brand && <span> {product.brand.name}</span>}
+            </div>
+            <div className="product__price">
+              {numberFormat(product.price)}
+              <sup>đ</sup>
+            </div>
+            <div className="product__quantity">
+              <span className="product__quantity-title">Số lượng:</span>
+              <div className="product__quantity-adjust">
+                <div
+                  className="product__quantity-btn"
+                  onClick={() => updateQuantity("minus")}
+                >
+                  <i className="fa-solid fa-minus"></i>
+                </div>
+                <div className="product__quantity-number">{quantity}</div>
+                <div
+                  className="product__quantity-btn"
+                  onClick={() => updateQuantity("plus")}
+                >
+                  <i className="fa-solid fa-plus"></i>
+                </div>
+              </div>
+            </div>
+            <div className="product__description">
+              <div className="product__description-title">
+                Thông tin sản phẩm:
+              </div>
+              <p className="product__description-content">
+                {product.description}
+              </p>
+            </div>
+            <div className="product__submit">
+              <button
+                type="button"
+                className="product__submit-cart"
+                onClick={() => handleAddToCart(product)}
+              >
+                Thêm vào giỏ hàng
+              </button>
+              <button
+                onClick={() => handleGotoCart(product)}
+                type="button"
+                className="product__submit-buy"
+              >
+                Mua ngay
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
-
-const LoadingProductView = () => {
-  return (
-    <div className="row product__detail">
-      <div className="col-5">
-        <div className="product__img-list">
-          <LoadingSkeleton className="loading-img" />
-          <div className="product__img-slide">
-            <LoadingSkeleton className="loading-slide" />
-          </div>
-        </div>
-      </div>
-      <div className="col-7">
-        <div className="product__info">
-          <LoadingSkeleton className="loading-name" />
-          <div className="product__rate">
-            <LoadingSkeleton className="loading-rate" />
-          </div>
-          <div className="product__brand">
-            <LoadingSkeleton className="loading-brand" />
-          </div>
-          <div className="product__price">
-            <LoadingSkeleton className="loading-price" />
-          </div>
-          <div className="product__quantity">
-            <span className="product__quantity-title">Số lượng:</span>
-            <div className="product__quantity-adjust">
-              <div className="product__quantity-btn">
-                <i className="fa-solid fa-minus"></i>
-              </div>
-              <div className="product__quantity-number">1</div>
-              <div className="product__quantity-btn">
-                <i className="fa-solid fa-plus"></i>
-              </div>
-            </div>
-          </div>
-          <div className="product__description">
-            <div className="product__description-title">
-              Thông tin sản phẩm:
-            </div>
-            <LoadingSkeleton className="loading-des" />
-          </div>
-          <div className="product__submit">
-            <button type="button" className="product__submit-cart">
-              Thêm vào giỏ hàng
-            </button>
-            <button type="button" className="product__submit-buy">
-              Mua ngay
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-//ProductView.LoadingProductView = LoadingProductView;
 
 export default ProductView;

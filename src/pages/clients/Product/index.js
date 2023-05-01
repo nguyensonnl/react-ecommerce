@@ -4,6 +4,7 @@ import ProductView from "../../../components/ProductView";
 import { useParams } from "react-router-dom";
 import Breadcrumb from "../../../components/Breadcrumb";
 import productApi from "../../../api/productApi";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const Product = () => {
   const { id } = useParams();
@@ -22,11 +23,16 @@ const Product = () => {
   return (
     <Helmet title={product.name}>
       <div className="grid">
-        <Breadcrumb
-          title2={product.category && product.category.name}
-          title={product.name}
-        />
-        <ProductView product={product} isLoading={isLoading} />
+        {!isLoading && <LoadingSpinner />}
+        {isLoading && (
+          <>
+            <Breadcrumb
+              title2={product.category && product.category.name}
+              title={product.name}
+            />
+            <ProductView product={product} />
+          </>
+        )}
       </div>
     </Helmet>
   );

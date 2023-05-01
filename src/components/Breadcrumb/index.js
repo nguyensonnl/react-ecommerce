@@ -8,12 +8,12 @@ const Breadcrumb = ({ title, title2, className }) => {
         <Link to="/" className="breadcrumb-link sub">
           Trang chủ
         </Link>
-        <span>/</span>
+        <span className="icon">&gt;</span>
       </li>
       {title2 && (
         <li>
           <span className="sub">{title2}</span>
-          <span>/</span>
+          <span className="icon">&gt;</span>
         </li>
       )}
       <li>
