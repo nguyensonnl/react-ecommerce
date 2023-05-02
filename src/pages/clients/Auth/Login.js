@@ -77,82 +77,81 @@ const Login = () => {
   };
   return (
     <Helmet title="Đăng nhập tài khoản">
-      <Breadcrumb className="grid" title="Đăng nhập tài khoản" />
-      <Section>
-        <SectionBody>
-          <div className="auth-login">
-            <div className="login-title">
-              <h2>ĐĂNG NHẬP TÀI KHOẢN</h2>
-              <div className="sub-title">
-                <span>Bạn chưa có toàn khoản ? </span>
-                <Link to="/account/register" className="login-link">
-                  Đăng ký tại đây
-                </Link>
-              </div>
-            </div>
-            <div className="login-form">
-              <form onSubmit={handleSubmitForm}>
-                <div className="form-group1">
-                  <label>
-                    Email<span> *</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="form-control1"
-                    value={formData.email}
-                    name="email"
-                    onChange={(e) => handleChangeInput(e)}
-                    required
-                  />
-                  {formErrors.email && (
-                    <span className="handle-error">{formErrors.email}</span>
-                  )}
-                </div>
-                <div className="form-group1">
-                  <label>
-                    Mật khẩu<span> *</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Mật khẩu"
-                    className="form-control1"
-                    value={formData.password}
-                    name="password"
-                    onChange={(e) => handleChangeInput(e)}
-                    required
-                  />
-                  {formErrors.password && (
-                    <span className="handle-error">{formErrors.password}</span>
-                  )}
-                </div>
-                <div className="forgot-password">
-                  Quên mật khẩu? Nhấn vào
-                  <Link to="" className="forgot-password-link">
-                    đây
-                  </Link>
-                </div>
+      <div className="grid">
+        <Breadcrumb title="Đăng nhập tài khoản" />
+      </div>
 
-                <button type="submit" className="login-btn">
-                  Đăng nhập
-                </button>
-              </form>
-            </div>
-
-            <div className="other-login">
-              <p>Hoặc đăng nhập bằng</p>
-              <div className="social-media">
-                <Link to="" className="social-media--facebook">
-                  <img src={f} className="social-media-img" />
-                </Link>
-                <Link to="" className="social-media--google">
-                  <img src={g} className="social-media-img" />
-                </Link>
-              </div>
-            </div>
+      <div className="auth-login mtb-20">
+        <div className="login-title">
+          <h2>ĐĂNG NHẬP TÀI KHOẢN</h2>
+          <div className="sub-title">
+            <span>Bạn chưa có toàn khoản ? </span>
+            <Link to="/account/register" className="login-link">
+              Đăng ký tại đây
+            </Link>
           </div>
-        </SectionBody>
-      </Section>
+        </div>
+        <div className="login-form">
+          <form onSubmit={handleSubmitForm}>
+            <div className="form-group1">
+              <label>
+                Email<span> *</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Email"
+                className="form-control1"
+                value={formData.email}
+                name="email"
+                onChange={(e) => handleChangeInput(e)}
+                required
+              />
+              {formErrors.email && (
+                <span className="handle-error">{formErrors.email}</span>
+              )}
+            </div>
+            <div className="form-group1">
+              <label>
+                Mật khẩu<span> *</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Mật khẩu"
+                className="form-control1"
+                value={formData.password}
+                name="password"
+                onChange={(e) => handleChangeInput(e)}
+                required
+              />
+              {formErrors.password && (
+                <span className="handle-error">{formErrors.password}</span>
+              )}
+            </div>
+            <div className="forgot-password">
+              Quên mật khẩu? Nhấn vào
+              <Link to="" className="forgot-password-link">
+                đây
+              </Link>
+            </div>
+
+            <button type="submit" className="login-btn">
+              Đăng nhập
+            </button>
+          </form>
+        </div>
+
+        <div className="other-login">
+          <p>Hoặc đăng nhập bằng</p>
+          <div className="social-media">
+            <Link to="" className="social-media--facebook">
+              <img src={f} className="social-media-img" />
+            </Link>
+            <Link to="" className="social-media--google">
+              <img src={g} className="social-media-img" />
+            </Link>
+          </div>
+        </div>
+      </div>
     </Helmet>
   );
 };

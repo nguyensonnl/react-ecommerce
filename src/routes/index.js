@@ -7,8 +7,10 @@ import Login from "../pages/clients/Auth/Login";
 import Register from "../pages/clients/Auth/Register";
 import Checkout from "../pages/clients/Checkout";
 import SearchHeader from "../pages/clients/SearchHeader";
-import Account from "../pages/clients/Account";
+import Account from "../pages/clients/Account/LayoutAccount";
 import Text from "../components/Text";
+import AccountInfo from "../pages/clients/Account/AccountInfo";
+import AccountOrder from "../pages/clients/Account/AccountOrder";
 
 const publicRoutes = [
   { path: "/", page: Home },
@@ -20,7 +22,8 @@ const publicRoutes = [
   { path: "/account/register", page: Register },
   { path: "/checkout", page: Checkout, layout: null },
   { path: "/search-results", page: SearchHeader },
-  { path: "/account", page: Account, private: 1 },
+  { path: "/account", page: AccountInfo, private: 1 },
+  { path: "/account/orders", page: AccountOrder, private: 1 },
   { path: "/test", page: Text, layout: null },
 ];
 

@@ -9,6 +9,7 @@ import { clearCart, getTotals } from "../../../redux/cartSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import orderService from "../../../api/orderService";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -61,11 +62,14 @@ const Checkout = () => {
           phone: inputs.phone,
           address: inputs.address,
           note: inputs.note,
+          methodPayment: inputs.methodPayment,
         };
-        const res = await axios.post(
-          "http://localhost:5001/api/v1/orders",
-          newData
-        );
+
+        const res = await orderService.createNewOrder(newData);
+        // const res = await axios.post(
+        //   "http://localhost:5050/api/v1/orders",
+        //   newData
+        // );
         dispatch(clearCart());
         navigate("/");
         if (res.status === 200) {

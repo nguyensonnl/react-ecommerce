@@ -12,7 +12,7 @@ const persistConfig = {
 
 export const register = createAsyncThunk("customers/register", async (data) => {
   const res = await customerApi.register(data);
-  return res.data.data;
+  return res.data;
 });
 
 export const login = createAsyncThunk("customers/login", async (data) => {
@@ -44,7 +44,6 @@ const customerSlice = createSlice({
     [register.fulfilled]: (state, action) => {
       state.loading = "success";
       state.customer = action.payload.customer;
-      state.accessToken = action.payload.accessToken;
     },
     [register.rejected]: (state, aciton) => {
       state.loading = "error";
@@ -72,4 +71,5 @@ const persistedCustomerReducer = persistReducer(
 
 export default persistedCustomerReducer;
 export const { logout } = customerSlice.actions;
+
 //export const customerReducer = customerSlice.reducer;

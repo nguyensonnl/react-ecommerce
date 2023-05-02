@@ -26,7 +26,7 @@ const Cart = () => {
         <Breadcrumb title="Giỏ hàng" />
 
         <div className="cart section-m1">
-          {cart.cartItems.length === 0 ? (
+          {cart.cartItems.length === 0 && (
             <div className="cart__empty">
               <img src={cart_empty} alt="empty cart" className="cart__img" />
               <p className="cart__title">Giỏ hàng trống</p>
@@ -37,7 +37,9 @@ const Cart = () => {
                 Mua sắm ngay
               </button>
             </div>
-          ) : (
+          )}
+
+          {cart.cartItems.length > 0 && (
             <>
               <h3 className="cart__header">Giỏ hàng</h3>
               <div className="row">

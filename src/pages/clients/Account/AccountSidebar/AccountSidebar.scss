@@ -1,0 +1,27 @@
+.account__sidebar{
+    padding: 0 6px;
+
+    .account__title{
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .account__name{
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: var(--extra-color);
+        margin-bottom: 20px;
+    }
+
+    .account__group{
+        list-style: none;
+        .account__item{
+            margin: 28px 0;
+            .account__link{
+                font-size: 1.5rem;
+                color: #000;
+                font-weight: 300;
+            }
+        }
+    }
+}

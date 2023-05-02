@@ -1,0 +1,13 @@
+.account__info{
+    .title{
+        font-weight: 500;
+    }
+    .account__name, .account__email{
+        margin: 20px 0;
+        font-weight: 400;
+        font-size: 1.5rem;
+        span{
+            font-weight: 800;
+        }
+    }
+}
