@@ -142,7 +142,11 @@ select{
 }
 
 
-
+.grid{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 /*Admin page*/
 .wrapper{
     border: 1px solid #f1f1f1;

@@ -1,6 +1,4 @@
 import "./Pratice.scss";
-import Row from "../Row";
-import Col from "../Col";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllBrand } from "../../redux/brandSlice";
@@ -66,8 +64,8 @@ const Pratice = () => {
 
   return (
     <div className="pratice section-m1">
-      <Row>
-        <Col col={3}>
+      <div className="row">
+        <div className="col-3">
           <div className="filter__checkbox">
             {listBrand.map((item, index) => (
               <label key={item._id}>
@@ -85,8 +83,8 @@ const Pratice = () => {
               <button onClick={() => handleClickButton(i)}>{i.name}</button>
             ))}
           </div>
-        </Col>
-        <Col col={9}>
+        </div>
+        <div className="col-9">
           <div className="list__product">
             {products.map((item, index) => (
               <div className="list__product-card" key={index}>
@@ -98,8 +96,8 @@ const Pratice = () => {
               </div>
             ))}
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,14 +1,10 @@
 import "./Checkout.scss";
-import Col from "../../../components/Col";
-import Row from "../../../components/Row";
-import Breadcrumb from "../../../components/Breadcrumb";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/logo/checkout_logo.jpg";
 import { useDispatch } from "react-redux";
 import { clearCart, getTotals } from "../../../redux/cartSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import orderService from "../../../api/orderService";
 
 const Checkout = () => {

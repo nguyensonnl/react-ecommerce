@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import Grid from "../../Grid";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/customerSlice";

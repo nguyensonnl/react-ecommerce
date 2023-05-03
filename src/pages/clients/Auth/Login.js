@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import Section, { SectionBody } from "../../../components/Section";
 import "./Auth.scss";
 import auth from "../../../assets/img/auth.png";
 import Breadcrumb from "../../../components/Breadcrumb";

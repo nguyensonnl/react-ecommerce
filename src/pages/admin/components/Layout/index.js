@@ -1,9 +1,6 @@
-import React from "react";
-import Row from "../../../../components/Row";
-import Col from "../../../../components/Col";
+import "./Layout.scss";
 import Sidebar from "../../components/Sidebar/";
 import Header from "../../components/Header/";
-import "./Layout.scss";
 
 const Layout = (props) => {
   return (

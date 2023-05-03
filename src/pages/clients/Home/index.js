@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import "./Home.scss";
+import React, { useEffect, useState } from "react";
 import HeroSlider from "../../../components/HeroSlider";
 import Feature from "../../../components/Feature";
 import ProductCard from "../../../components/ProductCard";
@@ -9,8 +9,8 @@ import productApi from "../../../api/productApi";
 import men from "../../../assets/img/banner/dong-ho-nam.jpg";
 import women from "../../../assets/img/banner/dong-ho-nu.jpg";
 import double from "../../../assets/img/banner/dong-ho-doi.jpg";
-import LoadingSkeleton from "../../../components/Skeleton";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [featuredList, setFeaturedList] = useState([]);
@@ -72,178 +72,55 @@ const Home = () => {
 
   return (
     <Helmet title="Đồng Hồ Lam Sơn">
-      <HeroSlider />
-
-      <Feature />
-
-      <div className="product__category mtb-20">
-        <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
-        <div className="product__category__list"></div>
-      </div>
-
-      {/* {listCategory &&
-        listCategory.length > 0 &&
-        listCategory.map((item) => (
-          <>
-            <Banner />
-            <div className="product__category grid mt-20">
-              <h2 className="product__category__title">{item.name}</h2>
-              <div className="product__category__list">
-                <Carousel responsive={responsive}>
-                  {allProduct.map((item, index) => (
-                    <ProductCard
-                      id={item._id}
-                      key={index}
-                      src={item.image}
-                      brand={item.brand}
-                      name={item.name}
-                      price={item.price.toLocaleString()}
-                    />
-                  ))}
-                </Carousel>
-              </div>
-            </div>
-          </>
-        ))} */}
-
-      {categories &&
-        categories.length > 0 &&
-        categories.map((item) => (
-          <section className="mtb-20" key={item._id}>
-            <Banner src={men} />
-            <div className="product__category grid mt-20">
-              <h2
-                className="product__category__title mtb-20"
-                style={{ textTransform: "upperCase" }}
-              >
-                {item.name}
-              </h2>
-
-              <div className="product__cate-list">
-                {item.productData.map((item, index) => (
-                  <ProductCard
-                    id={item._id}
-                    key={index}
-                    src={item.image}
-                    brand={item.brand}
-                    name={item.name}
-                    price={item.price.toLocaleString()}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
-
       {!isLoading && <LoadingSpinner />}
 
-      {/* <section className="mtb-20">
-        <Banner src={men} />
-        <div className="product__category grid mt-20">
-          <h2 className="product__category__title mtb-20">ĐỒNG HỒ NAM</h2>
-          {isLoading && (
-            <div className="product__cate-list">
-              {menWatch.map((item, index) => (
-                <ProductCard
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
-            </div>
-          )}
+      {isLoading && (
+        <>
+          <HeroSlider />
+          <Feature />
+          <div className="product__category mtb-20">
+            <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
+            <div className="product__category__list"></div>
+          </div>
 
-          {!isLoading && (
-            <div className="product__cate-list">
-              {menWatch.map((item, index) => (
-                <ProductCard.LoadingProduct
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </section> */}
+          {categories &&
+            categories.length > 0 &&
+            categories.map((item) => (
+              <section className="mtb-20" key={item._id}>
+                <Banner src={men} />
+                <div className="product__category grid mt-20">
+                  <h2
+                    className="product__category__title mtb-20"
+                    style={{ textTransform: "upperCase" }}
+                  >
+                    {item.name}
+                  </h2>
 
-      {/* <div className="mtb-20">
-        <Banner src={women} />
-        <div className="product__category grid mt-20">
-          <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỮ</h2>
-          {isLoading && (
-            <div className="product__cate-list">
-              {womenWatch.map((item, index) => (
-                <ProductCard
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
-            </div>
-          )}
-
-          {!isLoading && (
-            <div className="product__cate-list">
-              {womenWatch.map((item, index) => (
-                <ProductCard.LoadingProduct
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </div> */}
-
-      {/* <div className="mtb-20">
-        <Banner src={double} />
-        <div className="product__category grid mt-20">
-          <h2 className="product__category__title mtb-20">ĐỒNG HỒ ĐÔI</h2>
-          {isLoading && (
-            <div className="product__cate-list">
-              {doubleWatch.map((item, index) => (
-                <ProductCard
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
-            </div>
-          )}
-
-          {!isLoading && (
-            <div className="product__cate-list">
-              {doubleWatch.map((item, index) => (
-                <ProductCard.LoadingProduct
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </div> */}
+                  <div className="product__cate-list">
+                    {item.productData.map((item, index) => (
+                      <ProductCard
+                        id={item._id}
+                        key={index}
+                        src={item.image}
+                        brand={item.brand}
+                        name={item.name}
+                        price={item.price.toLocaleString()}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="product__show-all">
+                  <Link
+                    to={`/danh-muc/${item._id}`}
+                    className="product__show-link"
+                  >
+                    Xem tất cả
+                  </Link>
+                </div>
+              </section>
+            ))}
+        </>
+      )}
     </Helmet>
   );
 };

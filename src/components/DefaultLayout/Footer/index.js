@@ -1,6 +1,7 @@
 import "./Footer.scss";
 import { Link } from "react-router-dom";
 import methodPayment from "../../../assets/img/Footer/footer_trustbadge.jpg";
+import logo from "../../../assets/img/logoLSW.png";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="footer__main grid">
         <div className="footer__content">
           <h4 className="title">Nơi an tâm mua hàng chính hãng</h4>
-          <img src="" alt="Logo" />
+          <img src={logo} alt="Logo" className="footer__logo" />
           <div className="desc">
             Đồng hồ Lam Sơn tự hào là đại lý chính hãng của các thương hiệu đồng
             hồ nổi tiếng như I&W Carnival, Carnival, Lobinni, Borman, Teintop,

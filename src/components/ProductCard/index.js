@@ -1,9 +1,5 @@
-import React from "react";
 import "./ProductCard.scss";
-import f1 from "../../assets/img/products/f1.jpg";
-
 import { Link } from "react-router-dom";
-import LoadingSkeleton from "../Skeleton";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const ProductCard = (props) => {
@@ -35,9 +31,6 @@ const ProductCard = (props) => {
             </li>
           </ul>
           <div className="product-card__price">
-            {/* <span className="product-card__price-sale">
-                  {props.priceSale ? props.priceSale : ""}
-                </span> */}
             <span className="product-card__price-sale">
               {props.price} <sup>đ</sup>
             </span>
@@ -47,33 +40,5 @@ const ProductCard = (props) => {
     </div>
   );
 };
-
-const LoadingProduct = () => {
-  return (
-    <div className="product-card">
-      <Link to="#" className="product-card__link">
-        <div style={{ marginBottom: "10px" }}>
-          <LoadingSkeleton className="product-card__image-loading" />
-        </div>
-
-        <div className="product-card__info">
-          <div className="product-card__name" style={{ marginBottom: "5px" }}>
-            <LoadingSkeleton className="product-cart__item-loading" />
-          </div>
-          <ul className="product-card__rating" style={{ marginBottom: "5px" }}>
-            <LoadingSkeleton className="product-cart__item-loading" />
-          </ul>
-          <div className="product-card__price" style={{ marginBottom: "5px" }}>
-            <span className="product-card__price-sale">
-              <LoadingSkeleton className="product-cart__item-loading" />
-            </span>
-          </div>
-        </div>
-      </Link>
-    </div>
-  );
-};
-
-ProductCard.LoadingProduct = LoadingProduct;
 
 export default ProductCard;
