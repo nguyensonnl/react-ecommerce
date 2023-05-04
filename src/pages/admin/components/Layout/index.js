@@ -4,7 +4,7 @@ import Header from "../../components/Header/";
 
 const Layout = (props) => {
   return (
-    <div className="admin">
+    <div className="admin__page">
       <div className="left">
         <Sidebar />
       </div>

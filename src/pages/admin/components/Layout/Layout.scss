@@ -1,16 +1,13 @@
-
-.admin{
-    @import "~bootstrap/scss/bootstrap";
+.admin__page{
     display: flex;
-    
     .left{
-            width: 18%;
-        }
-
+        width: 20%;
+    }
     .right{
-        width: 82%;
+        width: 80%;
         .content{
-            padding: 80px 40px 0 40px;
+            padding: 100px 50px 0;
         }
-    }    
+    }
 }
+

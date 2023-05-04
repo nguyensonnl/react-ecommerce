@@ -10,10 +10,10 @@ const Category = () => {
       <div className="admin__category">
         <h2 className="category__title">Danh mục sản phẩm</h2>
         <div className="row">
-          <div className="col-6">
+          <div className="col-12">
             <CreateCategory />
           </div>
-          <div className="col-6">
+          <div className="col-12">
             <ListCategory />
           </div>
         </div>

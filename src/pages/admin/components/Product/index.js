@@ -148,9 +148,10 @@ const Product = () => {
         <div className="product__header">
           <h2>SẢN PHẨM</h2>
           <button className="product__btn-add" onClick={() => handleAdd()}>
-            <span>+</span> Thêm mới
+            <span>+</span> Thêm sản phẩm
           </button>
         </div>
+
         <div className="product__content">
           <div className="product__title">Danh sách sản phẩm</div>
           <div className="product__body">
@@ -230,13 +231,13 @@ const Product = () => {
                           className="btn-edit"
                           onClick={() => handleEditForm(product._id)}
                         >
-                          <i class="fa-solid fa-pen-to-square"></i>
+                          <i className="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button
                           className="btn-delete"
                           onClick={() => handleDeleteItem(product._id)}
                         >
-                          <i class="fa-solid fa-trash-can"></i>
+                          <i className="fa-solid fa-trash-can"></i>
                         </button>
                       </td>
                     </tr>

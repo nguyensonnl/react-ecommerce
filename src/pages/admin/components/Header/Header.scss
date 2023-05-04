@@ -1,16 +1,13 @@
 .header__admin{
-    background-color: #fff;
+    background-color: var(--extra-color);
     display: flex;
     justify-content: flex-end;
-    gap: 14px;
     height: 60px;
     line-height: 60px;
-    box-shadow: rgb(0 0 0 / 15%) 0px 10px 20px;
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
-    left: 18%;
+    left: 20%;
 
     .header__right{
         margin-right: 26px;
@@ -18,12 +15,10 @@
         align-items: center;
         gap: 20px;
 
-        .header__admin__name{
-            font-size: 1.5rem;
-        }
-
-        .header__admin__link{
-
+        .header__admin__name,
+        .header__admin__link,
+        .header__admin__logout {
+            color: #fff;
         }
 
         .header__admin__logout{

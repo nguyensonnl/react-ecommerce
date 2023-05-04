@@ -1,24 +1,23 @@
 .sidebar{
-    background-color: #fff;
+    background-color: var(--extra-color);
     position: fixed;
     left: 0;    
     top: 0;
     bottom: 0;
-    right: 82%;
+    right: 80%;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgb(0 0 0 / 15%) 0px 10px 20px;
 
     &__logo{
         font-size: 2.7rem;
         font-weight: 600;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        text-align: center;
     }
 
     &__list{
-        padding-left: 0 !important;
-        margin-bottom: 0 !important;
-       
+     
         .active{
             padding: 10px;
             text-decoration: none;
@@ -28,6 +27,7 @@
             width: 100%;
             display: inline-block;
             color: #fff;
+            font-weight: 500;
             &:hover{
                 color: #fff;
             }
@@ -44,7 +44,8 @@
                 border-radius: 4px;
                 width: 100%;
                 display: inline-block;
-              
+                color: #fff;
+                font-weight: 500;
             }
         }
 

@@ -80,7 +80,18 @@ const Home = () => {
           <Feature />
           <div className="product__category mtb-20">
             <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
-            <div className="product__category__list"></div>
+            <div className="product__cate-list">
+              {featuredList.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  src={item.image}
+                  brand={item.brand}
+                  name={item.name}
+                  price={item.price.toLocaleString()}
+                />
+              ))}
+            </div>
           </div>
 
           {categories &&

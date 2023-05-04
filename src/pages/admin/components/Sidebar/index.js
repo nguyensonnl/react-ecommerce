@@ -1,11 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.scss";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__logo">Lam Sơn Watch</div>
-      <hr />
       <ul className="sidebar__list">
         <li className="sidebar__list-item">
           <NavLink
