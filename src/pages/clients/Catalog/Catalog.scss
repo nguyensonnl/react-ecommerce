@@ -1,11 +1,5 @@
-.catalog__title{
-    margin-bottom: 10px;
-    font-size: 2.5rem;
-    font-weight: 400;
-}
 
 .catalog__product__filter{
-    //border-right: 1px solid #ccc;
 
     .filter__group{
         padding-right: 8px;
@@ -22,18 +16,20 @@
             }
         }
 
-       
+        .catalog__list-body{
+            margin-top: 10px;
 
-        &-body{
-            &-search{
+            .catalog__list-body-search{
                 display: flex;
                 justify-content: space-between;
+
                 input{
                     width: 40%;
                     outline: none;
                     padding: 5px;
                     margin-bottom: 16px;
                 }
+
                 span{
                     position: relative;
                     top: 6px;
@@ -41,7 +37,7 @@
             }
             button{
                 width: 100%;
-                padding: 8px 0;
+                padding: 10px 0;
                 background-color: var(--extra-color);
                 border: none;
                 color: #fff;
@@ -52,6 +48,52 @@
     }
 }
 
+
+.catalog__product__list{
+
+    .catalog__title{
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+
+    .catalog__filter{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 8px;
+        
+        .catalog__list{
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            .catalog__item{
+                .catalog__link{
+                    text-decoration: none;
+                    color: #000;
+                    opacity: 0.5;
+                    font-weight: 300;
+                    font-size: 1.5rem;
+                    &:hover{
+                        color: var(--primary-color);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .list__product-catalog{
+        display: flex;
+        flex-wrap: wrap;
+     }
+
+     .card-overide{
+         width: 25%;
+     }
+}
+
+
 .catalog__empty-product{
     background-color: #0f8280d9;;
     padding: 16px 12px;
@@ -59,114 +101,5 @@
     font-weight: 400;
 }
 
-.list__product-catalog{
-   display: flex;
-   flex-wrap: wrap;
-}
-.card-overide{
-    width: 25%;
-}
-
-.product__card-item{
-    width: 100%;
-}
-.catalog__filter{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 8px;
-    
-    .catalog__list{
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        .catalog__item{
-            .catalog__link{
-                text-decoration: none;
-                color: #000;
-                opacity: 0.5;
-                font-weight: 300;
-                font-size: 1.5rem;
-                &:hover{
-                    color: var(--primary-color);
-                    opacity: 1;
-                }
-            }
-        }
-    }
-
-    span{
-        font-size: 1.4rem;
-    }
-    
-    & button:nth-child(2){
-        height: 34px;
-        width: 90px;
-        font-size: 1.5rem;
-        //background-color: #fff;
-        border: none;
-        outline: none;
-        color: #fff;
-        background-color: var(--extra-color);
-    }
-
-    & button:nth-child(3){
-        height: 34px;
-        width: 90px;
-        font-size: 1.5rem;
-        background-color: #fff;
-        border: none;
-        outline: none;
-    }
-
-    & button:nth-child(4){
-        height: 34px;
-        width: 90px;
-        font-size: 1.5rem;
-        background-color: #fff;
-        border: none;
-        outline: none;
-    }
-
-    &-select{
-        height: 34px;
-        outline: none;
-        border: 1px solid var(--border-color);
-        padding: 0 12px;
-
-        option{
-            display: block;
-           font-size: 1.4rem;
-           padding: 10px 0;
-        }
-    }
-}
 
 
-.catalog__pagination{
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-
-    &-item--active{
-        background-color: var(--extra-color);
-        color: #fff !important;
-        
-    }
-
-    &-item{
-        margin: 0 12px;
-        cursor: pointer;
-           text-decoration: none; 
-           font-size: 2rem;
-           border-radius: 2px;
-           display: block;
-           height: 30px;
-           text-align: center;
-           line-height: 30px;
-           min-width: 40px;
-           color: #939393;
-    }
-}

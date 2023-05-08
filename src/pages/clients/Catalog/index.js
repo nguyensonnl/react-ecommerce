@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-
-import Helmet from "../../../components/Helmet";
-
-import ProductCard from "../../../components/ProductCard";
 import "./Catalog.scss";
+import React, { useEffect, useState } from "react";
+import Helmet from "../../../components/Helmet";
+import ProductCard from "../../../components/ProductCard";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductByCategory } from "../../../redux/reducers/productSlice";
@@ -143,6 +141,32 @@ const Catalog = () => {
     updateProducts();
   }, [updateProducts]);
 
+  const handleChangePrice = () => {
+    if (!priceMin || !priceMax) {
+      return;
+    }
+
+    let priceMinNum = +priceMin;
+    let priceMMaxNum = +priceMax;
+    let temp = products;
+
+    temp = temp.filter(
+      (e) => e.price >= priceMinNum && e.price <= priceMMaxNum
+    );
+    setProducts(temp);
+  };
+
+  const handleClearPrice = () => {
+    setPriceMax("");
+    setPriceMin("");
+    let temp = productByCate;
+    setProducts(temp);
+    setFilter({
+      brand: [],
+      price: [],
+    });
+  };
+
   const filterSelect = (type, checked, item) => {
     //check
     if (checked) {
@@ -172,6 +196,9 @@ const Catalog = () => {
     }
   };
   //end other way
+
+  const [priceMin, setPriceMin] = useState("");
+  const [priceMax, setPriceMax] = useState("");
 
   return (
     <Helmet title={categoryId.name}>
@@ -213,23 +240,45 @@ const Catalog = () => {
 
                   <div className="filter__group">
                     <p className="filter__product-title">Khoảng giá</p>
-                    {/* <div className="catalog__list-body">
-          <div className="catalog__list-body-search">
-            <input type="text" value="0" />
-            <span> - </span>
-            <input type="text" value="0" />
-          </div>
-          <button type="button" className="catalog__list-body-btn">
-            Áp dụng
-          </button>
-        </div> */}
-                    <div className="filter__list">
+                    <div className="catalog__list-body">
+                      <div className="catalog__list-body-search">
+                        <input
+                          type="text"
+                          value={priceMin}
+                          onChange={(e) =>
+                            setPriceMin(e.target.value.replace(/\D/g, ""))
+                          }
+                        />
+                        <span> - </span>
+                        <input
+                          type="text"
+                          value={priceMax}
+                          onChange={(e) =>
+                            setPriceMax(e.target.value.replace(/\D/g, ""))
+                          }
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        className="catalog__list-body-btn"
+                        onClick={() => handleChangePrice()}
+                      >
+                        Áp dụng
+                      </button>
+                      <button
+                        style={{ margin: "10px 0" }}
+                        type="button"
+                        className="catalog__list-body-btn"
+                        onClick={() => handleClearPrice()}
+                      >
+                        Xóa bộ lọc
+                      </button>
+                    </div>
+                    {/* <div className="filter__list">
                       {prices &&
                         prices.length > 0 &&
                         prices.map((item, index) => (
                           <div className="filter__item" key={index}>
-                            {/* <input type="checkbox" className="catalog__list-check" />
-              <span className="catalog__list-name">{item.name}</span> */}
                             <CheckBox
                               label={item.title}
                               onChange={(input) =>
@@ -239,7 +288,7 @@ const Catalog = () => {
                             />
                           </div>
                         ))}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -289,7 +338,7 @@ const Catalog = () => {
                           price={new Intl.NumberFormat().format(item.price)}
                           brand={item.brand}
                           src={item.image}
-                          className="card-overide "
+                          className="card-overide"
                         />
                       ))}
                   </div>
@@ -309,34 +358,6 @@ const Catalog = () => {
             Không có sản phẩm nào bạn cần tìm
           </div>
         )} */}
-
-                  {/* {pages.length > 1 && (
-        <ul className="catalog__pagination">
-          <li
-            className="catalog__pagination-item"
-            onClick={previousPage}
-          >
-            <i className="fas fa-angle-left catalog__pagination-icon"></i>
-          </li>
-          {pages.map((page, index) => (
-            <li
-              className={
-                activeId === page
-                  ? `catalog__pagination-item catalog__pagination-item--active`
-                  : `catalog__pagination-item`
-              }
-              key={index}
-              onClick={() => handleCLickPaginate(page)}
-            >
-              {page}
-            </li>
-          ))}
-
-          <li className="catalog__pagination-item" onClick={nextPage}>
-            <i className="fas fa-angle-right catalog__pagination-icon"></i>
-          </li>
-        </ul>
-      )} */}
                 </div>
               </div>
             </div>
