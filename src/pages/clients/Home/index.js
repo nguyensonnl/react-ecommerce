@@ -1,5 +1,5 @@
 import "./Home.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import HeroSlider from "../../../components/HeroSlider";
 import Feature from "../../../components/Feature";
 import ProductCard from "../../../components/ProductCard";
@@ -11,6 +11,7 @@ import women from "../../../assets/img/banner/dong-ho-nu.jpg";
 import double from "../../../assets/img/banner/dong-ho-doi.jpg";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
   const [featuredList, setFeaturedList] = useState([]);
@@ -28,12 +29,46 @@ const Home = () => {
     fetchData();
   }, []);
 
+  //the way new
+  const cache = useRef({});
+
   useEffect(() => {
     const fetchProducts = async () => {
-      const resProduct = await productApi.getAllProduct();
+      const productURL = `${process.env.REACT_APP_BASE_URL}/api/v1/products`;
+      const categoryURL = `${process.env.REACT_APP_BASE_URL}/api/v1/categories`;
+
+      // Check if data already exists in the cache
+      if (cache.current[productURL] && cache.current[categoryURL]) {
+        const productsByCate = cache.current[categoryURL].reduce(
+          (acc, category) => {
+            return [
+              ...acc,
+              {
+                ...category,
+                productData: cache.current[productURL].filter(
+                  (product) => product.category._id === category._id
+                ),
+              },
+            ];
+          },
+          []
+        );
+        setCategories(productsByCate);
+        setIsLoading(true);
+        return;
+      }
+
+      // Data not found in cache, make network requests
+      const [resProduct, resCategory] = await Promise.all([
+        axios.get(productURL),
+        axios.get(categoryURL),
+      ]);
       const products = resProduct.data;
-      const resCategory = await productApi.getCategory();
       const categories = resCategory.data;
+
+      // Store data in cache
+      cache.current[productURL] = products;
+      cache.current[categoryURL] = categories;
 
       const productsByCate = categories.reduce((acc, category) => {
         return [
@@ -47,11 +82,39 @@ const Home = () => {
         ];
       }, []);
       setCategories(productsByCate);
-      setIsLoading(!isLoading);
+      setIsLoading(true);
     };
 
     fetchProducts();
   }, []);
+
+  //the way old
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     const url = `${process.env.REACT_APP_BASE_URL}/api/v1/products`;
+
+  //     const resProduct = await productApi.getAllProduct();
+  //     const products = resProduct.data;
+  //     const resCategory = await productApi.getCategory();
+  //     const categories = resCategory.data;
+
+  //     const productsByCate = categories.reduce((acc, category) => {
+  //       return [
+  //         ...acc,
+  //         {
+  //           ...category,
+  //           productData: products.filter(
+  //             (product) => product.category._id === category._id
+  //           ),
+  //         },
+  //       ];
+  //     }, []);
+  //     setCategories(productsByCate);
+  //     setIsLoading(!isLoading);
+  //   };
+
+  //   fetchProducts();
+  // }, []);
 
   // useEffect(() => {
   //   const fetchData = async () => {
