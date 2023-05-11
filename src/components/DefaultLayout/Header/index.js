@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/customerSlice";
+import productApi from "../../../api/productApi";
+import icon1 from "../../../assets/img/Menu/menu_icon_1.png";
+import icon2 from "../../../assets/img/Menu/menu_icon_2.png";
+import icon3 from "../../../assets/img/Menu/menu_icon_3.png";
+import icon4 from "../../../assets/img/Menu/menu_icon_4.png";
+import icon5 from "../../../assets/img/Menu/menu_icon_5.png";
+import icon6 from "../../../assets/img/Menu/menu_icon_6.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -36,16 +43,109 @@ const Header = () => {
     navigate("/");
   };
 
+  const [isShowNav, setIsShowNav] = useState(false);
+  const [listCate, setListCate] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await productApi.getCategory();
+      setListCate(res.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <section className="header">
       <div className="header__content grid">
         <Link to="/" className="header__logo">
-          <div className="header__show">Show</div>
+          <div
+            className="header__show"
+            style={{ color: "#fff", fontSize: "2.8rem" }}
+            onClick={() => setIsShowNav(!isShowNav)}
+          >
+            <i class="fa-sharp fa-solid fa-bars"></i>
+          </div>
           <div className="header__brand">
             <div className="logo__brand">LSW</div>
             <div className="logo__brand-sub">LAM SON WATCH</div>
           </div>
         </Link>
+
+        {isShowNav && (
+          <div className="nav-mobile">
+            <div className="nav-mobile__login">
+              <i class="fa-solid fa-circle-user icon"></i>
+              <div className="account">
+                <div className="title">Tài khoản</div>
+                <Link to="/account/login" className="account__link">
+                  Đăng nhập
+                </Link>
+              </div>
+            </div>
+            <ul className="nav__list scroll">
+              <li
+                className="nav__item"
+                onClick={() => {
+                  setIsShowNav(!isShowNav);
+                }}
+              >
+                <Link to="/" className="nav__item-link">
+                  <img src={icon1} alt="icon-home" className="nav__item-icon" />
+                  Trang chủ
+                </Link>
+              </li>
+
+              {listCate.map((item) => (
+                <li
+                  className="nav__item"
+                  key={item._id}
+                  onClick={() => {
+                    setIsShowNav(!isShowNav);
+                  }}
+                >
+                  <Link to={`/danh-muc/${item._id}`} className="nav__item-link">
+                    <img
+                      src={icon2}
+                      alt="icon-home"
+                      className="nav__item-icon"
+                    />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+
+              <li
+                className="nav__item"
+                onClick={() => {
+                  setIsShowNav(!isShowNav);
+                }}
+              >
+                <Link to="/about" className="nav__item-link">
+                  <img src={icon5} alt="icon-home" className="nav__item-icon" />
+                  Giới thiệu
+                </Link>
+              </li>
+              <li
+                className="nav__item"
+                onClick={() => {
+                  setIsShowNav(!isShowNav);
+                }}
+              >
+                <Link to="/contact" className="nav__item-link">
+                  <img src={icon6} alt="icon-home" className="nav__item-icon" />
+                  Liên hệ
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        {isShowNav && (
+          <div
+            className="overlay-nav"
+            onClick={() => setIsShowNav(!isShowNav)}
+          ></div>
+        )}
 
         <div className="header__search">
           <form onSubmit={handleSearchForm} className="header__search-form">

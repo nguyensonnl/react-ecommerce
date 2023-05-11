@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <section className="footer">
       <div className="footer__main grid">
-        <div className="footer__content">
+        <div className="footer__info">
           <h4 className="title">Nơi an tâm mua hàng chính hãng</h4>
-          <img src={logo} alt="Logo" className="footer__logo" />
+          <img src={logo} alt="Logo" className="logo" />
           <div className="desc">
             Đồng hồ Lam Sơn tự hào là đại lý chính hãng của các thương hiệu đồng
             hồ nổi tiếng như I&W Carnival, Carnival, Lobinni, Borman, Teintop,
@@ -25,7 +25,8 @@ const Footer = () => {
             <span>Email:</span> lamsonwatch@gmail.com
           </p>
         </div>
-        <div className="footer__content">
+
+        <div className="footer__policy">
           <h4 className="title">Chính sách</h4>
           <ul className="list__group">
             <li className="group__item">
@@ -65,7 +66,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="footer__content">
+        <div className="footer__guide">
           <h4 className="title">Hưỡng dẫn</h4>
           <ul className="list__group">
             <li className="group__item">
@@ -85,7 +86,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="footer__content">
+        <div className="footer__contact">
           <h4 className="title">Tổng đài hỗ trợ</h4>
           <ul className="">
             <li className="contact__item">

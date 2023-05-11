@@ -240,7 +240,7 @@ const Catalog = () => {
 
                   <div className="filter__group">
                     <p className="filter__product-title">Khoảng giá</p>
-                    <div className="catalog__list-body">
+                    {/* <div className="catalog__list-body">
                       <div className="catalog__list-body-search">
                         <input
                           type="text"
@@ -273,8 +273,8 @@ const Catalog = () => {
                       >
                         Xóa bộ lọc
                       </button>
-                    </div>
-                    {/* <div className="filter__list">
+                    </div> */}
+                    <div className="filter__list">
                       {prices &&
                         prices.length > 0 &&
                         prices.map((item, index) => (
@@ -288,7 +288,17 @@ const Catalog = () => {
                             />
                           </div>
                         ))}
-                    </div> */}
+                    </div>
+                    <div className="catalog__list-body">
+                      <button
+                        style={{ margin: "10px 0" }}
+                        type="button"
+                        className="catalog__list-body-btn"
+                        onClick={() => handleClearPrice()}
+                      >
+                        Xóa bộ lọc
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

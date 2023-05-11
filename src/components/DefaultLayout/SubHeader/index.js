@@ -11,9 +11,7 @@ const SubHeader = () => {
         <div className="col-3">
           <div className="subheader__nav">
             <i className="fa-solid fa-list"></i>
-            <Link to="/catalog" className="subheader__link">
-              <span>Danh mục sản phẩm</span>
-            </Link>
+            <span>Danh mục sản phẩm</span>
           </div>
         </div>
         <div className="col-9">

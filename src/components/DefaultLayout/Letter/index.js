@@ -11,7 +11,7 @@ const Letter = () => {
           <img src={f} className="letter__image facebook" />
           <img src={z} className="letter__image" />
         </div>
-        <div className="letter__info">
+        {/* <div className="letter__info">
           <div className="letter__title">
             <img src={e} className="letter__image" />
             <div className="letter__des">
@@ -29,7 +29,7 @@ const Letter = () => {
               Đăng ký
             </button>
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );
