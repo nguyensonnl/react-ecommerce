@@ -4,7 +4,10 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const ProductCard = (props) => {
   return (
-    <div className={`product-card ${props.className}`} Ư key={props._id}>
+    <div
+      className={`product-card ${props.className ? props.className : ""}`}
+      key={props._id}
+    >
       <Link to={`/product/${props.id}`} className="product-card__link">
         <img
           src={`${apiUrl}${props.src}`}

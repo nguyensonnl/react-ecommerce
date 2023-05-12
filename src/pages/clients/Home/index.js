@@ -1,7 +1,6 @@
 import "./Home.scss";
 import React, { useEffect, useState, useRef } from "react";
 import HeroSlider from "../../../components/HeroSlider";
-import Feature from "../../../components/Feature";
 import ProductCard from "../../../components/ProductCard";
 import Banner from "../../../components/Banner";
 import Helmet from "../../../components/Helmet";
@@ -140,7 +139,7 @@ const Home = () => {
       {isLoading && (
         <>
           <HeroSlider />
-          <Feature />
+
           <div className="product__category mtb-20">
             <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
             <div className="product__cate-list">

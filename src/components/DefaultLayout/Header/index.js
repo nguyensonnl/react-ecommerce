@@ -63,7 +63,7 @@ const Header = () => {
             style={{ color: "#fff", fontSize: "2.8rem" }}
             onClick={() => setIsShowNav(!isShowNav)}
           >
-            <i class="fa-sharp fa-solid fa-bars"></i>
+            <i className="fa-sharp fa-solid fa-bars"></i>
           </div>
           <div className="header__brand">
             <div className="logo__brand">LSW</div>
@@ -74,7 +74,7 @@ const Header = () => {
         {isShowNav && (
           <div className="nav-mobile">
             <div className="nav-mobile__login">
-              <i class="fa-solid fa-circle-user icon"></i>
+              <i className="fa-solid fa-circle-user icon"></i>
               <div className="account">
                 <div className="title">Tài khoản</div>
                 <Link to="/account/login" className="account__link">

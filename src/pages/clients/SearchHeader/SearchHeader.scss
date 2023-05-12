@@ -5,6 +5,18 @@
     .product-search-item{
         width: 20%;
     }
+    
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        .product-search-item{
+            width: 25%;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .product-search-item{
+            width: 50%;
+        }
+    }
 }
 .search__title{
     font-size: 1.8rem;

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import f1 from "../../assets/img/products/f1.jpg";
 import { removeCart, decreaseCart, increaseCart } from "../../redux/cartSlice";
 import "./CartItem.scss";
+import { numberFormat } from "../../utils/numberFormat";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -22,37 +23,34 @@ const CartItem = (props) => {
     dispatch(removeCart(item));
   };
 
-  let nf = new Intl.NumberFormat();
   const apiUrl = process.env.REACT_APP_BASE_URL;
   return (
     <div className="cart__item" key={index}>
-      <div className="cart__item-close" onClick={() => handleRemoveCart()}>
-        X
+      <div className="cart__item-remove" onClick={() => handleRemoveCart()}>
+        <i class="fa-solid fa-xmark"></i>
       </div>
       <img className="cart__item-img" src={`${apiUrl}${item.image}`} />
-      <div className="cart__item-name">{item.name}</div>
-      <div className="cart__item-price">
-        {nf.format(item.price)}
-        <sup>đ</sup>
-      </div>
-      <div className="cart__item-qty">
-        <div
-          className="cart__item-qty-btn"
-          onClick={() => updateQuantity("minus")}
-        >
-          <i className="fa-solid fa-minus"></i>
+      <div className="cart__item-info">
+        <div className="cart__item-name">{item.name}</div>
+        <div className="cart__item-price">
+          {numberFormat(item.price)}
+          <sup>đ</sup>
         </div>
-        <div className="cart__item-qty-input">{item.cartQuantity}</div>
-        <div
-          className="cart__item-qty-btn"
-          onClick={() => updateQuantity("plus")}
-        >
-          <i className="fa-solid fa-plus"></i>
+        <div className="cart__item-qty">
+          <div
+            className="cart__item-qty-btn"
+            onClick={() => updateQuantity("minus")}
+          >
+            <i className="fa-solid fa-minus"></i>
+          </div>
+          <div className="cart__item-qty-input">{item.cartQuantity}</div>
+          <div
+            className="cart__item-qty-btn"
+            onClick={() => updateQuantity("plus")}
+          >
+            <i className="fa-solid fa-plus"></i>
+          </div>
         </div>
-      </div>
-      <div className="cart__item-price total-price">
-        {nf.format(totalPrice)}
-        <sup>đ</sup>
       </div>
     </div>
   );

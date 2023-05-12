@@ -13,7 +13,7 @@ const ListCategory = () => {
   }, []);
 
   return (
-    <table class="table table-striped">
+    <table className="table table-striped">
       <thead>
         <tr>
           <th>#</th>

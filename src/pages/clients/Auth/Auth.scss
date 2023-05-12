@@ -205,7 +205,13 @@
     justify-content: center;
 
     .login-form{
-        width: 500px;
+        width: 50%;
+    }
+
+    @media screen and (max-width: 767px) {
+        .login-form{
+            width: 100%;
+        }
     }
 
     .other-login{

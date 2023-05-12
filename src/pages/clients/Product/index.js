@@ -24,6 +24,7 @@ const Product = () => {
     <Helmet title={product.name}>
       <div className="grid">
         {!isLoading && <LoadingSpinner />}
+
         {isLoading && (
           <>
             <Breadcrumb

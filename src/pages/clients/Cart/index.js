@@ -43,7 +43,7 @@ const Cart = () => {
             <>
               <h3 className="cart__header">Giỏ hàng</h3>
               <div className="row">
-                <div className="col-8">
+                <div className="col-8 col-c-12">
                   <div className="cart__list">
                     {cart.cartItems &&
                       cart.cartItems.length > 0 &&
@@ -52,7 +52,7 @@ const Cart = () => {
                       ))}
                   </div>
                 </div>
-                <div className="col-4">
+                <div className="col-4 col-c-12">
                   <div className="cart__checkout">
                     <div className="cart__info">
                       <div className="cart__info__title">

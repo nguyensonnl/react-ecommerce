@@ -36,8 +36,26 @@
                     font-size: 1.5rem;
                 }
             }
+
+            @media screen and (max-width: 767px) {
+               .header__brand{
+                 .logo__brand{
+                    font-size: 3rem;
+                 }
+                 .logo__brand-sub{
+                    font-size: 1rem;
+                 }
+               }
+            }
             
         }
+
+        @media screen and (max-width: 767px) {
+            .header__logo{
+                margin-bottom: 8px;
+            }
+        }
+        
 
         .header__info{
             width: 41.6667%;
