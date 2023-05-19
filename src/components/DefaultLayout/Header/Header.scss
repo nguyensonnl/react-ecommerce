@@ -1,6 +1,7 @@
 .header{
-    background-color: var(--header-background);
-    padding: 10px 0;
+    //background-color: var(--header-background);
+    background-color: #110e0b;
+    padding: 6px 0;
     position: relative;
 
     .header__content{
@@ -22,7 +23,7 @@
             .header__brand{
                 flex-grow: 1;
                 .logo__brand{
-                    font-size: 5.4rem;
+                    font-size: 4rem;
                     background: -webkit-linear-gradient(#f2df92, #d6b478);
                     -webkit-background-clip: text;
                     background-clip: text;
@@ -33,7 +34,7 @@
                 }
                 .logo__brand-sub{
                     color: #bccdcc;
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                 }
             }
 

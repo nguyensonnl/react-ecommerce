@@ -11,6 +11,7 @@ import double from "../../../assets/img/banner/dong-ho-doi.jpg";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import axiosClient from "../../../api/axiosClient";
 
 const Home = () => {
   const [featuredList, setFeaturedList] = useState([]);
@@ -134,12 +135,13 @@ const Home = () => {
 
   return (
     <Helmet title="Đồng Hồ Lam Sơn">
-      {!isLoading && <LoadingSpinner />}
+      {/* {!isLoading && <LoadingSpinner />} */}
 
-      {isLoading && (
-        <>
-          <HeroSlider />
+      {/* {isLoading && ( */}
+      <>
+        <HeroSlider />
 
+        <div className="grid">
           <div className="product__category mtb-20">
             <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
             <div className="product__cate-list">
@@ -192,8 +194,9 @@ const Home = () => {
                 </div>
               </section>
             ))}
-        </>
-      )}
+        </div>
+      </>
+      {/* )} */}
     </Helmet>
   );
 };

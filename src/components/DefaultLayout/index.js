@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import Letter from "./Letter";
 import SubHeader from "./SubHeader";
 
 const DefaultLayout = ({ children }) => {
@@ -9,8 +8,7 @@ const DefaultLayout = ({ children }) => {
     <>
       <Header />
       <SubHeader />
-      <div className="container grid">{children}</div>
-      <Letter />
+      <div className="container">{children}</div>
       <Footer />
     </>
   );

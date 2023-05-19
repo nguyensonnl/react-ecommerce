@@ -25,32 +25,63 @@ const CartItem = (props) => {
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
   return (
-    <div className="cart__item" key={index}>
-      <div className="cart__item-remove" onClick={() => handleRemoveCart()}>
-        <i class="fa-solid fa-xmark"></i>
+    // <div className="cart__item" key={index}>
+    //   <div className="cart__item-remove" onClick={() => handleRemoveCart()}>
+    //     <i class="fa-solid fa-xmark"></i>
+    //   </div>
+    //   <img className="cart__item-img" src={`${apiUrl}${item.image}`} />
+    //   <div className="cart__item-info">
+    //     <div className="cart__item-name">{item.name}</div>
+    //     <div className="cart__item-price">
+    //       {numberFormat(item.price)}
+    //       <sup>đ</sup>
+    //     </div>
+    //     <div className="cart__item-qty">
+    //       <div
+    //         className="cart__item-qty-btn"
+    //         onClick={() => updateQuantity("minus")}
+    //       >
+    //         <i className="fa-solid fa-minus"></i>
+    //       </div>
+    //       <div className="cart__item-qty-input">{item.cartQuantity}</div>
+    //       <div
+    //         className="cart__item-qty-btn"
+    //         onClick={() => updateQuantity("plus")}
+    //       >
+    //         <i className="fa-solid fa-plus"></i>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="cart__product__item" key={index}>
+      <img
+        src={`${apiUrl}${item.image}`}
+        alt="product-img"
+        className="product__img"
+      />
+      <div className="product__name">
+        <div className="product__name-title">{item.name}</div>
+        <div className="product__qty">
+          <div className="cart__item-qty">
+            <div
+              className="cart__item-qty-btn"
+              onClick={() => updateQuantity("minus")}
+            >
+              <i className="fa-solid fa-minus"></i>
+            </div>
+            <div className="cart__item-qty-input">{item.cartQuantity}</div>
+            <div
+              className="cart__item-qty-btn"
+              onClick={() => updateQuantity("plus")}
+            >
+              <i className="fa-solid fa-plus"></i>
+            </div>
+          </div>
+        </div>
       </div>
-      <img className="cart__item-img" src={`${apiUrl}${item.image}`} />
-      <div className="cart__item-info">
-        <div className="cart__item-name">{item.name}</div>
-        <div className="cart__item-price">
-          {numberFormat(item.price)}
-          <sup>đ</sup>
-        </div>
-        <div className="cart__item-qty">
-          <div
-            className="cart__item-qty-btn"
-            onClick={() => updateQuantity("minus")}
-          >
-            <i className="fa-solid fa-minus"></i>
-          </div>
-          <div className="cart__item-qty-input">{item.cartQuantity}</div>
-          <div
-            className="cart__item-qty-btn"
-            onClick={() => updateQuantity("plus")}
-          >
-            <i className="fa-solid fa-plus"></i>
-          </div>
-        </div>
+      <div className="product__price">
+        <div>{numberFormat(item.price)} đ</div>
+        <div onClick={() => handleRemoveCart()}>X</div>
       </div>
     </div>
   );

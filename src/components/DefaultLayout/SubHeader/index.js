@@ -1,42 +1,54 @@
 import "./SubHeader.scss";
-import { Link } from "react-router-dom";
-import policy1 from "../../../assets/img/policy1.png";
-import policy2 from "../../../assets/img/policy2.png";
-import policy3 from "../../../assets/img/policy3.png";
+import { NavLink } from "react-router-dom";
 
 const SubHeader = () => {
   return (
-    <div className="subheader grid">
-      <div className="row">
-        <div className="col-3">
-          <div className="subheader__nav">
-            <i className="fa-solid fa-list"></i>
-            <span>Danh mục sản phẩm</span>
-          </div>
-        </div>
-        <div className="col-9">
-          <ul className="subheader__policies-shop">
-            <li className="subheader__item">
-              <img src={policy1} className="subheader__img" />
-              <Link to="" className="subheader__link">
-                Hưỡng dẫn thanh toán
-              </Link>
-            </li>
-            <li className="subheader__item">
-              <img src={policy2} className="subheader__img" />
-              <Link to="" className="subheader__link">
-                Hưỡng dẫn mua online
-              </Link>
-            </li>
-            <li className="subheader__item">
-              <img src={policy3} className="subheader__img" />
-              <Link to="" className="subheader__link">
-                Hưỡng dẫn mua trả góp
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div className="subheader">
+      <ul className="subheader__group">
+        <li className="subheader__item">
+          <NavLink to="/" className="subheader__item-link">
+            Trang chủ
+          </NavLink>
+        </li>
+
+        <li className="subheader__item">
+          <NavLink
+            to={`/danh-muc/${"63fc7648857357d5e8bca46c"}`}
+            className="subheader__item-link"
+          >
+            Đồng hồ nam
+          </NavLink>
+        </li>
+
+        <li className="subheader__item">
+          <NavLink
+            to={`/danh-muc/${"63fc7642857357d5e8bca46a"}`}
+            className="subheader__item-link"
+          >
+            Đồng hồ đôi
+          </NavLink>
+        </li>
+
+        <li className="subheader__item">
+          <NavLink
+            to={`/danh-muc/${"63fc764d857357d5e8bca46e"}`}
+            className="subheader__item-link"
+          >
+            Đồng hồ nữ
+          </NavLink>
+        </li>
+
+        <li className="subheader__item">
+          <NavLink to="/about" className="subheader__item-link">
+            Giới thiệu
+          </NavLink>
+        </li>
+        <li className="subheader__item">
+          <NavLink to="/contact" className="subheader__item-link">
+            Liên hệ
+          </NavLink>
+        </li>
+      </ul>
     </div>
   );
 };
