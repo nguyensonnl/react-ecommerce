@@ -18,6 +18,7 @@ const Header = () => {
 
   const [searchText, setSearchText] = useState("");
   const isLoggedIn = useSelector((state) => state.customer.isLoggedIn);
+  const cart = useSelector((state) => state.cart);
 
   const query = new URLSearchParams({
     q: searchText,
@@ -44,15 +45,15 @@ const Header = () => {
   };
 
   const [isShowNav, setIsShowNav] = useState(false);
-  const [listCate, setListCate] = useState([]);
+  // const [listCate, setListCate] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await productApi.getCategory();
-      setListCate(res.data);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await productApi.getCategory();
+  //     setListCate(res.data);
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <section className="header">
@@ -95,24 +96,50 @@ const Header = () => {
                 </Link>
               </li>
 
-              {listCate.map((item) => (
-                <li
-                  className="nav__item"
-                  key={item._id}
-                  onClick={() => {
-                    setIsShowNav(!isShowNav);
-                  }}
+              <li
+                className="nav__item"
+                onClick={() => {
+                  setIsShowNav(!isShowNav);
+                }}
+              >
+                <Link
+                  to={`/danh-muc/${"63fc7648857357d5e8bca46c"}`}
+                  className="nav__item-link"
                 >
-                  <Link to={`/danh-muc/${item._id}`} className="nav__item-link">
-                    <img
-                      src={icon2}
-                      alt="icon-home"
-                      className="nav__item-icon"
-                    />
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
+                  <img src={icon2} alt="icon-home" className="nav__item-icon" />
+                  Đồng hồ nam
+                </Link>
+              </li>
+
+              <li
+                className="nav__item"
+                onClick={() => {
+                  setIsShowNav(!isShowNav);
+                }}
+              >
+                <Link
+                  to={`/danh-muc/${"63fc7642857357d5e8bca46a"}`}
+                  className="nav__item-link"
+                >
+                  <img src={icon4} alt="icon-home" className="nav__item-icon" />
+                  Đồng hồ đôi
+                </Link>
+              </li>
+
+              <li
+                className="nav__item"
+                onClick={() => {
+                  setIsShowNav(!isShowNav);
+                }}
+              >
+                <Link
+                  to={`/danh-muc/${"63fc764d857357d5e8bca46e"}`}
+                  className="nav__item-link"
+                >
+                  <img src={icon3} alt="icon-home" className="nav__item-icon" />
+                  Đồng hồ nữ
+                </Link>
+              </li>
 
               <li
                 className="nav__item"
@@ -164,58 +191,56 @@ const Header = () => {
 
         <div className="header__info">
           <ul className="header__list">
-            <li className="header__list-item header__list-item--hiden">
-              <i className="fa-solid fa-phone"></i>
-              <div>
-                <p>Gọi mua hàng</p>
-                <Link className="header__list-link">
-                  <strong>0376 940 314</strong>
-                </Link>
-              </div>
-            </li>
-            <li className="header__list-item header__list-item--hiden">
-              <i className="fa-solid fa-location-dot"></i>
-              <Link className="header__list-link">
-                Hệ thống<br></br>cửa hàng
+            <li className="header__list-item">
+              <Link to="/cart" className="header__list-link">
+                <i className="fa-solid fa-cart-shopping"></i>
+                <span>
+                  <span>Giỏ hàng</span>
+                  <span className="span__color">
+                    [ {cart.cartTotalQuantity} ] sản phẩm
+                  </span>
+                </span>
               </Link>
             </li>
+
+            <li className="header__list-item header__list-item--hiden">
+              <Link className="header__list-link">
+                <i className="fa-solid fa-phone"></i>
+                <span>
+                  <span>Gọi mua hàng</span>
+                  <span className="span__color">0376 940 314</span>
+                </span>
+              </Link>
+            </li>
+
             <li className="header__list-item header__list-item--hiden">
               <i className="fa-regular fa-user"></i>
               {isLoggedIn ? (
                 <div className="header__account">
                   <Link to="/account" className="header__list-link">
-                    Tài khoản
+                    <span>Tài khoản</span>
                   </Link>
                   <Link
                     to=""
-                    className="header__list-link"
+                    className="header__list-link span__color"
                     onClick={() => handleLogout()}
                   >
-                    Đăng xuất
+                    <span className="span__color">Đăng xuất</span>
                   </Link>
                 </div>
               ) : (
                 <div className="header__account">
                   <Link to="/account/login" className="header__list-link">
-                    Tài khoản
+                    <span>Tài khoản</span>
                   </Link>
                   <Link
                     to="/account/login"
                     className="header__list-link header__list-link--auth"
                   >
-                    Đăng nhập
+                    <span className="span__color">Đăng nhập</span>
                   </Link>
                 </div>
               )}
-            </li>
-            <li className="header__list-item">
-              <Link
-                to="/cart"
-                className="header__list-link header__list-item--cart header__list-link--hover"
-              >
-                <i className="fa-solid fa-cart-shopping"></i>
-                <span>Giỏ hàng</span>
-              </Link>
             </li>
           </ul>
         </div>

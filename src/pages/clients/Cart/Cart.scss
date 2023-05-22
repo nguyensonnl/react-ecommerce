@@ -1,4 +1,6 @@
 .cart{
+    width: 50%;
+    margin: 0 auto;
 
     .cart__empty{
         display: flex;
@@ -31,94 +33,12 @@
         }
 
         .cart__img{
-            width: 300px;
+            width: 50%;
             background-color: #fff;
             margin-bottom: 22px;
             margin-top: 80px;
         }
     }
-    &__checkout{
-        margin-left: 50px;
-        .cart__info{
-            width: 100%;
-            background-color: #f7f7f7;
-            padding: 14px;
-
-            &__title{
-
-                & p{
-                    font-size: 1.5rem;
-                    padding-bottom: 16px;
-
-                    span{
-                        font-size: 1.6rem;
-                        font-weight: 600;
-                        color: var(--price-color);
-                    }
-                }
-    
-                &-price{
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding-bottom: 16px;
-    
-                    & span:nth-child(1){
-                        text-transform: uppercase;
-                    }
-    
-                    & span:nth-child(2){
-                        font-size: 1.8rem;
-                        font-weight: 600;
-                        color: var(--price-color);
-
-                        sup{
-                            text-decoration: underline;
-                        }
-                    }
-                }
-            }
-    
-            &__btn{
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-    
-                button{
-                    width: 100%;
-                    padding: 10px;
-                    background-color: var(--btn-color);
-                    border: none;
-                    outline: none;
-                    color: #fff;
-                    cursor: pointer;
-                    font-weight: 500;
-    
-                    &:hover{
-                        filter: brightness(1.2);
-                    }
-                }
-            }
-    
-           
-    
-        }
-    }
-
-   
-}
-
-@media screen and (max-width: 767px) {
-    .cart__checkout{
-        margin-left: 0px;
-    }
-}
-
-//new
-
-.cart{
-    width: 50%;
-    margin: 0 auto;
 
     .cart__header{
         padding: 10px;

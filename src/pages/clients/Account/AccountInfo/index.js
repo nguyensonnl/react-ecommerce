@@ -7,7 +7,10 @@ import "./AccountInfo.scss";
 const AccountInfo = () => {
   return (
     <Helmet title="Trang khách hàng">
-      <Breadcrumb title="Trang khách hàng" />
+      <div className="grid">
+        <Breadcrumb title="Trang khách hàng" />
+      </div>
+
       <AccountLayout>
         <div className="account__info">
           <h3 className="title">THÔNG TIN TÀI KHOẢN</h3>

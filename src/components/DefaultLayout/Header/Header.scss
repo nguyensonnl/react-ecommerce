@@ -63,43 +63,48 @@
             .header__list-link--auth{
                 font-size: 1.1rem;
             }
-            .header__list-item--cart{
-                border: 2px solid var(--subheader-background) ;
-                padding: 8px;
-                border-radius: 6px;
-                &:hover{
-                    background-color: var(--subheader-color);
-                }
-            }
+         
             .header__list{
                 color: var(--header-color);
-                padding-left: 40px;
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 list-style: none;
+
                 .header__list-item{
-                    width: 25%;
+                    background: hsla(0,0%,100%,.08);
+                    padding: 5px;
                     line-height: 2rem;
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
                     font-size: 1.4rem;
+                    border-radius: 5px;
+                    margin-left: 10px;
+
                     i{
-                        font-size: 2.2rem;
+                        font-size: 2rem;
                         margin-right: 6px;
                     }
+
                     .header__list-link{
-                        display: block;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         text-decoration: none;
                         color: var(--header-color);
-                        &:hover{
+                        padding: 0 16px;
+
+                        & span:nth-child(1){
+                            font-size: 1.3rem;
+                        }
+                        .span__color{
+                            display: block;
                             color: var(--secondary-color);
-                            cursor: pointer;
+                            
                         }
                     }
-                    .header__list-link--hover:hover{
-                        color: #fff !important;
-                    }
+                   
                 }
             }
         }
@@ -142,7 +147,7 @@
     .header__content{
         padding: 0 6px;
     }
-
+    
     .header__search{
         width: 100% !important;
     }

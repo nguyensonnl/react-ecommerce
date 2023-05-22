@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Helmet from "../../../components/Helmet";
 import CartItem from "../../../components/CartItem.js";
-import Breadcrumb from "../../../components/Breadcrumb";
 import cart_empty from "../../../assets/img/cart_empty_background.png";
 import { getTotals } from "../../../redux/cartSlice";
 import { numberFormat } from "../../../utils/numberFormat";
+import orderService from "../../../api/orderService";
+import { clearCart } from "../../../redux/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -22,70 +23,77 @@ const Cart = () => {
     navigate("/");
   };
 
-  const apiUrl = process.env.REACT_APP_BASE_URL;
+  //Create new order
+  const customer = useSelector((state) => state.customer.customer);
+  const email = customer?.email;
+  const firstName = customer?.firstName;
+  const phone = customer?.phone;
+
+  const isLoggedIn = useSelector((state) => state.customer.isLoggedIn);
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    name: "",
+    phone: "",
+    address: "",
+    note: "",
+    cart: cart.cartItems,
+  });
+
+  useEffect(() => {
+    setInputs({
+      email: "" || email,
+      name: "" || firstName,
+      phone: "" || phone,
+    });
+  }, [customer]);
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart]);
+
+  const handleChangeInput = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (isLoggedIn) {
+        const newData = {
+          orderItem_id: cart.cartItems,
+          customer_id: customer._id,
+          phone: inputs.phone,
+          address: inputs.address,
+          note: inputs.note,
+          methodPayment: "Thanh toán khi nhận hàng",
+        };
+
+        const res = await orderService.createNewOrder(newData);
+        // const res = await axios.post(
+        //   "http://localhost:5050/api/v1/orders",
+        //   newData
+        // );
+        dispatch(clearCart());
+        navigate("/");
+        if (res.status === 200) {
+          console.log("Success");
+        } else {
+          console.log("Some error occured");
+        }
+      } else {
+        navigate("/account/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Helmet title="Giỏ hàng">
       <div className="grid">
-        {/* <div className="cart section-m1">
-          {cart.cartItems.length === 0 && (
-            <div className="cart__empty">
-              <img src={cart_empty} alt="empty cart" className="cart__img" />
-              <p className="cart__title">Giỏ hàng trống</p>
-              <p className="cart__home">
-                Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!
-              </p>
-              <button className="cart__btn" onClick={() => handleBackHome()}>
-                Mua sắm ngay
-              </button>
-            </div>
-          )}
-
-          {cart.cartItems.length > 0 && (
-            <>
-              <h3 className="cart__header">Giỏ hàng</h3>
-              <div className="row">
-                <div className="col-8 col-c-12">
-                  <div className="cart__list">
-                    {cart.cartItems &&
-                      cart.cartItems.length > 0 &&
-                      cart.cartItems.map((item, index) => (
-                        <CartItem item={item} index={index} />
-                      ))}
-                  </div>
-                </div>
-                <div className="col-4 col-c-12">
-                  <div className="cart__checkout">
-                    <div className="cart__info">
-                      <div className="cart__info__title">
-                        <p>
-                          Bạn đang có <span>{cart.cartTotalQuantity}</span> sản
-                          phẩm trong giỏ hàng
-                        </p>
-                        <div className="cart__info__title-price">
-                          <span>Tổng cộng</span>
-                          <span>
-                            {cart.cartTotalAmount.toLocaleString()}
-                            <sup>đ</sup>
-                          </span>
-                        </div>
-                      </div>
-                      <div className="cart__info__btn">
-                        <Link to="/checkout">
-                          <button type="button">Thanh toán</button>
-                        </Link>
-
-                        <Link to="/">
-                          <button type="button">Tiếp tục mua hàng</button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div> */}
-
         <div className="cart">
           {cart.cartItems.length === 0 && (
             <div className="cart__empty">
@@ -112,41 +120,8 @@ const Cart = () => {
               <div className="cart__content">
                 {cart.cartItems &&
                   cart.cartItems.length > 0 &&
-                  cart.cartItems.map((item, index) => (
-                    <CartItem item={item} index={index} />
-                    // <div className="cart__product__item" key={index}>
-                    //   <img
-                    //     src={`${apiUrl}${item.image}`}
-                    //     alt="product-img"
-                    //     className="product__img"
-                    //   />
-                    //   <div className="product__name">
-                    //     <div className="product__name-title">{item.name}</div>
-                    //     <div className="product__qty">
-                    //       <div className="cart__item-qty">
-                    //         <div
-                    //           className="cart__item-qty-btn"
-                    //           // onClick={() => updateQuantity("minus")}
-                    //         >
-                    //           <i className="fa-solid fa-minus"></i>
-                    //         </div>
-                    //         <div className="cart__item-qty-input">
-                    //           {item.cartQuantity}
-                    //         </div>
-                    //         <div
-                    //           className="cart__item-qty-btn"
-                    //           // onClick={() => updateQuantity("plus")}
-                    //         >
-                    //           <i className="fa-solid fa-plus"></i>
-                    //         </div>
-                    //       </div>
-                    //     </div>
-                    //   </div>
-                    //   <div className="product__price">
-                    //     <div>{numberFormat(item.price)} đ</div>
-                    //     <div>X</div>
-                    //   </div>
-                    // </div>
+                  cart.cartItems.map((item) => (
+                    <CartItem item={item} key={item._id} />
                   ))}
 
                 <div className="cart__total">
@@ -167,51 +142,76 @@ const Cart = () => {
                       <label>
                         Email<span> (*)</span>
                       </label>
+
                       <input
                         name="email"
                         type="email"
                         className="item-input"
                         placeholder="Nhập email"
+                        value={inputs.email}
+                        onChange={(e) => {
+                          handleChangeInput(e);
+                        }}
                       />
                     </div>
                     <div className="item">
                       <label>
                         Họ và tên<span> (*)</span>
                       </label>
+
                       <input
                         name="name"
                         type="text"
                         className="item-input"
                         placeholder="Nhập họ tên"
+                        value={inputs.name}
+                        onChange={(e) => {
+                          handleChangeInput(e);
+                        }}
                       />
                     </div>
                     <div className="item">
                       <label>
                         Điện thoại<span> (*)</span>
                       </label>
+
                       <input
                         name="phone"
                         type="text"
                         className="item-input"
                         placeholder="Nhập điện thoại"
+                        value={inputs.phone}
+                        onChange={(e) => {
+                          handleChangeInput(e);
+                        }}
                       />
                     </div>
                     <div className="item">
                       <label>
                         Địa chỉ<span> (*)</span>
                       </label>
+
                       <input
                         name="address"
                         type="text"
                         className="item-input"
                         placeholder="Nhập địa chỉ"
+                        value={inputs.address}
+                        onChange={(e) => {
+                          handleChangeInput(e);
+                        }}
                       />
                     </div>
                     <div className="item">
                       <label>Ghi chú</label>
+
                       <textarea
                         name="note"
                         className="item-textarea"
+                        value={inputs.note}
+                        onChange={(e) => {
+                          handleChangeInput(e);
+                        }}
                       ></textarea>
                     </div>
                   </form>
@@ -223,7 +223,10 @@ const Cart = () => {
                 </div>
 
                 <div className="cart__btn">
-                  <button className="cart__btn-buy">
+                  <button
+                    className="cart__btn-buy"
+                    onClick={(e) => handleSubmit(e)}
+                  >
                     <p>Đặt hàng</p>
                     <p>(Trả tiền khi nhận hàng tại nhà)</p>
                   </button>

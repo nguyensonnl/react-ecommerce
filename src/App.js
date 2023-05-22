@@ -74,7 +74,7 @@ function App() {
         <Route path="/admin/order" element={<Order />} />
         <Route path="/admin/category/" element={<Category />} />
         <Route path="/admin/brand" element={<Brand />} />
-        <Route path="/pratice" element={<Pratice />} />
+        {/* <Route path="/pratice" element={<Pratice />} /> */}
 
         {publicRoutes.map((route, index) => {
           const Page = route.page;

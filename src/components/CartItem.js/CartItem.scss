@@ -1,91 +1,3 @@
-.cart__item{
-    margin-top: 10px;
-    padding-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    & + .cart__item{
-        border-top: 1px solid #eee;
-    }
-
-    .cart__item-remove{
-        font-size: 1.8  rem;
-        color: #c3c3c3;
-        cursor: pointer;
-        padding: 16px;
-    }
-
-    .cart__item-img{
-       max-width: 90px;
-        object-fit: cover;
-    }
-
-    .cart__item-info{
-        flex-basis: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-
-        .cart__item-name{
-            white-space: pre-wrap;
-            font-size: 1.5rem;
-            font-weight: 300;
-            flex-basis: 100%;
-        }
-    
-        .cart__item-price{
-            color: #ed3324;
-            font-size: 1.4rem;
-            sup{
-                text-decoration:underline;
-            }
-            flex: 1;
-        }
-    
-        .cart__item-qty{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 300;
-            text-align: center;
-            border: 1px solid #ced4da;
-            padding: 6px;
-            border-radius: 4px;
-    
-            .cart__item-qty-btn{
-                width: 40px;
-                cursor: pointer;
-    
-                i{
-                    font-size: 1.3rem;
-                    opacity: 0.8;
-                }
-            }
-    
-            .cart__item-qty-input{
-                width: 100%;
-                font-size: 1.6rem;
-            }
-        }
-    }
-}
-
-@media (max-width: 767px) {
-    .cart__item-info{
-        flex-direction: column;
-        align-items: flex-start !important;
-       
-    }
-    .cart__item{
-        margin-bottom: 20px;
-    }
-}
-
-//new
-
 .cart__product__item{
     display: flex;
     align-items: center;
@@ -138,13 +50,18 @@
     .product__price{
         width: 18%;
         text-align: center;
-        color: red;
+        color: #ed3324;
         font-size: 1.6rem;
         font-weight: bold;
 
         & div:nth-child(2){
             padding-top: 6px;
             cursor: pointer;
+        }
+        
+        i{
+            font-size: 1.7rem;
+            margin-top: 6px;
         }
     }
 }
