@@ -96,9 +96,9 @@ const ProductView = ({ product }) => {
                   <i className="fa-solid fa-star product__rate-icon"></i>
                 </li>
               </ul>
-              <Link to="" className="product__rate-number">
+              {/* <Link to="" className="product__rate-number">
                 ( 250 đánh giá )
-              </Link>
+              </Link> */}
             </div>
             <div className="product__brand">
               <span>Thương hiệu:</span>
@@ -126,29 +126,33 @@ const ProductView = ({ product }) => {
                 </div>
               </div>
             </div>
-            <div className="product__description">
-              <div className="product__description-title">
-                Thông tin sản phẩm:
-              </div>
-              <p className="product__description-content">
-                {product.description}
-              </p>
+            <div className="product__des">
+              <div className="product__des-title">Thông tin sản phẩm:</div>
+              <p className="product__des-content">{product.description}</p>
             </div>
             <div className="product__submit">
               <button
-                type="button"
-                className="product__submit-cart"
-                onClick={() => handleAddToCart(product)}
-              >
-                Thêm vào giỏ hàng
-              </button>
-              <button
                 onClick={() => handleGotoCart(product)}
                 type="button"
-                className="product__submit-buy"
+                className="btn-buy"
               >
-                Mua ngay
+                <span>Mua ngay</span>
+                <span>Miễn phí vận chuyển - Thanh toán tại nhà</span>
               </button>
+              <div className="btn-group">
+                <button disabled type="button" className="btn-online">
+                  <span>Mua trả góp 0%</span>
+                  <span>Qua thẻ Visa, Master, JCB</span>
+                </button>
+                <button
+                  type="button"
+                  className="btn-cart"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  <span>Giỏ hàng</span>
+                  <span>Thêm sản phẩm vào giỏ</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

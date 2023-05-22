@@ -15,7 +15,7 @@ import AccountOrder from "../pages/clients/Account/AccountOrder";
 const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
-  { path: "/product/:id", page: Product },
+  { path: "/sp/:id", page: Product },
   { path: "/danh-muc/:cate", page: Catalog },
   { path: "*", page: NotFound },
   { path: "/account/login", page: Login },
