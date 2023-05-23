@@ -34,6 +34,8 @@ const Catalog = () => {
   const [products, setProducts] = useState([productByCate]);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(cate);
+
   //Pagination
   const [curentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
@@ -305,33 +307,23 @@ const Catalog = () => {
 
               <div className="catalog__filter">
                 <span>Sắp xếp:</span>
-                <ul className="catalog__list">
+                {/* <ul className="catalog__list">
                   <li className="catalog__item">
-                    <Link to="" className="catalog__link">
-                      Tên A &#10141; Z
-                    </Link>
+                    <Link className="catalog__link">Tên A &#10141; Z</Link>
                   </li>
                   <li className="catalog__item">
-                    <Link to="" className="catalog__link">
-                      Tên Z &#10141; A
-                    </Link>
+                    <Link className="catalog__link">Tên Z &#10141; A</Link>
                   </li>
                   <li className="catalog__item">
-                    <Link to="" className="catalog__link">
-                      Giá tăng dần
-                    </Link>
+                    <Link className="catalog__link">Giá tăng dần</Link>
                   </li>
                   <li className="catalog__item">
-                    <Link to="" className="catalog__link">
-                      Giá giảm dần
-                    </Link>
+                    <Link className="catalog__link">Giá giảm dần</Link>
                   </li>
                   <li className="catalog__item">
-                    <Link to="" className="catalog__link">
-                      Hàng mới
-                    </Link>
+                    <Link className="catalog__link">Hàng mới</Link>
                   </li>
-                </ul>
+                </ul> */}
               </div>
               <div className="list__product-catalog">
                 {currentPosts &&

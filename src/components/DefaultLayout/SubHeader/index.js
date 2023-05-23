@@ -1,52 +1,54 @@
+import { useEffect, useState } from "react";
 import "./SubHeader.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import axiosClient from "../../../api/axiosClient";
 
 const SubHeader = () => {
   return (
     <div className="subheader">
       <ul className="subheader__group">
         <li className="subheader__item">
-          <NavLink to="/" className="subheader__item-link">
+          <Link to="/" className="subheader__item-link">
             Trang chủ
-          </NavLink>
+          </Link>
         </li>
 
         <li className="subheader__item">
-          <NavLink
+          <Link
             to={`/danh-muc/${"63fc7648857357d5e8bca46c"}`}
             className="subheader__item-link"
           >
             Đồng hồ nam
-          </NavLink>
+          </Link>
         </li>
 
         <li className="subheader__item">
-          <NavLink
+          <Link
             to={`/danh-muc/${"63fc7642857357d5e8bca46a"}`}
             className="subheader__item-link"
           >
             Đồng hồ đôi
-          </NavLink>
+          </Link>
         </li>
 
         <li className="subheader__item">
-          <NavLink
+          <Link
             to={`/danh-muc/${"63fc764d857357d5e8bca46e"}`}
             className="subheader__item-link"
           >
             Đồng hồ nữ
-          </NavLink>
+          </Link>
         </li>
 
         <li className="subheader__item">
-          <NavLink to="/about" className="subheader__item-link">
+          <Link to="/about" className="subheader__item-link">
             Giới thiệu
-          </NavLink>
+          </Link>
         </li>
         <li className="subheader__item">
-          <NavLink to="/contact" className="subheader__item-link">
+          <Link to="/contact" className="subheader__item-link">
             Liên hệ
-          </NavLink>
+          </Link>
         </li>
       </ul>
     </div>

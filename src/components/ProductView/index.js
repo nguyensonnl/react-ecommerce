@@ -56,7 +56,7 @@ const ProductView = ({ product }) => {
   return (
     <>
       <div className="row product__detail">
-        <div className="col-5 col-c-12">
+        <div className="col-4 col-c-12">
           <div className="product__img-list">
             <img src={previewImg} className="product__img-main" />
             <div className="product__img-slide">
@@ -75,7 +75,7 @@ const ProductView = ({ product }) => {
             </div>
           </div>
         </div>
-        <div className="col-7 col-c-12">
+        <div className="col-8 col-c-12">
           <div className="product__info">
             <div className="product__title">{product.name}</div>
             <div className="product__rate">
