@@ -14,15 +14,15 @@ import Pagination from "../../../components/Pagination";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const prices = [
-  { id: 1, title: "Giá dưới 1.000.000đ", value: "0-1000" },
-  { id: 2, title: "1.000.000đ - 2.000.000đ", value: "1000-2000" },
-  { id: 3, title: "2.000.000đ - 3.000.000đ", value: "2000-3000" },
-  { id: 4, title: "3.000.000đ - 5.000.000đ", value: "3000-5000" },
-  { id: 5, title: "5.000.000đ - 7.000.000đ", value: "5000-7000" },
-  { id: 6, title: "7.000.000đ - 10.000.000đ", value: "7000-10000" },
-  { id: 7, title: "10.000.000đ - 20.000.000đ", value: "10000-20000" },
-  { id: 8, title: "20.000.000đ - 30.000.000đ", value: "20000-30000" },
-  { id: 9, title: "Giá trên 30.000.000đ", value: "30000+" },
+  { id: 1, title: "Giá dưới 1 triệu", value: "0-1000" },
+  { id: 2, title: "Từ 1 - 2 triệu", value: "1000-2000" },
+  { id: 3, title: "Từ 2 - 3 triệu", value: "2000-3000" },
+  { id: 4, title: "Từ 3 - 5 triệu", value: "3000-5000" },
+  { id: 5, title: "Từ 5 - 7 triệu", value: "5000-7000" },
+  { id: 6, title: "Từ 7 - 10 triệu", value: "7000-10000" },
+  { id: 7, title: "Từ 10 - 20 triệu", value: "10000-20000" },
+  { id: 8, title: "Từ 20 - 30 triệu", value: "20000-30000" },
+  { id: 9, title: "Trên 30 triệu", value: "30000+" },
 ];
 
 const Catalog = () => {
@@ -207,38 +207,36 @@ const Catalog = () => {
       <div className="grid">
         <Breadcrumb title={categoryId.name} />
 
-        <div className="row mt-20">
-          <div className="col-3">
-            <div className="catalog__product__filter">
-              <div className="filter__group">
-                <p className="filter__product-title">Thương hiệu</p>
-                <div className="filter__list">
-                  {brands &&
-                    brands.length > 0 &&
-                    brands.map((item, index) => (
-                      <div className="filter__item" key={index}>
-                        {/* <input type="checkbox" className="catalog__list-check" />
+        <div className="catalog__product__filter">
+          <div className="filter__group">
+            <p className="filter__product-title">Thương hiệu</p>
+            <div className="filter__list">
+              {brands &&
+                brands.length > 0 &&
+                brands.map((item, index) => (
+                  <div className="filter__item" key={index}>
+                    {/* <input type="checkbox" className="catalog__list-check" />
               <span className="catalog__list-name">{item.name}</span> */}
-                        {/* <CheckBox
+                    {/* <CheckBox
                 label={item.name}
                 onChange={(input) => handleFilter(input.checked, item)}
                 checked={filterBrand.includes(item.name)}
               /> */}
-                        <CheckBox
-                          label={item.name}
-                          onChange={(input) =>
-                            filterSelect("BRAND", input.checked, item)
-                          }
-                          checked={filter.brand.includes(item.name)}
-                        />
-                      </div>
-                    ))}
-                </div>
-              </div>
+                    <CheckBox
+                      label={item.name}
+                      onChange={(input) =>
+                        filterSelect("BRAND", input.checked, item)
+                      }
+                      checked={filter.brand.includes(item.name)}
+                    />
+                  </div>
+                ))}
+            </div>
+          </div>
 
-              <div className="filter__group">
-                <p className="filter__product-title">Khoảng giá</p>
-                {/* <div className="catalog__list-body">
+          <div className="filter__group">
+            <p className="filter__product-title">Khoảng giá</p>
+            {/* <div className="catalog__list-body">
                       <div className="catalog__list-body-search">
                         <input
                           type="text"
@@ -272,92 +270,86 @@ const Catalog = () => {
                         Xóa bộ lọc
                       </button>
                     </div> */}
-                <div className="filter__list">
-                  {prices &&
-                    prices.length > 0 &&
-                    prices.map((item, index) => (
-                      <div className="filter__item" key={index}>
-                        <CheckBox
-                          label={item.title}
-                          onChange={(input) =>
-                            filterSelect("PRICE", input.checked, item)
-                          }
-                          checked={filter.price.includes(item.value)}
-                        />
-                      </div>
-                    ))}
-                </div>
-                <div className="catalog__list-body">
-                  <button
-                    style={{ margin: "10px 0" }}
-                    type="button"
-                    className="catalog__list-body-btn"
-                    onClick={() => handleClearPrice()}
-                  >
-                    Xóa bộ lọc
-                  </button>
-                </div>
-              </div>
+            <div className="filter__list">
+              {prices &&
+                prices.length > 0 &&
+                prices.map((item, index) => (
+                  <div className="filter__item" key={index}>
+                    <CheckBox
+                      label={item.title}
+                      onChange={(input) =>
+                        filterSelect("PRICE", input.checked, item)
+                      }
+                      checked={filter.price.includes(item.value)}
+                    />
+                  </div>
+                ))}
             </div>
+
+            {(filter.price.length > 0 || filter.brand.length > 0) && (
+              <div className="catalog__list-body">
+                <button
+                  style={{ margin: "10px 0" }}
+                  type="button"
+                  className="catalog__list-body-btn"
+                  onClick={() => handleClearPrice()}
+                >
+                  Xóa bộ lọc
+                </button>
+              </div>
+            )}
           </div>
 
-          <div className="col-9">
-            <div className="catalog__product__list mb-20">
-              <div className="catalog__title">{categoryId.name}</div>
+          <div className="catalog__filter">
+            <span>Sắp xếp:</span>
+            <ul className="catalog__list">
+              <li className="catalog__item">
+                <Link className="catalog__link">Giá tăng dần</Link>
+              </li>
+              <li className="catalog__item">
+                <Link className="catalog__link">Giá giảm dần</Link>
+              </li>
+              <li className="catalog__item">
+                <Link className="catalog__link">Hàng mới</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-              <div className="catalog__filter">
-                <span>Sắp xếp:</span>
-                {/* <ul className="catalog__list">
-                  <li className="catalog__item">
-                    <Link className="catalog__link">Tên A &#10141; Z</Link>
-                  </li>
-                  <li className="catalog__item">
-                    <Link className="catalog__link">Tên Z &#10141; A</Link>
-                  </li>
-                  <li className="catalog__item">
-                    <Link className="catalog__link">Giá tăng dần</Link>
-                  </li>
-                  <li className="catalog__item">
-                    <Link className="catalog__link">Giá giảm dần</Link>
-                  </li>
-                  <li className="catalog__item">
-                    <Link className="catalog__link">Hàng mới</Link>
-                  </li>
-                </ul> */}
-              </div>
-              <div className="list__product-catalog">
-                {currentPosts &&
-                  currentPosts.length > 0 &&
-                  currentPosts.map((item, index) => (
-                    <ProductCard
-                      id={item._id}
-                      key={index}
-                      name={item.name}
-                      price={new Intl.NumberFormat().format(item.price)}
-                      brand={item.brand}
-                      src={item.image}
-                      className="card-overide"
-                    />
-                  ))}
-              </div>
+        <div className="catalog__product__list mb-20">
+          <div className="catalog__title">{categoryId.name}</div>
 
-              <Pagination
-                totalPosts={products.length}
-                postsPerPage={postsPerPage}
-                setCurrentPage={setCurrentPage}
-                previousPage={previousPage}
-                nextPage={nextPage}
-                activeId={activeId}
-                setActiveId={setActiveId}
-              />
-              {/*pages.lengh>1*/}
-              {/* {products.length === 0 && (
+          <div className="list__product-catalog">
+            {currentPosts &&
+              currentPosts.length > 0 &&
+              currentPosts.map((item, index) => (
+                <ProductCard
+                  id={item._id}
+                  key={index}
+                  name={item.name}
+                  price={new Intl.NumberFormat().format(item.price)}
+                  brand={item.brand}
+                  src={item.image}
+                  className="card-overide"
+                />
+              ))}
+          </div>
+
+          <Pagination
+            totalPosts={products.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            previousPage={previousPage}
+            nextPage={nextPage}
+            activeId={activeId}
+            setActiveId={setActiveId}
+          />
+          {/*pages.lengh>1*/}
+          {/* {products.length === 0 && (
           <div className="catalog__empty-product">
             Không có sản phẩm nào bạn cần tìm
           </div>
         )} */}
-            </div>
-          </div>
         </div>
       </div>
     </Helmet>

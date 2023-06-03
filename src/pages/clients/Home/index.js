@@ -142,33 +142,34 @@ const Home = () => {
         <HeroSlider />
 
         <div className="grid">
-          <div className="product__category mtb-20">
-            <h2 className="product__category__title mtb-20">ĐỒNG HỒ NỔI BẬT</h2>
-            <div className="product__cate-list">
-              {featuredList.map((item, index) => (
-                <ProductCard
-                  id={item._id}
-                  key={index}
-                  src={item.image}
-                  brand={item.brand}
-                  name={item.name}
-                  price={item.price.toLocaleString()}
-                />
-              ))}
+          {featuredList.length > 0 && (
+            <div className="product__category mtb-20">
+              <h2 className="product__category__title">
+                <span>Đồng hồ nổi bật </span>
+              </h2>
+              <div className="product__cate-list">
+                {featuredList.map((item, index) => (
+                  <ProductCard
+                    id={item._id}
+                    key={index}
+                    src={item.image}
+                    brand={item.brand}
+                    name={item.name}
+                    price={item.price.toLocaleString()}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {categories &&
             categories.length > 0 &&
             categories.map((item) => (
               <section className="mtb-20" key={item._id}>
-                <Banner src={men} />
-                <div className="product__category grid mt-20">
-                  <h2
-                    className="product__category__title mtb-20"
-                    style={{ textTransform: "upperCase" }}
-                  >
-                    {item.name}
+                {/* <Banner src={men} /> */}
+                <div className="product__category">
+                  <h2 className="product__category__title">
+                    <span>{item.name}</span>
                   </h2>
 
                   <div className="product__cate-list">

@@ -1,62 +1,5 @@
 
 .catalog__product__filter{
-
-    .filter__group{
-        padding-right: 8px;
-
-        .filter__product-title{
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-
-        .filter__list{
-            margin: 10px 0;
-            .filter__item{
-                line-height: 3rem;
-            }
-        }
-
-        .catalog__list-body{
-            margin-top: 10px;
-
-            .catalog__list-body-search{
-                display: flex;
-                justify-content: space-between;
-
-                input{
-                    width: 40%;
-                    outline: none;
-                    padding: 5px;
-                    margin-bottom: 16px;
-                }
-
-                span{
-                    position: relative;
-                    top: 6px;
-                }
-            }
-            button{
-                width: 100%;
-                padding: 10px 0;
-                background-color: var(--extra-color);
-                border: none;
-                color: #fff;
-                font-size: 1.4rem;
-                cursor: pointer;
-            }
-        }
-    }
-}
-
-
-.catalog__product__list{
-
-    .catalog__title{
-        margin-bottom: 10px;
-        font-size: 2.5rem;
-        font-weight: 400;
-    }
-
     .catalog__filter{
         display: flex;
         align-items: center;
@@ -83,13 +26,75 @@
         }
     }
 
+    .filter__group{
+        padding-right: 8px;
+
+        .filter__product-title{
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .filter__list{
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            .filter__item{
+                line-height: 3rem;
+            }
+        }
+
+        .catalog__list-body{
+            margin-top: 10px;
+
+            .catalog__list-body-search{
+                display: flex;
+                justify-content: space-between;
+
+                input{
+                    width: 40%;
+                    outline: none;
+                    padding: 5px;
+                    margin-bottom: 16px;
+                }
+
+                span{
+                    position: relative;
+                    top: 6px;
+                }
+            }
+            button{
+                width: 16%;
+                padding: 10px 0;
+                background-color: var(--extra-color);
+                border: none;
+                color: #fff;
+                font-size: 1.4rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+.catalog__product__list{
+
+    .catalog__title{
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+
+    
+
     .list__product-catalog{
         display: flex;
         flex-wrap: wrap;
      }
 
      .card-overide{
-         width: 25%;
+         width: 20%;
      }
 }
 
