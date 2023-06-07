@@ -1,17 +1,14 @@
 import "./Home.scss";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import HeroSlider from "../../../components/HeroSlider";
-import ProductCard from "../../../components/ProductCard";
-import Banner from "../../../components/Banner";
+//import ProductCard from "../../../components/ProductCard";
 import Helmet from "../../../components/Helmet";
 import productApi from "../../../api/productApi";
-import men from "../../../assets/img/banner/dong-ho-nam.jpg";
-import women from "../../../assets/img/banner/dong-ho-nu.jpg";
-import double from "../../../assets/img/banner/dong-ho-doi.jpg";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import axiosClient from "../../../api/axiosClient";
+
+const ProductCard = React.lazy(() => import("../../../components/ProductCard"));
 
 const Home = () => {
   const [featuredList, setFeaturedList] = useState([]);
@@ -22,10 +19,10 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const res = await productApi.getProductFeatured(5);
       setFeaturedList(res.data);
-    }
+    };
     fetchData();
   }, []);
 
@@ -116,39 +113,19 @@ const Home = () => {
   //   fetchProducts();
   // }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const men = await productApi.getProductByCate("63fc7648857357d5e8bca46c");
-  //     setMenWatch(men.data);
-  //     const women = await productApi.getProductByCate(
-  //       "63fc764d857357d5e8bca46e"
-  //     );
-  //     setWomenWatch(women.data);
-  //     const doubleWatch = await productApi.getProductByCate(
-  //       "63fc7642857357d5e8bca46a"
-  //     );
-  //     setDoubleWatch(doubleWatch.data);
-  //     setIsLoading(true);
-  //   };
-  //   fetchData();
-  // }, []);
-
   return (
     <Helmet title="Đồng Hồ Lam Sơn">
-      {/* {!isLoading && <LoadingSpinner />} */}
+      <HeroSlider />
 
-      {/* {isLoading && ( */}
-      <>
-        <HeroSlider />
-
-        <div className="grid">
-          {featuredList.length > 0 && (
-            <div className="product__category mtb-20">
-              <h2 className="product__category__title">
-                <span>Đồng hồ nổi bật </span>
-              </h2>
-              <div className="product__cate-list">
-                {featuredList.map((item, index) => (
+      <section className="grid">
+        {featuredList.length > 0 && (
+          <div className="product__category mtb-20">
+            <h2 className="product__category__title">
+              <span>Đồng hồ nổi bật </span>
+            </h2>
+            <div className="product__cate-list">
+              {featuredList.map((item, index) => (
+                <Suspense fallback={<div>...Loading</div>} key={item._id}>
                   <ProductCard
                     id={item._id}
                     key={index}
@@ -157,23 +134,24 @@ const Home = () => {
                     name={item.name}
                     price={item.price.toLocaleString()}
                   />
-                ))}
-              </div>
+                </Suspense>
+              ))}
             </div>
-          )}
+          </div>
+        )}
 
-          {categories &&
-            categories.length > 0 &&
-            categories.map((item) => (
-              <section className="mtb-20" key={item._id}>
-                {/* <Banner src={men} /> */}
-                <div className="product__category">
-                  <h2 className="product__category__title">
-                    <span>{item.name}</span>
-                  </h2>
+        {categories &&
+          categories.length > 0 &&
+          categories.map((item) => (
+            <section className="mtb-20" key={item._id}>
+              <div className="product__category">
+                <h2 className="product__category__title">
+                  <span>{item.name}</span>
+                </h2>
 
-                  <div className="product__cate-list">
-                    {item.productData.map((item, index) => (
+                <div className="product__cate-list">
+                  {item.productData.map((item, index) => (
+                    <Suspense fallback={<div>...Loading</div>} key={item._id}>
                       <ProductCard
                         id={item._id}
                         key={index}
@@ -182,22 +160,21 @@ const Home = () => {
                         name={item.name}
                         price={item.price.toLocaleString()}
                       />
-                    ))}
-                  </div>
+                    </Suspense>
+                  ))}
                 </div>
-                <div className="product__show-all">
-                  <Link
-                    to={`/danh-muc/${item._id}`}
-                    className="product__show-link"
-                  >
-                    Xem tất cả
-                  </Link>
-                </div>
-              </section>
-            ))}
-        </div>
-      </>
-      {/* )} */}
+              </div>
+              <div className="product__show-all">
+                <Link
+                  to={`/danh-muc/${item._id}`}
+                  className="product__show-link"
+                >
+                  Xem tất cả
+                </Link>
+              </div>
+            </section>
+          ))}
+      </section>
     </Helmet>
   );
 };

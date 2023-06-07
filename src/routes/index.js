@@ -11,12 +11,13 @@ import Account from "../pages/clients/Account/LayoutAccount";
 import Text from "../components/Text";
 import AccountInfo from "../pages/clients/Account/AccountInfo";
 import AccountOrder from "../pages/clients/Account/AccountOrder";
+import NewCatalog from "../pages/clients/Catalog/NewCatalog";
 
 const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
   { path: "/sp/:id", page: Product },
-  { path: "/danh-muc/:cate", page: Catalog },
+  { path: "/danh-muc/:cate", page: NewCatalog },
   { path: "*", page: NotFound },
   { path: "/account/login", page: Login },
   { path: "/account/register", page: Register },
