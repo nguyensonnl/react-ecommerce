@@ -1,7 +1,7 @@
 import "./Footer.scss";
 import { Link } from "react-router-dom";
 import methodPayment from "../../../assets/img/Footer/footer_trustbadge.jpg";
-import logo from "../../../assets/img/logoLSW.png";
+import logo from "../../../assets/img/logoNew.png";
 
 const Footer = () => {
   return (

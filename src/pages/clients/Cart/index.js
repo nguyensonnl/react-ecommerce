@@ -110,12 +110,7 @@ const Cart = () => {
 
           {cart.cartItems.length > 0 && (
             <>
-              <div className="cart__header">
-                <Link to="/" className="cart__header-link">
-                  Mua thêm sản phẩm khác
-                </Link>
-                <div>Giỏ hàng</div>
-              </div>
+              <h3 className="cart__header">Giỏ hàng của bạn</h3>
 
               <div className="cart__content">
                 {cart.cartItems &&
@@ -130,24 +125,16 @@ const Cart = () => {
                 </div>
 
                 <div className="cart__customer">
-                  <div className="cart__customer__header">
+                  <h3 className="cart__customer__header">
                     Thông tin khách hàng
-                  </div>
-                  <div className="cart__customer__note">
-                    Lưu ý: Các ô có dấu <span>(*)</span> cần điền đầy đủ thông
-                    tin
-                  </div>
+                  </h3>
                   <form className="cart__customer__info">
                     <div className="item">
-                      <label>
-                        Email<span> (*)</span>
-                      </label>
-
                       <input
                         name="email"
                         type="email"
                         className="item-input"
-                        placeholder="Nhập email"
+                        placeholder="Email (bắt buộc)"
                         value={inputs.email}
                         onChange={(e) => {
                           handleChangeInput(e);
@@ -155,15 +142,11 @@ const Cart = () => {
                       />
                     </div>
                     <div className="item">
-                      <label>
-                        Họ và tên<span> (*)</span>
-                      </label>
-
                       <input
                         name="name"
                         type="text"
                         className="item-input"
-                        placeholder="Nhập họ tên"
+                        placeholder="Họ tên (bắt buộc)"
                         value={inputs.name}
                         onChange={(e) => {
                           handleChangeInput(e);
@@ -171,15 +154,11 @@ const Cart = () => {
                       />
                     </div>
                     <div className="item">
-                      <label>
-                        Điện thoại<span> (*)</span>
-                      </label>
-
                       <input
                         name="phone"
                         type="text"
                         className="item-input"
-                        placeholder="Nhập điện thoại"
+                        placeholder="Điện thoại (bắt buộc)"
                         value={inputs.phone}
                         onChange={(e) => {
                           handleChangeInput(e);
@@ -187,15 +166,11 @@ const Cart = () => {
                       />
                     </div>
                     <div className="item">
-                      <label>
-                        Địa chỉ<span> (*)</span>
-                      </label>
-
                       <input
                         name="address"
                         type="text"
                         className="item-input"
-                        placeholder="Nhập địa chỉ"
+                        placeholder="Địa chỉ (bắt buộc)"
                         value={inputs.address}
                         onChange={(e) => {
                           handleChangeInput(e);
@@ -203,8 +178,6 @@ const Cart = () => {
                       />
                     </div>
                     <div className="item">
-                      <label>Ghi chú</label>
-
                       <textarea
                         name="note"
                         className="item-textarea"
@@ -212,6 +185,7 @@ const Cart = () => {
                         onChange={(e) => {
                           handleChangeInput(e);
                         }}
+                        placeholder="Ghi chú"
                       ></textarea>
                     </div>
                   </form>
@@ -241,12 +215,13 @@ const Cart = () => {
                   </button>
                 </div>
 
-                <div className="cart__header">
+                <div className="cart__other-product">
                   <Link to="/" className="cart__header-link">
                     Mua thêm sản phẩm khác
                   </Link>
                 </div>
               </div>
+              <div style={{ marginTop: "12px" }}></div>
             </>
           )}
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import GlobalStyles from "./components/GlobalStyles";
+import "./styles/grid.scss";
 
 import { BrowserRouter } from "react-router-dom";
 

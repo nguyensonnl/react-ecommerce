@@ -11,7 +11,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   //baseURL: "http://localhost:5050/api/v1",
-  baseURL: "https://ecommerce-api-smoky.vercel.app/api/v1/",
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     //"Content-Type": "multipart/form-data",
     "Content-Type": "application/json",
