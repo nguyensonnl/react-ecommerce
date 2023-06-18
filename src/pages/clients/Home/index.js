@@ -31,8 +31,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productURL = `${process.env.REACT_APP_BASE_URL}/api/v1/products`;
-      const categoryURL = `${process.env.REACT_APP_BASE_URL}/api/v1/categories`;
+      const productURL = `${process.env.REACT_APP_BASE_URL}/products`;
+      const categoryURL = `${process.env.REACT_APP_BASE_URL}/categories`;
 
       // Check if data already exists in the cache
       if (cache.current[productURL] && cache.current[categoryURL]) {

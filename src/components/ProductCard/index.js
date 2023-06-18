@@ -1,6 +1,6 @@
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+const apiUrl = process.env.REACT_APP_BASE_IMG;
 
 const ProductCard = (props) => {
   return (

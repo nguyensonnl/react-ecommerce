@@ -19,7 +19,7 @@ const CartItem = (props) => {
     dispatch(removeCart(item));
   };
 
-  const apiUrl = process.env.REACT_APP_BASE_URL;
+  const apiUrl = process.env.REACT_APP_BASE_IMG;
   return (
     <div className="cart__product__item">
       <img

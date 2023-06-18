@@ -12,6 +12,7 @@ import Text from "../components/Text";
 import AccountInfo from "../pages/clients/Account/AccountInfo";
 import AccountOrder from "../pages/clients/Account/AccountOrder";
 import NewCatalog from "../pages/clients/Catalog/NewCatalog";
+import Updating from "../pages/clients/Updating";
 
 const publicRoutes = [
   { path: "/", page: Home },
@@ -26,6 +27,8 @@ const publicRoutes = [
   { path: "/account", page: AccountInfo, private: 1 },
   { path: "/account/orders", page: AccountOrder, private: 1 },
   { path: "/test", page: Text, layout: null },
+  { path: "/about", page: Updating },
+  { path: "/contact", page: Updating },
 ];
 
 const privateRoutes = [];

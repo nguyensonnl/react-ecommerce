@@ -10,7 +10,7 @@ import { numberFormat } from "../../utils/numberFormat";
 const ProductView = ({ product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const urlImage = `${process.env.REACT_APP_BASE_URL}${product.image}`;
+  const urlImage = `${process.env.REACT_APP_BASE_IMG}${product.image}`;
   const [previewImg, setPreviewImg] = useState(urlImage);
   const [qty, setQty] = useState(1);
   const [quantity, setQuantity] = useState(1);
@@ -51,8 +51,6 @@ const ProductView = ({ product }) => {
     });
   };
 
-  let nf = new Intl.NumberFormat();
-
   return (
     <>
       <div className="row product__detail">
@@ -65,9 +63,9 @@ const ProductView = ({ product }) => {
                 product.images.map((url, index) => (
                   <img
                     key={index}
-                    src={`${process.env.REACT_APP_BASE_URL}${url}`}
+                    src={`${process.env.REACT_APP_BASE_IMG}${url}`}
                     onClick={() =>
-                      setPreviewImg(`${process.env.REACT_APP_BASE_URL}${url}`)
+                      setPreviewImg(`${process.env.REACT_APP_BASE_IMG}${url}`)
                     }
                     className="product__img-item"
                   />

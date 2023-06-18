@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import "./Cart.scss";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Helmet from "../../../components/Helmet";
-import CartItem from "../../../components/CartItem.js";
+import CartItem from "../../../components/CartItem/index.js";
 import cart_empty from "../../../assets/img/cart_empty_background.png";
 import { getTotals } from "../../../redux/cartSlice";
 import { numberFormat } from "../../../utils/numberFormat";
