@@ -37,6 +37,7 @@ import { useSelector } from "react-redux";
 import { ProtectedAccount } from "./components/ProtectedAcount";
 import PrivateRoute from "./components/PrivateRoute";
 import { ProtectedAccountLogin } from "./components/ProtectedAcount";
+import User from "./pages/admin/components/User";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -67,6 +68,7 @@ function App() {
             </Protected>
           }
         />
+        <Route path="/admin/user" element={<User />} />
         <Route path="/admin/user/create" element={<CreateUser />} />
         <Route path="/admin/product" element={<Product />} />
         <Route path="/admin/product/add" element={<ProductAdd />} />
