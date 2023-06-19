@@ -59,7 +59,7 @@ const LoginPageAdmin = () => {
         <div className="admin__link-store">
           <span>Truy cập vào cửa hàng </span>
           <Link to="/" className="admin__link">
-            abc.xyz
+            https://lamsonwatch.vercel.app
           </Link>
         </div>
         <div className="admin__form">

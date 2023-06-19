@@ -42,7 +42,7 @@ const ProductUpdate = () => {
         category: productById.category || "",
         description: productById.description || "",
         richDescription: productById.richDescription || "",
-        image: productById.image || "",
+        image: `${process.env.REACT_APP_BASE_IMG}${productById.image}` || "",
         images: productById.images || "",
         isFeatured: productById.isFeatured || "",
       });
@@ -263,7 +263,11 @@ const ProductUpdate = () => {
             {inputs.images &&
               inputs.images.length > 0 &&
               inputs.images.map((url, index) => (
-                <img key={index} src={url} className="file-image" />
+                <img
+                  key={index}
+                  src={`${process.env.REACT_APP_BASE_IMG}${url}`}
+                  className="file-image"
+                />
               ))}
             {/* {renderImagePreviews()} */}
 
