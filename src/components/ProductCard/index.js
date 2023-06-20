@@ -8,7 +8,7 @@ const ProductCard = (props) => {
       className={`product-card ${props.className ? props.className : ""}`}
       key={props._id}
     >
-      <Link to={`/sp/${props.id}`} className="product-card__link">
+      <Link to={`/sp/${props.slug}`} className="product-card__link">
         <img
           src={`${apiUrl}${props.src}`}
           alt=""

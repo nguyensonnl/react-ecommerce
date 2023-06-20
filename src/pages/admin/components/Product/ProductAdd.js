@@ -135,10 +135,6 @@ const ProductAdd = () => {
     }
   };
 
-  const handleClickBack = () => {
-    navigate("/admin/product");
-  };
-
   const handleCancel = () => {
     setInputs(initialState);
   };
@@ -286,9 +282,6 @@ const ProductAdd = () => {
             <button className="btn-edit">Submit</button>
             <div className="btn-cancel" onClick={() => handleCancel()}>
               Cancel
-            </div>
-            <div className="btn-back" onClick={() => handleClickBack()}>
-              &larr; Về trang trước
             </div>
           </div>
         </div>

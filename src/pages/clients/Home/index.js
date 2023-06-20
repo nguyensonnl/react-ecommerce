@@ -60,7 +60,7 @@ const Home = () => {
         axios.get(productURL),
         axios.get(categoryURL),
       ]);
-      const products = resProduct.data;
+      const products = resProduct.data.data.productList;
       const categories = resCategory.data;
 
       // Store data in cache
@@ -133,6 +133,7 @@ const Home = () => {
                     brand={item.brand}
                     name={item.name}
                     price={item.price.toLocaleString()}
+                    slug={item.slug}
                   />
                 </Suspense>
               ))}
@@ -159,6 +160,7 @@ const Home = () => {
                         brand={item.brand}
                         name={item.name}
                         price={item.price.toLocaleString()}
+                        slug={item.slug}
                       />
                     </Suspense>
                   ))}

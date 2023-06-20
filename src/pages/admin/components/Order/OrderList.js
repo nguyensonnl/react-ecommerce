@@ -1,21 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAllCateogry } from "../../../../redux/categorySlice";
 import Pagination from "../../../../components/Pagination";
+import Moment from "moment";
 
-const ListCategory = () => {
-  const dispatch = useDispatch();
-  const allCategory = useSelector((state) => state.category.categories);
-
-  useEffect(() => {
-    dispatch(getAllCateogry());
-  }, []);
-
+const OrderList = ({ orders }) => {
   return (
     <div className="item__content">
-      <div className="item__title">Danh sách danh mục</div>
+      <div className="item__title">Danh sách đơn hàng</div>
       <div className="item__body">
         <div className="item__control">
           <div className="item__show-record-page">
@@ -38,15 +28,22 @@ const ListCategory = () => {
         <table className="item__list">
           <thead>
             <th>#</th>
-            <th>Tên danh mục</th>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Date</th>
             <th>Action</th>
           </thead>
           <tbody>
-            {allCategory.length > 0 &&
-              allCategory.map((item, index) => (
+            {orders &&
+              orders.length > 0 &&
+              orders.map((item, index) => (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
-                  <td>{item.name}</td>
+                  <td>{item._id}</td>
+                  <td>{item?.customer_id._id}</td>
+                  <td>{item.status}</td>
+                  <td>{Moment(item.dateOrdered).format("d/MM/YYYY")}</td>
                   <td>
                     <button className="btn-edit">
                       <i className="fa-solid fa-pen-to-square"></i>
@@ -82,4 +79,4 @@ const ListCategory = () => {
   );
 };
 
-export default ListCategory;
+export default OrderList;

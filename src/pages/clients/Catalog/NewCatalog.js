@@ -12,6 +12,8 @@ import CheckBox from "../../../components/CheckBox";
 import { useCallback } from "react";
 import Pagination from "../../../components/Pagination";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import axios from "axios";
+import axiosClient from "../../../api/axiosClient";
 
 const prices = [
   { id: 1, title: "Giá dưới 1 triệu", value: "0-1000" },
@@ -33,6 +35,10 @@ const listPriceNew = [
   { id: 5, title: "Từ 20 - 50 triệu", value: "20000-50000" },
   { id: 6, title: "Trên 50 triệu", value: "50000+" },
 ];
+/**
+ *
+ * Cần 1 biến khác để lưu các danh sách đã lọcl
+ */
 
 const NewCatalog = () => {
   const dispatch = useDispatch();
@@ -40,15 +46,18 @@ const NewCatalog = () => {
   const brands = useSelector((state) => state.brand.brands);
   const categoryId = useSelector((state) => state.category.categoriesId);
   const { cate } = useParams(); //id category
-  const [products, setProducts] = useState([productByCate]);
+  // const [products, setProducts] = useState([productByCate]);
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   //Pagination
   const [curentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
   const lastPostIndex = curentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = products.slice(firstPostIndex, lastPostIndex);
+  const currentPosts = filteredProducts.slice(firstPostIndex, lastPostIndex);
   const [activeId, setActiveId] = useState(1);
 
   let pages = [];
@@ -79,7 +88,20 @@ const NewCatalog = () => {
   //End Pagination
 
   useEffect(() => {
-    dispatch(getProductByCategory(cate));
+    const fetchData = async () => {
+      try {
+        const res = await axiosClient.get(`/products?categories=${cate}`);
+        setProducts(res.data.data.productList);
+        setFilteredProducts(res.data.data.productList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [cate]);
+
+  useEffect(() => {
+    //dispatch(getProductByCategory(cate));
     dispatch(getAllBrand());
     dispatch(getCategoryById(cate));
     setIsLoading(true);
@@ -111,7 +133,8 @@ const NewCatalog = () => {
   });
 
   const updateProducts = useCallback(() => {
-    let temp = productByCate;
+    //let temp = productByCate;
+    let temp = products;
 
     if (filter.brand.length > 0) {
       temp = temp.filter((e) => filter.brand.includes(e.brand.name));
@@ -168,8 +191,10 @@ const NewCatalog = () => {
   const handleClearPrice = () => {
     setPriceMax("");
     setPriceMin("");
-    let temp = productByCate;
-    setProducts(temp);
+    //let temp = productByCate;
+
+    setProducts(products);
+    setFilteredProducts(products);
     setFilter({
       brand: [],
       price: [],
@@ -210,7 +235,8 @@ const NewCatalog = () => {
   const [priceMax, setPriceMax] = useState("");
 
   const handleFilterPrice = (item) => {
-    let temp = productByCate;
+    //let temp = productByCate;
+    let temp = products;
     temp = temp.filter((pro) => {
       if (item.value === "0-2000") {
         return pro.price < 2000000;
@@ -226,17 +252,30 @@ const NewCatalog = () => {
         return pro.price > 50000000;
       }
     });
-    setProducts(temp);
+    setFilteredProducts(temp);
   };
 
-  const handleFilterBrand = (item) => {
-    let temp = [...productByCate];
-    temp = temp.filter((pro) => pro.brand._id === item._id);
-    setProducts(temp);
-  };
+  // const handleFilterBrand = useCallback(
+  //   (item) => {
+  //     let temp = [...products];
+  //     temp = temp.filter((pro) => pro.brand._id === item._id);
+  //     console.log(temp);
+  //     //setProducts(temp);
+  //   },
+  //   [products]
+  // );
+
+  const handleFilterBrand = useCallback(
+    (item) => {
+      let temp = products.filter((pro) => pro.brand._id === item._id);
+      setFilteredProducts(temp);
+    },
+    [products]
+  );
 
   const handleSort = (type) => {
-    let temp = [...productByCate];
+    // let temp = [...productByCate];
+    let temp = [...products];
 
     if (type === "Increase") {
       temp.sort((a, b) => a.price - b.price);
@@ -249,8 +288,7 @@ const NewCatalog = () => {
     if (type === "New") {
       temp.sort((a, b) => a.createdAt - b.createdAt).reverse();
     }
-    setProducts(temp);
-    console.log(products);
+    setFilteredProducts(temp);
   };
 
   return (
@@ -367,6 +405,7 @@ const NewCatalog = () => {
                   brand={item.brand}
                   src={item.image}
                   className="card-overide"
+                  slug={item.slug}
                 />
               ))}
           </div>

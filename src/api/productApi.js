@@ -13,6 +13,11 @@ const productApi = {
     const url = `/products/${id}`;
     return axiosClient.get(url);
   },
+
+  getProductBySlug(slug) {
+    const url = `products/${slug}`;
+    return axiosClient.get(url);
+  },
   getProductByCate(cate) {
     const url = `/products?categories=${cate}`;
     return axiosClient.get(url);

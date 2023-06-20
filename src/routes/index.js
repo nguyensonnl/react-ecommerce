@@ -17,7 +17,7 @@ import Updating from "../pages/clients/Updating";
 const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
-  { path: "/sp/:id", page: Product },
+  { path: "/sp/:slug", page: Product },
   { path: "/danh-muc/:cate", page: NewCatalog },
   { path: "*", page: NotFound },
   { path: "/account/login", page: Login },

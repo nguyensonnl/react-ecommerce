@@ -9,18 +9,18 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 const ProductView = React.lazy(() => import("../../../components/ProductView"));
 
 const Product = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const res = await productApi.getProductById(id);
+      const res = await productApi.getProductBySlug(slug);
       setProduct(res.data);
       setIsLoading(true);
     };
     fetchProduct();
-  }, [id]);
+  }, [slug]);
 
   return (
     <Helmet title={product.name}>

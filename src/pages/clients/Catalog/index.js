@@ -331,6 +331,7 @@ const Catalog = () => {
                   brand={item.brand}
                   src={item.image}
                   className="card-overide"
+                  slug={item.slug}
                 />
               ))}
           </div>
