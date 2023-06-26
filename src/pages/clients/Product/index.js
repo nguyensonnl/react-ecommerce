@@ -85,6 +85,7 @@ const Product = () => {
                     : window.location.href
                 }
                 width="800"
+                slug={product.slug}
               />
             </section>
           </>

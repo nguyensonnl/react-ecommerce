@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { initFacebookSDK } from "../../utils/initFacebookSDK";
 
 const Comment = (props) => {
-  const { dataHref, width } = props;
-  console.log(dataHref);
+  const { dataHref, width, slug } = props;
 
   useEffect(() => {
     initFacebookSDK();
-  }, []);
+  }, [slug]);
 
   return (
     <div
