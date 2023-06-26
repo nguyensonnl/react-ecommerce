@@ -3,6 +3,7 @@ import { initFacebookSDK } from "../../utils/initFacebookSDK";
 
 const Comment = (props) => {
   const { dataHref, width } = props;
+  console.log(dataHref);
 
   useEffect(() => {
     initFacebookSDK();
