@@ -18,8 +18,8 @@ const productApi = {
     const url = `products/${slug}`;
     return axiosClient.get(url);
   },
-  getProductByCate(cate) {
-    const url = `/products?categories=${cate}`;
+  getProductByCate(cate, limit) {
+    const url = `/products?limit=${limit}&&categories=${cate}`;
     return axiosClient.get(url);
   },
   createProduct(data) {
