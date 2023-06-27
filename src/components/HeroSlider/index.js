@@ -1,5 +1,6 @@
 import "./Hero.scss";
 import slider3 from "../../assets/img/Slider/dong-ho-t56.jpg";
+import slider1 from "../../assets/img/Slider/slider3.png";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/effect-fade/effect-fade.scss";
@@ -26,7 +27,7 @@ const HeroSlider = () => {
           <img src={slider3} alt="slider1" className="hero-slider__img" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider3} alt="slider2" className="hero-slider__img" />
+          <img src={slider1} alt="slider2" className="hero-slider__img" />
         </SwiperSlide>
       </Swiper>
     </div>

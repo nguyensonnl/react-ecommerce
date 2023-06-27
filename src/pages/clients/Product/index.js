@@ -80,11 +80,11 @@ const Product = () => {
             <section>
               <Comment
                 dataHref={
-                  +process.env.REACT_APP_IS_LOCAL === 0
+                  +process.env.REACT_APP_IS_LOCAL === 1
                     ? "https://developers.facebook.com/docs/plugins/comments#configurator"
                     : window.location.href
                 }
-                width="800"
+                width={"100%"}
                 slug={product.slug}
               />
             </section>

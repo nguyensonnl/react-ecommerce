@@ -45,6 +45,13 @@ const cartSlice = createSlice({
       const find = state.cartItems.findIndex(
         (item) => item._id === newItem._id
       );
+
+      //additional
+      if (state.cartItems[find].cartQuantity >= newItem.countInStock) {
+        alert("Không đủ số lượng");
+        return;
+      }
+
       if (find >= 0) {
         state.cartItems[find].cartQuantity += 1;
       } else {

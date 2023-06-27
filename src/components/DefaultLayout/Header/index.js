@@ -194,12 +194,7 @@ const Header = () => {
             <li className="header__list-item">
               <Link to="/cart" className="header__list-link">
                 <i className="fa-solid fa-cart-shopping"></i>
-                <span>
-                  <span>Giỏ hàng</span>
-                  <span className="span__color">
-                    [ {cart.cartTotalQuantity} ] sản phẩm
-                  </span>
-                </span>
+                <span>Giỏ hàng ({cart.cartTotalQuantity})</span>
               </Link>
             </li>
 
@@ -207,7 +202,7 @@ const Header = () => {
               <Link className="header__list-link">
                 <i className="fa-solid fa-phone"></i>
                 <span>
-                  <span>Gọi mua hàng</span>
+                  <span>Hotline mua hàng</span>
                   <span className="span__color">0376 940 314</span>
                 </span>
               </Link>
@@ -215,7 +210,7 @@ const Header = () => {
 
             <li className="header__list-item header__list-item--hiden">
               <i className="fa-regular fa-user"></i>
-              {isLoggedIn ? (
+              {isLoggedIn && (
                 <div className="header__account">
                   <Link to="/account" className="header__list-link">
                     <span>Tài khoản</span>
@@ -228,7 +223,9 @@ const Header = () => {
                     <span className="span__color">Đăng xuất</span>
                   </Link>
                 </div>
-              ) : (
+              )}
+
+              {!isLoggedIn && (
                 <div className="header__account">
                   <Link to="/account/login" className="header__list-link">
                     <span>Tài khoản</span>

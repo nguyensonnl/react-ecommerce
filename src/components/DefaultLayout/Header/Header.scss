@@ -85,6 +85,7 @@
                     i{
                         font-size: 2rem;
                         margin-right: 6px;
+                        color: var(--secondary-color);
                     }
 
                     .header__list-link{
@@ -95,12 +96,18 @@
                         color: var(--header-color);
                         padding: 0 16px;
 
-                        & span:nth-child(1){
-                            font-size: 1.3rem;
+                        i{
+                            color: var(--secondary-color);
                         }
+
+                        span{
+                            font-size: 1.35rem;
+                        }
+                    
                         .span__color{
                             display: block;
                             color: var(--secondary-color);
+                            text-align: center;
                             
                         }
                     }

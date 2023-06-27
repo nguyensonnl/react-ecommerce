@@ -42,9 +42,9 @@ const Home = () => {
               ...acc,
               {
                 ...category,
-                productData: cache.current[productURL].filter(
-                  (product) => product.category._id === category._id
-                ),
+                productData: cache.current[productURL]
+                  .filter((product) => product.category._id === category._id)
+                  .slice(0, 5),
               },
             ];
           },
@@ -72,9 +72,9 @@ const Home = () => {
           ...acc,
           {
             ...category,
-            productData: products.filter(
-              (product) => product.category._id === category._id
-            ),
+            productData: products
+              .filter((product) => product.category._id === category._id)
+              .slice(0, 5),
           },
         ];
       }, []);

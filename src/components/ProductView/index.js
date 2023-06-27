@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
 import "./ProductView.scss";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/cartSlice";
+import { addToCart, getTotals } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import { numberFormat } from "../../utils/numberFormat";
 
 const ProductView = ({ product }) => {
@@ -12,7 +11,6 @@ const ProductView = ({ product }) => {
   const dispatch = useDispatch();
   const urlImage = `${process.env.REACT_APP_BASE_IMG}${product.image}`;
   const [previewImg, setPreviewImg] = useState(urlImage);
-  const [qty, setQty] = useState(1);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -30,25 +28,38 @@ const ProductView = ({ product }) => {
   };
 
   const handleGotoCart = (product) => {
-    dispatch(
-      addToCart({
-        ...product,
-        cartQuantity: quantity ? quantity : 1,
-      })
-    );
-    navigate("/cart");
+    if (quantity > product.countInStock) {
+      toast.success("Không đủ số lượng", {
+        position: "top-right",
+      });
+    } else {
+      dispatch(
+        addToCart({
+          ...product,
+          cartQuantity: quantity ? quantity : 1,
+        })
+      );
+      navigate("/cart");
+    }
   };
 
   const handleAddToCart = (product) => {
-    dispatch(
-      addToCart({
-        ...product,
-        cartQuantity: quantity ? quantity : 1,
-      })
-    );
-    toast.success("Thêm vào giỏ hàng thành công", {
-      position: "top-right",
-    });
+    if (quantity > product.countInStock) {
+      toast.success("Không đủ số lượng", {
+        position: "top-right",
+      });
+    } else {
+      dispatch(
+        addToCart({
+          ...product,
+          cartQuantity: quantity ? quantity : 1,
+        })
+      );
+      dispatch(getTotals());
+      toast.success("Thêm vào giỏ hàng thành công", {
+        position: "top-right",
+      });
+    }
   };
 
   return (
@@ -106,7 +117,7 @@ const ProductView = ({ product }) => {
               {numberFormat(product.price)}
               <sup>đ</sup>
             </div>
-            <div className="product__quantity">
+            {/* <div className="product__quantity" style={{ alignItems: "center" }}>
               <span className="product__quantity-title">Số lượng:</span>
               <div className="product__quantity-adjust">
                 <div
@@ -123,7 +134,10 @@ const ProductView = ({ product }) => {
                   <i className="fa-solid fa-plus"></i>
                 </div>
               </div>
-            </div>
+              <span style={{ marginLeft: "10px", fontSize: "1.4rem" }}>
+                {product.countInStock} sản phẩm có sẵn
+              </span>
+            </div> */}
             <div className="product__des">
               <div className="product__des-title">Thông tin sản phẩm:</div>
               <p className="product__des-content">{product.description}</p>
