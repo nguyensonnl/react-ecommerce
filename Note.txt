@@ -1,0 +1,14 @@
++Programing Language: Javascript
++UI: html, css(scss)
++Framework SPA: React
++State management: Redux / Redux toolkit
+
+
+Auth
+Account
+Home
+Product category
+Product detail
+Cart
+
+Using redux persist to keep state when reload page

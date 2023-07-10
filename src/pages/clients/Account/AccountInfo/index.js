@@ -3,8 +3,11 @@ import Helmet from "../../../../components/Helmet";
 import AccountLayout from "../LayoutAccount";
 import Breadcrumb from "../../../../components/Breadcrumb";
 import "./AccountInfo.scss";
+import { useSelector } from "react-redux";
 
 const AccountInfo = () => {
+  const { customer } = useSelector((state) => state.customer);
+
   return (
     <Helmet title="Trang khách hàng">
       <div className="grid">
@@ -15,10 +18,15 @@ const AccountInfo = () => {
         <div className="account__info">
           <h3 className="title">THÔNG TIN TÀI KHOẢN</h3>
           <div className="account__name">
-            <span>Họ tên:</span> Nguyễn Sơn
+            <span>Họ tên:</span>
+            <span>
+              {" "}
+              {customer.lastName} {customer.firstName}
+            </span>
           </div>
           <div className="account__email">
-            <span>Email:</span> robotthongminh456@gmail.com
+            <span>Email:</span>
+            <span> {customer.email}</span>
           </div>
         </div>
       </AccountLayout>

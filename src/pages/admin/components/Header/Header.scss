@@ -1,6 +1,7 @@
 .header__admin{
-    //background-color: var(--extra-color);
-    background-image: linear-gradient(#333, #000);
+    background-color: #fff;
+   //background-image: linear-gradient(#333, #000);
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: flex-end;
     height: 60px;
@@ -19,7 +20,7 @@
         .header__admin__name,
         .header__admin__link,
         .header__admin__logout {
-            color: #fff;
+            color: #000;
         }
 
         .header__admin__logout{

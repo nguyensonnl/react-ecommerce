@@ -2,7 +2,7 @@ import "./Catalog.scss";
 import React, { useEffect, useState } from "react";
 import Helmet from "../../../components/Helmet";
 import ProductCard from "../../../components/ProductCard";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductByCategory } from "../../../redux/reducers/productSlice";
 import Breadcrumb from "../../../components/Breadcrumb";
@@ -38,6 +38,7 @@ const listPriceNew = [
 /**
  *
  * Cần 1 biến khác để lưu các danh sách đã lọcl
+ * Link filter khớp với link call api
  */
 
 const NewCatalog = () => {
@@ -59,6 +60,8 @@ const NewCatalog = () => {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = filteredProducts.slice(firstPostIndex, lastPostIndex);
   const [activeId, setActiveId] = useState(1);
+
+  const [isActiveLink, setIsActiveLink] = useState(false);
 
   let pages = [];
 
@@ -274,7 +277,6 @@ const NewCatalog = () => {
   );
 
   const handleSort = (type) => {
-    // let temp = [...productByCate];
     let temp = [...products];
 
     if (type === "Increase") {
@@ -311,12 +313,12 @@ const NewCatalog = () => {
                       checked={filter.brand.includes(item.name)}
                     /> */}
 
-                    <Link
+                    <span
                       className="product__cate-title"
                       onClick={() => handleFilterBrand(item)}
                     >
                       {item.name}
-                    </Link>
+                    </span>
                   </div>
                 ))}
             </div>
@@ -335,12 +337,12 @@ const NewCatalog = () => {
                       }
                       checked={filter.price.includes(item.value)}
                     /> */}
-                    <Link
+                    <span
                       className="product__cate-title price"
                       onClick={() => handleFilterPrice(item)}
                     >
                       {item.title}
-                    </Link>
+                    </span>
                   </div>
                 ))}
             </div>
@@ -350,28 +352,28 @@ const NewCatalog = () => {
             <span style={{ fontSize: "1.5rem" }}>Sắp xếp:</span>
             <ul className="catalog__list">
               <li className="catalog__item">
-                <Link
+                <span
                   className="catalog__link"
                   onClick={() => handleSort("Increase")}
                 >
                   Giá tăng dần
-                </Link>
+                </span>
               </li>
               <li className="catalog__item">
-                <Link
+                <span
                   className="catalog__link"
                   onClick={() => handleSort("Decrease")}
                 >
                   Giá giảm dần
-                </Link>
+                </span>
               </li>
               <li className="catalog__item">
-                <Link
+                <span
                   className="catalog__link"
                   onClick={() => handleSort("New")}
                 >
                   Hàng mới
-                </Link>
+                </span>
               </li>
             </ul>
           </div>

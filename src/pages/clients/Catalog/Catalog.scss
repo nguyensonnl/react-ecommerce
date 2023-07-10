@@ -17,6 +17,12 @@
                     opacity: 0.5;
                     font-weight: 300;
                     font-size: 1.5rem;
+                    cursor: pointer;
+
+                    &.active{
+                        color: #ffea00;
+                    }
+
                     &:hover{
                         color: var(--primary-color);
                         opacity: 1;
@@ -114,11 +120,14 @@
     font-size: 1.5rem;
     color: #000;
     font-weight: 700;
+    cursor: pointer;
 
     &:hover{
         color: #ffea00;
     }
 }
+
+
 
 .price{
     font-weight: 300;
