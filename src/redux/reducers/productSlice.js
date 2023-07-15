@@ -11,7 +11,7 @@ export const getProductFeatured = createAsyncThunk(
 
 export const getAllProduct = createAsyncThunk("products/getAll", async () => {
   const res = await productApi.getAllProduct();
-  return res.data;
+  return res.data.data.productList;
 });
 
 export const createProduct = createAsyncThunk(

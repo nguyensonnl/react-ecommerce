@@ -11,4 +11,14 @@ orderService.getAllOrders = () => {
   return axiosClient.get(url);
 };
 
+orderService.getOrderById = (id) => {
+  const url = `/orders/${id}`;
+  return axiosClient.get(url);
+};
+
+orderService.updatedOrder = (id, data) => {
+  const url = `/orders/${id}`;
+  return axiosClient.put(url, data);
+};
+
 export default orderService;

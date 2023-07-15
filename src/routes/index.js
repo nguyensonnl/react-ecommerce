@@ -14,6 +14,7 @@ import AccountOrder from "../pages/clients/Account/AccountOrder";
 import NewCatalog from "../pages/clients/Catalog/NewCatalog";
 import Updating from "../pages/clients/Updating";
 import English from "../components/English";
+import Upload from "../components/Upload";
 
 const publicRoutes = [
   { path: "/", page: Home },
@@ -31,6 +32,7 @@ const publicRoutes = [
   { path: "/about", page: Updating },
   { path: "/contact", page: Updating },
   { path: "/english", page: English, layout: null },
+  { path: "/upload", page: Upload, layout: null },
 ];
 
 const privateRoutes = [];

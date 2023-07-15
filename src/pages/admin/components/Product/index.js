@@ -1,5 +1,4 @@
 import Layout from "../Layout";
-import "./Product.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +10,12 @@ import { getAllCateogry } from "../../../../redux/categorySlice";
 import { getAllBrand } from "../../../../redux/brandSlice";
 import { useCallback } from "react";
 import { getAllProduct } from "../../../../redux/reducers/productSlice";
+import Card from "../Card";
 
 const Product = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const listCategory = useSelector((state) => state.category.categories);
   const listBrand = useSelector((state) => state.brand.brands);
   const allProduct = useSelector((state) => state.product.products);
@@ -74,8 +75,8 @@ const Product = () => {
     navigate("/admin/product/add");
   };
 
-  const handleEditForm = (id) => {
-    navigate(`/admin/product/${id}`);
+  const handleEditForm = (slug) => {
+    navigate(`/admin/product/${slug}`);
   };
 
   const handleDeleteItem = async (id) => {
@@ -228,7 +229,7 @@ const Product = () => {
                       <td>
                         <button
                           className="btn-edit"
-                          onClick={() => handleEditForm(product._id)}
+                          onClick={() => handleEditForm(product.slug)}
                         >
                           <i className="fa-solid fa-pen-to-square"></i>
                         </button>
@@ -264,6 +265,7 @@ const Product = () => {
             </div>
           </div>
         </div>
+        <Card />
       </div>
     </Layout>
   );

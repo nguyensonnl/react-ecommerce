@@ -18,6 +18,10 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
+  //1. Các component lồng nhau sử dụng state isShow truyền từ parent to child
+  //2. Sử dụng outlet of react router
+  //3. Theo link thì component khác nhau
+
   return (
     <Layout>
       <div className="admin__order">

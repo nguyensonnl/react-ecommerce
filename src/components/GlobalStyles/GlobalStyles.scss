@@ -13,7 +13,7 @@
     --text-color: #333333;
     --body-background: #F9F9FB;
     --text-secondary-color: #8F8F8F;
-    --primary-color: #0f8280;
+    //--primary-color: #0f8280;
     --secondary-color: #fbd947;
     --price-color: #ed3324;
     --header-background: #065f5c;
@@ -51,6 +51,7 @@
 body{
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
+    
 }
 
 img{
@@ -64,6 +65,7 @@ a{
 // ul, li{
 //     list-style: none;
 // }
+
 
 .product__list{
     border-left: 1px solid #f1f1f1;

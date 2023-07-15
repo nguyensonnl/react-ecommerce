@@ -8,7 +8,6 @@ import { getAllBrand } from "../../../../redux/brandSlice";
 import { getAllCateogry } from "../../../../redux/categorySlice";
 import { getProductById } from "../../../../redux/reducers/productSlice";
 import Layout from "../Layout";
-import "./Product.scss";
 
 let initialState = {
   name: "",
@@ -27,31 +26,46 @@ const ProductUpdate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const [product, setProduct] = useState({});
 
   const allCategory = useSelector((state) => state.category.categories);
   const allBrand = useSelector((state) => state.brand.brands);
   const productById = useSelector((state) => state.product.productById);
 
   useEffect(() => {
-    if (id && productById)
+    if (id && product)
       setInputs({
-        name: productById.name || "",
-        countInStock: productById.countInStock || "",
-        price: productById.price || "",
-        brand: productById.brand || "",
-        category: productById.category || "",
-        description: productById.description || "",
-        richDescription: productById.richDescription || "",
-        image: `${process.env.REACT_APP_BASE_IMG}${productById.image}` || "",
-        images: productById.images || "",
-        isFeatured: productById.isFeatured || "",
+        name: product.name || "",
+        countInStock: product.countInStock || "",
+        price: product.price || "",
+        brand: product.brand || "",
+        category: product.category || "",
+        description: product.description || "",
+        richDescription: product.richDescription || "",
+        image: product.image || "",
+        images: product.images || "",
+        isFeatured: product.isFeatured || "",
       });
-  }, [id, productById]);
+  }, [id, product]);
 
   useEffect(() => {
-    dispatch(getProductById(id));
+    // dispatch(getProductById(id));
     dispatch(getAllBrand());
     dispatch(getAllCateogry());
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5050/api/v1/products/${id}`
+        );
+        setProduct(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   const [previewUrls, setPreviewUrls] = useState([]);
@@ -248,7 +262,10 @@ const ProductUpdate = () => {
                 onChange={(e) => handleChangeInput(e)}
               />
               {inputs.image && (
-                <img src={inputs.image} className="file-image" />
+                <img
+                  src={`${process.env.REACT_APP_BASE_IMG}${inputs.image}`}
+                  className="file-image"
+                />
               )}
             </div>
             <div className="form__control">

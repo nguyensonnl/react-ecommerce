@@ -7,27 +7,24 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const firstName = user?.firstName;
-  const lastName = user?.lastName;
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/auth/login");
   };
   return (
-    <div className="header__admin">
-      <div className="header__right">
-        <div className="header__admin__name">
-          Xin chào, {firstName} {lastName}
-        </div>
-        <Link to="" className="header__admin__link">
+    <div className="admin__header">
+      <Link to="/admin" className="header__logo">
+        Lam Sơn Watch
+      </Link>
+      <div className="header__info">
+        <span className="header__info-name">Xin chào, {user?.firstName}</span>
+        <Link to="/admin/profile" className="header__info-icon">
           <i className="fa-solid fa-user"></i>
         </Link>
-        <button
-          className="header__admin__logout"
-          onClick={() => handleLogout()}
-        >
-          <i className="fa-solid fa-right-from-bracket"></i> Logout
+        <button className="header__info-logout" onClick={() => handleLogout()}>
+          <i className="fa-solid fa-right-from-bracket"></i>
+          <span> Logout</span>
         </button>
       </div>
     </div>

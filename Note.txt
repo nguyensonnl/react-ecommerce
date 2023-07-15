@@ -12,3 +12,6 @@ Product detail
 Cart
 
 Using redux persist to keep state when reload page
+
+Error upload files:
+Khi mà dùng 2 api khác nhau thì khi set date thì thời điểm khác nhau

@@ -1,41 +1,32 @@
-.sidebar{
+.admin__sidebar{
     background-color: #fff;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+   // box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
     position: fixed;
     left: 0;    
-    top: 0;
+    top: calc(0px + 60px);// 60px of header
     bottom: 0;
-    right: 80%;
-
-    &__logo{
-        font-size: 2.7rem;
-        font-weight: 600;
-        margin: 10px 0;
-        color: #000;
-        text-align: center;
-    }
+    right: 85%;
+    width: 15%;
 
     &__list{
-        
-        &-item{
-            //list-style: none;
-            margin-bottom: 4px;
+        list-style-type: none;
+        .sidebar__list-item{
+            &:hover{
+                background-color: #eee;
+            }
 
-            & .active{
-                background-color: var(--extra-color);
+            .active{
+                color: #fff !important;
+                background-color: var(--primary-color);
                 width: 100%;
-                display: inline-block;
-                color: #fff;
-                font-weight: 600;   
-                padding: 10px 10px 10px 20px; 
             }
 
             .sidebar__list-link{
-                padding: 10px 10px 10px 20px;
+                padding: 12px 10px 12px 20px;
+                font-weight: 600;   
                 font-size: 1.5rem;
                 display: inline-block;
                 color: #000;
-                font-weight: 500;                
             }
         }
 

@@ -1,13 +1,14 @@
 import React from "react";
 import Pagination from "../../../../components/Pagination";
 import Moment from "moment";
+import { Link } from "react-router-dom";
 
 const OrderList = ({ orders }) => {
   return (
-    <div className="item__content">
-      <div className="item__title">Danh sách đơn hàng</div>
-      <div className="item__body">
-        <div className="item__control">
+    <div className="card">
+      <div className="card__header">Danh sách đơn hàng</div>
+      <div className="card__body">
+        {/* <div className="item__control">
           <div className="item__show-record-page">
             <select>
               <option>10</option>
@@ -24,15 +25,17 @@ const OrderList = ({ orders }) => {
               className="item__search-input"
             />
           </div>
-        </div>
+        </div> */}
         <table className="item__list">
           <thead>
-            <th>#</th>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Action</th>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {orders &&
@@ -41,7 +44,7 @@ const OrderList = ({ orders }) => {
                 <tr key={item._id}>
                   <td>{index + 1}</td>
                   <td>{item._id}</td>
-                  <td>{item?.customer_id._id}</td>
+                  <td>{item?.customer_id?.firstName}</td>
                   <td>{item.status}</td>
                   <td>{Moment(item.dateOrdered).format("d/MM/YYYY")}</td>
                   <td>
@@ -51,30 +54,27 @@ const OrderList = ({ orders }) => {
                     <button className="btn-delete">
                       <i className="fa-solid fa-trash-can"></i>
                     </button>
+                    <Link
+                      to={`/admin/order-detail/${item._id}`}
+                      className="btn btn-submit"
+                      style={{ marginLeft: "2px" }}
+                    >
+                      <i className="fa-solid fa-eye"></i>
+                    </Link>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
-
-        <div className="item__footer">
-          <div className="item__show-record">
-            Hiển thị từ 1 đến 2 của 2 bản ghi
-          </div>
-          <div className="item__pagination">
-            <Pagination
-            //   totalPosts={listProduct.length}
-            //   postsPerPage={pageSize}
-            //   setCurrentPage={setCurrentPage}
-            //   previousPage={previousPage}
-            //   nextPage={nextPage}
-            //   activeId={activeId}
-            //   setActiveId={setActiveId}
-            //   curentPage={curentPage}
-            />
-          </div>
-        </div>
       </div>
+      {/* <div className="card__footer">
+        <div className="item__show-record">
+          Hiển thị từ 1 đến 2 của 2 bản ghi
+        </div>
+        <div className="item__pagination">
+          <Pagination />
+        </div>
+      </div> */}
     </div>
   );
 };

@@ -38,6 +38,9 @@ import { ProtectedAccount } from "./components/ProtectedAcount";
 import PrivateRoute from "./components/PrivateRoute";
 import { ProtectedAccountLogin } from "./components/ProtectedAcount";
 import User from "./pages/admin/components/User";
+import OrderDetail from "./pages/admin/components/Order/OrderDetail";
+
+import Update from "./components/Update";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -51,6 +54,9 @@ function App() {
       <ToastContainer />
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Update />} />
+
+        {/*
         <Route
           path="/auth/login"
           element={
@@ -68,15 +74,23 @@ function App() {
             </Protected>
           }
         />
+	*/}
+
+        {/*
         <Route path="/admin/user" element={<User />} />
         <Route path="/admin/user/create" element={<CreateUser />} />
         <Route path="/admin/product" element={<Product />} />
         <Route path="/admin/product/add" element={<ProductAdd />} />
         <Route path="/admin/product/:id" element={<ProductUpdate />} />
         <Route path="/admin/order" element={<Order />} />
+        <Route path="/admin/order-detail/:id" element={<OrderDetail />} />
         <Route path="/admin/category/" element={<Category />} />
         <Route path="/admin/brand" element={<Brand />} />
+		*/}
+
         {/* <Route path="/pratice" element={<Pratice />} /> */}
+
+        {/*
 
         {publicRoutes.map((route, index) => {
           const Page = route.page;
@@ -112,6 +126,7 @@ function App() {
             />
           );
         })}
+		*/}
       </Routes>
     </>
 
