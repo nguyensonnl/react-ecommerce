@@ -1,17 +1,15 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAllCateogry } from "../../../../redux/categorySlice";
-import Pagination from "../../../../components/Pagination";
+const CategoryList = (props) => {
+  const { categories, handleDelete, handleUpdate } = props;
 
-const ListCategory = () => {
-  const dispatch = useDispatch();
-  const allCategory = useSelector((state) => state.category.categories);
+  const handleDeleteItem = (id) => {
+    if (window.confirm("Bạn thật sự muốn xóa sản phẩm này?")) {
+      handleDelete(id);
+    }
+  };
 
-  useEffect(() => {
-    dispatch(getAllCateogry());
-  }, []);
+  const handleUpdateItem = (id) => {
+    handleUpdate(id);
+  };
 
   return (
     <>
@@ -20,29 +18,43 @@ const ListCategory = () => {
         <div className="card__body">
           <table>
             <thead>
-              <th>STT</th>
-              <th>Tên danh mục</th>
-              <th>Action</th>
+              <tr>
+                <th>STT</th>
+                <th>Tên danh mục</th>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
-              {allCategory &&
-                allCategory.length > 0 &&
-                allCategory.map((item, index) => (
-                  <tr key={item._id}>
+              {categories &&
+                categories.length > 0 &&
+                categories.map((item, index) => (
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{item.name}</td>
                     <td>
-                      <button>Edit</button>
-                      <button>Delete</button>
+                      <button
+                        className="btn-edit"
+                        onClick={() => handleUpdateItem(item._id)}
+                      >
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button
+                        className="btn-delete"
+                        type="submit"
+                        onClick={() => handleDeleteItem(item._id)}
+                      >
+                        <i className="fa-solid fa-trash-can"></i>
+                      </button>
                     </td>
                   </tr>
                 ))}
             </tbody>
           </table>
         </div>
-        <div className="card__footer">This is footer</div>
+        <div className="card__footer"></div>
       </div>
-      <div className="item__content">
+
+      {/* <div className="item__content">
         <div className="item__title">Danh sách danh mục</div>
         <div className="item__body">
           <div className="item__control">
@@ -106,9 +118,9 @@ const ListCategory = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
 
-export default ListCategory;
+export default CategoryList;

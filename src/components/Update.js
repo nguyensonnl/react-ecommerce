@@ -5,9 +5,10 @@ const Update = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        height: "100vh",
       }}
     >
-      MY WEBSITE IS UPDATEING, COMING SOON...
+      MY WEBSITE IS UPDATING, COMING SOON...
     </div>
   );
 };

@@ -48,19 +48,16 @@ const OrderList = ({ orders }) => {
                   <td>{item.status}</td>
                   <td>{Moment(item.dateOrdered).format("d/MM/YYYY")}</td>
                   <td>
-                    <button className="btn-edit">
-                      <i className="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <button className="btn-delete">
-                      <i className="fa-solid fa-trash-can"></i>
-                    </button>
                     <Link
-                      to={`/admin/order-detail/${item._id}`}
+                      to={`/admin/order/detail/${item._id}`}
                       className="btn btn-submit"
-                      style={{ marginLeft: "2px" }}
+                      style={{ marginRight: "2px" }}
                     >
                       <i className="fa-solid fa-eye"></i>
                     </Link>
+                    <button className="btn-delete">
+                      <i className="fa-solid fa-trash-can"></i>
+                    </button>
                   </td>
                 </tr>
               ))}

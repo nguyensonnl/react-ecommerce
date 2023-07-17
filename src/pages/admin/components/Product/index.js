@@ -13,6 +13,8 @@ import { getAllProduct } from "../../../../redux/reducers/productSlice";
 import Card from "../Card";
 
 const Product = () => {
+  //Khi create, update, delete thì update luôn list product
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,6 +43,8 @@ const Product = () => {
     dispatch(getAllBrand());
     dispatch(getAllProduct());
   }, []);
+
+  console.log(listProduct);
 
   // useEffect(() => {
   //   if (allProduct.length > 0 && !isLoaded) {
@@ -81,26 +85,18 @@ const Product = () => {
 
   const handleDeleteItem = async (id) => {
     try {
-      await productApi.deleteProduct(id);
-      const updatedProducts = listProduct.filter(
-        (product) => product.id !== id
-      );
-      setListProduct(updatedProducts);
-      setIsDeleted(true);
+      if (window.confirm("Bạn thật sự muốn xóa sản phẩm này?")) {
+        await productApi.deleteProduct(id);
+        const updatedProducts = listProduct.filter(
+          (product) => product._id !== id
+        );
+        setListProduct(updatedProducts);
+        setIsDeleted(true);
+      }
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(async () => {
-    try {
-      // const res = await productApi.getAllProduct();
-      // setListProduct(res.data);
-      setIsDeleted(false);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [isDeleted]);
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
@@ -207,13 +203,15 @@ const Product = () => {
 
             <table className="product__list">
               <thead>
-                <th>
-                  <input type="checkbox" />
-                </th>
-                <th>Tên sản phẩm</th>
-                <th>Danh mục</th>
-                <th>Thương hiệu</th>
-                <th>Action</th>
+                <tr>
+                  <th>
+                    <input type="checkbox" />
+                  </th>
+                  <th>Tên sản phẩm</th>
+                  <th>Danh mục</th>
+                  <th>Thương hiệu</th>
+                  <th>Action</th>
+                </tr>
               </thead>
               <tbody>
                 {currentProducts &&

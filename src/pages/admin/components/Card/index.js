@@ -7,11 +7,13 @@ const Card = (props) => {
       <div className="card__body">
         <table>
           <thead>
-            <th>STT</th>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Title2</th>
-            <th>Action</th>
+            <tr>
+              <th>STT</th>
+              <th>Name</th>
+              <th>Title</th>
+              <th>Title2</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             <tr>

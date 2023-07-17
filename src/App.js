@@ -15,7 +15,7 @@ import CreateUser from "./pages/admin/components/User/CreateUser";
 
 import { publicRoutes } from "./routes";
 import DefaultLayout from "./components/DefaultLayout";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Product from "./pages/admin/components/Product";
 import Order from "./pages/admin/components/Order";
 import Dashboard from "./pages/admin/components/Dashboard";
@@ -48,89 +48,92 @@ function App() {
   const isLoggedInClient = customer?.isLoggedIn;
   const cart = useSelector((state) => state.cart.cartItems);
 
+  const [isUpdated, setIsUpdated] = useState(true);
+
   return (
-    // <div className="App">
     <>
       <ToastContainer />
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/" element={<Update />} />
 
-        {/*
-        <Route
-          path="/auth/login"
-          element={
-            <ProtectedLogin isLoggedIn={isLoggedIn}>
-              <LoginPageAdmin />
-            </ProtectedLogin>
-          }
-        />
-        <Route path="/admin/register" element={<RegisterPage />} />
-        <Route
-          path="/admin"
-          element={
-            <Protected isLoggedIn={isLoggedIn}>
-              <Dashboard />
-            </Protected>
-          }
-        />
-	*/}
+        {isUpdated && <Route path="/" element={<Update />} />}
 
-        {/*
-        <Route path="/admin/user" element={<User />} />
-        <Route path="/admin/user/create" element={<CreateUser />} />
-        <Route path="/admin/product" element={<Product />} />
-        <Route path="/admin/product/add" element={<ProductAdd />} />
-        <Route path="/admin/product/:id" element={<ProductUpdate />} />
-        <Route path="/admin/order" element={<Order />} />
-        <Route path="/admin/order-detail/:id" element={<OrderDetail />} />
-        <Route path="/admin/category/" element={<Category />} />
-        <Route path="/admin/brand" element={<Brand />} />
-		*/}
-
-        {/* <Route path="/pratice" element={<Pratice />} /> */}
-
-        {/*
-
-        {publicRoutes.map((route, index) => {
-          const Page = route.page;
-          const Layout = route.layout === null ? Fragment : DefaultLayout;
-
-          return (
+        {!isUpdated && (
+          <>
+            {/*Admin*/}
             <Route
-              key={index}
-              path={route.path}
-              // element={
-              //   <Layout>
-              //     <Page />
-              //   </Layout>
-              // }
-
+              path="/auth/login"
               element={
-                route.private && !isLoggedInClient ? (
-                  <Navigate to="/account/login" replace />
-                ) : !route.private &&
-                  isLoggedInClient &&
-                  route.path === "/account/login" ? (
-                  <Navigate to="/account" replace />
-                ) : !route.private &&
-                  isLoggedInClient &&
-                  route.path === "/account/register" ? (
-                  <Navigate to="/account" replace />
-                ) : (
-                  <Layout>
-                    <Page />
-                  </Layout>
-                )
+                <ProtectedLogin isLoggedIn={isLoggedIn}>
+                  <LoginPageAdmin />
+                </ProtectedLogin>
               }
             />
-          );
-        })}
-		*/}
+            <Route path="/admin/register" element={<RegisterPage />} />
+            <Route
+              path="/admin"
+              element={
+                <Protected isLoggedIn={isLoggedIn}>
+                  <Dashboard />
+                </Protected>
+              }
+            />
+
+            <Route path="/admin/user" element={<User />} />
+            <Route path="/admin/user/create" element={<CreateUser />} />
+
+            <Route path="/admin/product" element={<Product />} />
+            <Route path="/admin/product/add" element={<ProductAdd />} />
+            <Route path="/admin/product/:id" element={<ProductUpdate />} />
+
+            <Route path="/admin/order" element={<Order />} />
+            <Route path="/admin/order/detail/:id" element={<OrderDetail />} />
+
+            <Route path="/admin/category/" element={<Category />} />
+
+            <Route path="/admin/brand" element={<Brand />} />
+
+            <Route path="/pratice" element={<Pratice />} />
+
+            {/*Client*/}
+            {publicRoutes.map((route, index) => {
+              const Page = route.page;
+              const Layout = route.layout === null ? Fragment : DefaultLayout;
+
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  // element={
+                  //   <Layout>
+                  //     <Page />
+                  //   </Layout>
+                  // }
+
+                  element={
+                    route.private && !isLoggedInClient ? (
+                      <Navigate to="/account/login" replace />
+                    ) : !route.private &&
+                      isLoggedInClient &&
+                      route.path === "/account/login" ? (
+                      <Navigate to="/account" replace />
+                    ) : !route.private &&
+                      isLoggedInClient &&
+                      route.path === "/account/register" ? (
+                      <Navigate to="/account" replace />
+                    ) : (
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    )
+                  }
+                />
+              );
+            })}
+          </>
+        )}
       </Routes>
     </>
-
-    // </div>
   );
 }
 

@@ -42,8 +42,10 @@ const OrderDetail = () => {
 
   const handleSubmit = async (id) => {
     try {
-      const res = await orderService.updatedOrder(id, { status: selected });
-      setStatus(res.data.status);
+      if (window.confirm("Bạn thật sự muốn thay đổi đơn này?")) {
+        const res = await orderService.updatedOrder(id, { status: selected });
+        setStatus(res.data.status);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -107,23 +109,26 @@ const OrderDetail = () => {
                 <span>Tổng giá tiền:</span>
                 <span> {numberFormat(order.totalPrice)} Vnđ</span>
               </div>
-              <div>
-                <span>Cập nhật trạng thái:</span>
-                <select
-                  value={selected}
-                  onChange={(e) => handleChangeSelect(e)}
-                  style={{ margin: "0 6px" }}
-                >
-                  <option value="Đang chờ">Đang chờ</option>
-                  <option value="Đang vận chuyển">Đang vận chuyển</option>
-                  <option value="Đã nhận hàng">Đã nhận hàng</option>
-                  <option value="Hủy">Hủy</option>
-                </select>
 
-                <button type="submit" onClick={() => handleSubmit(order._id)}>
-                  Xác nhận
-                </button>
-              </div>
+              {isShow && (
+                <div>
+                  <span>Cập nhật trạng thái:</span>
+                  <select
+                    value={selected}
+                    onChange={(e) => handleChangeSelect(e)}
+                    style={{ margin: "0 6px" }}
+                  >
+                    <option value="Đang chờ">Đang chờ</option>
+                    <option value="Đang vận chuyển">Đang vận chuyển</option>
+                    <option value="Đã nhận hàng">Đã nhận hàng</option>
+                    <option value="Hủy">Hủy</option>
+                  </select>
+
+                  <button type="submit" onClick={() => handleSubmit(order._id)}>
+                    Xác nhận
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
