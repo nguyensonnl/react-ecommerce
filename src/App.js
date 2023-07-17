@@ -56,7 +56,12 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
 
-        {isUpdated && <Route path="/" element={<Update />} />}
+        {isUpdated && (
+          <>
+            <Route path="/" element={<Update />} />
+            <Route path="*" element={<Update />} />
+          </>
+        )}
 
         {!isUpdated && (
           <>
