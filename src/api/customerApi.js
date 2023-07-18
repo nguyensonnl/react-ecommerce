@@ -10,6 +10,11 @@ const customerApi = {
     const url = `/customers/login`;
     return axiosClient.post(url, data);
   },
+
+  getAllCustomer() {
+    const url = `/customers`;
+    return axiosClient.get(url);
+  },
 };
 
 export default customerApi;

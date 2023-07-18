@@ -34,16 +34,21 @@ const Category = () => {
     };
 
     if (idCate) {
-      console.log("fsdaf");
-      return;
-    }
-
-    try {
-      await categoryService.createdCategory(newCategory);
-      let temp = [...categories, newCategory];
-      setCategories(temp);
-    } catch (error) {
-      console.log(error);
+      await categoryService.updatedCategory(idCate, newCategory);
+      const updatedCategories = categories.map((cat) =>
+        cat._id === idCate ? { ...cat, name: category } : cat
+      );
+      setCategories(updatedCategories);
+      setIdCate("");
+    } else {
+      try {
+        const res = await categoryService.createdCategory(newCategory);
+        const reuslt = res.data.category;
+        let temp = [...categories, reuslt];
+        setCategories(temp);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

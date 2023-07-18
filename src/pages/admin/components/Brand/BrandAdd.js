@@ -1,44 +1,44 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-const CategoryAdd = (props) => {
-  const { handleSubmit, categories, idCate } = props;
-  const [category, setCategory] = useState("");
+const BrandAdd = (props) => {
+  const { handleSubmit, brands, idBrand } = props;
+  const [brand, setBrand] = useState("");
 
   const handleSumitInput = (e) => {
-    handleSubmit(e, category);
-    setCategory("");
+    handleSubmit(e, brand);
+    setBrand("");
   };
 
   useEffect(() => {
-    if (idCate) {
-      const resutl = categories.filter((item) => item._id === idCate);
-      setCategory(resutl[0].name);
+    if (idBrand) {
+      const resutl = brands.filter((item) => item._id === idBrand);
+      setBrand(resutl[0].name);
     }
-  }, [idCate]);
+  }, [idBrand]);
 
   return (
     <div className="category__add" style={{ marginBottom: "10px" }}>
       <form onSubmit={(e) => handleSumitInput(e)}>
         <div className="card">
-          <div className="card__header">Thông tin danh mục</div>
+          <div className="card__header">Thông tin thương hiệu</div>
           <div className="card__body">
             <div className="item__group">
-              <label className="item__label">Tên danh mục</label>
+              <label className="item__label">Tên thương hiệu</label>
               <input
-                value={category}
+                value={brand}
                 required
                 type="text"
                 className="item__control"
-                placeholder="Tên danh mục..."
-                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Tên thương hiệu..."
+                onChange={(e) => setBrand(e.target.value)}
               />
               <div className="item__error"></div>
             </div>
           </div>
           <div className="card__footer">
             <button className="btn btn-submit">
-              {idCate ? "Edit" : "Submit"}
+              {idBrand ? "Edit" : "Submit"}
             </button>
             {/* <button className="btn btn-reset">Cancel</button> */}
           </div>
@@ -48,4 +48,4 @@ const CategoryAdd = (props) => {
   );
 };
 
-export default CategoryAdd;
+export default BrandAdd;

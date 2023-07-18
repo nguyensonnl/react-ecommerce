@@ -1,28 +1,24 @@
 import Layout from "../Layout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../../../components/Pagination";
-import { useMemo } from "react";
 import productApi from "../../../../api/productApi";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCateogry } from "../../../../redux/categorySlice";
 import { getAllBrand } from "../../../../redux/brandSlice";
-import { useCallback } from "react";
 import { getAllProduct } from "../../../../redux/reducers/productSlice";
-import Card from "../Card";
+import ProductList from "./ProductList";
 
 const Product = () => {
   //Khi create, update, delete thì update luôn list product
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const listCategory = useSelector((state) => state.category.categories);
   const listBrand = useSelector((state) => state.brand.brands);
   const allProduct = useSelector((state) => state.product.products);
+
   const [listProduct, setListProduct] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [selectedItem, setSelectedItem] = useState({
@@ -30,28 +26,19 @@ const Product = () => {
     category: "",
   });
 
-  //Pagination
-  const [curentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(5);
-  const firstPageIndex = (curentPage - 1) * pageSize;
-  const lastPageIndex = firstPageIndex + pageSize;
-  const currentProducts = listProduct.slice(firstPageIndex, lastPageIndex);
-  const [activeId, setActiveId] = useState(1);
-
   useEffect(() => {
     dispatch(getAllCateogry());
     dispatch(getAllBrand());
     dispatch(getAllProduct());
   }, []);
 
-  console.log(listProduct);
-
-  // useEffect(() => {
-  //   if (allProduct.length > 0 && !isLoaded) {
-  //     setListProduct([...allProduct]);
-  //     setIsLoaded(true);
-  //   }
-  // }, [allProduct]);
+  //Flow Pagination
+  const [curentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(5);
+  const firstPageIndex = (curentPage - 1) * pageSize;
+  const lastPageIndex = firstPageIndex + pageSize;
+  const currentProducts = listProduct.slice(firstPageIndex, lastPageIndex);
+  const [activeId, setActiveId] = useState(1);
 
   const previousPage = () => {
     if (curentPage !== 1) {
@@ -66,6 +53,7 @@ const Product = () => {
       setActiveId(curentPage + 1);
     }
   };
+  //End flow Pagination
 
   //const [currentPage, setCurrentPage] = useState(1);
 
@@ -148,6 +136,48 @@ const Product = () => {
           </button>
         </div>
 
+        <div className="product__search" style={{ marginBottom: "10px" }}>
+          <span>Danh mục: </span>
+          <select
+            name="category"
+            className="product__search-select"
+            onChange={(e) => {
+              handleFilterSelect(e);
+            }}
+          >
+            <option value="All">Tất cả</option>
+            {listCategory &&
+              listCategory.length > 0 &&
+              listCategory.map((item) => (
+                <option key={item._id}>{item.name}</option>
+              ))}
+          </select>
+          <span>Thương hiệu: </span>
+          <select
+            name="brand"
+            className="product__search-select"
+            onChange={(e) => handleFilterSelect(e)}
+          >
+            <option value="All">Tất cả</option>
+            {listBrand &&
+              listBrand.length > 0 &&
+              listBrand.map((item) => (
+                <option key={item._id}>{item.name}</option>
+              ))}
+          </select>
+
+          <span>Search: </span>
+          <input
+            value={searchInput}
+            type="text"
+            placeholder="Nhập tên sản phẩm..."
+            className="product__search-input"
+            onChange={(e) => handleSearchInput(e)}
+          />
+        </div>
+        <ProductList products={currentProducts} />
+
+        <br />
         <div className="product__content">
           <div className="product__title">Danh sách sản phẩm</div>
           <div className="product__body">
@@ -263,7 +293,6 @@ const Product = () => {
             </div>
           </div>
         </div>
-        <Card />
       </div>
     </Layout>
   );

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import productApi from "../../../api/productApi";
 import orderService from "../../../api/orderService";
+import customerApi from "../../../api/customerApi";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,6 +16,8 @@ const Dashboard = () => {
         setProducts(resProduct.data.data.productList);
         const resOrder = await orderService.getAllOrders();
         setOrders(resOrder.data);
+        const resCustomer = await customerApi.getAllCustomer();
+        setCustomers(resCustomer.data.customers);
       } catch (error) {
         console.log(error);
       }
@@ -41,6 +45,16 @@ const Dashboard = () => {
                   <div className="card__header">Đơn hàng</div>
                   <div className="card__body">
                     Tổng đơn hàng: {orders.length}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-6" style={{ marginTop: "10px" }}>
+              <div className="card text-bg-light mb-3">
+                <div className="card">
+                  <div className="card__header">Khách hàng</div>
+                  <div className="card__body">
+                    Tổng số lượng khách hàng: {customers.length}
                   </div>
                 </div>
               </div>

@@ -58,7 +58,7 @@ const Sidebar = () => {
             Đơn hàng
           </NavLink>
         </li>
-        <li className="sidebar__list-item">
+        {/* <li className="sidebar__list-item">
           <NavLink
             to="/admin/user"
             className={({ isActive }) =>
@@ -67,7 +67,7 @@ const Sidebar = () => {
           >
             Người dùng
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

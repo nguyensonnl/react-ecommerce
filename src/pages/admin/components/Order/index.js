@@ -20,7 +20,7 @@ const Orders = () => {
 
   //1. Các component lồng nhau sử dụng state isShow truyền từ parent to child
   //2. Sử dụng outlet of react router
-  //3. Theo link thì component khác nhau
+  //3. Theo link thì component khác nhau, và các component không phải cha con
 
   return (
     <Layout>
