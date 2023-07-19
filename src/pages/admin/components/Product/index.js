@@ -166,19 +166,33 @@ const Product = () => {
               ))}
           </select>
 
-          <span>Search: </span>
+          {/* <span>Search: </span>
           <input
             value={searchInput}
             type="text"
             placeholder="Nhập tên sản phẩm..."
             className="product__search-input"
             onChange={(e) => handleSearchInput(e)}
-          />
+          /> */}
         </div>
-        <ProductList products={currentProducts} />
+        <ProductList
+          products={currentProducts}
+          totalPosts={listProduct.length}
+          postsPerPage={pageSize}
+          pageSize={pageSize}
+          setCurrentPage={setCurrentPage}
+          previousPage={previousPage}
+          nextPage={nextPage}
+          activeId={activeId}
+          setActiveId={setActiveId}
+          curentPage={curentPage}
+          firstPageIndex={firstPageIndex}
+          lastPageIndex={lastPageIndex}
+          listProduct={listProduct}
+        />
 
         <br />
-        <div className="product__content">
+        {/* <div className="product__content">
           <div className="product__title">Danh sách sản phẩm</div>
           <div className="product__body">
             <div className="product__control">
@@ -292,7 +306,7 @@ const Product = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

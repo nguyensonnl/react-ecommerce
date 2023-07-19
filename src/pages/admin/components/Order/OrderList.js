@@ -1,9 +1,11 @@
 import React from "react";
 import Pagination from "../../../../components/Pagination";
-import Moment from "moment";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const OrderList = ({ orders }) => {
+  moment.locale();
+
   return (
     <div className="card">
       <div className="card__header">Danh sách đơn hàng</div>
@@ -46,7 +48,7 @@ const OrderList = ({ orders }) => {
                   <td>{item._id}</td>
                   <td>{item?.customer_id?.firstName}</td>
                   <td>{item.status}</td>
-                  <td>{Moment(item.dateOrdered).format("d/MM/YYYY")}</td>
+                  <td>{moment(item.dateOrdered).format("lll")}</td>
                   <td>
                     <Link
                       to={`/admin/order/detail/${item._id}`}

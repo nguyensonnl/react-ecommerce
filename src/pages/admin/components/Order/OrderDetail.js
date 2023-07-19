@@ -13,7 +13,7 @@ const OrderDetail = () => {
   const [status, setStatus] = useState();
 
   const [selected, setSelected] = useState("");
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(true);
   const handleChangeSelect = (e) => {
     setSelected(e.target.value);
   };
@@ -21,8 +21,8 @@ const OrderDetail = () => {
   useEffect(() => {
     setStatus(status);
     setSelected(status);
-    if (status === "Success") {
-      setIsShow(true);
+    if (status === "Đã nhận hàng") {
+      setIsShow(false);
     }
   }, [status]);
 
@@ -50,7 +50,9 @@ const OrderDetail = () => {
       console.log(error);
     }
   };
-  console.log(order.status);
+
+  Moment.locale();
+
   return (
     <Layout>
       <div className="order__detail">
@@ -61,12 +63,12 @@ const OrderDetail = () => {
               <div>
                 <span>Tên khách hàng: </span>
                 <span>
-                  {order?.customer_id?.lastName} {order?.customer_id?.firstName}
+                  {order.customer_id?.lastName} {order?.customer_id?.firstName}
                 </span>
               </div>
               <div>
                 <span>Email: </span>
-                <span>{order?.customer_id?.email}</span>
+                <span>{order.customer_id?.email}</span>
               </div>
               <div>
                 <span>Số điện thoại: </span>
@@ -95,11 +97,8 @@ const OrderDetail = () => {
                 <span> {order.methodPayment}</span>
               </div>
               <div>
-                <span>Ngày đặt:</span>
-                <span>
-                  {" "}
-                  {Moment(order.dateOrderd).format("d/MM/YYYY hh:mm")}
-                </span>
+                <span>Ngày đặt: </span>
+                <span>{Moment(order.dateOrdered).format("lll")}</span>
               </div>
               <div>
                 <span>Ghi chú:</span>
@@ -138,12 +137,14 @@ const OrderDetail = () => {
           <div className="card__body">
             <table>
               <thead>
-                <th>STT</th>
-                <th>ID</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Tổng tiền</th>
+                <tr>
+                  <th>STT</th>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Giá</th>
+                  <th>Số lượng</th>
+                  <th>Tổng tiền</th>
+                </tr>
               </thead>
               <tbody>
                 {order.orderItem_id &&

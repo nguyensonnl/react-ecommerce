@@ -1,11 +1,45 @@
 import React from "react";
+import Pagination from "../../../../components/Pagination";
 
 const ProductList = (props) => {
-  const { products } = props;
+  const {
+    products,
+    totalPosts,
+    setCurrentPage,
+    previousPage,
+    nextPage,
+    activeId,
+    setActiveId,
+    curentPage,
+    firstPageIndex,
+    lastPageIndex,
+    listProduct,
+    pageSize,
+  } = props;
   return (
     <div className="card">
       <div className="card__header">Danh sách sản phẩm</div>
       <div className="card__body">
+        <div className="flow-search-table">
+          <div className="records-per-page">
+            <label>Show </label>
+            <select>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>
+            <span> entries</span>
+          </div>
+          <div className="search-input">
+            <label>Search:</label>
+            <input
+              //value={searchInput}
+              type="text"
+              placeholder="Tên sản phẩm..."
+              //onChange={(e) => handleSearchInput(e)}
+            />
+          </div>
+        </div>
         <table>
           <thead>
             <tr>
@@ -45,21 +79,31 @@ const ProductList = (props) => {
         </table>
       </div>
       <div className="card__footer">
-        {/* <div className="product__show-record">
-          Hiển thị từ {firstPageIndex + 1} đến {lastPageIndex} của{" "}
-          {listProduct.length} bản ghi
-        </div> */}
-        <div className="product__pagination">
-          {/* <Pagination
-            totalPosts={listProduct.length}
-            postsPerPage={pageSize}
-            setCurrentPage={setCurrentPage}
-            previousPage={previousPage}
-            nextPage={nextPage}
-            activeId={activeId}
-            setActiveId={setActiveId}
-            curentPage={curentPage}
-          /> */}
+        <div className="flow-showing-paginate">
+          <div className="show-entries">
+            {firstPageIndex + 1 === listProduct.length ? (
+              <>
+                Showing {firstPageIndex + 1} of {listProduct.length} entries
+              </>
+            ) : (
+              <>
+                Showing {firstPageIndex + 1} to {lastPageIndex} of{" "}
+                {listProduct.length} entries
+              </>
+            )}
+          </div>
+          <div className="paginate">
+            <Pagination
+              totalPosts={listProduct.length}
+              postsPerPage={pageSize}
+              setCurrentPage={setCurrentPage}
+              previousPage={previousPage}
+              nextPage={nextPage}
+              activeId={activeId}
+              setActiveId={setActiveId}
+              curentPage={curentPage}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ const Dashboard = () => {
                 <div className="card">
                   <div className="card__header">Khách hàng</div>
                   <div className="card__body">
-                    Tổng số lượng khách hàng: {customers.length}
+                    Tổng khách hàng: {customers.length}
                   </div>
                 </div>
               </div>

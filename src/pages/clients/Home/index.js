@@ -1,7 +1,6 @@
 import "./Home.scss";
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import HeroSlider from "../../../components/HeroSlider";
-//import ProductCard from "../../../components/ProductCard";
 import Helmet from "../../../components/Helmet";
 import productApi from "../../../api/productApi";
 import LoadingSpinner from "../../../components/LoadingSpinner";
@@ -12,9 +11,6 @@ const ProductCard = React.lazy(() => import("../../../components/ProductCard"));
 
 const Home = () => {
   const [featuredList, setFeaturedList] = useState([]);
-  // const [menWatch, setMenWatch] = useState([]);
-  // const [womenWatch, setWomenWatch] = useState([]);
-  // const [doubleWatch, setDoubleWatch] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
 

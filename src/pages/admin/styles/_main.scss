@@ -30,7 +30,8 @@
     }
 
     &__footer{
-        padding: var(--padding);
+        //padding: var(--padding);
+        padding: 0 8px 8px 8px;
     }
 }
 
@@ -186,3 +187,35 @@
     width: 16px;
     height: 16px;
 }
+
+
+//Flow search table
+.flow-search-table{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .records-per-page{
+        select{
+            height: 26px;
+            width: 60px;
+        }
+    }
+
+    .search-input{
+        input{
+            padding: 3px;
+            outline: none;
+            width: 320px;
+            margin-left: 6px;
+        }
+    }
+}
+
+.flow-showing-paginate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
