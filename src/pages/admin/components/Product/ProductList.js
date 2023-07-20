@@ -15,6 +15,8 @@ const ProductList = (props) => {
     lastPageIndex,
     listProduct,
     pageSize,
+    onEditForm,
+    onDeleteItem,
   } = props;
   return (
     <div className="card">
@@ -62,13 +64,14 @@ const ProductList = (props) => {
                   <td>
                     <button
                       className="btn-edit"
-                      // onClick={() => handleEditForm(product.slug)}
+                      onClick={() => onEditForm(product.slug)}
                     >
                       <i className="fa-solid fa-pen-to-square"></i>
                     </button>
                     <button
                       className="btn-delete"
                       // onClick={() => handleDeleteItem(product._id)}
+                      onClick={() => onDeleteItem(product._id)}
                     >
                       <i className="fa-solid fa-trash-can"></i>
                     </button>

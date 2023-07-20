@@ -189,6 +189,8 @@ const Product = () => {
           firstPageIndex={firstPageIndex}
           lastPageIndex={lastPageIndex}
           listProduct={listProduct}
+          onEditForm={handleEditForm}
+          onDeleteItem={handleDeleteItem}
         />
 
         <br />

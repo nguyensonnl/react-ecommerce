@@ -1,10 +1,4 @@
-import {
-  Routes,
-  Route,
-  Redirect,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/clients/Home";
 import LoginPage from "./pages/admin/components/Auth/LoginPage";
@@ -48,7 +42,7 @@ function App() {
   const isLoggedInClient = customer?.isLoggedIn;
   const cart = useSelector((state) => state.cart.cartItems);
 
-  const [isUpdated, setIsUpdated] = useState(true);
+  const [isUpdated, setIsUpdated] = useState(false);
 
   return (
     <>
