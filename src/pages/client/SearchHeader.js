@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllProduct } from "../../redux/reducers/productSlice";
 import { useState } from "react";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import { useMemo } from "react";
+//import LoadingSpinner from "../../components/LoadingSpinner";
+//import { useMemo } from "react";
 
 const SearchHeader = () => {
   const dispatch = useDispatch();
