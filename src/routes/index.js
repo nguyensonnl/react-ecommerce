@@ -1,5 +1,5 @@
 import Cart from "../pages/client/Cart";
-import Catalog from "../pages/client/Catalog";
+//import Catalog from "../pages/client/Catalog";
 import Home from "../pages/client/Home";
 import NotFound from "../pages/client/NotFound";
 import Product from "../pages/client/Product";
