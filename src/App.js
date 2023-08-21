@@ -23,7 +23,7 @@ import Brand from "./pages/admin/components/Brand";
 import ProductAdd from "./pages/admin/components/Product/ProductAdd";
 import ProductUpdate from "./pages/admin/components/Product/ProductUpdate";
 
-import Text from "./components/Text";
+//import Text from "./components/Text";
 import Pratice from "./components/Pratice";
 
 import Protected from "./pages/admin/Protected";
