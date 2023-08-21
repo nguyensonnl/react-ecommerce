@@ -1,19 +1,20 @@
-import Cart from "../pages/clients/Cart";
-import Catalog from "../pages/clients/Catalog";
-import Home from "../pages/clients/Home";
-import NotFound from "../pages/clients/NotFound";
-import Product from "../pages/clients/Product";
-import Login from "../pages/clients/Auth/Login";
-import Register from "../pages/clients/Auth/Register";
-import Checkout from "../pages/clients/Checkout";
-import SearchHeader from "../pages/clients/SearchHeader";
-import Account from "../pages/clients/Account/LayoutAccount";
+import Cart from "../pages/client/Cart";
+import Catalog from "../pages/client/Catalog";
+import Home from "../pages/client/Home";
+import NotFound from "../pages/client/NotFound";
+import Product from "../pages/client/Product";
+
+import Login from "../pages/client/Login";
+import Register from "../pages/client/Register";
+
+import Checkout from "../pages/client/Checkout";
+import SearchHeader from "../pages/client/SearchHeader";
+
 import Text from "../components/Text";
-import AccountInfo from "../pages/clients/Account/AccountInfo";
-import AccountOrder from "../pages/clients/Account/AccountOrder";
-import NewCatalog from "../pages/clients/Catalog/NewCatalog";
-import Updating from "../pages/clients/Updating";
-import English from "../components/English";
+import AccountInfo from "../pages/client/AccountInfo";
+import AccountOrder from "../pages/client/AccountOrder";
+import NewCatalog from "../pages/client/NewCatalog";
+import Updating from "../pages/client/Updating";
 import Upload from "../components/Upload";
 
 const publicRoutes = [
@@ -31,7 +32,6 @@ const publicRoutes = [
   { path: "/test", page: Text, layout: null },
   { path: "/about", page: Updating },
   { path: "/contact", page: Updating },
-  { path: "/english", page: English, layout: null },
   { path: "/upload", page: Upload, layout: null },
 ];
 

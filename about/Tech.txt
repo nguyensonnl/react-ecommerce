@@ -1,0 +1,5 @@
+-Language: Javascript
+-UI Framework: html, css(scss)
+-FE Framework: React
+-State manguage: Redux / Redux Toolkit
+-API: Axios

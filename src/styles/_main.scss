@@ -1,0 +1,165 @@
+
+
+
+
+
+
+
+
+
+
+
+.product__list{
+    border-left: 1px solid #f1f1f1;
+    border-top: 1px solid #f1f1f1;
+}
+
+.section-m1{
+    margin: 40px 0;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mb-20{
+    margin-bottom: 20px;
+}
+
+.mtb-20{
+    margin: 20px 0;
+}
+
+.form-control{
+    border: none;
+    outline: none;
+    padding: 10px;
+}
+
+.form-group{
+    outline: none;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td,th{
+    border: 1px solid #ccc;
+    padding: 4px;
+    font-size: 1.4rem;
+}
+
+tbody{
+    text-align: center;
+}
+
+button{
+    padding: 8px;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-edit{
+    margin-right: 2px;
+    background-image: linear-gradient(#333, #000);
+    color: #fff;
+}
+
+.btn-delete{
+    background-color: rgb(209, 10, 10);
+    color: #fff;
+}
+
+.btn-cancel{
+    background-color: #ddd;
+    display: inline;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+select{
+    outline: none;
+}
+
+
+
+/*Admin page*/
+.wrapper{
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .form__title{
+        background-image: linear-gradient(#333, #000);
+        color: #fff;
+        padding: 8px 12px;
+    }
+
+    .form__body{
+        padding: 8px;
+    }
+
+    .form__footer{
+        // display: flex;
+        // align-items: center;
+        background-color: #f7f7f7;
+        padding: 8px 12px;
+        display: flex;
+    }
+
+    .form__control{
+        display: flex;
+        align-items: center;
+        margin-bottom: 14px;
+
+        label{
+            margin-right: 8px;
+            width: 25%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .form__group{
+            outline: none;
+            height: 28px;
+            padding: 0 8px;
+            width: 50%;
+        }
+
+        .form__checkbox{
+            width: 20px;
+            height: 20px;
+        }
+
+        .form__input-text{
+           height: 28px;
+           outline: none;
+        }
+
+        textarea{
+            height: 100px;
+            width: 50%;
+        }
+    }
+}
+
+.handle-error{
+    color: red;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+    margin-top: -6px;
+}
+
+
+

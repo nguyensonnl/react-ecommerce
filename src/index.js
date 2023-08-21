@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import GlobalStyles from "./components/GlobalStyles";
-//import "./styles/grid.scss";
 import "./styles/index.scss";
 
+//router
 import { BrowserRouter } from "react-router-dom";
 
 //redux
@@ -28,9 +27,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <GlobalStyles>
-            <App />
-          </GlobalStyles>
+          <App />
         </PersistGate>
       </Provider>
     </BrowserRouter>

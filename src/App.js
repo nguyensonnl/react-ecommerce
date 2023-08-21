@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Home from "./pages/clients/Home";
+import Home from "./pages/client/Home";
 import LoginPage from "./pages/admin/components/Auth/LoginPage";
 import RegisterPage from "./pages/admin/components/Auth/RegisterPage";
 //import AdminPage from "./pages/admin/pages/AdminPage";
@@ -8,7 +8,8 @@ import Layout from "./pages/admin/components/Layout";
 import CreateUser from "./pages/admin/components/User/CreateUser";
 
 import { publicRoutes } from "./routes";
-import DefaultLayout from "./components/DefaultLayout";
+//import DefaultLayout from "./components/DefaultLayout";
+import DefaultLayout from "./layouts/DefaultLayout";
 import { Fragment, useState } from "react";
 import Product from "./pages/admin/components/Product";
 import Order from "./pages/admin/components/Order";
