@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Helmet from "../../components/Helmet";
-import ProductCard from "../../components/ProductCard";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import Helmet from "../../components/Helmet";
+import ProductCard from "../../components/ProductCard";
 import { getProductByCategory } from "../../redux/reducers/productSlice";
 import Breadcrumb from "../../components/Breadcrumb";
 import { getAllBrand } from "../../redux/brandSlice";

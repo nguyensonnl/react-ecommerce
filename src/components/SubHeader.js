@@ -39,7 +39,7 @@ const SubHeader = () => {
           </Link>
         </li>
 
-        <li className="subheader__item">
+        {/* <li className="subheader__item">
           <Link to="/about" className="subheader__item-link">
             Giới thiệu
           </Link>
@@ -48,7 +48,7 @@ const SubHeader = () => {
           <Link to="/contact" className="subheader__item-link">
             Liên hệ
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

@@ -117,10 +117,10 @@ const OrderDetail = () => {
                     onChange={(e) => handleChangeSelect(e)}
                     style={{ margin: "0 6px" }}
                   >
-                    <option value="Đang chờ">Đang chờ</option>
-                    <option value="Đang vận chuyển">Đang vận chuyển</option>
-                    <option value="Đã nhận hàng">Đã nhận hàng</option>
-                    <option value="Hủy">Hủy</option>
+                    <option value="pending">Đang chờ</option>
+                    <option value="delivery">Đang vận chuyển</option>
+                    <option value="success">Đã nhận hàng</option>
+                    <option value="cancelled">Hủy</option>
                   </select>
 
                   <button type="submit" onClick={() => handleSubmit(order._id)}>

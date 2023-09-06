@@ -1,4 +1,4 @@
-import AccountSidebar from "../pages/client/AccountSidebar";
+import AccountSidebar from "../pages/client/Account/AccountSidebar";
 
 const ProfileLayout = (props) => {
   return (

@@ -3,15 +3,16 @@
 
     .subheader__group{
         width: 100%;
-        max-width: 700px;
+        max-width: 600px;
         margin: 0 auto;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         padding: 10px 0;
 
         .subheader__item{
             list-style: none;
+            flex: 1;
+            text-align: center;
             
             &-link{
                 color:#fff;

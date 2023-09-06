@@ -21,4 +21,9 @@ orderService.updatedOrder = (id, data) => {
   return axiosClient.put(url, data);
 };
 
+orderService.getOrdersByCustomer = (id, status) => {
+  const url = `/orders/customer/${id}`;
+  return axiosClient.get(url);
+};
+
 export default orderService;

@@ -4,15 +4,15 @@ import Home from "../pages/client/Home";
 import NotFound from "../pages/client/NotFound";
 import Product from "../pages/client/Product";
 
-import Login from "../pages/client/Login";
-import Register from "../pages/client/Register";
+import Login from "../pages/client/Auth/Login";
+import Register from "../pages/client/Auth/Register";
 
 import Checkout from "../pages/client/Checkout";
 import SearchHeader from "../pages/client/SearchHeader";
 
 import Text from "../components/Text";
-import AccountInfo from "../pages/client/AccountInfo";
-import AccountOrder from "../pages/client/AccountOrder";
+import AccountInfo from "../pages/client/Account/AccountInfo";
+import AccountOrder from "../pages/client/Account/AccountOrder";
 import NewCatalog from "../pages/client/NewCatalog";
 import Updating from "../pages/client/Updating";
 import Upload from "../components/Upload";

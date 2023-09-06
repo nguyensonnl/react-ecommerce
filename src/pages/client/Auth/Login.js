@@ -1,11 +1,11 @@
+//import f from "../../../assets/img/facebook.png";
+//import g from "../../../assets/img/google.png";
 import { Link, useNavigate } from "react-router-dom";
-import Breadcrumb from "../../components/Breadcrumb";
-import f from "../../assets/img/facebook.png";
-import g from "../../assets/img/google.png";
-import Helmet from "../../components/Helmet";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { login } from "../../redux/customerSlice";
+import Breadcrumb from "../../../components/Breadcrumb";
+import Helmet from "../../../components/Helmet";
+import { login } from "../../../redux/customerSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -137,7 +137,7 @@ const Login = () => {
           </form>
         </div>
 
-        <div className="other-login">
+        {/* <div className="other-login">
           <p>Hoặc đăng nhập bằng</p>
           <div className="social-media">
             <Link to="" className="social-media--facebook">
@@ -147,7 +147,7 @@ const Login = () => {
               <img src={g} className="social-media-img" />
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </Helmet>
   );

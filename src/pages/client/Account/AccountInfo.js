@@ -1,7 +1,7 @@
 import React from "react";
-import Helmet from "../../components/Helmet";
-import ProfileLayout from "../../layouts/ProfileLayout";
-import Breadcrumb from "../../components/Breadcrumb";
+import Helmet from "../../../components/Helmet";
+import ProfileLayout from "../../../layouts/ProfileLayout";
+import Breadcrumb from "../../../components/Breadcrumb";
 import { useSelector } from "react-redux";
 
 const AccountInfo = () => {

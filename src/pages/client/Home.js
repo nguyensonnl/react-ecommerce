@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef, Suspense } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 import HeroSlider from "../../components/HeroSlider";
 import Helmet from "../../components/Helmet";
 import productApi from "../../api/productApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import singletonCounter from "../../utils/cacheData";
 
 const ProductCard = React.lazy(() => import("../../components/ProductCard"));
