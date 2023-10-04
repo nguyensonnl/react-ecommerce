@@ -1,22 +1,22 @@
 import Layout from "../Layout";
 import { useEffect, useState, useCallback } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../../../components/Pagination";
-import productApi from "../../../../api/productApi";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCateogry } from "../../../../redux/categorySlice";
-import { getAllBrand } from "../../../../redux/brandSlice";
-import { getAllProduct } from "../../../../redux/reducers/productSlice";
+import productService from "../../../../api/productService";
 import ProductList from "./ProductList";
+import brandService from "../../../../api/brandService";
+import categoryService from "../../../../api/categoryService";
+
+/**
+ * Call api data
+ */
 
 const Product = () => {
   //Khi create, update, delete thì update luôn list product
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const listCategory = useSelector((state) => state.category.categories);
-  const listBrand = useSelector((state) => state.brand.brands);
-  const allProduct = useSelector((state) => state.product.products);
+  const [allProduct, setAllProduct] = useState();
+  const [listBrand, setListBrand] = useState();
+  const [listCategory, setListCategory] = useState();
 
   const [listProduct, setListProduct] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -27,9 +27,21 @@ const Product = () => {
   });
 
   useEffect(() => {
-    dispatch(getAllCateogry());
-    dispatch(getAllBrand());
-    dispatch(getAllProduct());
+    const fetchData = async () => {
+      try {
+        const [resPro, resBrand, resCate] = await Promise.all([
+          productService.getAllProduct(),
+          brandService.getAllBrand(),
+          categoryService.getAllCategory(),
+        ]);
+        setAllProduct(resPro.data.data.productList);
+        setListBrand(resBrand.data);
+        setListCategory(resCate.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   //Flow Pagination
@@ -74,7 +86,7 @@ const Product = () => {
   const handleDeleteItem = async (id) => {
     try {
       if (window.confirm("Bạn thật sự muốn xóa sản phẩm này?")) {
-        await productApi.deleteProduct(id);
+        await productService.deleteProduct(id);
         const updatedProducts = listProduct.filter(
           (product) => product._id !== id
         );

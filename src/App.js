@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Home from "./pages/client/Home";
+
+//Components
+import Home from "./pages/Home/Home";
 import LoginPage from "./pages/admin/components/Auth/LoginPage";
 import RegisterPage from "./pages/admin/components/Auth/RegisterPage";
 //import AdminPage from "./pages/admin/pages/AdminPage";
@@ -8,6 +10,7 @@ import Layout from "./pages/admin/components/Layout";
 import CreateUser from "./pages/admin/components/User/CreateUser";
 
 import { publicRoutes } from "./routes";
+
 //import DefaultLayout from "./components/DefaultLayout";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { Fragment, useState } from "react";
@@ -23,15 +26,10 @@ import Brand from "./pages/admin/components/Brand";
 import ProductAdd from "./pages/admin/components/Product/ProductAdd";
 import ProductUpdate from "./pages/admin/components/Product/ProductUpdate";
 
-//import Text from "./components/Text";
-import Pratice from "./components/Pratice";
-
 import Protected from "./pages/admin/Protected";
 import { ProtectedLogin } from "./pages/admin/Protected";
 import { useSelector } from "react-redux";
-import { ProtectedAccount } from "./components/ProtectedAcount";
-import PrivateRoute from "./components/PrivateRoute";
-import { ProtectedAccountLogin } from "./components/ProtectedAcount";
+
 import User from "./pages/admin/components/User";
 import OrderDetail from "./pages/admin/components/Order/OrderDetail";
 
@@ -92,8 +90,6 @@ function App() {
             <Route path="/admin/category/" element={<Category />} />
 
             <Route path="/admin/brand" element={<Brand />} />
-
-            <Route path="/pratice" element={<Pratice />} />
 
             {/*Client*/}
             {publicRoutes.map((route, index) => {

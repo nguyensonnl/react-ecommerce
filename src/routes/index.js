@@ -1,35 +1,31 @@
-import Cart from "../pages/client/Cart";
-//import Catalog from "../pages/client/Catalog";
-import Home from "../pages/client/Home";
-import NotFound from "../pages/client/NotFound";
-import Product from "../pages/client/Product";
-
-import Login from "../pages/client/Auth/Login";
-import Register from "../pages/client/Auth/Register";
-
-import Checkout from "../pages/client/Checkout";
-import SearchHeader from "../pages/client/SearchHeader";
-
-import Text from "../components/Text";
-import AccountInfo from "../pages/client/Account/AccountInfo";
-import AccountOrder from "../pages/client/Account/AccountOrder";
-import NewCatalog from "../pages/client/NewCatalog";
-import Updating from "../pages/client/Updating";
+import Cart from "../pages/Cart";
+import Home from "../pages/Home";
+import NotFound from "../pages/NotFound";
+import Product from "../pages/Product";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import Checkout from "../pages/Checkout";
+import SearchHeader from "../pages/SearchHeader";
+import Info from "../pages/Account/Info";
+import Order from "../pages/Account/Order";
+import CatalogV2 from "../pages/Catalog/CatalogV2";
+import Updating from "../pages/Updating";
 import Upload from "../components/Upload";
+
+//import Catalog from "../pages/client/Catalog";
 
 const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
   { path: "/sp/:slug", page: Product },
-  { path: "/danh-muc/:cate", page: NewCatalog },
+  { path: "/danh-muc/:cate", page: CatalogV2 },
   { path: "*", page: NotFound },
   { path: "/account/login", page: Login },
   { path: "/account/register", page: Register },
   { path: "/checkout", page: Checkout, layout: null },
   { path: "/search-results", page: SearchHeader },
-  { path: "/account", page: AccountInfo, private: 1 },
-  { path: "/account/orders", page: AccountOrder, private: 1 },
-  { path: "/test", page: Text, layout: null },
+  { path: "/account", page: Info, private: 1 },
+  { path: "/account/orders", page: Order, private: 1 },
   { path: "/about", page: Updating },
   { path: "/contact", page: Updating },
   { path: "/upload", page: Upload, layout: null },

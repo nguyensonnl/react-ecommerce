@@ -1,0 +1,56 @@
+.account__order{
+
+    .order__heading{
+        list-style-type: none;
+        margin-bottom: 20px;
+        padding: 8px;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+       
+        &__list{
+            flex: 1;
+            text-align: center;
+
+            .order-btn{
+                background-color: transparent;
+                position: relative;
+
+                &:hover::after{
+                    opacity: 1;
+                }
+
+                &::after{
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: var(--secondary-color);
+                    opacity: 0;
+                }
+
+                &:focus::after{
+                    opacity: 1;
+                }
+
+            }
+        }
+    }
+
+    .order-list{
+        border: 1px solid #ccc;
+        padding: 30px;
+        margin-bottom: 20px;
+    
+        .order-table{
+            margin-bottom: 30px;
+            
+        }
+        
+        .order-action{
+            display: flex;
+        }
+    }
+}

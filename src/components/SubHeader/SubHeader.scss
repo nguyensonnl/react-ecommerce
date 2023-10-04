@@ -1,0 +1,39 @@
+.subheader__container {
+    background-color: #1435c3;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0,0, 0.1);
+
+    .subheader__list{
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+
+        .subheader__item{
+            list-style: none;
+            flex: 1;
+            text-align: center;
+            
+            &__link{
+                color: #fff;
+                font-weight: 300;
+                text-transform: uppercase;
+                
+                &:hover {
+                  opacity: 0.7;
+                }
+            }
+
+            .active{
+               opacity: 0.7;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .subheader__container {
+        display: none;
+    }
+}

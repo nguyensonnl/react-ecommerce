@@ -1,0 +1,1 @@
+Cách cũ là mình lưu các giá trị vào redux

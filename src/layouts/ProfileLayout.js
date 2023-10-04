@@ -1,12 +1,11 @@
-import AccountSidebar from "../pages/client/Account/AccountSidebar";
-
+import Sidebar from "../pages/Account/SideBar";
 const ProfileLayout = (props) => {
   return (
     <div className="grid">
       <div className="account mtb-20">
         <div className="row">
           <div className="col-3">
-            <AccountSidebar />
+            <Sidebar />
           </div>
           <div className="col-9">{props.children}</div>
         </div>

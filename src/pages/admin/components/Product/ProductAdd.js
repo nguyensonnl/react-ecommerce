@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import productApi from "../../../../api/productApi";
-import { getAllBrand } from "../../../../redux/brandSlice";
-import { getAllCateogry } from "../../../../redux/categorySlice";
+import productService from "../../../../api/productService";
 import Layout from "../Layout";
 import uploadSerivce from "../../../../api/uploadService";
+import brandService from "../../../../api/brandService";
+import categoryService from "../../../../api/categoryService";
 
 let initialState = {
   name: "",
@@ -21,17 +21,26 @@ let initialState = {
   isFeatured: false,
 };
 const ProductAdd = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState(initialState);
   const [previewUrls, setPreviewUrls] = useState([]);
-
-  const allCategory = useSelector((state) => state.category.categories);
-  const allBrand = useSelector((state) => state.brand.brands);
+  const [listCate, setListCate] = useState();
+  const [listBrand, setListBrand] = useState();
 
   useEffect(() => {
-    dispatch(getAllBrand());
-    dispatch(getAllCateogry());
+    const fetchData = async () => {
+      try {
+        const [resBrand, resCate] = await Promise.all([
+          brandService.getAllBrand(),
+          categoryService.getAllCategory(),
+        ]);
+        setListBrand(resBrand.data);
+        setListCate(resCate.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   //const [file, setFile] = useState();
@@ -190,9 +199,9 @@ const ProductAdd = () => {
                     // value={inputs.category}
                     onChange={(e) => handleChangeInput(e)}
                   >
-                    {allCategory &&
-                      allCategory.length > 0 &&
-                      allCategory.map((item) => (
+                    {listCate &&
+                      listCate.length > 0 &&
+                      listCate.map((item) => (
                         <option key={item._id} value={item._id}>
                           {item.name}
                         </option>
@@ -209,9 +218,9 @@ const ProductAdd = () => {
                     //</div>value={inputs.brand}
                     onChange={(e) => handleChangeInput(e)}
                   >
-                    {allBrand &&
-                      allBrand.length > 0 &&
-                      allBrand.map((item) => (
+                    {listBrand &&
+                      listBrand.length > 0 &&
+                      listBrand.map((item) => (
                         <option key={item._id} value={item._id}>
                           {item.name}
                         </option>

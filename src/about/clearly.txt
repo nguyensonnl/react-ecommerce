@@ -1,0 +1,7 @@
+HomePage
+- fetching data products features
+- fetching data products by categories
+
+Redux: Global state
+- Info user login
+- Info customer login

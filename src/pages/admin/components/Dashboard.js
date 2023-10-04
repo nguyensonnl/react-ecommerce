@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
-import productApi from "../../../api/productApi";
+import productApi from "../../../api/productService";
 import orderService from "../../../api/orderService";
-import customerApi from "../../../api/customerApi";
+import customerService from "../../../api/customerService";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ const Dashboard = () => {
         setProducts(resProduct.data.data.productList);
         const resOrder = await orderService.getAllOrders();
         setOrders(resOrder.data);
-        const resCustomer = await customerApi.getAllCustomer();
+        const resCustomer = await customerService.getAllCustomer();
         setCustomers(resCustomer.data.customers);
       } catch (error) {
         console.log(error);

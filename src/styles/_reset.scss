@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-:root{
-    //color
- }
-
-
  *, *::after, *::before{
     padding: 0;
     margin: 0;
@@ -17,7 +12,10 @@ html{
 
 body{
     font-family: "Roboto", sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    background-color: #f8f8f8;
+    color: #333;
+    //line-height: 1.25rem;
 }
 
 
@@ -28,7 +26,3 @@ img{
 a{
     text-decoration: none;
 }
-
-// ul, li{
-//     list-style: none;
-// }

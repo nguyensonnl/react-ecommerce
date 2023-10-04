@@ -2,29 +2,5 @@
 @import './grid';
 @import './main';
 @import './color';
-
-@import './components/breadcrumb';
-@import './components/cartitem';
-@import './components/checkbox';
-@import './components/footer';
-@import './components/header';
-@import './components/subheader';
-@import './components/heroslider';
-@import './components/loadingspinner';
-@import './components/pratice';
-@import './components/productcard';
-@import './components/productview';
-@import'./components/order-list';
-
-
-@import './pages/auth';
-@import './pages/home';
-@import './pages/404page';
-@import './pages/accountinfo';
-@import './pages/accountsidebar';
-@import './pages/cart';
-@import './pages/catalog';
-@import './pages/checkout';
-@import './pages/product';
-@import './pages/searchheader';
-@import "./pages/accountorder";
+@import './pratice';
+@import './auth';

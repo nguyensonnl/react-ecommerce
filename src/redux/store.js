@@ -16,9 +16,6 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
-import { productReducer } from "./reducers/productSlice";
-import { categoryReducer } from "./categorySlice";
-import { brandReducer } from "./brandSlice";
 //import { authReducer } from "./authSlice";
 import persistedAuthReducer from "./authSlice";
 //import { customerReducer } from "./customerSlice";
@@ -35,10 +32,7 @@ import {
 
 const store = configureStore({
   reducer: {
-    product: productReducer,
-    category: categoryReducer,
     cart: cartReducer,
-    brand: brandReducer,
     //auth: authReducer,
     auth: persistedAuthReducer,
     //customer: customerReducer,

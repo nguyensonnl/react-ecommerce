@@ -7,7 +7,7 @@ categoryService.getAllCategory = () => {
   return axiosClient.get(url);
 };
 
-categoryService.getCategoryByID = (cateId) => {
+categoryService.getCategoryById = (cateId) => {
   const url = `/categories/${cateId}`;
   return axiosClient.get(url);
 };

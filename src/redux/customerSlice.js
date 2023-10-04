@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import customerApi from "../api/customerApi";
+import customerService from "../api/customerService";
 
 //set up redux-persist
 import { persistReducer } from "redux-persist";
@@ -11,12 +11,12 @@ const persistConfig = {
 //end
 
 export const register = createAsyncThunk("customers/register", async (data) => {
-  const res = await customerApi.register(data);
+  const res = await customerService.register(data);
   return res.data;
 });
 
 export const login = createAsyncThunk("customers/login", async (data) => {
-  const res = await customerApi.login(data);
+  const res = await customerService.login(data);
   return res.data;
 });
 

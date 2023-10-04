@@ -1,3 +1,0 @@
-Error upload files:
-Khi mà dùng 2 api khác nhau thì khi set date thì thời điểm khác nhau
-Nên khi save in db and save in folder public thì sẽ khác nhau

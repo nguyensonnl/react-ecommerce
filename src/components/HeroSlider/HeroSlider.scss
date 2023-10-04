@@ -1,0 +1,10 @@
+.hero-slider{
+    background-color: transparent;
+  
+    .swiper-container{
+        .hero-slider__img{
+            height: 480px;
+            object-fit: cover;
+        }
+    }
+}

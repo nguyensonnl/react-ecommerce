@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Layout from "../Layout";
 import CategoryAdd from "./CategoryAdd";
 import CategoryList from "./CategoryList";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllCateogry } from "../../../../redux/categorySlice";
 import categoryService from "../../../../api/categoryService";
-import { useCallback } from "react";
 
 const Category = () => {
-  const dispatch = useDispatch();
-  const allCategory = useSelector((state) => state.category.categories);
   const [categories, setCategories] = useState([]);
   const [idCate, setIdCate] = useState();
+  const [allCategory, setAllCategory] = useState();
 
   useEffect(() => {
-    dispatch(getAllCateogry());
+    const fetchCategory = async () => {
+      try {
+        const res = await categoryService.getAllCategory();
+        setAllCategory(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCategory();
   }, []);
 
   const updatedCate = useCallback(() => {
