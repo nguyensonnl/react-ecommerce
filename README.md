@@ -18,16 +18,16 @@
 
 ### Công nghệ sử dụng:
 
-**Programming Language:** Javascript
-**Framework:** React
-**Build tool:** CRA, npm
-**UI Framework:** No
-**Style:** SCSS
-**State management:** Redux, Redux Toolkit
-**Router:** React Router
-**Form management:** No
-**Đa ngôn ngữ với react.i18next:** No
-**Seo với React Helmet:** No
-**Story book:** No
-**Unit test:** No
+**Programming Language:** Javascript  
+**Framework:** React  
+**Build tool:** CRA, npm  
+**UI Framework:** No  
+**Style:** SCSS  
+**State management:** Redux, Redux Toolkit  
+**Router:** React Router  
+**Form management:** No  
+**Đa ngôn ngữ với react.i18next:** No  
+**Seo với React Helmet:** No  
+**Story book:** No  
+**Unit test:** No  
 **API:** Tự viết restful APIs
