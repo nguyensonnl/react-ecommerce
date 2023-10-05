@@ -19,3 +19,6 @@ REACT_APP_BASE_URL=http://localhost:5050/api/v1
 REACT_APP_BASE_IMG=http://localhost:5050/public/uploads/
 REACT_APP_FACEBOOK_ID=182460104547280
 REACT_APP_IS_LOCAL=1
+
+
+Chỉ có logic ở phần cart, các phần còn lại chủ yếu là call api để render data
