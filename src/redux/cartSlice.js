@@ -6,9 +6,9 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [],
   //cartItems: [],
-  cartTotalQuantity: 0,
-  cartTotalAmount: 0,
-  cartQuantity: 0,
+  cartTotalQuantity: 0, //Tổng số lượng của từng sản phẩm
+  cartTotalAmount: 0, // Tổng giá của từng sản phẩm
+  cartQuantity: 0, //Số lượng sản phẩm
 };
 
 const cartSlice = createSlice({

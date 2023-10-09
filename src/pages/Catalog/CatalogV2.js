@@ -11,10 +11,11 @@ import brandService from "../../api/brandService";
 import categoryService from "../../api/categoryService";
 import productService from "../../api/productService";
 import { listPriceNew } from "../../constants/index";
+import axiosClient from "../../api/axiosClient";
 
 /**
  *
- * Cần 1 biến khác để lưu các danh sách đã lọcl
+ * Cần 1 biến khác để lưu các danh sách đã lọc
  * Link filter khớp với link call api
  *
  * Call api data
@@ -39,7 +40,7 @@ const CatalogV2 = () => {
         const [resBrand, resCategory, resProductCate] = await Promise.all([
           brandService.getAllBrand(),
           categoryService.getCategoryById(cate),
-          productService.getProductByCate(cate, 5),
+          axiosClient.get(`/products?categories=${cate}`),
         ]);
 
         setBrands(resBrand.data);

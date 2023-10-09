@@ -10,9 +10,9 @@ const Footer = () => {
           <h4 className="title">Nơi an tâm mua hàng chính hãng</h4>
           <div className="brand">SWatch</div>
           <div className="desc">
-            Đồng hồ Lam Sơn tự hào là đại lý chính hãng của các thương hiệu đồng
-            hồ nổi tiếng như I&W Carnival, Carnival, Lobinni, Borman, Teintop,
-            Aouke... tại Việt Nam.
+            SWatch tự hào là đại lý chính hãng của các thương hiệu đồng hồ nổi
+            tiếng như I&W Carnival, Carnival, Lobinni, Borman, Teintop, Aouke...
+            tại Việt Nam.
           </div>
           <p>
             <span>Địa chỉ:</span> Hồ Chí Minh, Việt Nam
@@ -94,7 +94,7 @@ const Footer = () => {
             <li className="contact__item">
               Hotline/Zalo bảo hành: 0376.940.314
             </li>
-            <h3>Phương thức thanh toán</h3>
+            <h4>Phương thức thanh toán</h4>
             <img
               src={methodPayment}
               alt="Method payments"

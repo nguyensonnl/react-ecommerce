@@ -20,11 +20,11 @@
                     cursor: pointer;
 
                     &.active{
-                        color: #ffea00;
+                        color: var(--main-color);
                     }
 
                     &:hover{
-                        color: var(--primary-color);
+                        color: var(--main-color);
                         opacity: 1;
                     }
                 }
@@ -72,14 +72,18 @@
                 top: 6px;
             }
         }
+        
         button{
             width: 16%;
             padding: 10px 0;
-            background-color: var(--extra-color);
+            background-color: var(--main-color);
             border: none;
             color: #fff;
             font-size: 1.4rem;
             cursor: pointer;
+            &:hover{
+                filter: brightness(1.2);
+            }
         }
     }
 }
@@ -123,7 +127,7 @@
     cursor: pointer;
 
     &:hover{
-        color: #ffea00;
+        color:var(--main-color);
     }
 }
 

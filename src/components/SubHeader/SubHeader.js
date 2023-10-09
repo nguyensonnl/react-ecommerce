@@ -22,7 +22,7 @@ const SubHeader = () => {
 
         <li className="subheader__item">
           <NavLink
-            to={`/danh-muc/${"63fc7648857357d5e8bca46c"}`}
+            to={`/c/${"63fc7648857357d5e8bca46c"}`}
             className={({ isActive }) =>
               isActive
                 ? "subheader__item__link active"
@@ -35,7 +35,7 @@ const SubHeader = () => {
 
         <li className="subheader__item">
           <NavLink
-            to={`/danh-muc/${"63fc7642857357d5e8bca46a"}`}
+            to={`/c/${"63fc7642857357d5e8bca46a"}`}
             className={({ isActive }) =>
               isActive
                 ? "subheader__item__link active"
@@ -48,7 +48,7 @@ const SubHeader = () => {
 
         <li className="subheader__item">
           <NavLink
-            to={`/danh-muc/${"63fc764d857357d5e8bca46e"}`}
+            to={`/c/${"63fc764d857357d5e8bca46e"}`}
             className={({ isActive }) =>
               isActive
                 ? "subheader__item__link active"

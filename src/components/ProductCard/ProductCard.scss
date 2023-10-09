@@ -60,7 +60,7 @@
             .product-card__price{
 
                 .product-card__price-sale{
-                    color: red;
+                    color: var(--main-color);
                     font-weight: bold;
                     font-size: 1.5rem;
                     padding-right: 8px;

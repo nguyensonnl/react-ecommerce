@@ -1,23 +1,27 @@
 .breadcrumb{
-    margin: 10px 0;
+    margin: 16px 0;
     display: flex;
     list-style: none;
     align-items: center;
     flex-wrap: wrap;
-    
-    .sub{
-        color: #999 !important;
+
+    .sub, .breadcrumb-link, span{
+        font-size: 1.4rem;
+        color: rgb(130, 134, 158);
     }
+    
     
     .breadcrumb-link, span{
         text-decoration: none;
-        color: var(--text-color);
-        font-size: 1.35rem;
         margin-right: 4px;
+
+        &:hover{
+            color: #000;
+        }
     }
 
     .icon{
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         margin: 0 1.6px;
     }
 }

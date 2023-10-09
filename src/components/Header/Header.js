@@ -190,7 +190,7 @@ const Header = () => {
               <li className="header__list__item">
                 <Link to="/cart" className="header__item__link">
                   <i className="fa-solid fa-cart-shopping"></i>
-                  <span>Giỏ hàng ({cart.cartTotalQuantity})</span>
+                  <span>Giỏ hàng ({cart.cartItems.length})</span>
                 </Link>
               </li>
 

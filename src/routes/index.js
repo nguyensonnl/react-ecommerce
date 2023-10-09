@@ -11,6 +11,7 @@ import Order from "../pages/Account/Order";
 import CatalogV2 from "../pages/Catalog/CatalogV2";
 import Updating from "../pages/Updating";
 import Upload from "../components/Upload";
+import CatalogV3 from "../pages/Catalog/CatalogV3";
 
 //import Catalog from "../pages/client/Catalog";
 
@@ -18,7 +19,7 @@ const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
   { path: "/sp/:slug", page: Product },
-  { path: "/danh-muc/:cate", page: CatalogV2 },
+  { path: "/c/:cate", page: CatalogV3 },
   { path: "*", page: NotFound },
   { path: "/account/login", page: Login },
   { path: "/account/register", page: Register },

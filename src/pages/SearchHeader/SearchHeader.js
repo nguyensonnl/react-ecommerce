@@ -5,22 +5,25 @@ import Breadcrumb from "../../components/Breadcrumb";
 import { useSearchParams } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import productService from "../../api/productService";
-//import LoadingSpinner from "../../components/LoadingSpinner";
-//import { useMemo } from "react";
+import axiosClient from "../../api/axiosClient";
+
+/**
+ * Server lọc data, trả data đã lọc về phía client
+ * Server trả toàn bộ data, client sẽ tự lọc data
+ * Tạo ra 1 biến để lưu lại data đã lọc
+ *
+ */
 
 const SearchHeader = () => {
-  const [resultSearch, setResultSearch] = useState([]);
   const [products, setProducts] = useState();
-  const [filteredData, setFilteedData] = useState();
   const [searchParams] = useSearchParams();
   const search = searchParams.get("q");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resProduct = await productService.getAllProduct();
+        const resProduct = await axiosClient.get(`/products?name=${search}`);
         setProducts(resProduct.data.data.productList);
-        setFilteedData(resProduct.data.data.productList);
       } catch (error) {
         console.log(error);
       }
@@ -28,46 +31,20 @@ const SearchHeader = () => {
     fetchData();
   }, []);
 
-  const filterData = filteredData.filter((product) => {
-    if (search === "") {
-      return product;
-    } else {
-      return product.name.toLowerCase().includes(search.toLowerCase());
-    }
-  });
-
-  // const searchData = useCallback(() => {
-  //   let temp = listProduct;
-
-  //   temp = temp.filter((product) => {
-  //     if (search === "") {
-  //       return product;
-  //     } else {
-  //       return product.name.toLowerCase().includes(search.toLowerCase());
-  //     }
-  //   });
-
-  //   setResultSearch(temp);
-  // }, [search]);
-
-  // useEffect(() => {
-  //   searchData();
-  // }, [searchData]);
-
   return (
     <Helmet title="Tìm kiếm">
       <div className="grid">
         <Breadcrumb title="Tìm kiếm" />
 
-        {filterData && filterData.length > 0 ? (
+        {products && products.length > 0 ? (
           <>
             <div className="search__title">
-              Có {filterData.length} kết quả tìm kiếm
+              Có {products.length} kết quả tìm kiếm
             </div>
 
             <div className="list__product-search section-m1">
-              {filterData.map((item, index) => (
-                <div className="product-search-item">
+              {products.map((item, index) => (
+                <div className="product-search-item" key={item._id}>
                   <ProductCard product={item} className="overide-width" />
                 </div>
               ))}

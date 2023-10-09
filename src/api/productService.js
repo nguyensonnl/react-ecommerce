@@ -5,8 +5,8 @@ const productService = {
     const url = `/products/get/featured/${params}`;
     return axiosClient.get(url);
   },
-  getAllProduct() {
-    const url = `/products`;
+  getAllProduct(query = " ") {
+    const url = `/products${query}`;
     return axiosClient.get(url);
   },
   getProductById(id) {

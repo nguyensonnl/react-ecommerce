@@ -1,14 +1,14 @@
+import "./Cart.scss";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Helmet from "../../components/Helmet/Helmet";
 import CartItem from "../../components/CartItem";
-import cart_empty from "../../assets/img/cart_empty_background.png";
 import { getTotals } from "../../redux/cartSlice";
 import { numberFormat } from "../../utils/numberFormat";
 import orderService from "../../api/orderService";
 import { clearCart } from "../../redux/cartSlice";
-import "./Cart.scss";
+import CartEmpty from "./components/CartEmpty";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,6 @@ const Cart = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
-
-  const handleBackHome = () => {
-    navigate("/");
-  };
 
   //Create new order
   const customer = useSelector((state) => state.customer.customer);
@@ -94,22 +90,11 @@ const Cart = () => {
   return (
     <Helmet title="Giỏ hàng">
       <div className="grid">
-        <div className="cart">
-          {cart.cartItems.length === 0 && (
-            <div className="cart__empty">
-              <img src={cart_empty} alt="empty cart" className="cart__img" />
-              <p className="cart__title">Giỏ hàng trống</p>
-              <p className="cart__home">
-                Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!
-              </p>
-              <button className="cart__btn" onClick={() => handleBackHome()}>
-                Mua sắm ngay
-              </button>
-            </div>
-          )}
+        <div className="cart__container">
+          {cart.cartItems.length === 0 && <CartEmpty />}
 
           {cart.cartItems.length > 0 && (
-            <>
+            <div className="cart__info">
               <h3 className="cart__header">Giỏ hàng của bạn</h3>
 
               <div className="cart__content">
@@ -222,7 +207,7 @@ const Cart = () => {
                 </div>
               </div>
               <div style={{ marginTop: "12px" }}></div>
-            </>
+            </div>
           )}
         </div>
       </div>
