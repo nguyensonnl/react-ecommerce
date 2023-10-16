@@ -7,8 +7,6 @@ import icon1 from "../../assets/img/Menu/menu_icon_1.png";
 import icon2 from "../../assets/img/Menu/menu_icon_2.png";
 import icon3 from "../../assets/img/Menu/menu_icon_3.png";
 import icon4 from "../../assets/img/Menu/menu_icon_4.png";
-import icon5 from "../../assets/img/Menu/menu_icon_5.png";
-import icon6 from "../../assets/img/Menu/menu_icon_6.png";
 import productService from "../../api/productService";
 import SubHeader from "../SubHeader/SubHeader";
 
@@ -70,6 +68,7 @@ const Header = () => {
               <i className="fa-sharp fa-solid fa-bars"></i>
             </div>
             {/* Mobile */}
+
             <div className="header__logo__title">SWatch</div>
           </Link>
 
@@ -80,7 +79,11 @@ const Header = () => {
                 <i className="fa-solid fa-circle-user icon"></i>
                 <div className="account">
                   <div className="title">Tài khoản</div>
-                  <Link to="/account/login" className="account__link">
+                  <Link
+                    to="/account/login"
+                    className="account__link"
+                    onClick={() => setIsShowNav(!isShowNav)}
+                  >
                     Đăng nhập
                   </Link>
                 </div>
@@ -109,7 +112,7 @@ const Header = () => {
                   }}
                 >
                   <Link
-                    to={`/danh-muc/${"63fc7648857357d5e8bca46c"}`}
+                    to={`/c/${"63fc7648857357d5e8bca46c"}`}
                     className="nav__item-link"
                   >
                     <img
@@ -128,7 +131,7 @@ const Header = () => {
                   }}
                 >
                   <Link
-                    to={`/danh-muc/${"63fc7642857357d5e8bca46a"}`}
+                    to={`/c/${"63fc7642857357d5e8bca46a"}`}
                     className="nav__item-link"
                   >
                     <img
@@ -147,7 +150,7 @@ const Header = () => {
                   }}
                 >
                   <Link
-                    to={`/danh-muc/${"63fc764d857357d5e8bca46e"}`}
+                    to={`/c/${"63fc764d857357d5e8bca46e"}`}
                     className="nav__item-link"
                   >
                     <img
