@@ -80,7 +80,7 @@
 //     &__footer{
 //         display: flex;
 //         align-items: center;
-        
+
 //         span{
 //             margin-right: 4px;
 //             font-size: 1.4rem;
@@ -176,7 +176,7 @@
 //     &__footer{
 //         display: flex;
 //         align-items: center;
-        
+
 //         span{
 //             margin-right: 4px;
 //             font-size: 1.4rem;
@@ -190,107 +190,129 @@
 //     }
 // }
 
-
-
-.auth-info{
-    margin: 30px 0;
+.auth-info {
+  margin: 16px 0;
 }
 
+.auth__container{
+    margin-bottom: 20px;
 
-.auth-login{
-   // width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .login-form{
+    .auth__login {
+        background-color: #fff;
+        border-radius: 5px;
+        overflow: hidden;
         width: 50%;
-    }
+        margin: 0 auto;
+        padding: 20px 26px;
 
-    @media screen and (max-width: 767px) {
-        .login-form{
-            width: 100%;
+          
+        .login__title {
+            text-align: center;
+            margin-bottom: 20px;
+
+            h2 {
+                font-size: 2.6rem;
+                font-weight: 700;
+                margin-bottom: 6px;
+              }
+
+            .sub__title {
+              font-weight: 300;
+            }
         }
-    }
 
-    .other-login{
-        text-align: center;
-        p{
+        @media screen and (max-width: 769px) {
+            .login__title{
+                h2{
+                    font-size: 2rem;
+                }
+                .sub__title{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+      
+        .other-login {
+          text-align: center;
+          p {
             font-size: 1.5rem;
             font-weight: 400;
             margin-bottom: 16px;
-        }
-
-        .social-media{
-
-            .social-media-img{
-                width: 140px;
-                object-fit: cover;
+          }
+      
+          .social-media {
+            .social-media-img {
+              width: 140px;
+              object-fit: cover;
             }
+          }
         }
-    }
     
-    .login-title{
-        text-align: center;
-        margin-bottom: 30px;
-        .sub-title{
-            font-weight: 300;
+      
+        .login-btn {
+          width: 100%;
+          margin-top: 10px;
+          border-radius: 999px;
+          color: #fff;
+          background-color: var(--main-color);
+          font-size: 1.8rem;
+          font-weight: 400;
+          padding: 12px 0;
+      
+          &:hover {
+            opacity: 0.8;
+          }
         }
-        
-        h2{
-            font-weight: 400;
-            font-size: 2.6rem;
-            margin-bottom: 6px;
-        }
-    }
+      }
 
-    .login-btn{
-        width: 100%;
-        margin: 10px 0 32px 0;
-        border-radius: 999px;
-        color: #000;
-        background-color: var(--secondary-color);
-        font-size: 1.8rem;
-        font-weight: 400;
-        padding: 12px 0;
-        
-        &:hover{
-            opacity: .8;
+      @media screen and (max-width: 1024px) {
+        .auth__login{
+            width: 90%;
         }
-    }
+      }
 }
 
-.forgot-password{
-    font-size: 1.2rem;
-    .forgot-password-link{
-        margin-left: 4px;
-        text-decoration: none;
-    }
+.login__form{
+    
 }
 
+//css form
 
-.form-group1{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    label{
-        margin-bottom: 0.8rem;
-        font-weight: 600;
-        font-size: 1.5rem;
-        span{
-            color: red;
-        }
-    }
-
-    .form-control1{
-        width: 100%;
-        outline: none;
-        border: 1px solid  #e1e1e1;
-        padding: 12px;
-        font-size: 1.6rem;
-        border-radius: 6px;
-        margin-bottom: 8px;
-    }
+.forgot-password {
+  font-size: 1.2rem;
+  .forgot-password-link {
+    margin-left: 4px;
+    text-decoration: none;
+  }
 }
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  label {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    span {
+      color: red;
+    }
+  }
+
+  .form__input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #e1e1e1;
+    padding: 8px 12px;
+    font-size: 1.6rem;
+    border-radius: 6px;
+    margin-bottom: 8px;
+
+    &:focus{
+        border: 1px solid var(--main-color);
+    }
+  }
+}
+
+//css form

@@ -215,7 +215,7 @@ const Header = () => {
                       <span>Tài khoản</span>
                     </Link>
                     <Link
-                      className="header__list-link span__color"
+                      className="header__item__link header__list-link--auth"
                       onClick={() => handleLogout()}
                     >
                       <span className="span__color">Đăng xuất</span>

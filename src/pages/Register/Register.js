@@ -78,112 +78,111 @@ const Register = () => {
         <Breadcrumb title="Đăng ký tài khoản" />
       </div>
 
-      <div className="auth-login mtb-20">
-        <div className="login-title">
-          <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
-          <div className="sub-title">
-            <span>Bạn đã có toàn khoản ? </span>
-            <Link to="/account/login" className="login-link">
-              Đăng nhập tại đây
-            </Link>
+      <div className="auth__container">
+        <div className="auth__login">
+          <div className="login__title">
+            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+            <div className="sub__title">
+              <span>Bạn đã có toàn khoản ? </span>
+              <Link to="/account/login">Đăng nhập tại đây</Link>
+            </div>
+            <h3 className="auth-info">THÔNG TIN CÁ NHÂN</h3>
           </div>
-          <h3 className="auth-info">THÔNG TIN CÁ NHÂN</h3>
-        </div>
 
-        <div className="login-form">
-          <form onSubmit={handleSubmitForm}>
-            <div className="form-group1">
-              <label>
-                Họ<span> *</span>
-              </label>
-              <input
-                required
-                type="text"
-                placeholder="Họ"
-                className="form-control1"
-                value={formData.lastName}
-                name="lastName"
-                onChange={(e) => handleChangeInput(e)}
-              />
-              {formErrors.lastName && (
-                <span className="handle-error">{formErrors.lastName}</span>
-              )}
-            </div>
-            <div className="form-group1">
-              <label>
-                Tên<span> *</span>
-              </label>
-              <input
-                required
-                type="text"
-                placeholder="Tên"
-                className="form-control1"
-                value={formData.firstName}
-                name="firstName"
-                onChange={(e) => handleChangeInput(e)}
-              />
-              {formErrors.firstName && (
-                <span className="handle-error">{formErrors.firstName}</span>
-              )}
-            </div>
-            <div className="form-group1">
-              <label>
-                Số điện thoại<span> *</span>
-              </label>
-              <input
-                required
-                type="text"
-                placeholder="Số điện thoại"
-                className="form-control1"
-                value={formData.phone}
-                name="phone"
-                onChange={(e) => handleChangeInput(e)}
-              />
-              {formErrors.phone && (
-                <span className="handle-error">{formErrors.phone}</span>
-              )}
-            </div>
-            <div className="form-group1">
-              <label>
-                Email<span> *</span>
-              </label>
-              <input
-                required
-                type="email"
-                placeholder="Email"
-                className="form-control1"
-                value={formData.email}
-                name="email"
-                onChange={(e) => handleChangeInput(e)}
-              />
-              {formErrors.email && (
-                <span className="handle-error">{formErrors.email}</span>
-              )}
-            </div>
-            <div className="form-group1">
-              <label>
-                Mật khẩu<span> *</span>
-              </label>
-              <input
-                required
-                type="password"
-                placeholder="Mật khẩu"
-                className="form-control1"
-                value={formData.password}
-                name="password"
-                onChange={(e) => handleChangeInput(e)}
-              />
-              {formErrors.password && (
-                <span className="handle-error">{formErrors.password}</span>
-              )}
-            </div>
-            <button type="submit" className="login-btn">
-              Đăng ký
-            </button>
-          </form>
-        </div>
+          <div className="login-form">
+            <form onSubmit={handleSubmitForm}>
+              <div className="form__container">
+                <label>
+                  Họ<span> *</span>
+                </label>
+                <input
+                  required
+                  type="text"
+                  placeholder="Họ"
+                  className="form__input"
+                  value={formData.lastName}
+                  name="lastName"
+                  onChange={(e) => handleChangeInput(e)}
+                />
+                {formErrors.lastName && (
+                  <span className="handle-error">{formErrors.lastName}</span>
+                )}
+              </div>
+              <div className="form__container">
+                <label>
+                  Tên<span> *</span>
+                </label>
+                <input
+                  required
+                  type="text"
+                  placeholder="Tên"
+                  className="form__input"
+                  value={formData.firstName}
+                  name="firstName"
+                  onChange={(e) => handleChangeInput(e)}
+                />
+                {formErrors.firstName && (
+                  <span className="handle-error">{formErrors.firstName}</span>
+                )}
+              </div>
+              <div className="form__container">
+                <label>
+                  Số điện thoại<span> *</span>
+                </label>
+                <input
+                  required
+                  type="text"
+                  placeholder="Số điện thoại"
+                  className="form__input"
+                  value={formData.phone}
+                  name="phone"
+                  onChange={(e) => handleChangeInput(e)}
+                />
+                {formErrors.phone && (
+                  <span className="handle-error">{formErrors.phone}</span>
+                )}
+              </div>
+              <div className="form__container">
+                <label>
+                  Email<span> *</span>
+                </label>
+                <input
+                  required
+                  type="email"
+                  placeholder="Email"
+                  className="form__input"
+                  value={formData.email}
+                  name="email"
+                  onChange={(e) => handleChangeInput(e)}
+                />
+                {formErrors.email && (
+                  <span className="handle-error">{formErrors.email}</span>
+                )}
+              </div>
+              <div className="form__container">
+                <label>
+                  Mật khẩu<span> *</span>
+                </label>
+                <input
+                  required
+                  type="password"
+                  placeholder="Mật khẩu"
+                  className="form__input"
+                  value={formData.password}
+                  name="password"
+                  onChange={(e) => handleChangeInput(e)}
+                />
+                {formErrors.password && (
+                  <span className="handle-error">{formErrors.password}</span>
+                )}
+              </div>
+              <button type="submit" className="login-btn">
+                Đăng ký
+              </button>
+            </form>
+          </div>
 
-        {/* <div className="other-login">
+          {/* <div className="other-login">
           <p>Hoặc đăng nhập bằng</p>
           <div className="social-media">
             <Link to="" className="social-media--facebook">
@@ -194,6 +193,7 @@ const Register = () => {
             </Link>
           </div>
         </div> */}
+        </div>
       </div>
     </Helmet>
   );
