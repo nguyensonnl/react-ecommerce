@@ -58,17 +58,16 @@ const Header = () => {
     <>
       <section className="header__container">
         <div className="header__main grid">
+          {/* Mobile */}
+          <div
+            className="header__show"
+            style={{ color: "#82869e", fontSize: "2.8rem" }}
+            onClick={() => setIsShowNav(!isShowNav)}
+          >
+            <i className="fa-sharp fa-solid fa-bars"></i>
+          </div>
+          {/* Mobile */}
           <Link to="/" className="header__logo">
-            {/* Mobile */}
-            <div
-              className="header__show"
-              style={{ color: "#82869e", fontSize: "2.8rem" }}
-              onClick={() => setIsShowNav(!isShowNav)}
-            >
-              <i className="fa-sharp fa-solid fa-bars"></i>
-            </div>
-            {/* Mobile */}
-
             <div className="header__logo__title">SWatch</div>
           </Link>
 

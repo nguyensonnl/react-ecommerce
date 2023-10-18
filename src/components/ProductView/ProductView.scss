@@ -35,6 +35,12 @@
     }
 }
 
+@media screen and (max-width: 769px) {
+    .product__img__container{
+        padding-right: 0;
+    }
+}
+
 .product__info{
     .product__title{
         font-size: 2.2rem;
@@ -163,6 +169,11 @@
            &:hover{
                 filter: brightness(0.9)
            }
+        }
+    }
+    @media screen and (max-width: 769px) {
+        .product__action{
+            width: 100%;
         }
     }
 }

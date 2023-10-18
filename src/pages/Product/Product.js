@@ -1,13 +1,12 @@
+import "./Product.scss";
 import React, { useEffect, useState, Suspense } from "react";
 import { Link, useParams } from "react-router-dom";
 import Helmet from "../../components/Helmet";
 import Breadcrumb from "../../components/Breadcrumb";
-
 import productService from "../../api/productService";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Comment from "../../components/Comment";
 import ProductView from "../../components/ProductView";
-import "./Product.scss";
 
 const ProductCard = React.lazy(() => import("../../components/ProductCard"));
 
@@ -39,7 +38,7 @@ const Product = () => {
         {isLoading && (
           <>
             <Breadcrumb
-              title2={product.category && product.category.name}
+              title2={product.category ? product.category.name : ""}
               title={product.name}
             />
 

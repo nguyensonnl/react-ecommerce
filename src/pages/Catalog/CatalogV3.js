@@ -238,11 +238,7 @@ const CatalogV3 = () => {
             {filterdProducts &&
               filterdProducts.length > 0 &&
               filterdProducts.map((item) => (
-                <ProductCard
-                  key={item._id}
-                  product={item}
-                  className="card-overide"
-                />
+                <ProductCard key={item._id} product={item} />
               ))}
           </div>
         </div>

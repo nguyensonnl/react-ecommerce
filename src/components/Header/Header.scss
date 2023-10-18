@@ -12,6 +12,19 @@
     align-items: center;
     flex-wrap: wrap;
 
+    //Mobile
+    .header__show {
+      display: none;
+    }
+    @media screen and (max-width: 1023px) {
+      .header__show {
+        display: block;
+        order: -1;
+        width: 15%;
+        text-align: center;
+      }
+    }
+
     //header logo
     .header__logo {
       width: 25%;
@@ -20,10 +33,7 @@
       display: flex;
       align-items: center;
 
-      //Mobile
-      .header__show {
-        display: none;
-      }
+  
 
       &__title {
         flex-grow: 1;
@@ -39,17 +49,14 @@
     }
 
     @media screen and (max-width: 1024px) {
+
       .header__logo {
-        width: 65%;
+        width: 50%;
         order: -1;
 
-        .header__show {
-          display: block;
-          width: 10%;
-        }
-
+       
         .header__logo__title{
-          width: 90%;
+          width: 70%;
           text-align: right;
         }
       }
