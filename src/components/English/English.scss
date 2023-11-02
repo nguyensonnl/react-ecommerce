@@ -1,0 +1,24 @@
+.english__container{
+    padding: 10px;
+    
+    .content{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    
+        .image__group{
+            width: calc(50% - 6px);
+           
+            .image__item{
+                height: auto;
+            }
+        }
+        @media screen and (max-width: 900px) {
+            .image__group {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    
+    }
+}

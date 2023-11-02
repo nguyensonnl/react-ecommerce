@@ -12,6 +12,7 @@ import CatalogV2 from "../pages/Catalog/CatalogV2";
 import Updating from "../pages/Updating";
 import Upload from "../components/Upload";
 import CatalogV3 from "../pages/Catalog/CatalogV3";
+import English from "../components/English";
 
 //import Catalog from "../pages/client/Catalog";
 
@@ -30,6 +31,7 @@ const publicRoutes = [
   { path: "/about", page: Updating },
   { path: "/contact", page: Updating },
   { path: "/upload", page: Upload, layout: null },
+  { path: "/english", page: English, layout: null },
 ];
 
 const privateRoutes = [];
