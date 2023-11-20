@@ -16,23 +16,22 @@ const ProductCard = React.lazy(() => import("../../components/ProductCard"));
  */
 
 const Home = () => {
-  const [listProductOutstanding, setListProductOutstanding] = useState();
+  const [listProductHot, setListProductHot] = useState();
   const [products, setProducts] = useState();
   const [categories, setCategories] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [resProduct, resCategory, resProductOutstanding] =
-          await Promise.all([
-            productService.getAllProduct(),
-            categoryService.getAllCategory(),
-            productService.getProductFeatured(5),
-          ]);
+        const [resProduct, resCategory, resProductHot] = await Promise.all([
+          productService.getAllProduct(),
+          categoryService.getAllCategory(),
+          productService.getProductFeatured(5),
+        ]);
 
         setProducts(resProduct.data.data.productList);
         setCategories(resCategory.data);
-        setListProductOutstanding(resProductOutstanding.data);
+        setListProductHot(resProductHot.data);
       } catch (error) {
         console.log(error);
       }
@@ -40,6 +39,7 @@ const Home = () => {
     fetchData();
   }, []);
 
+  //get product by category
   const productByCate = useMemo(() => {
     const category = categories?.reduce((acc, cate) => {
       return [
@@ -60,13 +60,14 @@ const Home = () => {
       <HeroSlider />
 
       <section className="grid">
-        {listProductOutstanding?.length > 0 && (
-          <div className="product__category mtb-20">
-            <h2 className="product__category__title">
-              <span>Đồng hồ nổi bật </span>
-            </h2>
-            <div className="product__cate-list">
-              {listProductOutstanding?.map((item) => (
+        {listProductHot && listProductHot.length > 0 && (
+          <div className="product__category">
+            <div className="product__category__heading">
+              <span>Sản phẩm nổi bật </span>
+              <span>Xem tất cả</span>
+            </div>
+            <div className="product__category__list">
+              {listProductHot?.map((item) => (
                 <Suspense fallback={<div>...Loading</div>} key={item._id}>
                   <ProductCard product={item} />
                 </Suspense>
@@ -78,29 +79,22 @@ const Home = () => {
         {productByCate &&
           productByCate?.length > 0 &&
           productByCate?.map((item) => (
-            <section className="mtb-20" key={item._id}>
-              <div className="product__category">
-                <h2 className="product__category__title">
-                  <span>{item.name}</span>
-                </h2>
+            <div className="product__category" key={item._id}>
+              <div className="product__category__heading">
+                <span>{item.name}</span>
+                <span>
+                  <Link to={`/c/${item._id}`}>Xem tất cả</Link>
+                </span>
+              </div>
 
-                <div className="product__cate-list">
-                  {item?.listProduct?.map((item) => (
-                    <Suspense fallback={<div>...Loading</div>} key={item._id}>
-                      <ProductCard product={item} />
-                    </Suspense>
-                  ))}
-                </div>
+              <div className="product__category__list">
+                {item?.listProduct?.map((item) => (
+                  <Suspense fallback={<div>...Loading</div>} key={item._id}>
+                    <ProductCard product={item} />
+                  </Suspense>
+                ))}
               </div>
-              <div className="product__show-all">
-                <Link
-                  to={`/danh-muc/${item._id}`}
-                  className="product__show-link"
-                >
-                  Xem tất cả
-                </Link>
-              </div>
-            </section>
+            </div>
           ))}
       </section>
     </Helmet>
