@@ -21,7 +21,7 @@ import productService from "../../api/productService";
  * Cập nhật lại query mỗi khi query params thay đổi
  */
 
-const CatalogV3 = () => {
+const CatalogV4 = () => {
   const { cate } = useParams();
   const [brands, setBrands] = useState();
   const [category, setCategory] = useState();
@@ -252,4 +252,4 @@ const CatalogV3 = () => {
   );
 };
 
-export default CatalogV3;
+export default CatalogV4;
