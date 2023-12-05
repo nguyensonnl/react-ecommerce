@@ -16,6 +16,11 @@ import productService from "../../api/productService";
  * call api: sort: price min, price max, createdAt
  */
 
+/**
+ * Tạo state lưu query params
+ * Cập nhật lại query mỗi khi query params thay đổi
+ */
+
 const CatalogV3 = () => {
   const { cate } = useParams();
   const [brands, setBrands] = useState();
