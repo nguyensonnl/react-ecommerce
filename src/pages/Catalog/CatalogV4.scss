@@ -17,12 +17,24 @@
       padding: 10px 0;
       span {
         font-size: 1.5rem;
+        font-weight: 500;
         margin-bottom: 6px;
       }
 
       .filter__list {
+        margin: 8px 0;
         .filter__item {
+          width: 100%;
+          padding: 2px 0;
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 20%;
+            height: 16px;
+          }
           .product__cate-title {
+            width: 80%;
             font-size: 1.3rem;
             font-weight: unset;
           }

@@ -13,6 +13,7 @@ import Updating from "../pages/Updating";
 import Upload from "../components/Upload";
 import CatalogV3 from "../pages/Catalog/CatalogV3";
 import CatalogV4 from "../pages/Catalog/CatalogV4";
+import CatalogV5 from "../pages/Catalog/CatalogV5";
 import English from "../components/English";
 
 //import Catalog from "../pages/client/Catalog";
@@ -21,7 +22,7 @@ const publicRoutes = [
   { path: "/", page: Home },
   { path: "/cart", page: Cart },
   { path: "/sp/:slug", page: Product },
-  { path: "/c/:cate", page: CatalogV4 },
+  { path: "/c/:cate", page: CatalogV5 },
   { path: "*", page: NotFound },
   { path: "/account/login", page: Login },
   { path: "/account/register", page: Register },

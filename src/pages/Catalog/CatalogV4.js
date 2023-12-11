@@ -115,6 +115,24 @@ const CatalogV4 = () => {
     }
   };
 
+  //doing
+  const [selectedBrand, setSelectedBrand] = useState([]);
+  const handleChangeSingleCheckbox = (e, value) => {
+    if (e.target.checked) {
+      setSelectedBrand([
+        {
+          _id: value._id,
+          name: value.name,
+        },
+      ]);
+    } else {
+      setSelectedBrand(selectedBrand?.filter((item) => item._id !== value._id));
+    }
+  };
+  //doing
+
+  console.log(selectedBrand);
+
   return (
     <Helmet title={category?.name}>
       <section className="grid">
@@ -129,13 +147,22 @@ const CatalogV4 = () => {
                   <div className="filter__list">
                     {brands &&
                       brands.length > 0 &&
-                      brands.map((item, index) => (
+                      brands.map((value, index) => (
                         <div className="filter__item" key={index}>
+                          <input
+                            checked={selectedBrand.some(
+                              (item) => item._id === value._id
+                            )}
+                            type="checkbox"
+                            onChange={(e) =>
+                              handleChangeSingleCheckbox(e, value)
+                            }
+                          />
                           <span
                             className="product__cate-title"
-                            onClick={() => handleFilterBrand(item._id)}
+                            onClick={() => handleFilterBrand(value._id)}
                           >
-                            {item.name}
+                            {value.name}
                           </span>
                         </div>
                       ))}
