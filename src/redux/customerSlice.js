@@ -16,12 +16,15 @@ export const register = createAsyncThunk("customers/register", async (data) => {
 });
 
 export const login = createAsyncThunk("customers/login", async (data) => {
-  try {
-    const res = await customerService.login(data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const res = await customerService.login(data);
+  return res.data;
+
+  // try {
+  //   const res = await customerService.login(data);
+  //   return res.data;
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
 const initialState = {

@@ -53,7 +53,7 @@ const CatalogV5 = () => {
     try {
       const [resCategory, resProduct] = await Promise.all([
         categoryService.getCategoryById(cate),
-        axiosClient.get(`/products?categories=${cate}`),
+        axiosClient.get(`/products?categories=${cate}&limit=${20}`),
       ]);
       setCategory(resCategory.data);
       setProducts(resProduct.data.data.productList);

@@ -1,69 +1,69 @@
-//import f from "../../../assets/img/facebook.png";
-//import g from "../../../assets/img/google.png";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb";
 import Helmet from "../../components/Helmet";
 import { login } from "../../redux/customerSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [formErrors, setFormErrors] = useState({
-    email: "",
-    password: "",
-  });
-
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.email) {
-      errors.email = "Email không được để trống";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Email không hợp lệ";
-    }
-
-    if (!formData.password) {
-      errors.password = "Mật khẩu không được để trống";
-    } else if (formData.password.length < 5) {
-      errors.password = "Mật khẩu phải ít nhất 5 ký tự";
-    }
-
-    return errors;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const stateError = {
+    errorEmail: "",
+    errorPassword: "",
   };
 
-  const handleChangeInput = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const [formErrors, setFormErrors] = useState(stateError);
+
+  const validateFormV1 = () => {
+    setFormErrors(stateError);
+
+    if (!email) {
+      setFormErrors({
+        ...stateError,
+        errorEmail: "Email không được để trống",
+      });
+      return false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setFormErrors({
+        ...stateError,
+        errorEmail: "Email không đúng định dạng",
+      });
+      return false;
+    }
+
+    if (!password) {
+      setFormErrors({
+        ...stateError,
+        errorPassword: "Mật khẩu không được để trống",
+      });
+      return false;
+    } else if (password.length < 6) {
+      setFormErrors({
+        ...stateError,
+        errorPassword: "Mật khẩu ít nhất 6 ký tự",
+      });
+      return false;
+    }
+
+    return true;
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    const errors = validateForm();
-    setFormErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      const res = dispatch(login(formData));
-      if (res) {
-      } else {
+
+    const isValidForm = validateFormV1();
+    if (isValidForm) {
+      const result = await dispatch(login({ email, password }));
+
+      if (result.payload === undefined) {
         setFormErrors({
-          email: "Email hoặc mật khẩu không đúng",
-        });
-        setFormData({
-          email: "",
-          password: "",
+          errorEmail: "Email hoặc mật khẩu không đúng",
         });
       }
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <Helmet title="Đăng nhập tài khoản">
@@ -91,13 +91,11 @@ const Login = () => {
                   type="email"
                   placeholder="Email"
                   className="form__input"
-                  value={formData.email}
-                  name="email"
-                  onChange={(e) => handleChangeInput(e)}
-                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                {formErrors.email && (
-                  <span className="handle-error">{formErrors.email}</span>
+                {formErrors.errorEmail && (
+                  <span className="handle-error">{formErrors.errorEmail}</span>
                 )}
               </div>
               <div className="form__container">
@@ -109,13 +107,13 @@ const Login = () => {
                   type="password"
                   placeholder="Mật khẩu"
                   className="form__input"
-                  value={formData.password}
-                  name="password"
-                  onChange={(e) => handleChangeInput(e)}
-                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
-                {formErrors.password && (
-                  <span className="handle-error">{formErrors.password}</span>
+                {formErrors.errorPassword && (
+                  <span className="handle-error">
+                    {formErrors.errorPassword}
+                  </span>
                 )}
               </div>
               <div className="forgot-password">
@@ -130,18 +128,6 @@ const Login = () => {
               </button>
             </form>
           </div>
-
-          {/* <div className="other-login">
-          <p>Hoặc đăng nhập bằng</p>
-          <div className="social-media">
-            <Link to="" className="social-media--facebook">
-              <img src={f} className="social-media-img" />
-            </Link>
-            <Link to="" className="social-media--google">
-              <img src={g} className="social-media-img" />
-            </Link>
-          </div>
-        </div> */}
         </div>
       </div>
     </Helmet>
