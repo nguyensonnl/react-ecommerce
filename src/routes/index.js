@@ -20,22 +20,22 @@ import BRK from "../components/BRK";
 //import Catalog from "../pages/client/Catalog";
 
 const publicRoutes = [
-  { path: "/", page: Home },
-  { path: "/cart", page: Cart },
-  { path: "/sp/:slug", page: Product },
-  { path: "/c/:cate", page: CatalogV5 },
+  // { path: "/", page: Home },
+  // { path: "/cart", page: Cart },
+  // { path: "/sp/:slug", page: Product },
+  // { path: "/c/:cate", page: CatalogV5 },
   { path: "*", page: NotFound },
-  { path: "/account/login", page: Login },
-  { path: "/account/register", page: Register },
-  { path: "/checkout", page: Checkout, layout: null },
-  { path: "/search-results", page: SearchHeader },
-  { path: "/account", page: Info, private: 1 },
-  { path: "/account/orders", page: Order, private: 1 },
-  { path: "/about", page: Updating },
-  { path: "/contact", page: Updating },
-  { path: "/upload", page: Upload, layout: null },
-  { path: "/english", page: English, layout: null },
-	  {path: "/brk", page: BRK, layout:null}
+  // { path: "/account/login", page: Login },
+  // { path: "/account/register", page: Register },
+  // { path: "/checkout", page: Checkout, layout: null },
+  // { path: "/search-results", page: SearchHeader },
+  // { path: "/account", page: Info, private: 1 },
+  // { path: "/account/orders", page: Order, private: 1 },
+  // { path: "/about", page: Updating },
+  // { path: "/contact", page: Updating },
+  // { path: "/upload", page: Upload, layout: null },
+  // { path: "/english", page: English, layout: null },
+  { path: "/brk", page: BRK, layout: null },
 ];
 
 const privateRoutes = [];
