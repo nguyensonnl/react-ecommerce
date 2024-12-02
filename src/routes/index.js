@@ -15,6 +15,7 @@ import CatalogV3 from "../pages/Catalog/CatalogV3";
 import CatalogV4 from "../pages/Catalog/CatalogV4";
 import CatalogV5 from "../pages/Catalog/CatalogV5";
 import English from "../components/English";
+import BRK from "../components/BRK";
 
 //import Catalog from "../pages/client/Catalog";
 
@@ -34,6 +35,7 @@ const publicRoutes = [
   { path: "/contact", page: Updating },
   { path: "/upload", page: Upload, layout: null },
   { path: "/english", page: English, layout: null },
+	  {path: "/brk", page: BRK, layout:null}
 ];
 
 const privateRoutes = [];
