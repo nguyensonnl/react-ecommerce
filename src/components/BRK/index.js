@@ -23,15 +23,33 @@ const BRK = () => {
         vào hawb bình thường
       </div>
 
-      <Link to="/khai-thac">Khai thác</Link>
-      <Link to="/rap-rkn">RKN - RAP</Link>
-      <Link to="/van-de-khai-thac">Vấn đề khai thác</Link>
-      <Link to="/khai-thac-vun-val">Khai thác vun val</Link>
-      <Link to="/khai-thac-vun-escort">Khai thác vun escort</Link>
-      <Link to="/khai-thac-hang-lanh">Khai thác hàng lạnh</Link>
-      <Link to="/khai-thac-mail">Khai thác mail</Link>
-      <Link to="/khoanh-mnf">Khoanh MNF</Link>
-      <Link to="/mail">Mail</Link>
+      <Link to="/khai-thac" className="item-link">
+        Khai thác
+      </Link>
+      <Link to="/rap-rkn" className="item-link">
+        RKN - RAP
+      </Link>
+      <Link to="/van-de-khai-thac" className="item-link">
+        Vấn đề khai thác
+      </Link>
+      <Link to="/khai-thac-vun-val" className="item-link">
+        Khai thác vun val
+      </Link>
+      <Link to="/khai-thac-vun-escort" className="item-link">
+        Khai thác vun escort
+      </Link>
+      <Link to="/khai-thac-hang-lanh" className="item-link">
+        Khai thác hàng lạnh
+      </Link>
+      <Link to="/khai-thac-mail" className="item-link">
+        Khai thác mail
+      </Link>
+      <Link to="/khoanh-mnf" className="item-link">
+        Khoanh MNF
+      </Link>
+      <Link to="/mail" className="item-link">
+        Mail
+      </Link>
     </div>
   );
 };
