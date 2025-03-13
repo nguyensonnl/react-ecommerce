@@ -18,7 +18,7 @@ const BRK = () => {
       </div
 	  
 	  <div>
-		Vào ngày n/n vào luc aa:bb, tôi có khai thác chuyến bay SQ184
+		Vào ngày nn vào luc aabb, tôi có khai thác chuyến bay SQ184
 		Trong quá trình khai thác, có lô hàng với số MAWB: và HAWB: tôi đã không kiểm tra kỹ cargo label của từng kiện
 		nên đã không phát hiện ra có 1 kiện có cargo label với MAWB: và HAWB: khắc biệt so với trên hệ thống, kết quả là
 		lô hàng này đã bị MSCA 1 kiện và FDCA 1 kiện DEST SGN, do không phát hiện sớm và không thông báo sớm cho hãng để giải quyết
