@@ -15,7 +15,15 @@ const BRK = () => {
         nhầm vào lô hàng có MAWB: 978 2196 3884 và HAWB: AEC2411003 bị FDCA dest
         SGN, ảnh hưởng rất nhiều quá trình lưu kho cũng như thông báo sớm cho
         hãng để giải quyết
-      </div>
+      </div
+	  
+	  <div>
+		Vào ngày n/n vào luc aa:bb, tôi có khai thác chuyến bay SQ184
+		Trong quá trình khai thác, có lô hàng với số MAWB: và HAWB: tôi đã không kiểm tra kỹ cargo label của từng kiện
+		nên đã không phát hiện ra có 1 kiện có cargo label với MAWB: và HAWB: khắc biệt so với trên hệ thống, kết quả là
+		lô hàng này đã bị MSCA 1 kiện và FDCA 1 kiện DEST SGN, do không phát hiện sớm và không thông báo sớm cho hãng để giải quyết
+		nên đã ảnh hưởng rất nhiều trong quá trình lưu kho và phát hàng cho khách.
+	  </div>
 
       <div>
         Dư FHL, trên hàng không hawb, nhận vào mawb: thao tác giống add group,
