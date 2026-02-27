@@ -3,7 +3,7 @@ import b from "../../assets/img/b.jpg";
 
 const BRK = () => {
   return (
-    <div className="container">
+    <div>
       <div>
         <img src={a} />
       </div>
