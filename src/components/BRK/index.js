@@ -1,17 +1,5 @@
-import a from "../../assets/img/a.jpg";
-import b from "../../assets/img/b.jpg";
-
 const BRK = () => {
-  return (
-    <div>
-      <div>
-        <img src={a} />
-      </div>
-      <div>
-        <img src={b} />
-      </div>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default BRK;
